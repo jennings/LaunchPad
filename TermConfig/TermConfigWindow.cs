@@ -161,7 +161,7 @@ namespace TermConfig
             // Activate next group
             Group_VNC.Enabled = true;
             Group_VNC.Visible = true;
-            ActivateControl( VNC_cbsinc );
+            ActivateControl( VNC_CustomPasswordTextBox );
         }
 
         private void SubmitVNCGroup()
