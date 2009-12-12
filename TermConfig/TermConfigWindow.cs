@@ -48,7 +48,35 @@ namespace TermConfig
 
         private void kbd_Enter_Click( object sender, EventArgs e )
         {
-
+            switch ( ActiveControl.Name )
+            {
+                case "IPAddress_AddressTextBox":
+                    SubmitIPAddressGroup();
+                    break;
+                case "SourceTerminal_IPAddress":
+                    ActivateControl( SourceTerminal_Username);
+                    break;
+                case "SourceTerminal_Username":
+                    ActivateControl( SourceTerminal_Password );
+                    break;
+                case "SourceTerminal_Password":
+                    SubmitSourceTerminalGroup();
+                    break;
+                case "DeviceNumber_DeviceNumber":
+                    SubmitDeviceNumberGroup();
+                    break;
+                case "TerminalType_Normal":
+                case "TerminalType_Redundant":
+                case "TerminalType_Posdriver":
+                    SubmitTerminalTypeGroup();
+                    break;
+                case "VNC_cbsinc":
+                case "VNC_sliders":
+                case "VNC_CustomPassword":
+                case "VNC_CustomPasswordTextBox":
+                    SubmitVNCGroup();
+                    break;
+            }
         }
 
         private void kbd_SaveAndReboot_Click( object sender, EventArgs e )
@@ -59,6 +87,46 @@ namespace TermConfig
         private void VNCSkipButton_Click( object sender, EventArgs e )
         {
 
+        }
+
+        private void SubmitIPAddressGroup()
+        {
+            // Validate IP Address
+            // Set IP address
+            // Disable group
+            // Activate next group
+        }
+
+        private void SubmitSourceTerminalGroup()
+        {
+            // Validate IP address
+            // Try to map drive
+            // Try to copy INIs
+            // Disable group
+            // Activate next group
+        }
+
+        private void SubmitDeviceNumberGroup()
+        {
+            // Validate number
+            // Disable group
+            // Activate next group
+        }
+
+        private void SubmitTerminalTypeGroup()
+        {
+            // Validate field
+            // Write posiw.ini
+            // Disable group
+            // Activate next group
+        }
+
+        private void SubmitVNCGroup()
+        {
+            // Validate field
+            // Enable VNC
+            // Disable group
+            // Activate save and reboot button
         }
     }
 }
