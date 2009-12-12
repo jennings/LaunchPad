@@ -26,7 +26,7 @@ namespace TermConfig
         private void kbd_KeyPress( object sender, EventArgs e )
         {
             // Get letter
-            char charPressed = (char)( ( (Button)sender ).Tag );
+            string charPressed = ( ( (Button)sender ).Tag ).ToString();
             // Type letter
             ActiveControl.Text = ActiveControl.Text + charPressed;
         }
