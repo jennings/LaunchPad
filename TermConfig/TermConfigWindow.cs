@@ -14,5 +14,15 @@ namespace TermConfig
         {
             InitializeComponent();
         }
+
+        private void groupBox2_Enter( object sender, EventArgs e )
+        {
+
+        }
+
+        private void TermConfigWindow_Load( object sender, EventArgs e )
+        {
+
+        }
     }
 }

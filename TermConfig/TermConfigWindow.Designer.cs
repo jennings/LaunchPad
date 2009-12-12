@@ -88,16 +88,15 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.textBox5 = new System.Windows.Forms.TextBox();
-            this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
             this.LogList = new System.Windows.Forms.ListBox();
+            this.radioButton6 = new System.Windows.Forms.RadioButton();
+            this.button1 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.KeyboardPanel.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox5.SuspendLayout();
-            this.groupBox6.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -564,20 +563,23 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add( this.radioButton6 );
             this.groupBox2.Controls.Add( this.radioButton2 );
             this.groupBox2.Controls.Add( this.radioButton1 );
             this.groupBox2.Location = new System.Drawing.Point( 259, 13 );
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size( 242, 68 );
+            this.groupBox2.Size = new System.Drawing.Size( 242, 100 );
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "This is a";
+            this.groupBox2.Visible = false;
+            this.groupBox2.Enter += new System.EventHandler( this.groupBox2_Enter );
             // 
             // radioButton2
             // 
             this.radioButton2.AutoSize = true;
             this.radioButton2.Font = new System.Drawing.Font( "Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ( (byte)( 0 ) ) );
-            this.radioButton2.Location = new System.Drawing.Point( 20, 42 );
+            this.radioButton2.Location = new System.Drawing.Point( 20, 45 );
             this.radioButton2.Name = "radioButton2";
             this.radioButton2.Size = new System.Drawing.Size( 142, 20 );
             this.radioButton2.TabIndex = 1;
@@ -603,12 +605,13 @@
             this.groupBox3.Controls.Add( this.radioButton5 );
             this.groupBox3.Controls.Add( this.radioButton3 );
             this.groupBox3.Controls.Add( this.radioButton4 );
-            this.groupBox3.Location = new System.Drawing.Point( 261, 144 );
+            this.groupBox3.Location = new System.Drawing.Point( 261, 217 );
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size( 242, 133 );
             this.groupBox3.TabIndex = 1;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "VNC Password";
+            this.groupBox3.Visible = false;
             // 
             // textBox7
             // 
@@ -655,6 +658,7 @@
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add( this.button1 );
             this.groupBox4.Controls.Add( this.label2 );
             this.groupBox4.Controls.Add( this.label1 );
             this.groupBox4.Controls.Add( this.textBox4 );
@@ -662,10 +666,11 @@
             this.groupBox4.Controls.Add( this.textBox2 );
             this.groupBox4.Location = new System.Drawing.Point( 13, 87 );
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size( 242, 137 );
+            this.groupBox4.Size = new System.Drawing.Size( 242, 160 );
             this.groupBox4.TabIndex = 1;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Copy settings from (IP address)";
+            this.groupBox4.Visible = false;
             // 
             // label2
             // 
@@ -712,12 +717,13 @@
             // groupBox5
             // 
             this.groupBox5.Controls.Add( this.textBox5 );
-            this.groupBox5.Location = new System.Drawing.Point( 261, 87 );
+            this.groupBox5.Location = new System.Drawing.Point( 261, 119 );
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size( 242, 51 );
             this.groupBox5.TabIndex = 2;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Device number (from spcwin.ini)";
+            this.groupBox5.Visible = false;
             // 
             // textBox5
             // 
@@ -727,24 +733,6 @@
             this.textBox5.Size = new System.Drawing.Size( 47, 26 );
             this.textBox5.TabIndex = 5;
             // 
-            // groupBox6
-            // 
-            this.groupBox6.Controls.Add( this.textBox6 );
-            this.groupBox6.Location = new System.Drawing.Point( 12, 230 );
-            this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size( 242, 60 );
-            this.groupBox6.TabIndex = 2;
-            this.groupBox6.TabStop = false;
-            this.groupBox6.Text = "Posdriver IP address";
-            // 
-            // textBox6
-            // 
-            this.textBox6.Font = new System.Drawing.Font( "Courier New", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ( (byte)( 0 ) ) );
-            this.textBox6.Location = new System.Drawing.Point( 6, 21 );
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size( 230, 26 );
-            this.textBox6.TabIndex = 1;
-            // 
             // LogList
             // 
             this.LogList.FormattingEnabled = true;
@@ -753,13 +741,32 @@
             this.LogList.Size = new System.Drawing.Size( 245, 355 );
             this.LogList.TabIndex = 0;
             // 
+            // radioButton6
+            // 
+            this.radioButton6.AutoSize = true;
+            this.radioButton6.Font = new System.Drawing.Font( "Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ( (byte)( 0 ) ) );
+            this.radioButton6.Location = new System.Drawing.Point( 20, 71 );
+            this.radioButton6.Name = "radioButton6";
+            this.radioButton6.Size = new System.Drawing.Size( 84, 20 );
+            this.radioButton6.TabIndex = 2;
+            this.radioButton6.Text = "Posdriver";
+            this.radioButton6.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point( 48, 120 );
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size( 153, 28 );
+            this.button1.TabIndex = 5;
+            this.button1.Text = "SKIP";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
             // TermConfigWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF( 6F, 13F );
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size( 764, 522 );
             this.Controls.Add( this.LogList );
-            this.Controls.Add( this.groupBox6 );
             this.Controls.Add( this.groupBox5 );
             this.Controls.Add( this.groupBox4 );
             this.Controls.Add( this.groupBox2 );
@@ -768,6 +775,7 @@
             this.Controls.Add( this.groupBox1 );
             this.Name = "TermConfigWindow";
             this.Text = "TermConfig - Custom Business Solutions";
+            this.Load += new System.EventHandler( this.TermConfigWindow_Load );
             this.groupBox1.ResumeLayout( false );
             this.groupBox1.PerformLayout();
             this.KeyboardPanel.ResumeLayout( false );
@@ -779,8 +787,6 @@
             this.groupBox4.PerformLayout();
             this.groupBox5.ResumeLayout( false );
             this.groupBox5.PerformLayout();
-            this.groupBox6.ResumeLayout( false );
-            this.groupBox6.PerformLayout();
             this.ResumeLayout( false );
 
         }
@@ -842,14 +848,14 @@
         private System.Windows.Forms.RadioButton radioButton1;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.GroupBox groupBox6;
-        private System.Windows.Forms.TextBox textBox6;
         private System.Windows.Forms.Button kbd_SaveAndReboot;
         private System.Windows.Forms.RadioButton radioButton3;
         private System.Windows.Forms.RadioButton radioButton4;
         private System.Windows.Forms.ListBox LogList;
         private System.Windows.Forms.TextBox textBox7;
         private System.Windows.Forms.RadioButton radioButton5;
+        private System.Windows.Forms.RadioButton radioButton6;
+        private System.Windows.Forms.Button button1;
     }
 }
 
