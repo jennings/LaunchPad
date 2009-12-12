@@ -31,6 +31,7 @@
             this.Group_IPAddress = new System.Windows.Forms.GroupBox();
             this.IPAddress_AddressTextBox = new System.Windows.Forms.TextBox();
             this.KeyboardPanel = new System.Windows.Forms.Panel();
+            this.kbd_Shift = new System.Windows.Forms.Button();
             this.kbd_SaveAndReboot = new System.Windows.Forms.Button();
             this.kbd_6 = new System.Windows.Forms.Button();
             this.kbd_3 = new System.Windows.Forms.Button();
@@ -73,26 +74,25 @@
             this.kbd_W = new System.Windows.Forms.Button();
             this.kbd_Q = new System.Windows.Forms.Button();
             this.Group_TerminalType = new System.Windows.Forms.GroupBox();
-            this.radioButton6 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.TerminalType_Posdriver = new System.Windows.Forms.RadioButton();
+            this.TerminalType_Redundant = new System.Windows.Forms.RadioButton();
+            this.TerminalType_Normal = new System.Windows.Forms.RadioButton();
             this.Group_VNC = new System.Windows.Forms.GroupBox();
-            this.VNCSkipButton = new System.Windows.Forms.Button();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.radioButton5 = new System.Windows.Forms.RadioButton();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
-            this.radioButton4 = new System.Windows.Forms.RadioButton();
+            this.VNC_SkipButton = new System.Windows.Forms.Button();
+            this.VNC_CustomPasswordTextBox = new System.Windows.Forms.TextBox();
+            this.VNC_CustomPassword = new System.Windows.Forms.RadioButton();
+            this.VNC_sliders = new System.Windows.Forms.RadioButton();
+            this.VNC_cbsinc = new System.Windows.Forms.RadioButton();
             this.Group_SourceTerminal = new System.Windows.Forms.GroupBox();
-            this.SourceTerminalSkipButton = new System.Windows.Forms.Button();
+            this.SourceTerminal_SkipButton = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.SourceTerminal_Password = new System.Windows.Forms.TextBox();
+            this.SourceTerminal_Username = new System.Windows.Forms.TextBox();
+            this.SourceTerminal_IPAddress = new System.Windows.Forms.TextBox();
             this.Group_DeviceNumber = new System.Windows.Forms.GroupBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.DeviceNumber_DeviceNumber = new System.Windows.Forms.TextBox();
             this.LogList = new System.Windows.Forms.ListBox();
-            this.kbd_Shift = new System.Windows.Forms.Button();
             this.Group_IPAddress.SuspendLayout();
             this.KeyboardPanel.SuspendLayout();
             this.Group_TerminalType.SuspendLayout();
@@ -167,6 +167,15 @@
             this.KeyboardPanel.Name = "KeyboardPanel";
             this.KeyboardPanel.Size = new System.Drawing.Size( 740, 126 );
             this.KeyboardPanel.TabIndex = 1;
+            // 
+            // kbd_Shift
+            // 
+            this.kbd_Shift.Location = new System.Drawing.Point( 3, 85 );
+            this.kbd_Shift.Name = "kbd_Shift";
+            this.kbd_Shift.Size = new System.Drawing.Size( 35, 35 );
+            this.kbd_Shift.TabIndex = 50;
+            this.kbd_Shift.Text = "Shft";
+            this.kbd_Shift.UseVisualStyleBackColor = true;
             // 
             // kbd_SaveAndReboot
             // 
@@ -281,9 +290,9 @@
             // 
             // kbd_StartOver
             // 
-            this.kbd_StartOver.Location = new System.Drawing.Point( 536, 44 );
+            this.kbd_StartOver.Location = new System.Drawing.Point( 554, 44 );
             this.kbd_StartOver.Name = "kbd_StartOver";
-            this.kbd_StartOver.Size = new System.Drawing.Size( 105, 35 );
+            this.kbd_StartOver.Size = new System.Drawing.Size( 87, 35 );
             this.kbd_StartOver.TabIndex = 35;
             this.kbd_StartOver.Text = "Start Over";
             this.kbd_StartOver.UseVisualStyleBackColor = true;
@@ -291,9 +300,9 @@
             // 
             // kbd_Enter
             // 
-            this.kbd_Enter.Location = new System.Drawing.Point( 536, 85 );
+            this.kbd_Enter.Location = new System.Drawing.Point( 554, 85 );
             this.kbd_Enter.Name = "kbd_Enter";
-            this.kbd_Enter.Size = new System.Drawing.Size( 105, 35 );
+            this.kbd_Enter.Size = new System.Drawing.Size( 87, 35 );
             this.kbd_Enter.TabIndex = 34;
             this.kbd_Enter.Text = "Enter";
             this.kbd_Enter.UseVisualStyleBackColor = true;
@@ -301,9 +310,9 @@
             // 
             // kbd_Backspace
             // 
-            this.kbd_Backspace.Location = new System.Drawing.Point( 536, 3 );
+            this.kbd_Backspace.Location = new System.Drawing.Point( 554, 3 );
             this.kbd_Backspace.Name = "kbd_Backspace";
-            this.kbd_Backspace.Size = new System.Drawing.Size( 105, 35 );
+            this.kbd_Backspace.Size = new System.Drawing.Size( 87, 35 );
             this.kbd_Backspace.TabIndex = 32;
             this.kbd_Backspace.Text = "Backspace";
             this.kbd_Backspace.UseVisualStyleBackColor = true;
@@ -608,10 +617,10 @@
             // 
             // Group_TerminalType
             // 
-            this.Group_TerminalType.Controls.Add( this.radioButton6 );
-            this.Group_TerminalType.Controls.Add( this.radioButton2 );
-            this.Group_TerminalType.Controls.Add( this.radioButton1 );
-            this.Group_TerminalType.Location = new System.Drawing.Point( 259, 13 );
+            this.Group_TerminalType.Controls.Add( this.TerminalType_Posdriver );
+            this.Group_TerminalType.Controls.Add( this.TerminalType_Redundant );
+            this.Group_TerminalType.Controls.Add( this.TerminalType_Normal );
+            this.Group_TerminalType.Location = new System.Drawing.Point( 261, 13 );
             this.Group_TerminalType.Name = "Group_TerminalType";
             this.Group_TerminalType.Size = new System.Drawing.Size( 242, 100 );
             this.Group_TerminalType.TabIndex = 1;
@@ -619,49 +628,49 @@
             this.Group_TerminalType.Text = "This is a";
             this.Group_TerminalType.Visible = false;
             // 
-            // radioButton6
+            // TerminalType_Posdriver
             // 
-            this.radioButton6.AutoSize = true;
-            this.radioButton6.Font = new System.Drawing.Font( "Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ( (byte)( 0 ) ) );
-            this.radioButton6.Location = new System.Drawing.Point( 20, 71 );
-            this.radioButton6.Name = "radioButton6";
-            this.radioButton6.Size = new System.Drawing.Size( 84, 20 );
-            this.radioButton6.TabIndex = 2;
-            this.radioButton6.Text = "Posdriver";
-            this.radioButton6.UseVisualStyleBackColor = true;
+            this.TerminalType_Posdriver.AutoSize = true;
+            this.TerminalType_Posdriver.Font = new System.Drawing.Font( "Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ( (byte)( 0 ) ) );
+            this.TerminalType_Posdriver.Location = new System.Drawing.Point( 20, 71 );
+            this.TerminalType_Posdriver.Name = "TerminalType_Posdriver";
+            this.TerminalType_Posdriver.Size = new System.Drawing.Size( 84, 20 );
+            this.TerminalType_Posdriver.TabIndex = 2;
+            this.TerminalType_Posdriver.Text = "Posdriver";
+            this.TerminalType_Posdriver.UseVisualStyleBackColor = true;
             // 
-            // radioButton2
+            // TerminalType_Redundant
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Font = new System.Drawing.Font( "Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ( (byte)( 0 ) ) );
-            this.radioButton2.Location = new System.Drawing.Point( 20, 45 );
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size( 142, 20 );
-            this.radioButton2.TabIndex = 1;
-            this.radioButton2.Text = "Redundant terminal";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.TerminalType_Redundant.AutoSize = true;
+            this.TerminalType_Redundant.Font = new System.Drawing.Font( "Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ( (byte)( 0 ) ) );
+            this.TerminalType_Redundant.Location = new System.Drawing.Point( 20, 45 );
+            this.TerminalType_Redundant.Name = "TerminalType_Redundant";
+            this.TerminalType_Redundant.Size = new System.Drawing.Size( 142, 20 );
+            this.TerminalType_Redundant.TabIndex = 1;
+            this.TerminalType_Redundant.Text = "Redundant terminal";
+            this.TerminalType_Redundant.UseVisualStyleBackColor = true;
             // 
-            // radioButton1
+            // TerminalType_Normal
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Checked = true;
-            this.radioButton1.Font = new System.Drawing.Font( "Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ( (byte)( 0 ) ) );
-            this.radioButton1.Location = new System.Drawing.Point( 20, 19 );
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size( 120, 20 );
-            this.radioButton1.TabIndex = 0;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Normal terminal";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.TerminalType_Normal.AutoSize = true;
+            this.TerminalType_Normal.Checked = true;
+            this.TerminalType_Normal.Font = new System.Drawing.Font( "Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ( (byte)( 0 ) ) );
+            this.TerminalType_Normal.Location = new System.Drawing.Point( 20, 19 );
+            this.TerminalType_Normal.Name = "TerminalType_Normal";
+            this.TerminalType_Normal.Size = new System.Drawing.Size( 120, 20 );
+            this.TerminalType_Normal.TabIndex = 0;
+            this.TerminalType_Normal.TabStop = true;
+            this.TerminalType_Normal.Text = "Normal terminal";
+            this.TerminalType_Normal.UseVisualStyleBackColor = true;
             // 
             // Group_VNC
             // 
-            this.Group_VNC.Controls.Add( this.VNCSkipButton );
-            this.Group_VNC.Controls.Add( this.textBox7 );
-            this.Group_VNC.Controls.Add( this.radioButton5 );
-            this.Group_VNC.Controls.Add( this.radioButton3 );
-            this.Group_VNC.Controls.Add( this.radioButton4 );
-            this.Group_VNC.Location = new System.Drawing.Point( 261, 176 );
+            this.Group_VNC.Controls.Add( this.VNC_SkipButton );
+            this.Group_VNC.Controls.Add( this.VNC_CustomPasswordTextBox );
+            this.Group_VNC.Controls.Add( this.VNC_CustomPassword );
+            this.Group_VNC.Controls.Add( this.VNC_sliders );
+            this.Group_VNC.Controls.Add( this.VNC_cbsinc );
+            this.Group_VNC.Location = new System.Drawing.Point( 261, 119 );
             this.Group_VNC.Name = "Group_VNC";
             this.Group_VNC.Size = new System.Drawing.Size( 242, 180 );
             this.Group_VNC.TabIndex = 1;
@@ -669,67 +678,67 @@
             this.Group_VNC.Text = "VNC Password";
             this.Group_VNC.Visible = false;
             // 
-            // VNCSkipButton
+            // VNC_SkipButton
             // 
-            this.VNCSkipButton.Location = new System.Drawing.Point( 46, 135 );
-            this.VNCSkipButton.Name = "VNCSkipButton";
-            this.VNCSkipButton.Size = new System.Drawing.Size( 153, 28 );
-            this.VNCSkipButton.TabIndex = 7;
-            this.VNCSkipButton.Text = "SKIP";
-            this.VNCSkipButton.UseVisualStyleBackColor = true;
-            this.VNCSkipButton.Click += new System.EventHandler( this.VNCSkipButton_Click );
+            this.VNC_SkipButton.Location = new System.Drawing.Point( 46, 135 );
+            this.VNC_SkipButton.Name = "VNC_SkipButton";
+            this.VNC_SkipButton.Size = new System.Drawing.Size( 153, 28 );
+            this.VNC_SkipButton.TabIndex = 7;
+            this.VNC_SkipButton.Text = "SKIP";
+            this.VNC_SkipButton.UseVisualStyleBackColor = true;
+            this.VNC_SkipButton.Click += new System.EventHandler( this.VNCSkipButton_Click );
             // 
-            // textBox7
+            // VNC_CustomPasswordTextBox
             // 
-            this.textBox7.Font = new System.Drawing.Font( "Courier New", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ( (byte)( 0 ) ) );
-            this.textBox7.Location = new System.Drawing.Point( 41, 94 );
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size( 179, 26 );
-            this.textBox7.TabIndex = 6;
+            this.VNC_CustomPasswordTextBox.Font = new System.Drawing.Font( "Courier New", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ( (byte)( 0 ) ) );
+            this.VNC_CustomPasswordTextBox.Location = new System.Drawing.Point( 41, 94 );
+            this.VNC_CustomPasswordTextBox.Name = "VNC_CustomPasswordTextBox";
+            this.VNC_CustomPasswordTextBox.Size = new System.Drawing.Size( 179, 26 );
+            this.VNC_CustomPasswordTextBox.TabIndex = 6;
             // 
-            // radioButton5
+            // VNC_CustomPassword
             // 
-            this.radioButton5.AutoSize = true;
-            this.radioButton5.Font = new System.Drawing.Font( "Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ( (byte)( 0 ) ) );
-            this.radioButton5.Location = new System.Drawing.Point( 18, 68 );
-            this.radioButton5.Name = "radioButton5";
-            this.radioButton5.Size = new System.Drawing.Size( 71, 20 );
-            this.radioButton5.TabIndex = 4;
-            this.radioButton5.Text = "Custom";
-            this.radioButton5.UseVisualStyleBackColor = true;
+            this.VNC_CustomPassword.AutoSize = true;
+            this.VNC_CustomPassword.Font = new System.Drawing.Font( "Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ( (byte)( 0 ) ) );
+            this.VNC_CustomPassword.Location = new System.Drawing.Point( 18, 68 );
+            this.VNC_CustomPassword.Name = "VNC_CustomPassword";
+            this.VNC_CustomPassword.Size = new System.Drawing.Size( 71, 20 );
+            this.VNC_CustomPassword.TabIndex = 4;
+            this.VNC_CustomPassword.Text = "Custom";
+            this.VNC_CustomPassword.UseVisualStyleBackColor = true;
             // 
-            // radioButton3
+            // VNC_sliders
             // 
-            this.radioButton3.AutoSize = true;
-            this.radioButton3.Font = new System.Drawing.Font( "Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ( (byte)( 0 ) ) );
-            this.radioButton3.Location = new System.Drawing.Point( 18, 42 );
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size( 66, 20 );
-            this.radioButton3.TabIndex = 3;
-            this.radioButton3.Text = "sliders";
-            this.radioButton3.UseVisualStyleBackColor = true;
+            this.VNC_sliders.AutoSize = true;
+            this.VNC_sliders.Font = new System.Drawing.Font( "Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ( (byte)( 0 ) ) );
+            this.VNC_sliders.Location = new System.Drawing.Point( 18, 42 );
+            this.VNC_sliders.Name = "VNC_sliders";
+            this.VNC_sliders.Size = new System.Drawing.Size( 66, 20 );
+            this.VNC_sliders.TabIndex = 3;
+            this.VNC_sliders.Text = "sliders";
+            this.VNC_sliders.UseVisualStyleBackColor = true;
             // 
-            // radioButton4
+            // VNC_cbsinc
             // 
-            this.radioButton4.AutoSize = true;
-            this.radioButton4.Checked = true;
-            this.radioButton4.Font = new System.Drawing.Font( "Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ( (byte)( 0 ) ) );
-            this.radioButton4.Location = new System.Drawing.Point( 18, 19 );
-            this.radioButton4.Name = "radioButton4";
-            this.radioButton4.Size = new System.Drawing.Size( 65, 20 );
-            this.radioButton4.TabIndex = 2;
-            this.radioButton4.TabStop = true;
-            this.radioButton4.Text = "cbsinc";
-            this.radioButton4.UseVisualStyleBackColor = true;
+            this.VNC_cbsinc.AutoSize = true;
+            this.VNC_cbsinc.Checked = true;
+            this.VNC_cbsinc.Font = new System.Drawing.Font( "Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ( (byte)( 0 ) ) );
+            this.VNC_cbsinc.Location = new System.Drawing.Point( 18, 19 );
+            this.VNC_cbsinc.Name = "VNC_cbsinc";
+            this.VNC_cbsinc.Size = new System.Drawing.Size( 65, 20 );
+            this.VNC_cbsinc.TabIndex = 2;
+            this.VNC_cbsinc.TabStop = true;
+            this.VNC_cbsinc.Text = "cbsinc";
+            this.VNC_cbsinc.UseVisualStyleBackColor = true;
             // 
             // Group_SourceTerminal
             // 
-            this.Group_SourceTerminal.Controls.Add( this.SourceTerminalSkipButton );
+            this.Group_SourceTerminal.Controls.Add( this.SourceTerminal_SkipButton );
             this.Group_SourceTerminal.Controls.Add( this.label2 );
             this.Group_SourceTerminal.Controls.Add( this.label1 );
-            this.Group_SourceTerminal.Controls.Add( this.textBox4 );
-            this.Group_SourceTerminal.Controls.Add( this.textBox3 );
-            this.Group_SourceTerminal.Controls.Add( this.textBox2 );
+            this.Group_SourceTerminal.Controls.Add( this.SourceTerminal_Password );
+            this.Group_SourceTerminal.Controls.Add( this.SourceTerminal_Username );
+            this.Group_SourceTerminal.Controls.Add( this.SourceTerminal_IPAddress );
             this.Group_SourceTerminal.Location = new System.Drawing.Point( 13, 87 );
             this.Group_SourceTerminal.Name = "Group_SourceTerminal";
             this.Group_SourceTerminal.Size = new System.Drawing.Size( 242, 160 );
@@ -738,14 +747,14 @@
             this.Group_SourceTerminal.Text = "Copy settings from (IP address)";
             this.Group_SourceTerminal.Visible = false;
             // 
-            // SourceTerminalSkipButton
+            // SourceTerminal_SkipButton
             // 
-            this.SourceTerminalSkipButton.Location = new System.Drawing.Point( 48, 120 );
-            this.SourceTerminalSkipButton.Name = "SourceTerminalSkipButton";
-            this.SourceTerminalSkipButton.Size = new System.Drawing.Size( 153, 28 );
-            this.SourceTerminalSkipButton.TabIndex = 5;
-            this.SourceTerminalSkipButton.Text = "SKIP";
-            this.SourceTerminalSkipButton.UseVisualStyleBackColor = true;
+            this.SourceTerminal_SkipButton.Location = new System.Drawing.Point( 48, 120 );
+            this.SourceTerminal_SkipButton.Name = "SourceTerminal_SkipButton";
+            this.SourceTerminal_SkipButton.Size = new System.Drawing.Size( 153, 28 );
+            this.SourceTerminal_SkipButton.TabIndex = 5;
+            this.SourceTerminal_SkipButton.Text = "SKIP";
+            this.SourceTerminal_SkipButton.UseVisualStyleBackColor = true;
             // 
             // label2
             // 
@@ -765,34 +774,34 @@
             this.label1.TabIndex = 3;
             this.label1.Text = "Username";
             // 
-            // textBox4
+            // SourceTerminal_Password
             // 
-            this.textBox4.Font = new System.Drawing.Font( "Courier New", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ( (byte)( 0 ) ) );
-            this.textBox4.Location = new System.Drawing.Point( 67, 83 );
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size( 169, 26 );
-            this.textBox4.TabIndex = 2;
+            this.SourceTerminal_Password.Font = new System.Drawing.Font( "Courier New", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ( (byte)( 0 ) ) );
+            this.SourceTerminal_Password.Location = new System.Drawing.Point( 67, 83 );
+            this.SourceTerminal_Password.Name = "SourceTerminal_Password";
+            this.SourceTerminal_Password.Size = new System.Drawing.Size( 169, 26 );
+            this.SourceTerminal_Password.TabIndex = 2;
             // 
-            // textBox3
+            // SourceTerminal_Username
             // 
-            this.textBox3.Font = new System.Drawing.Font( "Courier New", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ( (byte)( 0 ) ) );
-            this.textBox3.Location = new System.Drawing.Point( 67, 51 );
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size( 169, 26 );
-            this.textBox3.TabIndex = 1;
+            this.SourceTerminal_Username.Font = new System.Drawing.Font( "Courier New", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ( (byte)( 0 ) ) );
+            this.SourceTerminal_Username.Location = new System.Drawing.Point( 67, 51 );
+            this.SourceTerminal_Username.Name = "SourceTerminal_Username";
+            this.SourceTerminal_Username.Size = new System.Drawing.Size( 169, 26 );
+            this.SourceTerminal_Username.TabIndex = 1;
             // 
-            // textBox2
+            // SourceTerminal_IPAddress
             // 
-            this.textBox2.Font = new System.Drawing.Font( "Courier New", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ( (byte)( 0 ) ) );
-            this.textBox2.Location = new System.Drawing.Point( 6, 19 );
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size( 230, 26 );
-            this.textBox2.TabIndex = 0;
+            this.SourceTerminal_IPAddress.Font = new System.Drawing.Font( "Courier New", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ( (byte)( 0 ) ) );
+            this.SourceTerminal_IPAddress.Location = new System.Drawing.Point( 6, 19 );
+            this.SourceTerminal_IPAddress.Name = "SourceTerminal_IPAddress";
+            this.SourceTerminal_IPAddress.Size = new System.Drawing.Size( 230, 26 );
+            this.SourceTerminal_IPAddress.TabIndex = 0;
             // 
             // Group_DeviceNumber
             // 
-            this.Group_DeviceNumber.Controls.Add( this.textBox5 );
-            this.Group_DeviceNumber.Location = new System.Drawing.Point( 261, 119 );
+            this.Group_DeviceNumber.Controls.Add( this.DeviceNumber_DeviceNumber );
+            this.Group_DeviceNumber.Location = new System.Drawing.Point( 13, 253 );
             this.Group_DeviceNumber.Name = "Group_DeviceNumber";
             this.Group_DeviceNumber.Size = new System.Drawing.Size( 242, 51 );
             this.Group_DeviceNumber.TabIndex = 2;
@@ -800,30 +809,21 @@
             this.Group_DeviceNumber.Text = "Device number (from spcwin.ini)";
             this.Group_DeviceNumber.Visible = false;
             // 
-            // textBox5
+            // DeviceNumber_DeviceNumber
             // 
-            this.textBox5.Font = new System.Drawing.Font( "Courier New", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ( (byte)( 0 ) ) );
-            this.textBox5.Location = new System.Drawing.Point( 29, 19 );
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size( 47, 26 );
-            this.textBox5.TabIndex = 5;
+            this.DeviceNumber_DeviceNumber.Font = new System.Drawing.Font( "Courier New", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ( (byte)( 0 ) ) );
+            this.DeviceNumber_DeviceNumber.Location = new System.Drawing.Point( 29, 19 );
+            this.DeviceNumber_DeviceNumber.Name = "DeviceNumber_DeviceNumber";
+            this.DeviceNumber_DeviceNumber.Size = new System.Drawing.Size( 47, 26 );
+            this.DeviceNumber_DeviceNumber.TabIndex = 5;
             // 
             // LogList
             // 
             this.LogList.FormattingEnabled = true;
-            this.LogList.Location = new System.Drawing.Point( 507, 13 );
+            this.LogList.Location = new System.Drawing.Point( 508, 13 );
             this.LogList.Name = "LogList";
             this.LogList.Size = new System.Drawing.Size( 245, 355 );
             this.LogList.TabIndex = 0;
-            // 
-            // kbd_Shift
-            // 
-            this.kbd_Shift.Location = new System.Drawing.Point( 3, 85 );
-            this.kbd_Shift.Name = "kbd_Shift";
-            this.kbd_Shift.Size = new System.Drawing.Size( 35, 35 );
-            this.kbd_Shift.TabIndex = 50;
-            this.kbd_Shift.Text = "Shft";
-            this.kbd_Shift.UseVisualStyleBackColor = true;
             // 
             // TermConfigWindow
             // 
@@ -902,24 +902,24 @@
         private System.Windows.Forms.GroupBox Group_TerminalType;
         private System.Windows.Forms.GroupBox Group_VNC;
         private System.Windows.Forms.GroupBox Group_SourceTerminal;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox SourceTerminal_Username;
+        private System.Windows.Forms.TextBox SourceTerminal_IPAddress;
+        private System.Windows.Forms.TextBox SourceTerminal_Password;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton TerminalType_Redundant;
+        private System.Windows.Forms.RadioButton TerminalType_Normal;
         private System.Windows.Forms.GroupBox Group_DeviceNumber;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox DeviceNumber_DeviceNumber;
         private System.Windows.Forms.Button kbd_SaveAndReboot;
-        private System.Windows.Forms.RadioButton radioButton3;
-        private System.Windows.Forms.RadioButton radioButton4;
+        private System.Windows.Forms.RadioButton VNC_sliders;
+        private System.Windows.Forms.RadioButton VNC_cbsinc;
         private System.Windows.Forms.ListBox LogList;
-        private System.Windows.Forms.TextBox textBox7;
-        private System.Windows.Forms.RadioButton radioButton5;
-        private System.Windows.Forms.RadioButton radioButton6;
-        private System.Windows.Forms.Button SourceTerminalSkipButton;
-        private System.Windows.Forms.Button VNCSkipButton;
+        private System.Windows.Forms.TextBox VNC_CustomPasswordTextBox;
+        private System.Windows.Forms.RadioButton VNC_CustomPassword;
+        private System.Windows.Forms.RadioButton TerminalType_Posdriver;
+        private System.Windows.Forms.Button SourceTerminal_SkipButton;
+        private System.Windows.Forms.Button VNC_SkipButton;
         private System.Windows.Forms.Button kbd_Shift;
     }
 }
