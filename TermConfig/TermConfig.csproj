@@ -56,6 +56,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PosiwBuilder.cs" />
     <Compile Include="TermConfigWindow.cs">
       <SubType>Form</SubType>
     </Compile>
