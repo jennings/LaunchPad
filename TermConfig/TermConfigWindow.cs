@@ -54,7 +54,7 @@ namespace TermConfig
                     SubmitIPAddressGroup();
                     break;
                 case "SourceTerminal_IPAddress":
-                    ActivateControl( SourceTerminal_Username);
+                    ActivateControl( SourceTerminal_Username );
                     break;
                 case "SourceTerminal_Username":
                     ActivateControl( SourceTerminal_Password );
@@ -93,8 +93,14 @@ namespace TermConfig
         {
             // Validate IP Address
             // Set IP address
+
             // Disable group
+            Group_IPAddress.Enabled = false;
+
             // Activate next group
+            Group_SourceTerminal.Enabled = true;
+            Group_SourceTerminal.Visible = true;
+            ActivateControl( SourceTerminal_IPAddress );
         }
 
         private void SubmitSourceTerminalGroup()
@@ -102,23 +108,41 @@ namespace TermConfig
             // Validate IP address
             // Try to map drive
             // Try to copy INIs
+
             // Disable group
+            Group_SourceTerminal.Enabled = false;
+
             // Activate next group
+            Group_DeviceNumber.Enabled = true;
+            Group_DeviceNumber.Visible = true;
+            ActivateControl( DeviceNumber_DeviceNumber );
         }
 
         private void SubmitDeviceNumberGroup()
         {
             // Validate number
+
             // Disable group
+            Group_DeviceNumber.Enabled = false;
+
             // Activate next group
+            Group_TerminalType.Enabled = true;
+            Group_TerminalType.Visible = true;
+            ActivateControl( TerminalType_Normal );
         }
 
         private void SubmitTerminalTypeGroup()
         {
             // Validate field
             // Write posiw.ini
+
             // Disable group
+            Group_TerminalType.Enabled = false;
+
             // Activate next group
+            Group_VNC.Enabled = true;
+            Group_VNC.Visible = true;
+            ActivateControl( VNC_cbsinc );
         }
 
         private void SubmitVNCGroup()
@@ -126,7 +150,12 @@ namespace TermConfig
             // Validate field
             // Enable VNC
             // Disable group
+            Group_VNC.Enabled = false;
+
             // Activate save and reboot button
+            kbd_SaveAndReboot.Enabled = true;
+            kbd_SaveAndReboot.Visible = true;
+            ActivateControl( kbd_SaveAndReboot );
         }
     }
 }
