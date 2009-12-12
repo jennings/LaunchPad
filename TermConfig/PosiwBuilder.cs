@@ -47,29 +47,31 @@ namespace TermConfig
 
         public void Write()
         {
-            string Posiw;
-            Posiw = "\r\n" + Posiw + @"[Startup]";
-            Posiw = "\r\n" + Posiw + @"POSIW=" + _DeviceNumber;
-            Posiw = "\r\n" + Posiw + @"NetDriveMap1=L:\\" + "" + @"\C$";
+            string Posiw = @"; POSIW Built By TermConfig.";
+            Posiw = Posiw + "\r\n" + @"[Startup]";
+            Posiw = Posiw + "\r\n" + @"POSIW=" + _DeviceNumber;
+            Posiw = Posiw + "\r\n" + @"NetDriveMap1=L:\\" + "" + @"\C$";
 
-            Posiw = "\r\n" + Posiw + @"[Backup]";
-            Posiw = "\r\n" + Posiw + @"PrimaryServer=" + ( PosdriverTerminal ? "YES" : "NO" );
-            Posiw = "\r\n" + Posiw + @"BackupServer=" + ( RedundantTerminal ? "YES" : "NO" );
-            Posiw = "\r\n" + Posiw + @"BackoffServer=" + ( BackofficeTerminal ? "YES" : "NO" );
-            Posiw = "\r\n" + Posiw + @"FileServer=NO";
-            Posiw = "\r\n" + Posiw + @"MirrorPath=L:\SC";
-            Posiw = "\r\n" + Posiw + @"PrimaryInterval=10";
-            Posiw = "\r\n" + Posiw + @"BackupInterval=60";
-            Posiw = "\r\n" + Posiw + @"FailureStartMode=PASSWORD";
-            Posiw = "\r\n" + Posiw + @"FailureStartMessage=EMERGENCY MODE CALL CBS (800) 551-7674";
-            Posiw = "\r\n" + Posiw + @"FailureStartPassword=1234";
-            Posiw = "\r\n" + Posiw + @"FailureEndMode=PASSWORD";
-            Posiw = "\r\n" + Posiw + @"FailureEndMessage=CONFIRM TO EXIT BACKUP MODE";
-            Posiw = "\r\n" + Posiw + @"FailureEndPassword=1234";
+            Posiw = Posiw + "\r\n" + @"[Backup]";
+            Posiw = Posiw + "\r\n" + @"PrimaryServer=" + ( PosdriverTerminal ? "YES" : "NO" );
+            Posiw = Posiw + "\r\n" + @"BackupServer=" + ( RedundantTerminal ? "YES" : "NO" );
+            Posiw = Posiw + "\r\n" + @"BackoffServer=" + ( BackofficeTerminal ? "YES" : "NO" );
+            Posiw = Posiw + "\r\n" + @"FileServer=NO";
+            Posiw = Posiw + "\r\n" + @"MirrorPath=L:\SC";
+            Posiw = Posiw + "\r\n" + @"PrimaryInterval=10";
+            Posiw = Posiw + "\r\n" + @"BackupInterval=60";
+            Posiw = Posiw + "\r\n" + @"FailureStartMode=PASSWORD";
+            Posiw = Posiw + "\r\n" + @"FailureStartMessage=EMERGENCY MODE CALL CBS (800) 551-7674";
+            Posiw = Posiw + "\r\n" + @"FailureStartPassword=1234";
+            Posiw = Posiw + "\r\n" + @"FailureEndMode=PASSWORD";
+            Posiw = Posiw + "\r\n" + @"FailureEndMessage=CONFIRM TO EXIT BACKUP MODE";
+            Posiw = Posiw + "\r\n" + @"FailureEndPassword=1234";
 
-            Posiw = "\r\n" + Posiw + @"[Nightly]";
-            Posiw = "\r\n" + Posiw + @"Night=NO";
-            Posiw = "\r\n" + Posiw + @"WorkPath=L:\SC";
+            Posiw = Posiw + "\r\n" + @"[Nightly]";
+            Posiw = Posiw + "\r\n" + @"Night=NO";
+            Posiw = Posiw + "\r\n" + @"WorkPath=L:\SC";
+
+            Posiw = Posiw + "\r\n";
 
             var fs = File.Open( @"C:\SC\Posiw.ini", FileMode.Create );
         }
