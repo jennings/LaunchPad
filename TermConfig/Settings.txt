@@ -1,0 +1,15 @@
+﻿Settings this script changes:
+
+1. Sets terminal IP address.
+
+2. Copies relevant INI files from another terminal:
+    AMS32.INI
+    DELIVERY.INI
+    ORDRSCRN.INI
+    WINTERM.INI
+
+3. Generates POSIW.INI using the following information:
+    Device number (from spcwin.ini)
+    Terminal type (redundant, normal)
+
+4. Installs and starts UltraVNC with correct passwords.
