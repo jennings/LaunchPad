@@ -1,0 +1,6 @@
+*.exe
+*.csproj.user
+*.suo
+
+obj/
+Build/
