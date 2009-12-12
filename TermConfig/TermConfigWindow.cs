@@ -26,7 +26,9 @@ namespace TermConfig
         private void kbd_KeyPress( object sender, EventArgs e )
         {
             // Get letter
+            char charPressed = (char)( ( (Button)sender ).Tag );
             // Type letter
+            ActiveControl.Text = ActiveControl.Text + charPressed;
         }
 
         private void kbd_Backspace_Click( object sender, EventArgs e )
@@ -40,10 +42,27 @@ namespace TermConfig
         private void kbd_StartOver_Click( object sender, EventArgs e )
         {
             // Clear all fields
+            IPAddress_AddressTextBox.Text = "";
+            SourceTerminal_IPAddress.Text = "";
+            SourceTerminal_Username.Text = "";
+            SourceTerminal_Password.Text = "";
+            DeviceNumber_DeviceNumber.Text = "";
+            TerminalType_Normal.Select();
+            VNC_cbsinc.Select();
+            VNC_CustomPasswordTextBox.Text = "";
+            kbd_SaveAndReboot.Visible = false;
+            LogList.Items.Clear();
 
             // Hide all groups
+            Group_SourceTerminal.Visible = false;
+            Group_DeviceNumber.Visible = false;
+            Group_TerminalType.Visible = false;
+            Group_VNC.Visible = false;
 
             // Activate first field
+            Group_IPAddress.Enabled = true;
+            Group_IPAddress.Visible = true;
+            ActivateControl( IPAddress_AddressTextBox );
         }
 
         private void kbd_Enter_Click( object sender, EventArgs e )
