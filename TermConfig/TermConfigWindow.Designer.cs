@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.Group_IPAddress = new System.Windows.Forms.GroupBox();
+            this.IPAddress_AddressTextBox = new System.Windows.Forms.TextBox();
             this.KeyboardPanel = new System.Windows.Forms.Panel();
             this.kbd_SaveAndReboot = new System.Windows.Forms.Button();
             this.kbd_6 = new System.Windows.Forms.Button();
@@ -72,53 +72,56 @@
             this.kbd_Z = new System.Windows.Forms.Button();
             this.kbd_W = new System.Windows.Forms.Button();
             this.kbd_Q = new System.Windows.Forms.Button();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.Group_TerminalType = new System.Windows.Forms.GroupBox();
+            this.radioButton6 = new System.Windows.Forms.RadioButton();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.Group_VNC = new System.Windows.Forms.GroupBox();
+            this.VNCSkipButton = new System.Windows.Forms.Button();
             this.textBox7 = new System.Windows.Forms.TextBox();
             this.radioButton5 = new System.Windows.Forms.RadioButton();
             this.radioButton3 = new System.Windows.Forms.RadioButton();
             this.radioButton4 = new System.Windows.Forms.RadioButton();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.Group_SourceTerminal = new System.Windows.Forms.GroupBox();
+            this.SourceTerminalSkipButton = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.Group_DeviceNumber = new System.Windows.Forms.GroupBox();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.LogList = new System.Windows.Forms.ListBox();
-            this.radioButton6 = new System.Windows.Forms.RadioButton();
-            this.button1 = new System.Windows.Forms.Button();
-            this.groupBox1.SuspendLayout();
+            this.kbd_Shift = new System.Windows.Forms.Button();
+            this.Group_IPAddress.SuspendLayout();
             this.KeyboardPanel.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            this.groupBox3.SuspendLayout();
-            this.groupBox4.SuspendLayout();
-            this.groupBox5.SuspendLayout();
+            this.Group_TerminalType.SuspendLayout();
+            this.Group_VNC.SuspendLayout();
+            this.Group_SourceTerminal.SuspendLayout();
+            this.Group_DeviceNumber.SuspendLayout();
             this.SuspendLayout();
             // 
-            // groupBox1
+            // Group_IPAddress
             // 
-            this.groupBox1.Controls.Add( this.textBox1 );
-            this.groupBox1.Location = new System.Drawing.Point( 13, 13 );
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size( 242, 68 );
-            this.groupBox1.TabIndex = 0;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "IP Address";
+            this.Group_IPAddress.Controls.Add( this.IPAddress_AddressTextBox );
+            this.Group_IPAddress.Location = new System.Drawing.Point( 13, 13 );
+            this.Group_IPAddress.Name = "Group_IPAddress";
+            this.Group_IPAddress.Size = new System.Drawing.Size( 242, 68 );
+            this.Group_IPAddress.TabIndex = 0;
+            this.Group_IPAddress.TabStop = false;
+            this.Group_IPAddress.Text = "IP Address";
             // 
-            // textBox1
+            // IPAddress_AddressTextBox
             // 
-            this.textBox1.Font = new System.Drawing.Font( "Courier New", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ( (byte)( 0 ) ) );
-            this.textBox1.Location = new System.Drawing.Point( 6, 19 );
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size( 230, 26 );
-            this.textBox1.TabIndex = 0;
+            this.IPAddress_AddressTextBox.Font = new System.Drawing.Font( "Courier New", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ( (byte)( 0 ) ) );
+            this.IPAddress_AddressTextBox.Location = new System.Drawing.Point( 6, 19 );
+            this.IPAddress_AddressTextBox.Name = "IPAddress_AddressTextBox";
+            this.IPAddress_AddressTextBox.Size = new System.Drawing.Size( 230, 26 );
+            this.IPAddress_AddressTextBox.TabIndex = 0;
             // 
             // KeyboardPanel
             // 
+            this.KeyboardPanel.Controls.Add( this.kbd_Shift );
             this.KeyboardPanel.Controls.Add( this.kbd_SaveAndReboot );
             this.KeyboardPanel.Controls.Add( this.kbd_6 );
             this.KeyboardPanel.Controls.Add( this.kbd_3 );
@@ -173,6 +176,8 @@
             this.kbd_SaveAndReboot.TabIndex = 3;
             this.kbd_SaveAndReboot.Text = "Save and Reboot";
             this.kbd_SaveAndReboot.UseVisualStyleBackColor = true;
+            this.kbd_SaveAndReboot.Visible = false;
+            this.kbd_SaveAndReboot.Click += new System.EventHandler( this.kbd_SaveAndReboot_Click );
             // 
             // kbd_6
             // 
@@ -182,6 +187,7 @@
             this.kbd_6.TabIndex = 49;
             this.kbd_6.Text = "6";
             this.kbd_6.UseVisualStyleBackColor = true;
+            this.kbd_6.Click += new System.EventHandler( this.kbd_KeyPress );
             // 
             // kbd_3
             // 
@@ -191,6 +197,7 @@
             this.kbd_3.TabIndex = 48;
             this.kbd_3.Text = "3";
             this.kbd_3.UseVisualStyleBackColor = true;
+            this.kbd_3.Click += new System.EventHandler( this.kbd_KeyPress );
             // 
             // kbd_5
             // 
@@ -200,6 +207,7 @@
             this.kbd_5.TabIndex = 47;
             this.kbd_5.Text = "5";
             this.kbd_5.UseVisualStyleBackColor = true;
+            this.kbd_5.Click += new System.EventHandler( this.kbd_KeyPress );
             // 
             // kbd_2
             // 
@@ -209,6 +217,7 @@
             this.kbd_2.TabIndex = 46;
             this.kbd_2.Text = "2";
             this.kbd_2.UseVisualStyleBackColor = true;
+            this.kbd_2.Click += new System.EventHandler( this.kbd_KeyPress );
             // 
             // kbd_9
             // 
@@ -218,6 +227,7 @@
             this.kbd_9.TabIndex = 45;
             this.kbd_9.Text = "9";
             this.kbd_9.UseVisualStyleBackColor = true;
+            this.kbd_9.Click += new System.EventHandler( this.kbd_KeyPress );
             // 
             // kbd_8
             // 
@@ -227,6 +237,7 @@
             this.kbd_8.TabIndex = 44;
             this.kbd_8.Text = "8";
             this.kbd_8.UseVisualStyleBackColor = true;
+            this.kbd_8.Click += new System.EventHandler( this.kbd_KeyPress );
             // 
             // kbd_4
             // 
@@ -236,6 +247,7 @@
             this.kbd_4.TabIndex = 43;
             this.kbd_4.Text = "4";
             this.kbd_4.UseVisualStyleBackColor = true;
+            this.kbd_4.Click += new System.EventHandler( this.kbd_KeyPress );
             // 
             // kbd_1
             // 
@@ -245,6 +257,7 @@
             this.kbd_1.TabIndex = 42;
             this.kbd_1.Text = "1";
             this.kbd_1.UseVisualStyleBackColor = true;
+            this.kbd_1.Click += new System.EventHandler( this.kbd_KeyPress );
             // 
             // kbd_0
             // 
@@ -254,6 +267,7 @@
             this.kbd_0.TabIndex = 40;
             this.kbd_0.Text = "0";
             this.kbd_0.UseVisualStyleBackColor = true;
+            this.kbd_0.Click += new System.EventHandler( this.kbd_KeyPress );
             // 
             // kbd_7
             // 
@@ -263,6 +277,7 @@
             this.kbd_7.TabIndex = 39;
             this.kbd_7.Text = "7";
             this.kbd_7.UseVisualStyleBackColor = true;
+            this.kbd_7.Click += new System.EventHandler( this.kbd_KeyPress );
             // 
             // kbd_StartOver
             // 
@@ -272,6 +287,7 @@
             this.kbd_StartOver.TabIndex = 35;
             this.kbd_StartOver.Text = "Start Over";
             this.kbd_StartOver.UseVisualStyleBackColor = true;
+            this.kbd_StartOver.Click += new System.EventHandler( this.kbd_StartOver_Click );
             // 
             // kbd_Enter
             // 
@@ -281,6 +297,7 @@
             this.kbd_Enter.TabIndex = 34;
             this.kbd_Enter.Text = "Enter";
             this.kbd_Enter.UseVisualStyleBackColor = true;
+            this.kbd_Enter.Click += new System.EventHandler( this.kbd_Enter_Click );
             // 
             // kbd_Backspace
             // 
@@ -290,6 +307,7 @@
             this.kbd_Backspace.TabIndex = 32;
             this.kbd_Backspace.Text = "Backspace";
             this.kbd_Backspace.UseVisualStyleBackColor = true;
+            this.kbd_Backspace.Click += new System.EventHandler( this.kbd_Backspace_Click );
             // 
             // kbd_L
             // 
@@ -300,6 +318,7 @@
             this.kbd_L.TabIndex = 29;
             this.kbd_L.Text = "L";
             this.kbd_L.UseVisualStyleBackColor = true;
+            this.kbd_L.Click += new System.EventHandler( this.kbd_KeyPress );
             // 
             // kbd_P
             // 
@@ -310,6 +329,7 @@
             this.kbd_P.TabIndex = 27;
             this.kbd_P.Text = "P";
             this.kbd_P.UseVisualStyleBackColor = true;
+            this.kbd_P.Click += new System.EventHandler( this.kbd_KeyPress );
             // 
             // kbd_O
             // 
@@ -320,6 +340,7 @@
             this.kbd_O.TabIndex = 26;
             this.kbd_O.Text = "O";
             this.kbd_O.UseVisualStyleBackColor = true;
+            this.kbd_O.Click += new System.EventHandler( this.kbd_KeyPress );
             // 
             // kbd_K
             // 
@@ -330,16 +351,18 @@
             this.kbd_K.TabIndex = 25;
             this.kbd_K.Text = "K";
             this.kbd_K.UseVisualStyleBackColor = true;
+            this.kbd_K.Click += new System.EventHandler( this.kbd_KeyPress );
             // 
             // kbd_Period
             // 
             this.kbd_Period.Font = new System.Drawing.Font( "Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ( (byte)( 0 ) ) );
-            this.kbd_Period.Location = new System.Drawing.Point( 290, 85 );
+            this.kbd_Period.Location = new System.Drawing.Point( 331, 85 );
             this.kbd_Period.Name = "kbd_Period";
             this.kbd_Period.Size = new System.Drawing.Size( 35, 35 );
             this.kbd_Period.TabIndex = 24;
             this.kbd_Period.Text = ".";
             this.kbd_Period.UseVisualStyleBackColor = true;
+            this.kbd_Period.Click += new System.EventHandler( this.kbd_KeyPress );
             // 
             // kbd_J
             // 
@@ -350,16 +373,18 @@
             this.kbd_J.TabIndex = 23;
             this.kbd_J.Text = "J";
             this.kbd_J.UseVisualStyleBackColor = true;
+            this.kbd_J.Click += new System.EventHandler( this.kbd_KeyPress );
             // 
             // kbd_M
             // 
             this.kbd_M.Font = new System.Drawing.Font( "Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ( (byte)( 0 ) ) );
-            this.kbd_M.Location = new System.Drawing.Point( 249, 85 );
+            this.kbd_M.Location = new System.Drawing.Point( 290, 85 );
             this.kbd_M.Name = "kbd_M";
             this.kbd_M.Size = new System.Drawing.Size( 35, 35 );
             this.kbd_M.TabIndex = 22;
             this.kbd_M.Text = "M";
             this.kbd_M.UseVisualStyleBackColor = true;
+            this.kbd_M.Click += new System.EventHandler( this.kbd_KeyPress );
             // 
             // kbd_I
             // 
@@ -370,6 +395,7 @@
             this.kbd_I.TabIndex = 21;
             this.kbd_I.Text = "I";
             this.kbd_I.UseVisualStyleBackColor = true;
+            this.kbd_I.Click += new System.EventHandler( this.kbd_KeyPress );
             // 
             // kbd_U
             // 
@@ -380,6 +406,7 @@
             this.kbd_U.TabIndex = 20;
             this.kbd_U.Text = "U";
             this.kbd_U.UseVisualStyleBackColor = true;
+            this.kbd_U.Click += new System.EventHandler( this.kbd_KeyPress );
             // 
             // kbd_H
             // 
@@ -390,16 +417,18 @@
             this.kbd_H.TabIndex = 19;
             this.kbd_H.Text = "H";
             this.kbd_H.UseVisualStyleBackColor = true;
+            this.kbd_H.Click += new System.EventHandler( this.kbd_KeyPress );
             // 
             // kbd_N
             // 
             this.kbd_N.Font = new System.Drawing.Font( "Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ( (byte)( 0 ) ) );
-            this.kbd_N.Location = new System.Drawing.Point( 208, 85 );
+            this.kbd_N.Location = new System.Drawing.Point( 249, 85 );
             this.kbd_N.Name = "kbd_N";
             this.kbd_N.Size = new System.Drawing.Size( 35, 35 );
             this.kbd_N.TabIndex = 18;
             this.kbd_N.Text = "N";
             this.kbd_N.UseVisualStyleBackColor = true;
+            this.kbd_N.Click += new System.EventHandler( this.kbd_KeyPress );
             // 
             // kbd_G
             // 
@@ -410,16 +439,18 @@
             this.kbd_G.TabIndex = 17;
             this.kbd_G.Text = "G";
             this.kbd_G.UseVisualStyleBackColor = true;
+            this.kbd_G.Click += new System.EventHandler( this.kbd_KeyPress );
             // 
             // kbd_B
             // 
             this.kbd_B.Font = new System.Drawing.Font( "Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ( (byte)( 0 ) ) );
-            this.kbd_B.Location = new System.Drawing.Point( 167, 85 );
+            this.kbd_B.Location = new System.Drawing.Point( 208, 85 );
             this.kbd_B.Name = "kbd_B";
             this.kbd_B.Size = new System.Drawing.Size( 35, 35 );
             this.kbd_B.TabIndex = 16;
             this.kbd_B.Text = "B";
             this.kbd_B.UseVisualStyleBackColor = true;
+            this.kbd_B.Click += new System.EventHandler( this.kbd_KeyPress );
             // 
             // kbd_Y
             // 
@@ -430,6 +461,7 @@
             this.kbd_Y.TabIndex = 15;
             this.kbd_Y.Text = "Y";
             this.kbd_Y.UseVisualStyleBackColor = true;
+            this.kbd_Y.Click += new System.EventHandler( this.kbd_KeyPress );
             // 
             // kbd_T
             // 
@@ -440,6 +472,7 @@
             this.kbd_T.TabIndex = 14;
             this.kbd_T.Text = "T";
             this.kbd_T.UseVisualStyleBackColor = true;
+            this.kbd_T.Click += new System.EventHandler( this.kbd_KeyPress );
             // 
             // kbd_F
             // 
@@ -450,16 +483,18 @@
             this.kbd_F.TabIndex = 13;
             this.kbd_F.Text = "F";
             this.kbd_F.UseVisualStyleBackColor = true;
+            this.kbd_F.Click += new System.EventHandler( this.kbd_KeyPress );
             // 
             // kbd_V
             // 
             this.kbd_V.Font = new System.Drawing.Font( "Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ( (byte)( 0 ) ) );
-            this.kbd_V.Location = new System.Drawing.Point( 126, 85 );
+            this.kbd_V.Location = new System.Drawing.Point( 167, 85 );
             this.kbd_V.Name = "kbd_V";
             this.kbd_V.Size = new System.Drawing.Size( 35, 35 );
             this.kbd_V.TabIndex = 12;
             this.kbd_V.Text = "V";
             this.kbd_V.UseVisualStyleBackColor = true;
+            this.kbd_V.Click += new System.EventHandler( this.kbd_KeyPress );
             // 
             // kbd_D
             // 
@@ -470,16 +505,18 @@
             this.kbd_D.TabIndex = 11;
             this.kbd_D.Text = "D";
             this.kbd_D.UseVisualStyleBackColor = true;
+            this.kbd_D.Click += new System.EventHandler( this.kbd_KeyPress );
             // 
             // kbd_C
             // 
             this.kbd_C.Font = new System.Drawing.Font( "Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ( (byte)( 0 ) ) );
-            this.kbd_C.Location = new System.Drawing.Point( 85, 85 );
+            this.kbd_C.Location = new System.Drawing.Point( 126, 85 );
             this.kbd_C.Name = "kbd_C";
             this.kbd_C.Size = new System.Drawing.Size( 35, 35 );
             this.kbd_C.TabIndex = 10;
             this.kbd_C.Text = "C";
             this.kbd_C.UseVisualStyleBackColor = true;
+            this.kbd_C.Click += new System.EventHandler( this.kbd_KeyPress );
             // 
             // kbd_R
             // 
@@ -490,6 +527,7 @@
             this.kbd_R.TabIndex = 9;
             this.kbd_R.Text = "R";
             this.kbd_R.UseVisualStyleBackColor = true;
+            this.kbd_R.Click += new System.EventHandler( this.kbd_KeyPress );
             // 
             // kbd_E
             // 
@@ -500,6 +538,7 @@
             this.kbd_E.TabIndex = 8;
             this.kbd_E.Text = "E";
             this.kbd_E.UseVisualStyleBackColor = true;
+            this.kbd_E.Click += new System.EventHandler( this.kbd_KeyPress );
             // 
             // kbd_S
             // 
@@ -510,16 +549,18 @@
             this.kbd_S.TabIndex = 7;
             this.kbd_S.Text = "S";
             this.kbd_S.UseVisualStyleBackColor = true;
+            this.kbd_S.Click += new System.EventHandler( this.kbd_KeyPress );
             // 
             // kbd_X
             // 
             this.kbd_X.Font = new System.Drawing.Font( "Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ( (byte)( 0 ) ) );
-            this.kbd_X.Location = new System.Drawing.Point( 44, 85 );
+            this.kbd_X.Location = new System.Drawing.Point( 85, 85 );
             this.kbd_X.Name = "kbd_X";
             this.kbd_X.Size = new System.Drawing.Size( 35, 35 );
             this.kbd_X.TabIndex = 6;
             this.kbd_X.Text = "X";
             this.kbd_X.UseVisualStyleBackColor = true;
+            this.kbd_X.Click += new System.EventHandler( this.kbd_KeyPress );
             // 
             // kbd_A
             // 
@@ -530,16 +571,18 @@
             this.kbd_A.TabIndex = 5;
             this.kbd_A.Text = "A";
             this.kbd_A.UseVisualStyleBackColor = true;
+            this.kbd_A.Click += new System.EventHandler( this.kbd_KeyPress );
             // 
             // kbd_Z
             // 
             this.kbd_Z.Font = new System.Drawing.Font( "Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ( (byte)( 0 ) ) );
-            this.kbd_Z.Location = new System.Drawing.Point( 3, 85 );
+            this.kbd_Z.Location = new System.Drawing.Point( 44, 85 );
             this.kbd_Z.Name = "kbd_Z";
             this.kbd_Z.Size = new System.Drawing.Size( 35, 35 );
             this.kbd_Z.TabIndex = 4;
             this.kbd_Z.Text = "Z";
             this.kbd_Z.UseVisualStyleBackColor = true;
+            this.kbd_Z.Click += new System.EventHandler( this.kbd_KeyPress );
             // 
             // kbd_W
             // 
@@ -550,6 +593,7 @@
             this.kbd_W.TabIndex = 3;
             this.kbd_W.Text = "W";
             this.kbd_W.UseVisualStyleBackColor = true;
+            this.kbd_W.Click += new System.EventHandler( this.kbd_KeyPress );
             // 
             // kbd_Q
             // 
@@ -560,20 +604,31 @@
             this.kbd_Q.TabIndex = 2;
             this.kbd_Q.Text = "Q";
             this.kbd_Q.UseVisualStyleBackColor = true;
+            this.kbd_Q.Click += new System.EventHandler( this.kbd_KeyPress );
             // 
-            // groupBox2
+            // Group_TerminalType
             // 
-            this.groupBox2.Controls.Add( this.radioButton6 );
-            this.groupBox2.Controls.Add( this.radioButton2 );
-            this.groupBox2.Controls.Add( this.radioButton1 );
-            this.groupBox2.Location = new System.Drawing.Point( 259, 13 );
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size( 242, 100 );
-            this.groupBox2.TabIndex = 1;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "This is a";
-            this.groupBox2.Visible = false;
-            this.groupBox2.Enter += new System.EventHandler( this.groupBox2_Enter );
+            this.Group_TerminalType.Controls.Add( this.radioButton6 );
+            this.Group_TerminalType.Controls.Add( this.radioButton2 );
+            this.Group_TerminalType.Controls.Add( this.radioButton1 );
+            this.Group_TerminalType.Location = new System.Drawing.Point( 259, 13 );
+            this.Group_TerminalType.Name = "Group_TerminalType";
+            this.Group_TerminalType.Size = new System.Drawing.Size( 242, 100 );
+            this.Group_TerminalType.TabIndex = 1;
+            this.Group_TerminalType.TabStop = false;
+            this.Group_TerminalType.Text = "This is a";
+            this.Group_TerminalType.Visible = false;
+            // 
+            // radioButton6
+            // 
+            this.radioButton6.AutoSize = true;
+            this.radioButton6.Font = new System.Drawing.Font( "Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ( (byte)( 0 ) ) );
+            this.radioButton6.Location = new System.Drawing.Point( 20, 71 );
+            this.radioButton6.Name = "radioButton6";
+            this.radioButton6.Size = new System.Drawing.Size( 84, 20 );
+            this.radioButton6.TabIndex = 2;
+            this.radioButton6.Text = "Posdriver";
+            this.radioButton6.UseVisualStyleBackColor = true;
             // 
             // radioButton2
             // 
@@ -599,19 +654,30 @@
             this.radioButton1.Text = "Normal terminal";
             this.radioButton1.UseVisualStyleBackColor = true;
             // 
-            // groupBox3
+            // Group_VNC
             // 
-            this.groupBox3.Controls.Add( this.textBox7 );
-            this.groupBox3.Controls.Add( this.radioButton5 );
-            this.groupBox3.Controls.Add( this.radioButton3 );
-            this.groupBox3.Controls.Add( this.radioButton4 );
-            this.groupBox3.Location = new System.Drawing.Point( 261, 217 );
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size( 242, 133 );
-            this.groupBox3.TabIndex = 1;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "VNC Password";
-            this.groupBox3.Visible = false;
+            this.Group_VNC.Controls.Add( this.VNCSkipButton );
+            this.Group_VNC.Controls.Add( this.textBox7 );
+            this.Group_VNC.Controls.Add( this.radioButton5 );
+            this.Group_VNC.Controls.Add( this.radioButton3 );
+            this.Group_VNC.Controls.Add( this.radioButton4 );
+            this.Group_VNC.Location = new System.Drawing.Point( 261, 176 );
+            this.Group_VNC.Name = "Group_VNC";
+            this.Group_VNC.Size = new System.Drawing.Size( 242, 180 );
+            this.Group_VNC.TabIndex = 1;
+            this.Group_VNC.TabStop = false;
+            this.Group_VNC.Text = "VNC Password";
+            this.Group_VNC.Visible = false;
+            // 
+            // VNCSkipButton
+            // 
+            this.VNCSkipButton.Location = new System.Drawing.Point( 46, 135 );
+            this.VNCSkipButton.Name = "VNCSkipButton";
+            this.VNCSkipButton.Size = new System.Drawing.Size( 153, 28 );
+            this.VNCSkipButton.TabIndex = 7;
+            this.VNCSkipButton.Text = "SKIP";
+            this.VNCSkipButton.UseVisualStyleBackColor = true;
+            this.VNCSkipButton.Click += new System.EventHandler( this.VNCSkipButton_Click );
             // 
             // textBox7
             // 
@@ -656,21 +722,30 @@
             this.radioButton4.Text = "cbsinc";
             this.radioButton4.UseVisualStyleBackColor = true;
             // 
-            // groupBox4
+            // Group_SourceTerminal
             // 
-            this.groupBox4.Controls.Add( this.button1 );
-            this.groupBox4.Controls.Add( this.label2 );
-            this.groupBox4.Controls.Add( this.label1 );
-            this.groupBox4.Controls.Add( this.textBox4 );
-            this.groupBox4.Controls.Add( this.textBox3 );
-            this.groupBox4.Controls.Add( this.textBox2 );
-            this.groupBox4.Location = new System.Drawing.Point( 13, 87 );
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size( 242, 160 );
-            this.groupBox4.TabIndex = 1;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Copy settings from (IP address)";
-            this.groupBox4.Visible = false;
+            this.Group_SourceTerminal.Controls.Add( this.SourceTerminalSkipButton );
+            this.Group_SourceTerminal.Controls.Add( this.label2 );
+            this.Group_SourceTerminal.Controls.Add( this.label1 );
+            this.Group_SourceTerminal.Controls.Add( this.textBox4 );
+            this.Group_SourceTerminal.Controls.Add( this.textBox3 );
+            this.Group_SourceTerminal.Controls.Add( this.textBox2 );
+            this.Group_SourceTerminal.Location = new System.Drawing.Point( 13, 87 );
+            this.Group_SourceTerminal.Name = "Group_SourceTerminal";
+            this.Group_SourceTerminal.Size = new System.Drawing.Size( 242, 160 );
+            this.Group_SourceTerminal.TabIndex = 1;
+            this.Group_SourceTerminal.TabStop = false;
+            this.Group_SourceTerminal.Text = "Copy settings from (IP address)";
+            this.Group_SourceTerminal.Visible = false;
+            // 
+            // SourceTerminalSkipButton
+            // 
+            this.SourceTerminalSkipButton.Location = new System.Drawing.Point( 48, 120 );
+            this.SourceTerminalSkipButton.Name = "SourceTerminalSkipButton";
+            this.SourceTerminalSkipButton.Size = new System.Drawing.Size( 153, 28 );
+            this.SourceTerminalSkipButton.TabIndex = 5;
+            this.SourceTerminalSkipButton.Text = "SKIP";
+            this.SourceTerminalSkipButton.UseVisualStyleBackColor = true;
             // 
             // label2
             // 
@@ -714,16 +789,16 @@
             this.textBox2.Size = new System.Drawing.Size( 230, 26 );
             this.textBox2.TabIndex = 0;
             // 
-            // groupBox5
+            // Group_DeviceNumber
             // 
-            this.groupBox5.Controls.Add( this.textBox5 );
-            this.groupBox5.Location = new System.Drawing.Point( 261, 119 );
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size( 242, 51 );
-            this.groupBox5.TabIndex = 2;
-            this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "Device number (from spcwin.ini)";
-            this.groupBox5.Visible = false;
+            this.Group_DeviceNumber.Controls.Add( this.textBox5 );
+            this.Group_DeviceNumber.Location = new System.Drawing.Point( 261, 119 );
+            this.Group_DeviceNumber.Name = "Group_DeviceNumber";
+            this.Group_DeviceNumber.Size = new System.Drawing.Size( 242, 51 );
+            this.Group_DeviceNumber.TabIndex = 2;
+            this.Group_DeviceNumber.TabStop = false;
+            this.Group_DeviceNumber.Text = "Device number (from spcwin.ini)";
+            this.Group_DeviceNumber.Visible = false;
             // 
             // textBox5
             // 
@@ -741,25 +816,14 @@
             this.LogList.Size = new System.Drawing.Size( 245, 355 );
             this.LogList.TabIndex = 0;
             // 
-            // radioButton6
+            // kbd_Shift
             // 
-            this.radioButton6.AutoSize = true;
-            this.radioButton6.Font = new System.Drawing.Font( "Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ( (byte)( 0 ) ) );
-            this.radioButton6.Location = new System.Drawing.Point( 20, 71 );
-            this.radioButton6.Name = "radioButton6";
-            this.radioButton6.Size = new System.Drawing.Size( 84, 20 );
-            this.radioButton6.TabIndex = 2;
-            this.radioButton6.Text = "Posdriver";
-            this.radioButton6.UseVisualStyleBackColor = true;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point( 48, 120 );
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size( 153, 28 );
-            this.button1.TabIndex = 5;
-            this.button1.Text = "SKIP";
-            this.button1.UseVisualStyleBackColor = true;
+            this.kbd_Shift.Location = new System.Drawing.Point( 3, 85 );
+            this.kbd_Shift.Name = "kbd_Shift";
+            this.kbd_Shift.Size = new System.Drawing.Size( 35, 35 );
+            this.kbd_Shift.TabIndex = 50;
+            this.kbd_Shift.Text = "Shft";
+            this.kbd_Shift.UseVisualStyleBackColor = true;
             // 
             // TermConfigWindow
             // 
@@ -767,33 +831,32 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size( 764, 522 );
             this.Controls.Add( this.LogList );
-            this.Controls.Add( this.groupBox5 );
-            this.Controls.Add( this.groupBox4 );
-            this.Controls.Add( this.groupBox2 );
-            this.Controls.Add( this.groupBox3 );
+            this.Controls.Add( this.Group_DeviceNumber );
+            this.Controls.Add( this.Group_SourceTerminal );
+            this.Controls.Add( this.Group_TerminalType );
+            this.Controls.Add( this.Group_VNC );
             this.Controls.Add( this.KeyboardPanel );
-            this.Controls.Add( this.groupBox1 );
+            this.Controls.Add( this.Group_IPAddress );
             this.Name = "TermConfigWindow";
             this.Text = "TermConfig - Custom Business Solutions";
-            this.Load += new System.EventHandler( this.TermConfigWindow_Load );
-            this.groupBox1.ResumeLayout( false );
-            this.groupBox1.PerformLayout();
+            this.Group_IPAddress.ResumeLayout( false );
+            this.Group_IPAddress.PerformLayout();
             this.KeyboardPanel.ResumeLayout( false );
-            this.groupBox2.ResumeLayout( false );
-            this.groupBox2.PerformLayout();
-            this.groupBox3.ResumeLayout( false );
-            this.groupBox3.PerformLayout();
-            this.groupBox4.ResumeLayout( false );
-            this.groupBox4.PerformLayout();
-            this.groupBox5.ResumeLayout( false );
-            this.groupBox5.PerformLayout();
+            this.Group_TerminalType.ResumeLayout( false );
+            this.Group_TerminalType.PerformLayout();
+            this.Group_VNC.ResumeLayout( false );
+            this.Group_VNC.PerformLayout();
+            this.Group_SourceTerminal.ResumeLayout( false );
+            this.Group_SourceTerminal.PerformLayout();
+            this.Group_DeviceNumber.ResumeLayout( false );
+            this.Group_DeviceNumber.PerformLayout();
             this.ResumeLayout( false );
 
         }
 
         #endregion
 
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox Group_IPAddress;
         private System.Windows.Forms.Panel KeyboardPanel;
         private System.Windows.Forms.Button kbd_K;
         private System.Windows.Forms.Button kbd_Period;
@@ -835,10 +898,10 @@
         private System.Windows.Forms.Button kbd_L;
         private System.Windows.Forms.Button kbd_P;
         private System.Windows.Forms.Button kbd_O;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.TextBox IPAddress_AddressTextBox;
+        private System.Windows.Forms.GroupBox Group_TerminalType;
+        private System.Windows.Forms.GroupBox Group_VNC;
+        private System.Windows.Forms.GroupBox Group_SourceTerminal;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox textBox4;
@@ -846,7 +909,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.RadioButton radioButton2;
         private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.GroupBox Group_DeviceNumber;
         private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.Button kbd_SaveAndReboot;
         private System.Windows.Forms.RadioButton radioButton3;
@@ -855,7 +918,9 @@
         private System.Windows.Forms.TextBox textBox7;
         private System.Windows.Forms.RadioButton radioButton5;
         private System.Windows.Forms.RadioButton radioButton6;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button SourceTerminalSkipButton;
+        private System.Windows.Forms.Button VNCSkipButton;
+        private System.Windows.Forms.Button kbd_Shift;
     }
 }
 
