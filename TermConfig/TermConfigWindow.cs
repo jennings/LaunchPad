@@ -10,7 +10,7 @@ namespace TermConfig
 {
     public partial class TermConfigWindow : Form
     {
-        private Control ActiveControl;
+        private Control CurrentControl;
 
         public TermConfigWindow()
         {
@@ -25,7 +25,8 @@ namespace TermConfig
 
         private void ActivateControl( Control controlToActivate )
         {
-            ActiveControl = controlToActivate;
+            CurrentControl = controlToActivate;
+            CurrentControl.Focus();
         }
 
         private void kbd_KeyPress( object sender, EventArgs e )
@@ -33,14 +34,14 @@ namespace TermConfig
             // Get letter
             string charPressed = ( ( (Button)sender ).Tag ).ToString();
             // Type letter
-            ActiveControl.Text = ActiveControl.Text + charPressed;
+            CurrentControl.Text = CurrentControl.Text + charPressed;
         }
 
         private void kbd_Backspace_Click( object sender, EventArgs e )
         {
-            if ( ActiveControl.GetType() == typeof( TextBox ) )
+            if ( CurrentControl.GetType() == typeof( TextBox ) )
             {
-                ActiveControl.Text = ActiveControl.Text.Remove( ActiveControl.Text.Length - 1 );
+                CurrentControl.Text = CurrentControl.Text.Remove( CurrentControl.Text.Length - 1 );
             }
         }
 
@@ -72,7 +73,7 @@ namespace TermConfig
 
         private void kbd_Enter_Click( object sender, EventArgs e )
         {
-            switch ( ActiveControl.Name )
+            switch ( CurrentControl.Name )
             {
                 case "IPAddress_AddressTextBox":
                     SubmitIPAddressGroup();

@@ -19,6 +19,7 @@ namespace TermConfig
             var MC = new ManagementClass( "Win32_NetworkAdapterConfiguration" );
             var collection = MC.GetInstances();
 
+            // Terminals have only one NIC, so this should be okay.
             foreach ( ManagementObject obj in collection )
             {
                 if ( (bool)( obj["IPEnabled"] ) )
