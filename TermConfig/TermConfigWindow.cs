@@ -12,6 +12,10 @@ namespace TermConfig
     {
         private Control CurrentControl;
 
+        private bool SkippedIPAddress = false;
+        private bool SkippedSourceTerminal = false;
+        private bool SkippedVNC = false;
+
         public TermConfigWindow()
         {
             InitializeComponent();
@@ -57,6 +61,9 @@ namespace TermConfig
             VNC_cbsinc.Select();
             VNC_CustomPasswordTextBox.Text = "";
             kbd_SaveAndReboot.Visible = false;
+            SkippedIPAddress = false;
+            SkippedSourceTerminal = false;
+            SkippedVNC = false;
             LogList.Items.Clear();
 
             // Hide all groups
@@ -104,17 +111,64 @@ namespace TermConfig
             }
         }
 
+
+        private void SkipGroup()
+        {
+            switch ( CurrentControl.Name )
+            {
+                case "IPAddress_AddressTextBox":
+                    SubmitIPAddressGroup();
+                    break;
+                case "SourceTerminal_IPAddress":
+                case "SourceTerminal_Username":
+                case "SourceTerminal_Password":
+                    SubmitSourceTerminalGroup();
+                    break;
+                case "DeviceNumber_DeviceNumber":
+                    SubmitDeviceNumberGroup();
+                    break;
+                case "TerminalType_Normal":
+                case "TerminalType_Redundant":
+                case "TerminalType_Posdriver":
+                    SubmitTerminalTypeGroup();
+                    break;
+                case "VNC_cbsinc":
+                case "VNC_sliders":
+                case "VNC_CustomPassword":
+                case "VNC_CustomPasswordTextBox":
+                    SubmitVNCGroup();
+                    break;
+            }
+        }
+
         private void kbd_SaveAndReboot_Click( object sender, EventArgs e )
         {
+            // Disable reboot button
+            kbd_SaveAndReboot.Enabled = false;
+
             // Change IP Address
-            WriteLog( "......... Setting IP Address." );
-            SettingCommitter.ChangeTerminalIPAddress( IPAddress_AddressTextBox.Text );
-            WriteLog( "OK.... Set IP Address." );
+            if ( SkippedIPAddress )
+            {
+                WriteLog( "......... Skipping IP Address." );
+            }
+            else
+            {
+                WriteLog( "......... Setting IP Address." );
+                SettingCommitter.ChangeTerminalIPAddress( IPAddress_AddressTextBox.Text );
+                WriteLog( "OK.... Set IP Address." );
+            }
 
             // Copy INI files from remote terminal
-            WriteLog( "......... Copying INIs." );
-            SettingCommitter.CopyINIs( SourceTerminal_IPAddress.Text, SourceTerminal_Username.Text, SourceTerminal_Password.Text );
-            WriteLog( "OK.... Copied INIs." );
+            if ( SkippedSourceTerminal )
+            {
+                WriteLog( "......... Skipping copying INIs." );
+            }
+            else
+            {
+                WriteLog( "......... Copying INIs." );
+                SettingCommitter.CopyINIs( SourceTerminal_IPAddress.Text, SourceTerminal_Username.Text, SourceTerminal_Password.Text );
+                WriteLog( "OK.... Copied INIs." );
+            }
 
             // Write Posiw.ini
             WriteLog( "......... Writing Posiw.ini." );
@@ -122,20 +176,22 @@ namespace TermConfig
             WriteLog( "OK.... Wrote Posiw.ini." );
 
             // Install VNC
-            WriteLog( "......... Installing VNC." );
-            if ( VNC_cbsinc.Checked ) SettingCommitter.InstallVNC( "cbsinc" );
-            else if ( VNC_sliders.Checked ) SettingCommitter.InstallVNC( "sliders" );
-            else if ( VNC_CustomPassword.Checked ) SettingCommitter.InstallVNC( VNC_CustomPasswordTextBox.Text );
-            WriteLog( "OK.... Installed VNC." );
+            if ( SkippedVNC )
+            {
+                WriteLog( "......... Skipping VNC." );
+            }
+            else
+            {
+                WriteLog( "......... Installing VNC." );
+                if ( VNC_cbsinc.Checked ) SettingCommitter.InstallVNC( "cbsinc" );
+                else if ( VNC_sliders.Checked ) SettingCommitter.InstallVNC( "sliders" );
+                else if ( VNC_CustomPassword.Checked ) SettingCommitter.InstallVNC( VNC_CustomPasswordTextBox.Text );
+                WriteLog( "OK.... Installed VNC." );
+            }
 
             // Reboot
             WriteLog( "Rebooting..." );
             SettingCommitter.RebootTerminal();
-        }
-
-        private void VNCSkipButton_Click( object sender, EventArgs e )
-        {
-
         }
 
         private void SubmitIPAddressGroup()
@@ -205,6 +261,24 @@ namespace TermConfig
             kbd_SaveAndReboot.Enabled = true;
             kbd_SaveAndReboot.Visible = true;
             ActivateControl( kbd_SaveAndReboot );
+        }
+
+        private void IPAddress_SkipButton_Click( object sender, EventArgs e )
+        {
+            SkippedIPAddress = true;
+            SkipGroup();
+        }
+
+        private void SourceTerminal_SkipButton_Click( object sender, EventArgs e )
+        {
+            SkippedSourceTerminal = true;
+            SkipGroup();
+        }
+
+        private void VNC_SkipButton_Click( object sender, EventArgs e )
+        {
+            SkippedVNC = true;
+            SkipGroup();
         }
     }
 }

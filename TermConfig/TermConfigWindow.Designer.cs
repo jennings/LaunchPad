@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.Group_IPAddress = new System.Windows.Forms.GroupBox();
+            this.IPAddress_SkipButton = new System.Windows.Forms.Button();
             this.IPAddress_AddressTextBox = new System.Windows.Forms.TextBox();
             this.KeyboardPanel = new System.Windows.Forms.Panel();
             this.kbd_Shift = new System.Windows.Forms.Button();
@@ -103,13 +104,24 @@
             // 
             // Group_IPAddress
             // 
+            this.Group_IPAddress.Controls.Add( this.IPAddress_SkipButton );
             this.Group_IPAddress.Controls.Add( this.IPAddress_AddressTextBox );
             this.Group_IPAddress.Location = new System.Drawing.Point( 13, 13 );
             this.Group_IPAddress.Name = "Group_IPAddress";
-            this.Group_IPAddress.Size = new System.Drawing.Size( 242, 68 );
+            this.Group_IPAddress.Size = new System.Drawing.Size( 242, 91 );
             this.Group_IPAddress.TabIndex = 0;
             this.Group_IPAddress.TabStop = false;
             this.Group_IPAddress.Text = "IP Address";
+            // 
+            // IPAddress_SkipButton
+            // 
+            this.IPAddress_SkipButton.Location = new System.Drawing.Point( 48, 51 );
+            this.IPAddress_SkipButton.Name = "IPAddress_SkipButton";
+            this.IPAddress_SkipButton.Size = new System.Drawing.Size( 153, 28 );
+            this.IPAddress_SkipButton.TabIndex = 6;
+            this.IPAddress_SkipButton.Text = "SKIP";
+            this.IPAddress_SkipButton.UseVisualStyleBackColor = true;
+            this.IPAddress_SkipButton.Click += new System.EventHandler( this.IPAddress_SkipButton_Click );
             // 
             // IPAddress_AddressTextBox
             // 
@@ -723,7 +735,7 @@
             this.VNC_SkipButton.TabIndex = 7;
             this.VNC_SkipButton.Text = "SKIP";
             this.VNC_SkipButton.UseVisualStyleBackColor = true;
-            this.VNC_SkipButton.Click += new System.EventHandler( this.VNCSkipButton_Click );
+            this.VNC_SkipButton.Click += new System.EventHandler( this.VNC_SkipButton_Click );
             // 
             // VNC_CustomPasswordTextBox
             // 
@@ -776,7 +788,7 @@
             this.Group_SourceTerminal.Controls.Add( this.SourceTerminal_Password );
             this.Group_SourceTerminal.Controls.Add( this.SourceTerminal_Username );
             this.Group_SourceTerminal.Controls.Add( this.SourceTerminal_IPAddress );
-            this.Group_SourceTerminal.Location = new System.Drawing.Point( 13, 87 );
+            this.Group_SourceTerminal.Location = new System.Drawing.Point( 13, 110 );
             this.Group_SourceTerminal.Name = "Group_SourceTerminal";
             this.Group_SourceTerminal.Size = new System.Drawing.Size( 242, 160 );
             this.Group_SourceTerminal.TabIndex = 1;
@@ -792,6 +804,7 @@
             this.SourceTerminal_SkipButton.TabIndex = 5;
             this.SourceTerminal_SkipButton.Text = "SKIP";
             this.SourceTerminal_SkipButton.UseVisualStyleBackColor = true;
+            this.SourceTerminal_SkipButton.Click += new System.EventHandler( this.SourceTerminal_SkipButton_Click );
             // 
             // label2
             // 
@@ -838,9 +851,9 @@
             // Group_DeviceNumber
             // 
             this.Group_DeviceNumber.Controls.Add( this.DeviceNumber_DeviceNumber );
-            this.Group_DeviceNumber.Location = new System.Drawing.Point( 13, 253 );
+            this.Group_DeviceNumber.Location = new System.Drawing.Point( 13, 276 );
             this.Group_DeviceNumber.Name = "Group_DeviceNumber";
-            this.Group_DeviceNumber.Size = new System.Drawing.Size( 242, 51 );
+            this.Group_DeviceNumber.Size = new System.Drawing.Size( 242, 56 );
             this.Group_DeviceNumber.TabIndex = 2;
             this.Group_DeviceNumber.TabStop = false;
             this.Group_DeviceNumber.Text = "Device number (from spcwin.ini)";
@@ -958,6 +971,7 @@
         private System.Windows.Forms.Button SourceTerminal_SkipButton;
         private System.Windows.Forms.Button VNC_SkipButton;
         private System.Windows.Forms.Button kbd_Shift;
+        private System.Windows.Forms.Button IPAddress_SkipButton;
     }
 }
 
