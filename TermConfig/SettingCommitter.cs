@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Management;
 using System.Net;
+using System.Text;
 
 namespace TermConfig
 {
@@ -15,6 +16,21 @@ namespace TermConfig
 
         public static void ChangeTerminalIPAddress( IPAddress address )
         {
+            var MC = new ManagementClass( "Win32_NetworkAdapterConfiguration" );
+            var collection = MC.GetInstances();
+
+            foreach ( ManagementObject obj in collection )
+            {
+                if ( (bool)( obj["IPEnabled"] ) )
+                {
+                    var newIP = obj.GetMethodParameters( "EnableStatic" );
+
+                    newIP["IPAddress"] = new string[] { address.ToString() };
+                    newIP["SubnetMask"] = new string[] { "255.255.255.0" };
+
+                    var setIP = obj.InvokeMethod( "EnableStatic", newIP, null );
+                }
+            }
         }
 
         public static void CopyINIs( string remoteTerminalAddress, string username, string password )
