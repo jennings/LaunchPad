@@ -100,7 +100,20 @@ namespace TermConfig
 
         private void kbd_SaveAndReboot_Click( object sender, EventArgs e )
         {
+            // Change IP Address
+            SettingCommitter.ChangeTerminalIPAddress( "" );
 
+            // Copy INI files from remote terminal
+            SettingCommitter.CopyINIs( "", "", "" );
+
+            // Write Posiw.ini
+            SettingCommitter.WritePosiw();
+
+            // Install VNC
+            SettingCommitter.InstallVNC( "" );
+
+            // Reboot
+            SettingCommitter.RebootTerminal();
         }
 
         private void VNCSkipButton_Click( object sender, EventArgs e )
