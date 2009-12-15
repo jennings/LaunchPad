@@ -47,13 +47,19 @@ namespace TermConfig
 
         public void Write()
         {
-            var timestring = DateTime.Now.ToString( @"yyyyMMddHHmmss" );
-            File.Move( @"C:\SC\Posiw.ini", @"C:\Temp\Posiw.ini." + timestring );
+            if ( !Directory.Exists( @"C:\SC" ) ) Directory.CreateDirectory( @"C:\SC" );
+            if ( !Directory.Exists( @"C:\Temp" ) ) Directory.CreateDirectory( @"C:\Temp" );
+
+            if ( File.Exists( @"C:\SC\Posiw.ini" ) )
+            {
+                var timestring = DateTime.Now.ToString( @"yyyyMMddHHmmss" );
+                File.Move( @"C:\SC\Posiw.ini", @"C:\Temp\Posiw.ini." + timestring );
+            }
 
             using ( var sw = new StreamWriter( @"C:\SC\Posiw.ini" ) )
             {
-                sw.WriteLine( @"POSIW Built by TermConfig." );
-                sw.WriteLine( @"Built " + DateTime.Now.ToShortDateString() );
+                sw.WriteLine( @"; POSIW Built by TermConfig." );
+                sw.WriteLine( @"; Built " + DateTime.Now.ToShortDateString() );
                 sw.WriteLine( @"" );
 
                 sw.WriteLine( @"[Startup]" );
@@ -70,6 +76,7 @@ namespace TermConfig
                 sw.WriteLine( @"MirrorPath=L:\SC" );
                 sw.WriteLine( @"PrimaryInterval=10" );
                 sw.WriteLine( @"BackupInterval=60" );
+                sw.WriteLine( @"" );
                 sw.WriteLine( @"FailureStartMode=PASSWORD" );
                 sw.WriteLine( @"FailureStartMessage=EMERGENCY MODE CALL CBS (800) 551-7674" );
                 sw.WriteLine( @"FailureStartPassword=1234" );

@@ -101,16 +101,18 @@ namespace TermConfig
         private void kbd_SaveAndReboot_Click( object sender, EventArgs e )
         {
             // Change IP Address
-            SettingCommitter.ChangeTerminalIPAddress( "" );
+            SettingCommitter.ChangeTerminalIPAddress( IPAddress_AddressTextBox.Text );
 
             // Copy INI files from remote terminal
-            SettingCommitter.CopyINIs( "", "", "" );
+            SettingCommitter.CopyINIs( SourceTerminal_IPAddress.Text, SourceTerminal_Username.Text, SourceTerminal_Password.Text );
 
             // Write Posiw.ini
-            SettingCommitter.WritePosiw();
+            SettingCommitter.WritePosiw( Convert.ToInt32( DeviceNumber_DeviceNumber.Text ) );
 
             // Install VNC
-            SettingCommitter.InstallVNC( "" );
+            if ( VNC_cbsinc.Checked ) SettingCommitter.InstallVNC( "cbsinc" );
+            else if ( VNC_sliders.Checked ) SettingCommitter.InstallVNC( "sliders" );
+            else if ( VNC_CustomPassword.Checked ) SettingCommitter.InstallVNC( VNC_CustomPasswordTextBox.Text );
 
             // Reboot
             SettingCommitter.RebootTerminal();
