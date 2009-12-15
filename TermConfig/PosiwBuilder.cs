@@ -7,7 +7,7 @@ namespace TermConfig
 {
     class PosiwBuilder
     {
-        string _DeviceNumber;
+        string _DeviceNumberString;
 
         public bool RedundantTerminal
         {
@@ -32,7 +32,7 @@ namespace TermConfig
 
         public int DeviceNumber
         {
-            get { return Convert.ToInt32( _DeviceNumber ); }
+            get { return Convert.ToInt32( _DeviceNumberString ); }
             set
             {
                 if ( value < 1 || value > 99 )
@@ -41,39 +41,49 @@ namespace TermConfig
                     throw new Exception( "Device number 89 is reserved for the posdriver." );
                 if ( value == 99 && !BackofficeTerminal )
                     throw new Exception( "Device number 99 is reserved for the backoffice." );
-                _DeviceNumber = value.ToString( "D2" );
+                _DeviceNumberString = value.ToString( "D2" );
             }
         }
 
         public void Write()
         {
-            string Posiw = @"; POSIW Built By TermConfig.";
-            Posiw = Posiw + "\r\n" + @"[Startup]";
-            Posiw = Posiw + "\r\n" + @"POSIW=" + _DeviceNumber;
-            Posiw = Posiw + "\r\n" + @"NetDriveMap1=L:\\" + "" + @"\C$";
+            var timestring = DateTime.Now.ToString( @"yyyyMMddHHmmss" );
+            File.Move( @"C:\SC\Posiw.ini", @"C:\Temp\Posiw.ini." + timestring );
 
-            Posiw = Posiw + "\r\n" + @"[Backup]";
-            Posiw = Posiw + "\r\n" + @"PrimaryServer=" + ( PosdriverTerminal ? "YES" : "NO" );
-            Posiw = Posiw + "\r\n" + @"BackupServer=" + ( RedundantTerminal ? "YES" : "NO" );
-            Posiw = Posiw + "\r\n" + @"BackoffServer=" + ( BackofficeTerminal ? "YES" : "NO" );
-            Posiw = Posiw + "\r\n" + @"FileServer=NO";
-            Posiw = Posiw + "\r\n" + @"MirrorPath=L:\SC";
-            Posiw = Posiw + "\r\n" + @"PrimaryInterval=10";
-            Posiw = Posiw + "\r\n" + @"BackupInterval=60";
-            Posiw = Posiw + "\r\n" + @"FailureStartMode=PASSWORD";
-            Posiw = Posiw + "\r\n" + @"FailureStartMessage=EMERGENCY MODE CALL CBS (800) 551-7674";
-            Posiw = Posiw + "\r\n" + @"FailureStartPassword=1234";
-            Posiw = Posiw + "\r\n" + @"FailureEndMode=PASSWORD";
-            Posiw = Posiw + "\r\n" + @"FailureEndMessage=CONFIRM TO EXIT BACKUP MODE";
-            Posiw = Posiw + "\r\n" + @"FailureEndPassword=1234";
+            using ( var sw = new StreamWriter( @"C:\SC\Posiw.ini" ) )
+            {
+                sw.WriteLine( @"POSIW Built by TermConfig." );
+                sw.WriteLine( @"Built " + DateTime.Now.ToShortDateString() );
+                sw.WriteLine( @"" );
 
-            Posiw = Posiw + "\r\n" + @"[Nightly]";
-            Posiw = Posiw + "\r\n" + @"Night=NO";
-            Posiw = Posiw + "\r\n" + @"WorkPath=L:\SC";
+                sw.WriteLine( @"[Startup]" );
+                sw.WriteLine( @"POSIW=" + _DeviceNumberString );
+                sw.WriteLine( @"Posdrvr=POSDRVR-89" );
+                sw.WriteLine( @"NetDriveMap=L:\\" + "" + @"\C$" );
+                sw.WriteLine( @"" );
 
-            Posiw = Posiw + "\r\n";
+                sw.WriteLine( @"[Backup]" );
+                sw.WriteLine( @"PrimaryServer=" + ( PosdriverTerminal ? "YES" : "NO" ) );
+                sw.WriteLine( @"BackupServer=" + ( RedundantTerminal ? "YES" : "NO" ) );
+                sw.WriteLine( @"BackoffServer=" + ( BackofficeTerminal ? "YES" : "NO" ) );
+                sw.WriteLine( @"FileServer=NO" );
+                sw.WriteLine( @"MirrorPath=L:\SC" );
+                sw.WriteLine( @"PrimaryInterval=10" );
+                sw.WriteLine( @"BackupInterval=60" );
+                sw.WriteLine( @"FailureStartMode=PASSWORD" );
+                sw.WriteLine( @"FailureStartMessage=EMERGENCY MODE CALL CBS (800) 551-7674" );
+                sw.WriteLine( @"FailureStartPassword=1234" );
+                sw.WriteLine( @"FailureEndMode=PASSWORD" );
+                sw.WriteLine( @"FailureEndMessage=CONFIRM TO EXIT BACKUP MODE" );
+                sw.WriteLine( @"FailureEndPassword=1234" );
+                sw.WriteLine( @"" );
 
-            var fs = File.Open( @"C:\SC\Posiw.ini", FileMode.Create );
+                sw.WriteLine( @"[Nightly]" );
+                sw.WriteLine( @"Night=NO" );
+                sw.WriteLine( @"WorkPath=L:\SC" );
+
+                sw.Flush();
+            }
         }
     }
 }
