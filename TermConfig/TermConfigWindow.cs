@@ -18,6 +18,11 @@ namespace TermConfig
             ActivateControl( IPAddress_AddressTextBox );
         }
 
+        private void WriteLog( string text )
+        {
+            LogList.Items.Add( text );
+        }
+
         private void ActivateControl( Control controlToActivate )
         {
             ActiveControl = controlToActivate;
@@ -101,20 +106,29 @@ namespace TermConfig
         private void kbd_SaveAndReboot_Click( object sender, EventArgs e )
         {
             // Change IP Address
+            WriteLog( "......... Setting IP Address." );
             SettingCommitter.ChangeTerminalIPAddress( IPAddress_AddressTextBox.Text );
+            WriteLog( "OK.... Set IP Address." );
 
             // Copy INI files from remote terminal
+            WriteLog( "......... Copying INIs." );
             SettingCommitter.CopyINIs( SourceTerminal_IPAddress.Text, SourceTerminal_Username.Text, SourceTerminal_Password.Text );
+            WriteLog( "OK.... Copied INIs." );
 
             // Write Posiw.ini
+            WriteLog( "......... Writing Posiw.ini." );
             SettingCommitter.WritePosiw( Convert.ToInt32( DeviceNumber_DeviceNumber.Text ) );
+            WriteLog( "OK.... Wrote Posiw.ini." );
 
             // Install VNC
+            WriteLog( "......... Installing VNC." );
             if ( VNC_cbsinc.Checked ) SettingCommitter.InstallVNC( "cbsinc" );
             else if ( VNC_sliders.Checked ) SettingCommitter.InstallVNC( "sliders" );
             else if ( VNC_CustomPassword.Checked ) SettingCommitter.InstallVNC( VNC_CustomPasswordTextBox.Text );
+            WriteLog( "OK.... Installed VNC." );
 
             // Reboot
+            WriteLog( "Rebooting..." );
             SettingCommitter.RebootTerminal();
         }
 
