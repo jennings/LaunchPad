@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Management;
 using System.Net;
 using System.Text;
+using System.IO;
 
 namespace TermConfig
 {
@@ -42,6 +43,22 @@ namespace TermConfig
 
         public static void CopyINIs( IPAddress remoteTerminalAddress, string username, string password )
         {
+        }
+
+        public static void WriteTerm( int deviceNumber )
+        {
+            if ( deviceNumber < 1 || 99 < deviceNumber )
+                throw new ArgumentOutOfRangeException( "Device number must be between 1 and 99." );
+            if ( File.Exists( @"C:\SC\TERM.$$$" ) )
+            {
+                var timestring = DateTime.Now.ToString( @"yyyyMMddHHmmss" );
+                File.Move( @"C:\SC\TERM.$$$", @"C:\Temp\TERM.$$$." + timestring );
+            }
+
+            using ( var sw = new StreamWriter( @"C:\SC\TERM.$$$" ) )
+            {
+                sw.WriteLine( "TERM" + ( deviceNumber - 1 ).ToString( "D3" ) );
+            }
         }
 
         public static void WritePosiw( int deviceNumber )

@@ -172,6 +172,11 @@ namespace TermConfig
                     WriteLog( "OK.... Copied INIs." );
                 }
 
+                // Write TERM.$$$
+                WriteLog( "......... Writing TERM.$$$." );
+                SettingCommitter.WriteTerm( Convert.ToInt32( DeviceNumber_DeviceNumber.Text ) );
+                WriteLog( "OK.... Wrote TERM.$$$." );
+
                 // Write Posiw.ini
                 WriteLog( "......... Writing Posiw.ini." );
                 SettingCommitter.WritePosiw( Convert.ToInt32( DeviceNumber_DeviceNumber.Text ) );
@@ -198,6 +203,7 @@ namespace TermConfig
             catch ( Exception ex )
             {
                 WriteLog( "EXCEPTION: " + ex.Message );
+                throw;
             }
         }
 
