@@ -146,52 +146,59 @@ namespace TermConfig
             // Disable reboot button
             kbd_SaveAndReboot.Enabled = false;
 
-            // Change IP Address
-            if ( SkippedIPAddress )
+            try
             {
-                WriteLog( "......... Skipping IP Address." );
-            }
-            else
-            {
-                WriteLog( "......... Setting IP Address." );
-                SettingCommitter.ChangeTerminalIPAddress( IPAddress_AddressTextBox.Text );
-                WriteLog( "OK.... Set IP Address." );
-            }
+                // Change IP Address
+                if ( SkippedIPAddress )
+                {
+                    WriteLog( "......... Skipping IP Address." );
+                }
+                else
+                {
+                    WriteLog( "......... Setting IP Address." );
+                    SettingCommitter.ChangeTerminalIPAddress( IPAddress_AddressTextBox.Text );
+                    WriteLog( "OK.... Set IP Address." );
+                }
 
-            // Copy INI files from remote terminal
-            if ( SkippedSourceTerminal )
-            {
-                WriteLog( "......... Skipping copying INIs." );
-            }
-            else
-            {
-                WriteLog( "......... Copying INIs." );
-                SettingCommitter.CopyINIs( SourceTerminal_IPAddress.Text, SourceTerminal_Username.Text, SourceTerminal_Password.Text );
-                WriteLog( "OK.... Copied INIs." );
-            }
+                // Copy INI files from remote terminal
+                if ( SkippedSourceTerminal )
+                {
+                    WriteLog( "......... Skipping copying INIs." );
+                }
+                else
+                {
+                    WriteLog( "......... Copying INIs." );
+                    SettingCommitter.CopyINIs( SourceTerminal_IPAddress.Text, SourceTerminal_Username.Text, SourceTerminal_Password.Text );
+                    WriteLog( "OK.... Copied INIs." );
+                }
 
-            // Write Posiw.ini
-            WriteLog( "......... Writing Posiw.ini." );
-            SettingCommitter.WritePosiw( Convert.ToInt32( DeviceNumber_DeviceNumber.Text ) );
-            WriteLog( "OK.... Wrote Posiw.ini." );
+                // Write Posiw.ini
+                WriteLog( "......... Writing Posiw.ini." );
+                SettingCommitter.WritePosiw( Convert.ToInt32( DeviceNumber_DeviceNumber.Text ) );
+                WriteLog( "OK.... Wrote Posiw.ini." );
 
-            // Install VNC
-            if ( SkippedVNC )
-            {
-                WriteLog( "......... Skipping VNC." );
-            }
-            else
-            {
-                WriteLog( "......... Installing VNC." );
-                if ( VNC_cbsinc.Checked ) SettingCommitter.InstallVNC( "cbsinc" );
-                else if ( VNC_sliders.Checked ) SettingCommitter.InstallVNC( "sliders" );
-                else if ( VNC_CustomPassword.Checked ) SettingCommitter.InstallVNC( VNC_CustomPasswordTextBox.Text );
-                WriteLog( "OK.... Installed VNC." );
-            }
+                // Install VNC
+                if ( SkippedVNC )
+                {
+                    WriteLog( "......... Skipping VNC." );
+                }
+                else
+                {
+                    WriteLog( "......... Installing VNC." );
+                    if ( VNC_cbsinc.Checked ) SettingCommitter.InstallVNC( "cbsinc" );
+                    else if ( VNC_sliders.Checked ) SettingCommitter.InstallVNC( "sliders" );
+                    else if ( VNC_CustomPassword.Checked ) SettingCommitter.InstallVNC( VNC_CustomPasswordTextBox.Text );
+                    WriteLog( "OK.... Installed VNC." );
+                }
 
-            // Reboot
-            WriteLog( "Rebooting..." );
-            SettingCommitter.RebootTerminal();
+                // Reboot
+                WriteLog( "Rebooting..." );
+                SettingCommitter.RebootTerminal();
+            }
+            catch ( Exception ex )
+            {
+                WriteLog( "EXCEPTION: " + ex.Message );
+            }
         }
 
         private void SubmitIPAddressGroup()
