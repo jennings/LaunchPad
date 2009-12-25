@@ -98,7 +98,7 @@ namespace TermConfig
                 var rxmatch = rx.Match( File.ReadAllText( @"C:\SC\Posiw.ini" ) );
                 if ( rxmatch.Captures.Count > 0 )
                 {
-                    PosiwLabel.Text = rxmatch.Captures[0].Value;
+                    PosiwLabel.Text = rxmatch.Result( "$1" );
                 }
             }
         }
