@@ -170,7 +170,6 @@
             this.Controls.Add( this.RCButton );
             this.Name = "StartupWindow";
             this.Text = "CBS Terminal Config";
-            this.Activated += new System.EventHandler( this.StartupWindow_Activated );
             this.groupBox1.ResumeLayout( false );
             this.groupBox1.PerformLayout();
             this.ResumeLayout( false );

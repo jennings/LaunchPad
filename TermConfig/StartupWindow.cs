@@ -8,12 +8,14 @@ using System.Windows.Forms;
 using System.Management;
 using System.IO;
 using System.Text.RegularExpressions;
-using System.Threading;
 
 namespace TermConfig
 {
     public partial class StartupWindow : Form
     {
+        private int SecondsBeforeClose;
+        private Timer DelayTimer;
+
         public StartupWindow()
         {
             InitializeComponent();
@@ -21,6 +23,25 @@ namespace TermConfig
             GetIPAddress();
             GetPosiwSetting();
             GetQSRKitchenSetting();
+
+            SecondsBeforeClose = 4;
+
+            DelayTimer = new Timer();
+            DelayTimer.Interval = 1000;
+            DelayTimer.Tick += new EventHandler( CountdownTick );
+            DelayTimer.Start();
+        }
+
+        private void CountdownTick( object sender, EventArgs e )
+        {
+            if ( SecondsBeforeClose > 0 )
+            {
+                SecondsBeforeClose--;
+                CountdownTimerLabel.Text = SecondsBeforeClose.ToString() + "...";
+            }
+            else
+            {
+            }
         }
 
         private void GetIPAddress()
@@ -61,21 +82,9 @@ namespace TermConfig
         {
         }
 
-        private void WaitThenExit()
-        {
-            Thread.Sleep( 1000 );
-            CountdownTimerLabel.Text = "3...";
-            Thread.Sleep( 1000 );
-            CountdownTimerLabel.Text = "2...";
-            Thread.Sleep( 1000 );
-            CountdownTimerLabel.Text = "1...";
-            Thread.Sleep( 1000 );
-
-            // Launch everything
-        }
-
         private void RCButton_Click( object sender, EventArgs e )
         {
+            DelayTimer.Stop();
             var config = new TermConfigWindow();
             config.ShowDialog();
         }
