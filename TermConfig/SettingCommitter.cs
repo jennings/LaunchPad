@@ -4,6 +4,7 @@ using System.Management;
 using System.Net;
 using System.Text;
 using System.IO;
+using TermConfig.Configurators;
 
 namespace TermConfig
 {
@@ -65,7 +66,7 @@ namespace TermConfig
         {
             if ( deviceNumber < 1 || 99 < deviceNumber )
                 throw new ArgumentOutOfRangeException( "Device number must be between 1 and 99." );
-            var posiw = new PosiwBuilder();
+            var posiw = new PosiwConfigurator();
             posiw.DeviceNumber = deviceNumber;
 
             posiw.Write();

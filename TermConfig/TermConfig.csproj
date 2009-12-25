@@ -69,9 +69,9 @@
     <Compile Include="StartupWindow.Designer.cs">
       <DependentUpon>StartupWindow.cs</DependentUpon>
     </Compile>
-    <Compile Include="Configurators\PosiwBuilder.cs" />
+    <Compile Include="Configurators\PosiwConfigurator.cs" />
     <Compile Include="SettingCommitter.cs" />
-    <Compile Include="Configurators\SourceTerminalCopier.cs" />
+    <Compile Include="Configurators\PositermConfigurator.cs" />
     <Compile Include="TermConfigWindow.cs">
       <SubType>Form</SubType>
     </Compile>

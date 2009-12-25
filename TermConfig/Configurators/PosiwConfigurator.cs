@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Text;
 using System.IO;
 
-namespace TermConfig
+namespace TermConfig.Configurators
 {
-    class PosiwBuilder
+    class PosiwConfigurator
     {
         string _DeviceNumberString;
 

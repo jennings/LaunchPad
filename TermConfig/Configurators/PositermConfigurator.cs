@@ -4,9 +4,9 @@ using System.Text;
 using System.Security.Principal;
 using System.Net;
 
-namespace TermConfig
+namespace TermConfig.Configurators
 {
-    class SourceTerminalCopier
+    class PositermConfigurator
     {
         IPAddress SourceAddress;
         string Share;
@@ -16,7 +16,7 @@ namespace TermConfig
 
         public bool Connected { get; set; }
 
-        public SourceTerminalCopier()
+        public PositermConfigurator()
         {
         }
 
