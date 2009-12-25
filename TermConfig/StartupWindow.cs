@@ -23,7 +23,6 @@ namespace TermConfig
 
             GetIPAddress();
             GetPosiwSetting();
-            GetQSRKitchenSetting();
 
             SecondsBeforeClose = 4;
 
@@ -101,10 +100,6 @@ namespace TermConfig
                     PosiwLabel.Text = rxmatch.Result( "$1" );
                 }
             }
-        }
-
-        private void GetQSRKitchenSetting()
-        {
         }
 
         private void RCButton_Click( object sender, EventArgs e )
