@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using System.Management;
 using System.IO;
 using System.Text.RegularExpressions;
+using TermConfig.Launchers;
 
 namespace TermConfig
 {
@@ -43,10 +44,10 @@ namespace TermConfig
             {
                 DelayTimer.Stop();
 
-                var Launchers = new List<Launchers.ILauncher>();
-                Launchers.Add( new Launchers.PosiwLauncher() );
-                Launchers.Add( new Launchers.PositermLauncher() );
-                Launchers.Add( new Launchers.VNCLauncher() );
+                var Launchers = new List<ILauncher>();
+                Launchers.Add( new PosiwLauncher() );
+                Launchers.Add( new PositermLauncher() );
+                Launchers.Add( new VNCLauncher() );
 
                 foreach ( var launcher in Launchers )
                 {
