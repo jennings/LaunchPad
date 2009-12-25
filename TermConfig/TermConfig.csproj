@@ -59,6 +59,7 @@
   <ItemGroup>
     <Compile Include="PosiwBuilder.cs" />
     <Compile Include="SettingCommitter.cs" />
+    <Compile Include="SourceTerminalCopier.cs" />
     <Compile Include="TermConfigWindow.cs">
       <SubType>Form</SubType>
     </Compile>
