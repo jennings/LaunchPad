@@ -41,6 +41,26 @@ namespace TermConfig
             }
             else
             {
+                DelayTimer.Stop();
+
+                var Launchers = new List<Launchers.ILauncher>();
+                Launchers.Add( new Launchers.PosiwLauncher() );
+                Launchers.Add( new Launchers.PositermLauncher() );
+                Launchers.Add( new Launchers.VNCLauncher() );
+
+                foreach ( var launcher in Launchers )
+                {
+                    try
+                    {
+                        launcher.Launch();
+                    }
+                    catch ( NotImplementedException )
+                    {
+                        MessageBox.Show( "Launcher not implemented: " + launcher.GetType().ToString() );
+                    }
+                }
+
+                Application.Exit();
             }
         }
 

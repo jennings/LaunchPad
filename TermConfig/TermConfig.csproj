@@ -57,6 +57,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Launchers\ILauncher.cs" />
     <Compile Include="Launchers\PositermLauncher.cs" />
     <Compile Include="Launchers\PosiwLauncher.cs" />
     <Compile Include="Launchers\VNCLauncher.cs" />

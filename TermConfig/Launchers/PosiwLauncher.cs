@@ -4,7 +4,15 @@ using System.Text;
 
 namespace TermConfig.Launchers
 {
-    class PosiwLauncher
+    class PosiwLauncher : ILauncher
     {
+        #region ILauncher Members
+
+        public void Launch()
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
     }
 }

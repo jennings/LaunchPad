@@ -4,7 +4,15 @@ using System.Text;
 
 namespace TermConfig.Launchers
 {
-    class VNCLauncher
+    class VNCLauncher : ILauncher
     {
+        #region ILauncher Members
+
+        public void Launch()
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
     }
 }
