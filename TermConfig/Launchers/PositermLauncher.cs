@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
+using System.Diagnostics;
+using System.IO;
 
 namespace TermConfig.Launchers
 {
@@ -10,7 +10,15 @@ namespace TermConfig.Launchers
 
         public void Launch()
         {
-            throw new NotImplementedException();
+            if ( !File.Exists( @"C:\SC\Positerm.exe" ) )
+            {
+                throw new Exception( @"C:\SC\Positerm.exe does not exist." );
+            }
+
+            var info = new ProcessStartInfo();
+            info.WorkingDirectory = @"C:\SC";
+            info.FileName = @"C:\SC\Positerm.exe";
+            Process.Start( info );
         }
 
         #endregion

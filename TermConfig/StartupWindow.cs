@@ -58,6 +58,10 @@ namespace TermConfig
                     {
                         MessageBox.Show( "Launcher not implemented: " + launcher.GetType().ToString() );
                     }
+                    catch ( Exception ex )
+                    {
+                        MessageBox.Show( "Exception: " + launcher.GetType().ToString() + ": " + ex.Message );
+                    }
                 }
 
                 Application.Exit();
