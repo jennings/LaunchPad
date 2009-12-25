@@ -57,6 +57,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="StartupWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StartupWindow.Designer.cs">
+      <DependentUpon>StartupWindow.cs</DependentUpon>
+    </Compile>
     <Compile Include="PosiwBuilder.cs" />
     <Compile Include="SettingCommitter.cs" />
     <Compile Include="SourceTerminalCopier.cs" />
@@ -68,6 +74,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="StartupWindow.resx">
+      <DependentUpon>StartupWindow.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="TermConfigWindow.resx">
       <DependentUpon>TermConfigWindow.cs</DependentUpon>
     </EmbeddedResource>
