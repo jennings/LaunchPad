@@ -1,13 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
-using System.Management;
 using System.IO;
+using System.Management;
 using System.Text.RegularExpressions;
+using System.Windows.Forms;
 using TermConfig.Launchers;
 
 namespace TermConfig
@@ -105,8 +101,10 @@ namespace TermConfig
         private void RCButton_Click( object sender, EventArgs e )
         {
             DelayTimer.Stop();
+            this.Hide();
             var config = new TermConfigWindow();
             config.ShowDialog();
+            this.Show();
         }
     }
 }
