@@ -7,7 +7,7 @@ namespace TermConfig
 {
     class TerminalStation
     {
-        public TerminalStationType @Type { get; set; }
+        public TerminalStationType? @Type { get; set; }
         public bool PosdriverTerminal { get { return @Type == TerminalStationType.Posdriver; } }
         public bool RedundantTerminal { get { return @Type == TerminalStationType.Redunant; } }
         public bool NormalTerminal { get { return @Type == TerminalStationType.Normal; } }
@@ -17,13 +17,20 @@ namespace TermConfig
         {
             get
             {
-                if ( PosdriverTerminal ) return "POSDRVR";
-                return "TERM" + DeviceNumber.ToString( "D3" );
+                if ( DeviceNumber == null )
+                {
+                    throw new Exception( @"DeviceNumber is not set." );
+                }
+                else
+                {
+                    if ( PosdriverTerminal ) return "POSDRVR";
+                    return "TERM" + DeviceNumber.GetValueOrDefault().ToString( "D3" );
+                }
             }
         }
 
-        private int _DeviceNumber;
-        public int DeviceNumber
+        private int? _DeviceNumber;
+        public int? DeviceNumber
         {
             get { return _DeviceNumber; }
             set
@@ -34,9 +41,10 @@ namespace TermConfig
                     throw new Exception( "Device number 89 is reserved for the posdriver." );
                 if ( value == 99 && !Backoffice )
                     throw new Exception( "Device number 99 is reserved for the backoffice." );
+                _DeviceNumber = value;
             }
         }
-        public string DeviceNumberString { get { return DeviceNumber.ToString( "D2" ); } }
+        public string DeviceNumberString { get { return DeviceNumber == null ? "" : DeviceNumber.GetValueOrDefault().ToString( "D2" ); } }
 
         public string Username { get { return "pos"; } }
         public string Password { get; set; }
