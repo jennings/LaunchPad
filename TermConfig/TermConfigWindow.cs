@@ -46,14 +46,17 @@ namespace TermConfig
             if ( CurrentControl == null )
             {
                 CurrentControl = ControlOrder[0];
+                CurrentControl.BackColor = Color.Yellow;
                 return;
             }
 
             var currentIndex = ControlOrder.IndexOf( CurrentControl );
+            CurrentControl.BackColor = Color.Gray;
 
             if ( ControlOrder.Count > currentIndex + 1 )
             {
                 CurrentControl = ControlOrder[currentIndex + 1];
+                CurrentControl.BackColor = Color.Yellow;
             }
             else
             {
@@ -86,10 +89,16 @@ namespace TermConfig
             IPAddress_AddressTextBox.Text = "";
             PosdriverIP_IPAddress.Text = "";
             BackofficeIP_IPAddress.Text = "";
+            AccpacID_AccpacID.Text = "";
             DeviceNumber_DeviceNumber.Text = "";
             TerminalType_Normal.Select();
             kbd_SaveAndReboot.Visible = false;
             LogList.Items.Clear();
+
+            foreach ( var control in ControlOrder )
+            {
+                control.BackColor = Color.White;
+            }
 
             // Activate first field
             CurrentControl = null;
