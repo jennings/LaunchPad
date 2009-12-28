@@ -19,12 +19,24 @@ namespace TermConfig.Configurators
 
         public void Configure()
         {
-            throw new NotImplementedException();
+            SetNetBIOSName();
+            SetIPAddress();
         }
 
 
         public void SetNetBIOSName()
         {
+            var MC = new ManagementClass( "Win32_ComputerSystem" );
+
+            var inputParams = MC.GetMethodParameters( "Rename" );
+            inputParams["Name"] = StationSettings.Name;
+            var output = MC.InvokeMethod( "Rename", inputParams, null );
+
+            var returnvalue = (int)output.Properties["ReturnValue"].Value;
+            if ( returnvalue != 0 )
+            {
+                throw new Exception( @"Could not change network name." );
+            }
         }
 
 

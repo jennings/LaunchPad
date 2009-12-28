@@ -140,6 +140,10 @@ namespace TermConfig
             // settings.RedundantIPAddress = IPAddress.Parse( RedundantTerminal_IPAddress.Text );
             settings.BackofficeIPAddress = IPAddress.Parse( BackofficeIP_IPAddress.Text );
 
+            // Password
+            settings.Password = AccpacID_AccpacID.Text.ToUpper();
+            if ( settings.Password.Length == 0 ) throw new Exception( @"Accpac ID cannot be blank." );
+
             settings.Validate();
 
             var network = new NetworkConfigurator( settings );
