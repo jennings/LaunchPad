@@ -80,7 +80,10 @@ namespace TermConfig
         {
             if ( CurrentControl.GetType() == typeof( TextBox ) )
             {
-                CurrentControl.Text = CurrentControl.Text.Remove( CurrentControl.Text.Length - 1 );
+                if ( CurrentControl.Text.Length > 0 )
+                {
+                    CurrentControl.Text = CurrentControl.Text.Remove( CurrentControl.Text.Length - 1 );
+                }
             }
         }
 
