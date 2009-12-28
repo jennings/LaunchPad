@@ -60,6 +60,7 @@
   <ItemGroup>
     <Compile Include="Configurators\IConfigurator.cs" />
     <Compile Include="Configurators\NetworkConfigurator.cs" />
+    <Compile Include="Configurators\RebootConfigurator.cs" />
     <Compile Include="Configurators\VNCConfigurator.cs" />
     <Compile Include="Launchers\ILauncher.cs" />
     <Compile Include="Launchers\PositermLauncher.cs" />

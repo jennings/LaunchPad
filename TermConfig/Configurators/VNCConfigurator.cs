@@ -23,10 +23,19 @@ namespace TermConfig.Configurators
         public void Configure()
         {
             StopVNCProcesses();
+            System.Threading.Thread.Sleep( 500 );
+
             MoveExistingVNCDirectory();
+            System.Threading.Thread.Sleep( 500 );
+            
             CreateNewVNCDirectory();
+            System.Threading.Thread.Sleep( 500 );
+            
             ChangeVNCPassword();
+            System.Threading.Thread.Sleep( 500 );
+            
             RegisterVNCService();
+            System.Threading.Thread.Sleep( 500 );
         }
 
 
@@ -50,7 +59,7 @@ namespace TermConfig.Configurators
             }
 
             // Rename C:\Program Files\UltraVNC to UltraVNC2
-            if ( !Directory.Exists( VNCDirectory ) )
+            if ( Directory.Exists( VNCDirectory ) )
             {
                 Directory.Move( VNCDirectory, VNCBackupDirectory );
             }

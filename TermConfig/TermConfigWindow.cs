@@ -151,6 +151,7 @@ namespace TermConfig
             var positerm = new PositermConfigurator( settings );
             var posiw = new PosiwConfigurator( settings );
             var vnc = new VNCConfigurator( settings );
+            var reboot = new RebootConfigurator();
 
             WriteLog( "Configuring network..." );
             network.Configure();
@@ -168,11 +169,8 @@ namespace TermConfig
             vnc.Configure();
             WriteLog( "VNC OK" );
 
-            // Reboot
-            var info = new ProcessStartInfo();
-            info.FileName = "shutdown.exe";
-            info.Arguments = "-r -t 00";
-            Process.Start( info );
+            WriteLog( "Rebooting..." );
+            reboot.Configure();
         }
 
         private void TerminalType_CheckedChanged( object sender, EventArgs e )
