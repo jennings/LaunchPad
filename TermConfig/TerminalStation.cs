@@ -22,9 +22,23 @@ namespace TermConfig
             }
         }
 
-        public int DeviceNumber { get; set; }
+        private int _DeviceNumber;
+        public int DeviceNumber
+        {
+            get { return _DeviceNumber; }
+            set
+            {
+                if ( value < 1 || value > 99 )
+                    throw new Exception( "Device Number must be between 1 and 99" );
+                if ( value == 89 && !PosdriverTerminal )
+                    throw new Exception( "Device number 89 is reserved for the posdriver." );
+                if ( value == 99 && !Backoffice )
+                    throw new Exception( "Device number 99 is reserved for the backoffice." );
+            }
+        }
         public string DeviceNumberString { get { return DeviceNumber.ToString( "D2" ); } }
 
+        public string Username { get { return "pos"; } }
         public string Password { get; set; }
 
         public IPAddress @IPAddress { get; set; }

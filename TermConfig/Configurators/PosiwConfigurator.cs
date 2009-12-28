@@ -91,21 +91,7 @@ namespace TermConfig.Configurators
             }
         }
 
-        [Obsolete]
-        public int DeviceNumber
-        {
-            get { return Convert.ToInt32( _DeviceNumberString ); }
-            set
-            {
-                if ( value < 1 || value > 99 )
-                    throw new Exception( "Device Number must be between 1 and 99" );
-                if ( value == 89 && !PrimaryServer )
-                    throw new Exception( "Device number 89 is reserved for the posdriver." );
-                if ( value == 99 && !BackoffServer )
-                    throw new Exception( "Device number 99 is reserved for the backoffice." );
-                _DeviceNumberString = value.ToString( "D2" );
-            }
-        }
+        
 
 
         public PosiwConfigurator( TerminalStation TerminalStationSettings )

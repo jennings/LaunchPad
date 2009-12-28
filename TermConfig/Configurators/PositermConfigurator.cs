@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Security.Principal;
 using System.Net;
+using System.IO;
 
 namespace TermConfig.Configurators
 {
@@ -31,6 +32,10 @@ namespace TermConfig.Configurators
 
         public void Configure()
         {
+            // Copy INI files
+
+            // Write TERM.$$$
+            WriteTerminalName();
         }
 
         public void ConnectToRemoteShare( string address, string share, string username, string password )
@@ -46,6 +51,21 @@ namespace TermConfig.Configurators
         public void CopyFiles( List<string> filenames )
         {
             Filenames = filenames;
+        }
+
+
+        public void WriteTerminalName()
+        {
+            if ( File.Exists( @"C:\SC\TERM.$$$" ) )
+            {
+                var timestring = DateTime.Now.ToString( @"yyyyMMddHHmmss" );
+                File.Move( @"C:\SC\TERM.$$$", @"C:\Temp\TERM.$$$." + timestring );
+            }
+
+            using ( var sw = new StreamWriter( @"C:\SC\TERM.$$$" ) )
+            {
+                sw.Write( StationSettings.Name );
+            }
         }
     }
 }

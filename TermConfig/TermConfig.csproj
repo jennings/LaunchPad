@@ -59,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configurators\IConfigurator.cs" />
+    <Compile Include="Configurators\IPAddressConfigurator.cs" />
     <Compile Include="Launchers\ILauncher.cs" />
     <Compile Include="Launchers\PositermLauncher.cs" />
     <Compile Include="Launchers\PosiwLauncher.cs" />

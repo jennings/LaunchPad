@@ -192,13 +192,13 @@ namespace TermConfig
                 else
                 {
                     WriteLog( "......... Copying INIs." );
-                    SettingCommitter.CopyINIs( SourceTerminal_IPAddress.Text, SourceTerminal_Username.Text, SourceTerminal_Password.Text );
+                    // SettingCommitter.CopyINIs( SourceTerminal_IPAddress.Text, SourceTerminal_Username.Text, SourceTerminal_Password.Text );
                     WriteLog( "OK.... Copied INIs." );
                 }
 
                 // Write TERM.$$$
                 WriteLog( "......... Writing TERM.$$$." );
-                SettingCommitter.WriteTerm( Convert.ToInt32( DeviceNumber_DeviceNumber.Text ) );
+                // SettingCommitter.WriteTerm( Convert.ToInt32( DeviceNumber_DeviceNumber.Text ) );
                 WriteLog( "OK.... Wrote TERM.$$$." );
 
                 // Write Posiw.ini
