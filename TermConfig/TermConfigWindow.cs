@@ -113,6 +113,12 @@ namespace TermConfig
 
         private void kbd_SaveAndReboot_Click( object sender, EventArgs e )
         {
+            if ( ( TerminalType_Backoffice.Checked || TerminalType_Posdriver.Checked ) && PosdriverBackofficePassword_Password.Text != "627" )
+            {
+                MessageBox.Show( @"Incorrect password! Call CBS at (800) 551-7674 for assistance." );
+                return;
+            }
+
             // Disable reboot button
             kbd_SaveAndReboot.Enabled = false;
 

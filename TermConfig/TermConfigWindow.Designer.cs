@@ -89,7 +89,7 @@
             this.Group_BackofficeIP = new System.Windows.Forms.GroupBox();
             this.BackofficeIP_IPAddress = new System.Windows.Forms.TextBox();
             this.Group_PosdriverBackofficePassword = new System.Windows.Forms.GroupBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.PosdriverBackofficePassword_Password = new System.Windows.Forms.TextBox();
             this.Group_IPAddress.SuspendLayout();
             this.KeyboardPanel.SuspendLayout();
             this.Group_TerminalType.SuspendLayout();
@@ -809,7 +809,7 @@
             // 
             // Group_PosdriverBackofficePassword
             // 
-            this.Group_PosdriverBackofficePassword.Controls.Add( this.textBox1 );
+            this.Group_PosdriverBackofficePassword.Controls.Add( this.PosdriverBackofficePassword_Password );
             this.Group_PosdriverBackofficePassword.Location = new System.Drawing.Point( 262, 162 );
             this.Group_PosdriverBackofficePassword.Name = "Group_PosdriverBackofficePassword";
             this.Group_PosdriverBackofficePassword.Size = new System.Drawing.Size( 242, 56 );
@@ -818,13 +818,13 @@
             this.Group_PosdriverBackofficePassword.Text = "Password for Pos/Back";
             this.Group_PosdriverBackofficePassword.Visible = false;
             // 
-            // textBox1
+            // PosdriverBackofficePassword_Password
             // 
-            this.textBox1.Font = new System.Drawing.Font( "Courier New", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ( (byte)( 0 ) ) );
-            this.textBox1.Location = new System.Drawing.Point( 6, 19 );
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size( 230, 26 );
-            this.textBox1.TabIndex = 0;
+            this.PosdriverBackofficePassword_Password.Font = new System.Drawing.Font( "Courier New", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ( (byte)( 0 ) ) );
+            this.PosdriverBackofficePassword_Password.Location = new System.Drawing.Point( 6, 19 );
+            this.PosdriverBackofficePassword_Password.Name = "PosdriverBackofficePassword_Password";
+            this.PosdriverBackofficePassword_Password.Size = new System.Drawing.Size( 230, 26 );
+            this.PosdriverBackofficePassword_Password.TabIndex = 0;
             // 
             // TermConfigWindow
             // 
@@ -924,7 +924,7 @@
         private System.Windows.Forms.TextBox BackofficeIP_IPAddress;
         private System.Windows.Forms.Button kbd_Hyphen;
         private System.Windows.Forms.GroupBox Group_PosdriverBackofficePassword;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox PosdriverBackofficePassword_Password;
     }
 }
 
