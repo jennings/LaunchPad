@@ -63,6 +63,7 @@
     <Compile Include="Configurators\RebootConfigurator.cs" />
     <Compile Include="Configurators\VNCConfigurator.cs" />
     <Compile Include="Launchers\ILauncher.cs" />
+    <Compile Include="Launchers\LaunchController.cs" />
     <Compile Include="Launchers\PositermLauncher.cs" />
     <Compile Include="Launchers\PosiwLauncher.cs" />
     <Compile Include="Launchers\VNCLauncher.cs" />
