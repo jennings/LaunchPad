@@ -7,6 +7,8 @@ namespace TermConfig.Configurators
 {
     class PosiwConfigurator
     {
+        TerminalStation StationSettings { get; private set; }
+
         string _DeviceNumberString;
 
         private PosiwTerminalType _TerminalType = PosiwTerminalType.Normal;
@@ -93,6 +95,14 @@ namespace TermConfig.Configurators
                     throw new Exception( "Device number 99 is reserved for the backoffice." );
                 _DeviceNumberString = value.ToString( "D2" );
             }
+        }
+
+
+        public PosiwConfigurator() { }
+
+        public PosiwConfigurator( TerminalStation TerminalStationSettings )
+        {
+            StationSettings = TerminalStationSettings;
         }
 
         public void Write()

@@ -8,6 +8,7 @@ namespace TermConfig.Configurators
 {
     class PositermConfigurator
     {
+        TerminalStation StationSettings { get; private set; }
         IPAddress SourceAddress;
         string Share;
         string Username;
@@ -16,8 +17,9 @@ namespace TermConfig.Configurators
 
         public bool Connected { get; set; }
 
-        public PositermConfigurator()
+        public PositermConfigurator( TerminalStation TerminalStationSettings )
         {
+            StationSettings = TerminalStationSettings;
         }
 
         public void ConnectToRemoteShare( string address, string share, string username, string password )
