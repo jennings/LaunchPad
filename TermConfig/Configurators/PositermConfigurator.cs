@@ -8,17 +8,24 @@ namespace TermConfig.Configurators
 {
     class PositermConfigurator : IConfigurator
     {
-        TerminalStation StationSettings { get; private set; }
+        public TerminalStation StationSettings { get; private set; }
+
+        [Obsolete]
         IPAddress SourceAddress;
+        [Obsolete]
         string Share;
+        [Obsolete]
         string Username;
+        [Obsolete]
         string Password;
+
         List<string> Filenames;
 
         public bool Connected { get; set; }
 
         public PositermConfigurator( TerminalStation TerminalStationSettings )
         {
+            TerminalStationSettings.Validate();
             StationSettings = TerminalStationSettings;
         }
 

@@ -30,6 +30,7 @@ namespace TermConfig
         public IPAddress @IPAddress { get; set; }
         public IPAddress @PosdriverIPAddress { get; set; }
         public IPAddress @RedundantIPAddress { get; set; }
+        public IPAddress @BackofficeIPAddress { get; set; }
 
         public void Validate()
         {
@@ -40,6 +41,7 @@ namespace TermConfig
             if ( @IPAddress == null ) errors += @"IPAddress is not set. ";
             if ( PosdriverIPAddress == null ) errors += @"PosdriverIPAddress is not set. ";
             // if ( RedundantIPAddress == null ) errors += @"RedundantIPAddress is not set. ";
+            // if ( BackofficeIPAddress == null ) errors += @"BackofficeIPAddress is not set. ";
 
             if ( !errors.Equals( string.Empty ) )
             {

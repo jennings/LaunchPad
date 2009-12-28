@@ -7,24 +7,30 @@ namespace TermConfig.Configurators
 {
     class PosiwConfigurator : IConfigurator
     {
-        TerminalStation StationSettings { get; private set; }
+        public TerminalStation StationSettings { get; private set; }
 
+        [Obsolete]
         string _DeviceNumberString;
 
+        [Obsolete]
         private PosiwTerminalType _TerminalType = PosiwTerminalType.Normal;
 
         // FIXME
+        [Obsolete]
         public string BackofficeIP
         { get { return "10.10.1.30"; } }
 
         // FIXME
+        [Obsolete]
         public string PosdriverIP
         { get { return "10.10.1.40"; } }
 
         // FIXME
+        [Obsolete]
         public string BackupServerIP
         { get { return "10.10.1.45"; } }
 
+        [Obsolete]
         public bool BackupServer
         {
             get { return _TerminalType == PosiwTerminalType.BackupServer; }
@@ -40,6 +46,7 @@ namespace TermConfig.Configurators
                 }
             }
         }
+        [Obsolete]
         public bool PrimaryServer
         {
             get { return _TerminalType == PosiwTerminalType.PrimaryServer; }
@@ -55,6 +62,7 @@ namespace TermConfig.Configurators
                 }
             }
         }
+        [Obsolete]
         public bool BackoffServer
         {
             get { return _TerminalType == PosiwTerminalType.BackoffServer; }
@@ -70,6 +78,7 @@ namespace TermConfig.Configurators
                 }
             }
         }
+        [Obsolete]
         public bool NormalTerminal
         {
             get { return _TerminalType == PosiwTerminalType.Normal; }
@@ -82,6 +91,7 @@ namespace TermConfig.Configurators
             }
         }
 
+        [Obsolete]
         public int DeviceNumber
         {
             get { return Convert.ToInt32( _DeviceNumberString ); }
@@ -100,6 +110,7 @@ namespace TermConfig.Configurators
 
         public PosiwConfigurator( TerminalStation TerminalStationSettings )
         {
+            TerminalStationSettings.Validate();
             StationSettings = TerminalStationSettings;
         }
 

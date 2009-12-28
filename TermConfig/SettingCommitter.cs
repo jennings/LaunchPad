@@ -64,12 +64,14 @@ namespace TermConfig
 
         public static void WritePosiw( int deviceNumber )
         {
+            /*
             if ( deviceNumber < 1 || 99 < deviceNumber )
                 throw new ArgumentOutOfRangeException( "Device number must be between 1 and 99." );
             var posiw = new PosiwConfigurator();
             posiw.DeviceNumber = deviceNumber;
 
             posiw.Write();
+             */
         }
 
         public static void InstallVNC( string password )
