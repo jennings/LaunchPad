@@ -16,7 +16,15 @@ namespace TermConfig.Configurators
 
         public void Configure()
         {
-            throw new NotImplementedException();
+            // Stop VNC
+
+            // Delete C:\Program Files\UltraVNC2
+
+            // Rename C:\Program Files\UltraVNC to UltraVNC2
+
+            // Copy good data into C:\Program Files\UltraVNC
+
+            // Change password in ultravnc.ini
         }
     }
 }
