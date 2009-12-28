@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Security.Principal;
-using System.Net;
 using System.IO;
 
 namespace TermConfig.Configurators
@@ -11,24 +8,23 @@ namespace TermConfig.Configurators
     {
         public TerminalStation StationSettings { get; private set; }
 
-        [Obsolete]
-        IPAddress SourceAddress;
-        [Obsolete]
-        string Share;
-        [Obsolete]
-        string Username;
-        [Obsolete]
-        string Password;
+        private List<string> Filenames = new List<string>()
+        {
+            "AMS32.INI",
+            "DELIVERY.INI",
+            "GIFTCERT.INI",
+            "ORDRSCRN.INI"
+        };
 
-        List<string> Filenames;
+        private bool Connected { get; set; }
 
-        public bool Connected { get; set; }
 
         public PositermConfigurator( TerminalStation TerminalStationSettings )
         {
             TerminalStationSettings.Validate();
             StationSettings = TerminalStationSettings;
         }
+
 
         public void Configure()
         {
@@ -38,19 +34,14 @@ namespace TermConfig.Configurators
             WriteTerminalName();
         }
 
-        public void ConnectToRemoteShare( string address, string share, string username, string password )
-        {
-            SourceAddress = IPAddress.Parse( address );
-            Share = share;
-            Username = username;
-            Password = password;
 
-            // Connect
+        public void ConnectToRemoteShare()
+        {
         }
 
-        public void CopyFiles( List<string> filenames )
+
+        public void CopyINIFiles()
         {
-            Filenames = filenames;
         }
 
 

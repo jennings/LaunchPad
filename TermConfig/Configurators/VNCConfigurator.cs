@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace TermConfig.Configurators
 {
-    class IPAddressConfigurator : IConfigurator
+    class VNCConfigurator : IConfigurator
     {
         public void Configure()
         {
