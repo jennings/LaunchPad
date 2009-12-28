@@ -121,7 +121,7 @@ namespace TermConfig
             // Terminal type
             if ( TerminalType_Posdriver.Checked ) settings.Type = TerminalStationType.Posdriver;
             else if ( TerminalType_Redundant.Checked ) settings.Type = TerminalStationType.Redunant;
-            // else if ( TerminalType_Backoffice.Checked ) settings.Type = TerminalStationType.Backoffice;
+            else if ( TerminalType_Backoffice.Checked ) settings.Type = TerminalStationType.Backoffice;
             else if ( TerminalType_Normal.Checked ) settings.Type = TerminalStationType.Normal;
             else throw new Exception( @"No TerminalType radio button selected." );
 
@@ -132,6 +132,7 @@ namespace TermConfig
             settings.IPAddress = IPAddress.Parse( IPAddress_AddressTextBox.Text );
             settings.PosdriverIPAddress = IPAddress.Parse( PosdriverIP_IPAddress.Text );
             // settings.RedundantIPAddress = IPAddress.Parse( RedundantTerminal_IPAddress.Text );
+            settings.BackofficeIPAddress = IPAddress.Parse( BackofficeIP_IPAddress.Text );
 
             settings.Validate();
 
