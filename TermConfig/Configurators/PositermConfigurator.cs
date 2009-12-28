@@ -6,7 +6,7 @@ using System.Net;
 
 namespace TermConfig.Configurators
 {
-    class PositermConfigurator
+    class PositermConfigurator : IConfigurator
     {
         TerminalStation StationSettings { get; private set; }
         IPAddress SourceAddress;
@@ -20,6 +20,10 @@ namespace TermConfig.Configurators
         public PositermConfigurator( TerminalStation TerminalStationSettings )
         {
             StationSettings = TerminalStationSettings;
+        }
+
+        public void Configure()
+        {
         }
 
         public void ConnectToRemoteShare( string address, string share, string username, string password )

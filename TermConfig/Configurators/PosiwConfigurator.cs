@@ -5,7 +5,7 @@ using System.IO;
 
 namespace TermConfig.Configurators
 {
-    class PosiwConfigurator
+    class PosiwConfigurator : IConfigurator
     {
         TerminalStation StationSettings { get; private set; }
 
@@ -98,11 +98,13 @@ namespace TermConfig.Configurators
         }
 
 
-        public PosiwConfigurator() { }
-
         public PosiwConfigurator( TerminalStation TerminalStationSettings )
         {
             StationSettings = TerminalStationSettings;
+        }
+
+        public void Configure()
+        {
         }
 
         public void Write()

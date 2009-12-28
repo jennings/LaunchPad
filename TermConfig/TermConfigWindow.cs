@@ -5,6 +5,8 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using System.Net;
+using TermConfig.Configurators;
 
 namespace TermConfig
 {
@@ -145,6 +147,28 @@ namespace TermConfig
         {
             // Disable reboot button
             kbd_SaveAndReboot.Enabled = false;
+
+            var settings = new TerminalStation();
+
+            // Terminal type
+            if ( TerminalType_Posdriver.Checked ) settings.Type = TerminalStationType.Posdriver;
+            else if ( TerminalType_Redundant.Checked ) settings.Type = TerminalStationType.Redunant;
+            // else if ( TerminalType_Backoffice.Checked ) settings.Type = TerminalStationType.Backoffice;
+            else if ( TerminalType_Normal.Checked ) settings.Type = TerminalStationType.Normal;
+            else throw new Exception( @"No TerminalType radio button selected." );
+
+            // Device number
+            settings.DeviceNumber = Convert.ToInt32( DeviceNumber_DeviceNumber.Text );
+
+            // IP Address
+            settings.IPAddress = IPAddress.Parse( IPAddress_AddressTextBox.Text );
+            settings.PosdriverIPAddress = IPAddress.Parse( SourceTerminal_IPAddress.Text );
+            // settings.RedundantIPAddress = IPAddress.Parse( RedundantTerminal_IPAddress.Text );
+
+            settings.Validate();
+
+            var positerm = new PositermConfigurator( settings );
+            var posiw = new PosiwConfigurator( settings );
 
             try
             {
