@@ -55,7 +55,7 @@ namespace TermConfig
         {
             // Clear all fields
             IPAddress_AddressTextBox.Text = "";
-            SourceTerminal_IPAddress.Text = "";
+            PosdriverIP_IPAddress.Text = "";
             SourceTerminal_Username.Text = "";
             SourceTerminal_Password.Text = "";
             DeviceNumber_DeviceNumber.Text = "";
@@ -69,7 +69,7 @@ namespace TermConfig
             LogList.Items.Clear();
 
             // Hide all groups
-            Group_SourceTerminal.Visible = false;
+            Group_PosdriverIP.Visible = false;
             Group_DeviceNumber.Visible = false;
             Group_TerminalType.Visible = false;
             Group_VNC.Visible = false;
@@ -162,7 +162,7 @@ namespace TermConfig
 
             // IP Address
             settings.IPAddress = IPAddress.Parse( IPAddress_AddressTextBox.Text );
-            settings.PosdriverIPAddress = IPAddress.Parse( SourceTerminal_IPAddress.Text );
+            settings.PosdriverIPAddress = IPAddress.Parse( PosdriverIP_IPAddress.Text );
             // settings.RedundantIPAddress = IPAddress.Parse( RedundantTerminal_IPAddress.Text );
 
             settings.Validate();
@@ -200,9 +200,9 @@ namespace TermConfig
             Group_IPAddress.Enabled = false;
 
             // Activate next group
-            Group_SourceTerminal.Enabled = true;
-            Group_SourceTerminal.Visible = true;
-            ActivateControl( SourceTerminal_IPAddress );
+            Group_PosdriverIP.Enabled = true;
+            Group_PosdriverIP.Visible = true;
+            ActivateControl( PosdriverIP_IPAddress );
         }
 
         private void SubmitSourceTerminalGroup()
@@ -212,7 +212,7 @@ namespace TermConfig
             // Try to copy INIs
 
             // Disable group
-            Group_SourceTerminal.Enabled = false;
+            Group_PosdriverIP.Enabled = false;
 
             // Activate next group
             Group_DeviceNumber.Enabled = true;

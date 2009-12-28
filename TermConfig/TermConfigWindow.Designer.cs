@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.Group_IPAddress = new System.Windows.Forms.GroupBox();
-            this.IPAddress_SkipButton = new System.Windows.Forms.Button();
             this.IPAddress_AddressTextBox = new System.Windows.Forms.TextBox();
             this.KeyboardPanel = new System.Windows.Forms.Panel();
             this.kbd_Shift = new System.Windows.Forms.Button();
@@ -75,53 +74,37 @@
             this.kbd_W = new System.Windows.Forms.Button();
             this.kbd_Q = new System.Windows.Forms.Button();
             this.Group_TerminalType = new System.Windows.Forms.GroupBox();
+            this.TerminalType_Backoffice = new System.Windows.Forms.RadioButton();
             this.TerminalType_Posdriver = new System.Windows.Forms.RadioButton();
             this.TerminalType_Redundant = new System.Windows.Forms.RadioButton();
             this.TerminalType_Normal = new System.Windows.Forms.RadioButton();
-            this.Group_VNC = new System.Windows.Forms.GroupBox();
-            this.VNC_SkipButton = new System.Windows.Forms.Button();
-            this.VNC_CustomPasswordTextBox = new System.Windows.Forms.TextBox();
-            this.VNC_CustomPassword = new System.Windows.Forms.RadioButton();
-            this.VNC_sliders = new System.Windows.Forms.RadioButton();
-            this.VNC_cbsinc = new System.Windows.Forms.RadioButton();
-            this.Group_SourceTerminal = new System.Windows.Forms.GroupBox();
-            this.SourceTerminal_SkipButton = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.SourceTerminal_Password = new System.Windows.Forms.TextBox();
-            this.SourceTerminal_Username = new System.Windows.Forms.TextBox();
-            this.SourceTerminal_IPAddress = new System.Windows.Forms.TextBox();
+            this.Group_PosdriverIP = new System.Windows.Forms.GroupBox();
+            this.PosdriverIP_IPAddress = new System.Windows.Forms.TextBox();
             this.Group_DeviceNumber = new System.Windows.Forms.GroupBox();
             this.DeviceNumber_DeviceNumber = new System.Windows.Forms.TextBox();
             this.LogList = new System.Windows.Forms.ListBox();
+            this.Group_AccpacID = new System.Windows.Forms.GroupBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.Group_BackofficeIP = new System.Windows.Forms.GroupBox();
+            this.BackofficeIP_IPAddress = new System.Windows.Forms.TextBox();
             this.Group_IPAddress.SuspendLayout();
             this.KeyboardPanel.SuspendLayout();
             this.Group_TerminalType.SuspendLayout();
-            this.Group_VNC.SuspendLayout();
-            this.Group_SourceTerminal.SuspendLayout();
+            this.Group_PosdriverIP.SuspendLayout();
             this.Group_DeviceNumber.SuspendLayout();
+            this.Group_AccpacID.SuspendLayout();
+            this.Group_BackofficeIP.SuspendLayout();
             this.SuspendLayout();
             // 
             // Group_IPAddress
             // 
-            this.Group_IPAddress.Controls.Add( this.IPAddress_SkipButton );
             this.Group_IPAddress.Controls.Add( this.IPAddress_AddressTextBox );
-            this.Group_IPAddress.Location = new System.Drawing.Point( 13, 13 );
+            this.Group_IPAddress.Location = new System.Drawing.Point( 15, 13 );
             this.Group_IPAddress.Name = "Group_IPAddress";
-            this.Group_IPAddress.Size = new System.Drawing.Size( 242, 91 );
+            this.Group_IPAddress.Size = new System.Drawing.Size( 242, 55 );
             this.Group_IPAddress.TabIndex = 0;
             this.Group_IPAddress.TabStop = false;
             this.Group_IPAddress.Text = "IP Address";
-            // 
-            // IPAddress_SkipButton
-            // 
-            this.IPAddress_SkipButton.Location = new System.Drawing.Point( 48, 51 );
-            this.IPAddress_SkipButton.Name = "IPAddress_SkipButton";
-            this.IPAddress_SkipButton.Size = new System.Drawing.Size( 153, 28 );
-            this.IPAddress_SkipButton.TabIndex = 6;
-            this.IPAddress_SkipButton.Text = "SKIP";
-            this.IPAddress_SkipButton.UseVisualStyleBackColor = true;
-            this.IPAddress_SkipButton.Click += new System.EventHandler( this.IPAddress_SkipButton_Click );
             // 
             // IPAddress_AddressTextBox
             // 
@@ -666,16 +649,28 @@
             // 
             // Group_TerminalType
             // 
+            this.Group_TerminalType.Controls.Add( this.TerminalType_Backoffice );
             this.Group_TerminalType.Controls.Add( this.TerminalType_Posdriver );
             this.Group_TerminalType.Controls.Add( this.TerminalType_Redundant );
             this.Group_TerminalType.Controls.Add( this.TerminalType_Normal );
             this.Group_TerminalType.Location = new System.Drawing.Point( 261, 13 );
             this.Group_TerminalType.Name = "Group_TerminalType";
-            this.Group_TerminalType.Size = new System.Drawing.Size( 242, 100 );
+            this.Group_TerminalType.Size = new System.Drawing.Size( 242, 143 );
             this.Group_TerminalType.TabIndex = 1;
             this.Group_TerminalType.TabStop = false;
             this.Group_TerminalType.Text = "This is a";
             this.Group_TerminalType.Visible = false;
+            // 
+            // TerminalType_Backoffice
+            // 
+            this.TerminalType_Backoffice.AutoSize = true;
+            this.TerminalType_Backoffice.Font = new System.Drawing.Font( "Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ( (byte)( 0 ) ) );
+            this.TerminalType_Backoffice.Location = new System.Drawing.Point( 20, 97 );
+            this.TerminalType_Backoffice.Name = "TerminalType_Backoffice";
+            this.TerminalType_Backoffice.Size = new System.Drawing.Size( 89, 20 );
+            this.TerminalType_Backoffice.TabIndex = 3;
+            this.TerminalType_Backoffice.Text = "Backoffice";
+            this.TerminalType_Backoffice.UseVisualStyleBackColor = true;
             // 
             // TerminalType_Posdriver
             // 
@@ -712,146 +707,29 @@
             this.TerminalType_Normal.Text = "Normal terminal";
             this.TerminalType_Normal.UseVisualStyleBackColor = true;
             // 
-            // Group_VNC
+            // Group_PosdriverIP
             // 
-            this.Group_VNC.Controls.Add( this.VNC_SkipButton );
-            this.Group_VNC.Controls.Add( this.VNC_CustomPasswordTextBox );
-            this.Group_VNC.Controls.Add( this.VNC_CustomPassword );
-            this.Group_VNC.Controls.Add( this.VNC_sliders );
-            this.Group_VNC.Controls.Add( this.VNC_cbsinc );
-            this.Group_VNC.Location = new System.Drawing.Point( 261, 119 );
-            this.Group_VNC.Name = "Group_VNC";
-            this.Group_VNC.Size = new System.Drawing.Size( 242, 180 );
-            this.Group_VNC.TabIndex = 1;
-            this.Group_VNC.TabStop = false;
-            this.Group_VNC.Text = "VNC Password";
-            this.Group_VNC.Visible = false;
+            this.Group_PosdriverIP.Controls.Add( this.PosdriverIP_IPAddress );
+            this.Group_PosdriverIP.Location = new System.Drawing.Point( 15, 74 );
+            this.Group_PosdriverIP.Name = "Group_PosdriverIP";
+            this.Group_PosdriverIP.Size = new System.Drawing.Size( 242, 56 );
+            this.Group_PosdriverIP.TabIndex = 1;
+            this.Group_PosdriverIP.TabStop = false;
+            this.Group_PosdriverIP.Text = "Posdriver IP Address";
+            this.Group_PosdriverIP.Visible = false;
             // 
-            // VNC_SkipButton
+            // PosdriverIP_IPAddress
             // 
-            this.VNC_SkipButton.Location = new System.Drawing.Point( 46, 135 );
-            this.VNC_SkipButton.Name = "VNC_SkipButton";
-            this.VNC_SkipButton.Size = new System.Drawing.Size( 153, 28 );
-            this.VNC_SkipButton.TabIndex = 7;
-            this.VNC_SkipButton.Text = "SKIP";
-            this.VNC_SkipButton.UseVisualStyleBackColor = true;
-            this.VNC_SkipButton.Click += new System.EventHandler( this.VNC_SkipButton_Click );
-            // 
-            // VNC_CustomPasswordTextBox
-            // 
-            this.VNC_CustomPasswordTextBox.Font = new System.Drawing.Font( "Courier New", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ( (byte)( 0 ) ) );
-            this.VNC_CustomPasswordTextBox.Location = new System.Drawing.Point( 41, 94 );
-            this.VNC_CustomPasswordTextBox.Name = "VNC_CustomPasswordTextBox";
-            this.VNC_CustomPasswordTextBox.Size = new System.Drawing.Size( 179, 26 );
-            this.VNC_CustomPasswordTextBox.TabIndex = 6;
-            // 
-            // VNC_CustomPassword
-            // 
-            this.VNC_CustomPassword.AutoSize = true;
-            this.VNC_CustomPassword.Font = new System.Drawing.Font( "Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ( (byte)( 0 ) ) );
-            this.VNC_CustomPassword.Location = new System.Drawing.Point( 18, 68 );
-            this.VNC_CustomPassword.Name = "VNC_CustomPassword";
-            this.VNC_CustomPassword.Size = new System.Drawing.Size( 71, 20 );
-            this.VNC_CustomPassword.TabIndex = 4;
-            this.VNC_CustomPassword.Text = "Custom";
-            this.VNC_CustomPassword.UseVisualStyleBackColor = true;
-            // 
-            // VNC_sliders
-            // 
-            this.VNC_sliders.AutoSize = true;
-            this.VNC_sliders.Font = new System.Drawing.Font( "Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ( (byte)( 0 ) ) );
-            this.VNC_sliders.Location = new System.Drawing.Point( 18, 42 );
-            this.VNC_sliders.Name = "VNC_sliders";
-            this.VNC_sliders.Size = new System.Drawing.Size( 66, 20 );
-            this.VNC_sliders.TabIndex = 3;
-            this.VNC_sliders.Text = "sliders";
-            this.VNC_sliders.UseVisualStyleBackColor = true;
-            // 
-            // VNC_cbsinc
-            // 
-            this.VNC_cbsinc.AutoSize = true;
-            this.VNC_cbsinc.Checked = true;
-            this.VNC_cbsinc.Font = new System.Drawing.Font( "Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ( (byte)( 0 ) ) );
-            this.VNC_cbsinc.Location = new System.Drawing.Point( 18, 19 );
-            this.VNC_cbsinc.Name = "VNC_cbsinc";
-            this.VNC_cbsinc.Size = new System.Drawing.Size( 65, 20 );
-            this.VNC_cbsinc.TabIndex = 2;
-            this.VNC_cbsinc.TabStop = true;
-            this.VNC_cbsinc.Text = "cbsinc";
-            this.VNC_cbsinc.UseVisualStyleBackColor = true;
-            // 
-            // Group_SourceTerminal
-            // 
-            this.Group_SourceTerminal.Controls.Add( this.SourceTerminal_SkipButton );
-            this.Group_SourceTerminal.Controls.Add( this.label2 );
-            this.Group_SourceTerminal.Controls.Add( this.label1 );
-            this.Group_SourceTerminal.Controls.Add( this.SourceTerminal_Password );
-            this.Group_SourceTerminal.Controls.Add( this.SourceTerminal_Username );
-            this.Group_SourceTerminal.Controls.Add( this.SourceTerminal_IPAddress );
-            this.Group_SourceTerminal.Location = new System.Drawing.Point( 13, 110 );
-            this.Group_SourceTerminal.Name = "Group_SourceTerminal";
-            this.Group_SourceTerminal.Size = new System.Drawing.Size( 242, 160 );
-            this.Group_SourceTerminal.TabIndex = 1;
-            this.Group_SourceTerminal.TabStop = false;
-            this.Group_SourceTerminal.Text = "Copy settings from (IP address)";
-            this.Group_SourceTerminal.Visible = false;
-            // 
-            // SourceTerminal_SkipButton
-            // 
-            this.SourceTerminal_SkipButton.Location = new System.Drawing.Point( 48, 120 );
-            this.SourceTerminal_SkipButton.Name = "SourceTerminal_SkipButton";
-            this.SourceTerminal_SkipButton.Size = new System.Drawing.Size( 153, 28 );
-            this.SourceTerminal_SkipButton.TabIndex = 5;
-            this.SourceTerminal_SkipButton.Text = "SKIP";
-            this.SourceTerminal_SkipButton.UseVisualStyleBackColor = true;
-            this.SourceTerminal_SkipButton.Click += new System.EventHandler( this.SourceTerminal_SkipButton_Click );
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point( 6, 88 );
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size( 53, 13 );
-            this.label2.TabIndex = 4;
-            this.label2.Text = "Password";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point( 6, 56 );
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size( 55, 13 );
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Username";
-            // 
-            // SourceTerminal_Password
-            // 
-            this.SourceTerminal_Password.Font = new System.Drawing.Font( "Courier New", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ( (byte)( 0 ) ) );
-            this.SourceTerminal_Password.Location = new System.Drawing.Point( 67, 83 );
-            this.SourceTerminal_Password.Name = "SourceTerminal_Password";
-            this.SourceTerminal_Password.Size = new System.Drawing.Size( 169, 26 );
-            this.SourceTerminal_Password.TabIndex = 2;
-            // 
-            // SourceTerminal_Username
-            // 
-            this.SourceTerminal_Username.Font = new System.Drawing.Font( "Courier New", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ( (byte)( 0 ) ) );
-            this.SourceTerminal_Username.Location = new System.Drawing.Point( 67, 51 );
-            this.SourceTerminal_Username.Name = "SourceTerminal_Username";
-            this.SourceTerminal_Username.Size = new System.Drawing.Size( 169, 26 );
-            this.SourceTerminal_Username.TabIndex = 1;
-            // 
-            // SourceTerminal_IPAddress
-            // 
-            this.SourceTerminal_IPAddress.Font = new System.Drawing.Font( "Courier New", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ( (byte)( 0 ) ) );
-            this.SourceTerminal_IPAddress.Location = new System.Drawing.Point( 6, 19 );
-            this.SourceTerminal_IPAddress.Name = "SourceTerminal_IPAddress";
-            this.SourceTerminal_IPAddress.Size = new System.Drawing.Size( 230, 26 );
-            this.SourceTerminal_IPAddress.TabIndex = 0;
+            this.PosdriverIP_IPAddress.Font = new System.Drawing.Font( "Courier New", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ( (byte)( 0 ) ) );
+            this.PosdriverIP_IPAddress.Location = new System.Drawing.Point( 6, 19 );
+            this.PosdriverIP_IPAddress.Name = "PosdriverIP_IPAddress";
+            this.PosdriverIP_IPAddress.Size = new System.Drawing.Size( 230, 26 );
+            this.PosdriverIP_IPAddress.TabIndex = 0;
             // 
             // Group_DeviceNumber
             // 
             this.Group_DeviceNumber.Controls.Add( this.DeviceNumber_DeviceNumber );
-            this.Group_DeviceNumber.Location = new System.Drawing.Point( 13, 276 );
+            this.Group_DeviceNumber.Location = new System.Drawing.Point( 15, 260 );
             this.Group_DeviceNumber.Name = "Group_DeviceNumber";
             this.Group_DeviceNumber.Size = new System.Drawing.Size( 242, 56 );
             this.Group_DeviceNumber.TabIndex = 2;
@@ -875,16 +753,55 @@
             this.LogList.Size = new System.Drawing.Size( 245, 355 );
             this.LogList.TabIndex = 0;
             // 
+            // Group_AccpacID
+            // 
+            this.Group_AccpacID.Controls.Add( this.textBox1 );
+            this.Group_AccpacID.Location = new System.Drawing.Point( 15, 198 );
+            this.Group_AccpacID.Name = "Group_AccpacID";
+            this.Group_AccpacID.Size = new System.Drawing.Size( 242, 56 );
+            this.Group_AccpacID.TabIndex = 2;
+            this.Group_AccpacID.TabStop = false;
+            this.Group_AccpacID.Text = "Accpac ID";
+            this.Group_AccpacID.Visible = false;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Font = new System.Drawing.Font( "Courier New", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ( (byte)( 0 ) ) );
+            this.textBox1.Location = new System.Drawing.Point( 6, 19 );
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size( 230, 26 );
+            this.textBox1.TabIndex = 0;
+            // 
+            // Group_BackofficeIP
+            // 
+            this.Group_BackofficeIP.Controls.Add( this.BackofficeIP_IPAddress );
+            this.Group_BackofficeIP.Location = new System.Drawing.Point( 15, 136 );
+            this.Group_BackofficeIP.Name = "Group_BackofficeIP";
+            this.Group_BackofficeIP.Size = new System.Drawing.Size( 242, 56 );
+            this.Group_BackofficeIP.TabIndex = 2;
+            this.Group_BackofficeIP.TabStop = false;
+            this.Group_BackofficeIP.Text = "Backoffice IP Address";
+            this.Group_BackofficeIP.Visible = false;
+            // 
+            // BackofficeIP_IPAddress
+            // 
+            this.BackofficeIP_IPAddress.Font = new System.Drawing.Font( "Courier New", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ( (byte)( 0 ) ) );
+            this.BackofficeIP_IPAddress.Location = new System.Drawing.Point( 6, 19 );
+            this.BackofficeIP_IPAddress.Name = "BackofficeIP_IPAddress";
+            this.BackofficeIP_IPAddress.Size = new System.Drawing.Size( 230, 26 );
+            this.BackofficeIP_IPAddress.TabIndex = 0;
+            // 
             // TermConfigWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF( 6F, 13F );
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size( 764, 522 );
+            this.Controls.Add( this.Group_BackofficeIP );
+            this.Controls.Add( this.Group_AccpacID );
             this.Controls.Add( this.LogList );
             this.Controls.Add( this.Group_DeviceNumber );
-            this.Controls.Add( this.Group_SourceTerminal );
+            this.Controls.Add( this.Group_PosdriverIP );
             this.Controls.Add( this.Group_TerminalType );
-            this.Controls.Add( this.Group_VNC );
             this.Controls.Add( this.KeyboardPanel );
             this.Controls.Add( this.Group_IPAddress );
             this.Name = "TermConfigWindow";
@@ -894,12 +811,14 @@
             this.KeyboardPanel.ResumeLayout( false );
             this.Group_TerminalType.ResumeLayout( false );
             this.Group_TerminalType.PerformLayout();
-            this.Group_VNC.ResumeLayout( false );
-            this.Group_VNC.PerformLayout();
-            this.Group_SourceTerminal.ResumeLayout( false );
-            this.Group_SourceTerminal.PerformLayout();
+            this.Group_PosdriverIP.ResumeLayout( false );
+            this.Group_PosdriverIP.PerformLayout();
             this.Group_DeviceNumber.ResumeLayout( false );
             this.Group_DeviceNumber.PerformLayout();
+            this.Group_AccpacID.ResumeLayout( false );
+            this.Group_AccpacID.PerformLayout();
+            this.Group_BackofficeIP.ResumeLayout( false );
+            this.Group_BackofficeIP.PerformLayout();
             this.ResumeLayout( false );
 
         }
@@ -950,28 +869,21 @@
         private System.Windows.Forms.Button kbd_O;
         private System.Windows.Forms.TextBox IPAddress_AddressTextBox;
         private System.Windows.Forms.GroupBox Group_TerminalType;
-        private System.Windows.Forms.GroupBox Group_VNC;
-        private System.Windows.Forms.GroupBox Group_SourceTerminal;
-        private System.Windows.Forms.TextBox SourceTerminal_Username;
-        private System.Windows.Forms.TextBox SourceTerminal_IPAddress;
-        private System.Windows.Forms.TextBox SourceTerminal_Password;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.GroupBox Group_PosdriverIP;
+        private System.Windows.Forms.TextBox PosdriverIP_IPAddress;
         private System.Windows.Forms.RadioButton TerminalType_Redundant;
         private System.Windows.Forms.RadioButton TerminalType_Normal;
         private System.Windows.Forms.GroupBox Group_DeviceNumber;
         private System.Windows.Forms.TextBox DeviceNumber_DeviceNumber;
         private System.Windows.Forms.Button kbd_SaveAndReboot;
-        private System.Windows.Forms.RadioButton VNC_sliders;
-        private System.Windows.Forms.RadioButton VNC_cbsinc;
         private System.Windows.Forms.ListBox LogList;
-        private System.Windows.Forms.TextBox VNC_CustomPasswordTextBox;
-        private System.Windows.Forms.RadioButton VNC_CustomPassword;
         private System.Windows.Forms.RadioButton TerminalType_Posdriver;
-        private System.Windows.Forms.Button SourceTerminal_SkipButton;
-        private System.Windows.Forms.Button VNC_SkipButton;
         private System.Windows.Forms.Button kbd_Shift;
-        private System.Windows.Forms.Button IPAddress_SkipButton;
+        private System.Windows.Forms.GroupBox Group_AccpacID;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.RadioButton TerminalType_Backoffice;
+        private System.Windows.Forms.GroupBox Group_BackofficeIP;
+        private System.Windows.Forms.TextBox BackofficeIP_IPAddress;
     }
 }
 
