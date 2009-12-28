@@ -87,6 +87,7 @@
             this.AccpacID_AccpacID = new System.Windows.Forms.TextBox();
             this.Group_BackofficeIP = new System.Windows.Forms.GroupBox();
             this.BackofficeIP_IPAddress = new System.Windows.Forms.TextBox();
+            this.kbd_Hyphen = new System.Windows.Forms.Button();
             this.Group_IPAddress.SuspendLayout();
             this.KeyboardPanel.SuspendLayout();
             this.Group_TerminalType.SuspendLayout();
@@ -116,6 +117,7 @@
             // 
             // KeyboardPanel
             // 
+            this.KeyboardPanel.Controls.Add( this.kbd_Hyphen );
             this.KeyboardPanel.Controls.Add( this.kbd_Shift );
             this.KeyboardPanel.Controls.Add( this.kbd_SaveAndReboot );
             this.KeyboardPanel.Controls.Add( this.kbd_6 );
@@ -379,7 +381,7 @@
             this.kbd_Period.Size = new System.Drawing.Size( 35, 35 );
             this.kbd_Period.TabIndex = 24;
             this.kbd_Period.Tag = ".";
-            this.kbd_Period.Text = ".";
+            this.kbd_Period.Text = "(.)";
             this.kbd_Period.UseVisualStyleBackColor = true;
             this.kbd_Period.Click += new System.EventHandler( this.kbd_KeyPress );
             // 
@@ -786,6 +788,18 @@
             this.BackofficeIP_IPAddress.Size = new System.Drawing.Size( 230, 26 );
             this.BackofficeIP_IPAddress.TabIndex = 0;
             // 
+            // kbd_Hyphen
+            // 
+            this.kbd_Hyphen.Font = new System.Drawing.Font( "Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ( (byte)( 0 ) ) );
+            this.kbd_Hyphen.Location = new System.Drawing.Point( 372, 44 );
+            this.kbd_Hyphen.Name = "kbd_Hyphen";
+            this.kbd_Hyphen.Size = new System.Drawing.Size( 35, 35 );
+            this.kbd_Hyphen.TabIndex = 51;
+            this.kbd_Hyphen.Tag = "-";
+            this.kbd_Hyphen.Text = "(-)";
+            this.kbd_Hyphen.UseVisualStyleBackColor = true;
+            this.kbd_Hyphen.Click += new System.EventHandler( this.kbd_KeyPress );
+            // 
             // TermConfigWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF( 6F, 13F );
@@ -879,6 +893,7 @@
         private System.Windows.Forms.RadioButton TerminalType_Backoffice;
         private System.Windows.Forms.GroupBox Group_BackofficeIP;
         private System.Windows.Forms.TextBox BackofficeIP_IPAddress;
+        private System.Windows.Forms.Button kbd_Hyphen;
     }
 }
 
