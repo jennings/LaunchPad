@@ -96,6 +96,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <None Include="app.config" />
+    <None Include="Configurators\PosiwExamples\Backoffice.INI" />
+    <None Include="Configurators\PosiwExamples\Posdriver.INI" />
+    <None Include="Configurators\PosiwExamples\Redundant.INI" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
