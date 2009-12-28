@@ -842,6 +842,7 @@
             this.Controls.Add( this.Group_IPAddress );
             this.Name = "TermConfigWindow";
             this.Text = "TermConfig - Custom Business Solutions";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Group_IPAddress.ResumeLayout( false );
             this.Group_IPAddress.PerformLayout();
             this.KeyboardPanel.ResumeLayout( false );

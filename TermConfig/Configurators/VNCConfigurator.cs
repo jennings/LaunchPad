@@ -29,13 +29,10 @@ namespace TermConfig.Configurators
             System.Threading.Thread.Sleep( 500 );
             
             CreateNewVNCDirectory();
-            System.Threading.Thread.Sleep( 500 );
             
             ChangeVNCPassword();
-            System.Threading.Thread.Sleep( 500 );
             
             RegisterVNCService();
-            System.Threading.Thread.Sleep( 500 );
         }
 
 
@@ -55,7 +52,7 @@ namespace TermConfig.Configurators
             // Delete C:\Program Files\UltraVNC2
             if ( Directory.Exists( VNCBackupDirectory ) )
             {
-                Directory.Delete( VNCBackupDirectory );
+                Directory.Delete( VNCBackupDirectory, true );
             }
 
             // Rename C:\Program Files\UltraVNC to UltraVNC2
