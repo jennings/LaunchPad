@@ -84,7 +84,7 @@
             this.DeviceNumber_DeviceNumber = new System.Windows.Forms.TextBox();
             this.LogList = new System.Windows.Forms.ListBox();
             this.Group_AccpacID = new System.Windows.Forms.GroupBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.AccpacID_AccpacID = new System.Windows.Forms.TextBox();
             this.Group_BackofficeIP = new System.Windows.Forms.GroupBox();
             this.BackofficeIP_IPAddress = new System.Windows.Forms.TextBox();
             this.Group_IPAddress.SuspendLayout();
@@ -659,7 +659,6 @@
             this.Group_TerminalType.TabIndex = 1;
             this.Group_TerminalType.TabStop = false;
             this.Group_TerminalType.Text = "This is a";
-            this.Group_TerminalType.Visible = false;
             // 
             // TerminalType_Backoffice
             // 
@@ -716,7 +715,6 @@
             this.Group_PosdriverIP.TabIndex = 1;
             this.Group_PosdriverIP.TabStop = false;
             this.Group_PosdriverIP.Text = "Posdriver IP Address";
-            this.Group_PosdriverIP.Visible = false;
             // 
             // PosdriverIP_IPAddress
             // 
@@ -735,7 +733,6 @@
             this.Group_DeviceNumber.TabIndex = 2;
             this.Group_DeviceNumber.TabStop = false;
             this.Group_DeviceNumber.Text = "Device number (from spcwin.ini)";
-            this.Group_DeviceNumber.Visible = false;
             // 
             // DeviceNumber_DeviceNumber
             // 
@@ -755,22 +752,21 @@
             // 
             // Group_AccpacID
             // 
-            this.Group_AccpacID.Controls.Add( this.textBox1 );
+            this.Group_AccpacID.Controls.Add( this.AccpacID_AccpacID );
             this.Group_AccpacID.Location = new System.Drawing.Point( 15, 198 );
             this.Group_AccpacID.Name = "Group_AccpacID";
             this.Group_AccpacID.Size = new System.Drawing.Size( 242, 56 );
             this.Group_AccpacID.TabIndex = 2;
             this.Group_AccpacID.TabStop = false;
             this.Group_AccpacID.Text = "Accpac ID";
-            this.Group_AccpacID.Visible = false;
             // 
-            // textBox1
+            // AccpacID_AccpacID
             // 
-            this.textBox1.Font = new System.Drawing.Font( "Courier New", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ( (byte)( 0 ) ) );
-            this.textBox1.Location = new System.Drawing.Point( 6, 19 );
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size( 230, 26 );
-            this.textBox1.TabIndex = 0;
+            this.AccpacID_AccpacID.Font = new System.Drawing.Font( "Courier New", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ( (byte)( 0 ) ) );
+            this.AccpacID_AccpacID.Location = new System.Drawing.Point( 6, 19 );
+            this.AccpacID_AccpacID.Name = "AccpacID_AccpacID";
+            this.AccpacID_AccpacID.Size = new System.Drawing.Size( 230, 26 );
+            this.AccpacID_AccpacID.TabIndex = 0;
             // 
             // Group_BackofficeIP
             // 
@@ -781,7 +777,6 @@
             this.Group_BackofficeIP.TabIndex = 2;
             this.Group_BackofficeIP.TabStop = false;
             this.Group_BackofficeIP.Text = "Backoffice IP Address";
-            this.Group_BackofficeIP.Visible = false;
             // 
             // BackofficeIP_IPAddress
             // 
@@ -880,7 +875,7 @@
         private System.Windows.Forms.RadioButton TerminalType_Posdriver;
         private System.Windows.Forms.Button kbd_Shift;
         private System.Windows.Forms.GroupBox Group_AccpacID;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox AccpacID_AccpacID;
         private System.Windows.Forms.RadioButton TerminalType_Backoffice;
         private System.Windows.Forms.GroupBox Group_BackofficeIP;
         private System.Windows.Forms.TextBox BackofficeIP_IPAddress;

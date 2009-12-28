@@ -18,10 +18,22 @@ namespace TermConfig
         private bool SkippedSourceTerminal = false;
         private bool SkippedVNC = false;
 
+        private List<Control> ControlOrder;
+
         public TermConfigWindow()
         {
             InitializeComponent();
-            ActivateControl( IPAddress_AddressTextBox );
+
+            ControlOrder = new List<Control>()
+            {
+                IPAddress_AddressTextBox,
+                PosdriverIP_IPAddress,
+                BackofficeIP_IPAddress,
+                AccpacID_AccpacID,
+                DeviceNumber_DeviceNumber
+            };
+
+            ActivateNextControl();
         }
 
         private void WriteLog( string text )
@@ -29,10 +41,27 @@ namespace TermConfig
             LogList.Items.Add( text );
         }
 
-        private void ActivateControl( Control controlToActivate )
+        private void ActivateNextControl()
         {
-            CurrentControl = controlToActivate;
-            CurrentControl.Focus();
+            if ( CurrentControl == null )
+            {
+                CurrentControl = ControlOrder[0];
+                return;
+            }
+
+            var currentIndex = ControlOrder.IndexOf( CurrentControl );
+
+            if ( ControlOrder.Count > currentIndex + 1 )
+            {
+                CurrentControl = ControlOrder[currentIndex + 1];
+            }
+            else
+            {
+                // Reached the end
+
+                kbd_SaveAndReboot.Visible = true;
+                kbd_SaveAndReboot.Enabled = true;
+            }
         }
 
         private void kbd_KeyPress( object sender, EventArgs e )
@@ -56,92 +85,22 @@ namespace TermConfig
             // Clear all fields
             IPAddress_AddressTextBox.Text = "";
             PosdriverIP_IPAddress.Text = "";
-            SourceTerminal_Username.Text = "";
-            SourceTerminal_Password.Text = "";
+            BackofficeIP_IPAddress.Text = "";
             DeviceNumber_DeviceNumber.Text = "";
             TerminalType_Normal.Select();
-            VNC_cbsinc.Select();
-            VNC_CustomPasswordTextBox.Text = "";
             kbd_SaveAndReboot.Visible = false;
-            SkippedIPAddress = false;
-            SkippedSourceTerminal = false;
-            SkippedVNC = false;
             LogList.Items.Clear();
 
-            // Hide all groups
-            Group_PosdriverIP.Visible = false;
-            Group_DeviceNumber.Visible = false;
-            Group_TerminalType.Visible = false;
-            Group_VNC.Visible = false;
-
             // Activate first field
-            Group_IPAddress.Enabled = true;
-            Group_IPAddress.Visible = true;
-            ActivateControl( IPAddress_AddressTextBox );
+            CurrentControl = null;
+            ActivateNextControl();
         }
 
         private void kbd_Enter_Click( object sender, EventArgs e )
         {
-            switch ( CurrentControl.Name )
-            {
-                case "IPAddress_AddressTextBox":
-                    SubmitIPAddressGroup();
-                    break;
-                case "SourceTerminal_IPAddress":
-                    ActivateControl( SourceTerminal_Username );
-                    break;
-                case "SourceTerminal_Username":
-                    ActivateControl( SourceTerminal_Password );
-                    break;
-                case "SourceTerminal_Password":
-                    SubmitSourceTerminalGroup();
-                    break;
-                case "DeviceNumber_DeviceNumber":
-                    SubmitDeviceNumberGroup();
-                    break;
-                case "TerminalType_Normal":
-                case "TerminalType_Redundant":
-                case "TerminalType_Posdriver":
-                    SubmitTerminalTypeGroup();
-                    break;
-                case "VNC_cbsinc":
-                case "VNC_sliders":
-                case "VNC_CustomPassword":
-                case "VNC_CustomPasswordTextBox":
-                    SubmitVNCGroup();
-                    break;
-            }
+            ActivateNextControl();
         }
 
-
-        private void SkipGroup()
-        {
-            switch ( CurrentControl.Name )
-            {
-                case "IPAddress_AddressTextBox":
-                    SubmitIPAddressGroup();
-                    break;
-                case "SourceTerminal_IPAddress":
-                case "SourceTerminal_Username":
-                case "SourceTerminal_Password":
-                    SubmitSourceTerminalGroup();
-                    break;
-                case "DeviceNumber_DeviceNumber":
-                    SubmitDeviceNumberGroup();
-                    break;
-                case "TerminalType_Normal":
-                case "TerminalType_Redundant":
-                case "TerminalType_Posdriver":
-                    SubmitTerminalTypeGroup();
-                    break;
-                case "VNC_cbsinc":
-                case "VNC_sliders":
-                case "VNC_CustomPassword":
-                case "VNC_CustomPasswordTextBox":
-                    SubmitVNCGroup();
-                    break;
-            }
-        }
 
         private void kbd_SaveAndReboot_Click( object sender, EventArgs e )
         {
@@ -189,93 +148,6 @@ namespace TermConfig
             WriteLog( "VNC OK" );
 
             // Reboot
-        }
-
-        private void SubmitIPAddressGroup()
-        {
-            // Validate IP Address
-            // Set IP address
-
-            // Disable group
-            Group_IPAddress.Enabled = false;
-
-            // Activate next group
-            Group_PosdriverIP.Enabled = true;
-            Group_PosdriverIP.Visible = true;
-            ActivateControl( PosdriverIP_IPAddress );
-        }
-
-        private void SubmitSourceTerminalGroup()
-        {
-            // Validate IP address
-            // Try to map drive
-            // Try to copy INIs
-
-            // Disable group
-            Group_PosdriverIP.Enabled = false;
-
-            // Activate next group
-            Group_DeviceNumber.Enabled = true;
-            Group_DeviceNumber.Visible = true;
-            ActivateControl( DeviceNumber_DeviceNumber );
-        }
-
-        private void SubmitDeviceNumberGroup()
-        {
-            // Validate number
-
-            // Disable group
-            Group_DeviceNumber.Enabled = false;
-
-            // Activate next group
-            Group_TerminalType.Enabled = true;
-            Group_TerminalType.Visible = true;
-            ActivateControl( TerminalType_Normal );
-        }
-
-        private void SubmitTerminalTypeGroup()
-        {
-            // Validate field
-            // Write posiw.ini
-
-            // Disable group
-            Group_TerminalType.Enabled = false;
-
-            // Activate next group
-            Group_VNC.Enabled = true;
-            Group_VNC.Visible = true;
-            ActivateControl( VNC_CustomPasswordTextBox );
-        }
-
-        private void SubmitVNCGroup()
-        {
-            // Validate field
-            // Enable VNC
-            // Disable group
-            Group_VNC.Enabled = false;
-
-            // Activate save and reboot button
-            kbd_SaveAndReboot.Enabled = true;
-            kbd_SaveAndReboot.Visible = true;
-            ActivateControl( kbd_SaveAndReboot );
-        }
-
-        private void IPAddress_SkipButton_Click( object sender, EventArgs e )
-        {
-            SkippedIPAddress = true;
-            SkipGroup();
-        }
-
-        private void SourceTerminal_SkipButton_Click( object sender, EventArgs e )
-        {
-            SkippedSourceTerminal = true;
-            SkipGroup();
-        }
-
-        private void VNC_SkipButton_Click( object sender, EventArgs e )
-        {
-            SkippedVNC = true;
-            SkipGroup();
         }
     }
 }
