@@ -31,6 +31,7 @@
             this.Group_IPAddress = new System.Windows.Forms.GroupBox();
             this.IPAddress_AddressTextBox = new System.Windows.Forms.TextBox();
             this.KeyboardPanel = new System.Windows.Forms.Panel();
+            this.kbd_Hyphen = new System.Windows.Forms.Button();
             this.kbd_Shift = new System.Windows.Forms.Button();
             this.kbd_SaveAndReboot = new System.Windows.Forms.Button();
             this.kbd_6 = new System.Windows.Forms.Button();
@@ -87,7 +88,8 @@
             this.AccpacID_AccpacID = new System.Windows.Forms.TextBox();
             this.Group_BackofficeIP = new System.Windows.Forms.GroupBox();
             this.BackofficeIP_IPAddress = new System.Windows.Forms.TextBox();
-            this.kbd_Hyphen = new System.Windows.Forms.Button();
+            this.Group_PosdriverBackofficePassword = new System.Windows.Forms.GroupBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.Group_IPAddress.SuspendLayout();
             this.KeyboardPanel.SuspendLayout();
             this.Group_TerminalType.SuspendLayout();
@@ -95,6 +97,7 @@
             this.Group_DeviceNumber.SuspendLayout();
             this.Group_AccpacID.SuspendLayout();
             this.Group_BackofficeIP.SuspendLayout();
+            this.Group_PosdriverBackofficePassword.SuspendLayout();
             this.SuspendLayout();
             // 
             // Group_IPAddress
@@ -164,6 +167,18 @@
             this.KeyboardPanel.Name = "KeyboardPanel";
             this.KeyboardPanel.Size = new System.Drawing.Size( 740, 126 );
             this.KeyboardPanel.TabIndex = 1;
+            // 
+            // kbd_Hyphen
+            // 
+            this.kbd_Hyphen.Font = new System.Drawing.Font( "Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ( (byte)( 0 ) ) );
+            this.kbd_Hyphen.Location = new System.Drawing.Point( 372, 44 );
+            this.kbd_Hyphen.Name = "kbd_Hyphen";
+            this.kbd_Hyphen.Size = new System.Drawing.Size( 35, 35 );
+            this.kbd_Hyphen.TabIndex = 51;
+            this.kbd_Hyphen.Tag = "-";
+            this.kbd_Hyphen.Text = "(-)";
+            this.kbd_Hyphen.UseVisualStyleBackColor = true;
+            this.kbd_Hyphen.Click += new System.EventHandler( this.kbd_KeyPress );
             // 
             // kbd_Shift
             // 
@@ -655,7 +670,7 @@
             this.Group_TerminalType.Controls.Add( this.TerminalType_Posdriver );
             this.Group_TerminalType.Controls.Add( this.TerminalType_Redundant );
             this.Group_TerminalType.Controls.Add( this.TerminalType_Normal );
-            this.Group_TerminalType.Location = new System.Drawing.Point( 261, 13 );
+            this.Group_TerminalType.Location = new System.Drawing.Point( 262, 13 );
             this.Group_TerminalType.Name = "Group_TerminalType";
             this.Group_TerminalType.Size = new System.Drawing.Size( 242, 143 );
             this.Group_TerminalType.TabIndex = 1;
@@ -672,6 +687,7 @@
             this.TerminalType_Backoffice.TabIndex = 3;
             this.TerminalType_Backoffice.Text = "Backoffice";
             this.TerminalType_Backoffice.UseVisualStyleBackColor = true;
+            this.TerminalType_Backoffice.CheckedChanged += new System.EventHandler( this.TerminalType_CheckedChanged );
             // 
             // TerminalType_Posdriver
             // 
@@ -683,6 +699,7 @@
             this.TerminalType_Posdriver.TabIndex = 2;
             this.TerminalType_Posdriver.Text = "Posdriver";
             this.TerminalType_Posdriver.UseVisualStyleBackColor = true;
+            this.TerminalType_Posdriver.CheckedChanged += new System.EventHandler( this.TerminalType_CheckedChanged );
             // 
             // TerminalType_Redundant
             // 
@@ -694,6 +711,7 @@
             this.TerminalType_Redundant.TabIndex = 1;
             this.TerminalType_Redundant.Text = "Redundant terminal";
             this.TerminalType_Redundant.UseVisualStyleBackColor = true;
+            this.TerminalType_Redundant.CheckedChanged += new System.EventHandler( this.TerminalType_CheckedChanged );
             // 
             // TerminalType_Normal
             // 
@@ -707,6 +725,7 @@
             this.TerminalType_Normal.TabStop = true;
             this.TerminalType_Normal.Text = "Normal terminal";
             this.TerminalType_Normal.UseVisualStyleBackColor = true;
+            this.TerminalType_Normal.CheckedChanged += new System.EventHandler( this.TerminalType_CheckedChanged );
             // 
             // Group_PosdriverIP
             // 
@@ -788,23 +807,31 @@
             this.BackofficeIP_IPAddress.Size = new System.Drawing.Size( 230, 26 );
             this.BackofficeIP_IPAddress.TabIndex = 0;
             // 
-            // kbd_Hyphen
+            // Group_PosdriverBackofficePassword
             // 
-            this.kbd_Hyphen.Font = new System.Drawing.Font( "Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ( (byte)( 0 ) ) );
-            this.kbd_Hyphen.Location = new System.Drawing.Point( 372, 44 );
-            this.kbd_Hyphen.Name = "kbd_Hyphen";
-            this.kbd_Hyphen.Size = new System.Drawing.Size( 35, 35 );
-            this.kbd_Hyphen.TabIndex = 51;
-            this.kbd_Hyphen.Tag = "-";
-            this.kbd_Hyphen.Text = "(-)";
-            this.kbd_Hyphen.UseVisualStyleBackColor = true;
-            this.kbd_Hyphen.Click += new System.EventHandler( this.kbd_KeyPress );
+            this.Group_PosdriverBackofficePassword.Controls.Add( this.textBox1 );
+            this.Group_PosdriverBackofficePassword.Location = new System.Drawing.Point( 262, 162 );
+            this.Group_PosdriverBackofficePassword.Name = "Group_PosdriverBackofficePassword";
+            this.Group_PosdriverBackofficePassword.Size = new System.Drawing.Size( 242, 56 );
+            this.Group_PosdriverBackofficePassword.TabIndex = 3;
+            this.Group_PosdriverBackofficePassword.TabStop = false;
+            this.Group_PosdriverBackofficePassword.Text = "Password for Pos/Back";
+            this.Group_PosdriverBackofficePassword.Visible = false;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Font = new System.Drawing.Font( "Courier New", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ( (byte)( 0 ) ) );
+            this.textBox1.Location = new System.Drawing.Point( 6, 19 );
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size( 230, 26 );
+            this.textBox1.TabIndex = 0;
             // 
             // TermConfigWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF( 6F, 13F );
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size( 764, 522 );
+            this.Controls.Add( this.Group_PosdriverBackofficePassword );
             this.Controls.Add( this.Group_BackofficeIP );
             this.Controls.Add( this.Group_AccpacID );
             this.Controls.Add( this.LogList );
@@ -828,6 +855,8 @@
             this.Group_AccpacID.PerformLayout();
             this.Group_BackofficeIP.ResumeLayout( false );
             this.Group_BackofficeIP.PerformLayout();
+            this.Group_PosdriverBackofficePassword.ResumeLayout( false );
+            this.Group_PosdriverBackofficePassword.PerformLayout();
             this.ResumeLayout( false );
 
         }
@@ -894,6 +923,8 @@
         private System.Windows.Forms.GroupBox Group_BackofficeIP;
         private System.Windows.Forms.TextBox BackofficeIP_IPAddress;
         private System.Windows.Forms.Button kbd_Hyphen;
+        private System.Windows.Forms.GroupBox Group_PosdriverBackofficePassword;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }
 

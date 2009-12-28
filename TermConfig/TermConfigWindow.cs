@@ -159,5 +159,17 @@ namespace TermConfig
 
             // Reboot
         }
+
+        private void TerminalType_CheckedChanged( object sender, EventArgs e )
+        {
+            if ( TerminalType_Posdriver.Checked || TerminalType_Backoffice.Checked )
+            {
+                Group_PosdriverBackofficePassword.Visible = true;
+            }
+            else
+            {
+                Group_PosdriverBackofficePassword.Visible = false;
+            }
+        }
     }
 }
