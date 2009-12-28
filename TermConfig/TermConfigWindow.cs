@@ -7,6 +7,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Net;
 using TermConfig.Configurators;
+using System.Diagnostics;
 
 namespace TermConfig
 {
@@ -168,6 +169,10 @@ namespace TermConfig
             WriteLog( "VNC OK" );
 
             // Reboot
+            var info = new ProcessStartInfo();
+            info.FileName = "shutdown.exe";
+            info.Arguments = "-r -t 00";
+            Process.Start( info );
         }
 
         private void TerminalType_CheckedChanged( object sender, EventArgs e )
