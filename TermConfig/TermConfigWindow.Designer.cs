@@ -166,7 +166,7 @@
             this.KeyboardPanel.Location = new System.Drawing.Point( 12, 384 );
             this.KeyboardPanel.Name = "KeyboardPanel";
             this.KeyboardPanel.Size = new System.Drawing.Size( 740, 126 );
-            this.KeyboardPanel.TabIndex = 1;
+            this.KeyboardPanel.TabIndex = 7;
             // 
             // kbd_Hyphen
             // 
@@ -194,7 +194,7 @@
             this.kbd_SaveAndReboot.Location = new System.Drawing.Point( 647, 3 );
             this.kbd_SaveAndReboot.Name = "kbd_SaveAndReboot";
             this.kbd_SaveAndReboot.Size = new System.Drawing.Size( 90, 117 );
-            this.kbd_SaveAndReboot.TabIndex = 3;
+            this.kbd_SaveAndReboot.TabIndex = 0;
             this.kbd_SaveAndReboot.Text = "Save and Reboot";
             this.kbd_SaveAndReboot.UseVisualStyleBackColor = true;
             this.kbd_SaveAndReboot.Visible = false;
@@ -673,7 +673,7 @@
             this.Group_TerminalType.Location = new System.Drawing.Point( 262, 13 );
             this.Group_TerminalType.Name = "Group_TerminalType";
             this.Group_TerminalType.Size = new System.Drawing.Size( 242, 143 );
-            this.Group_TerminalType.TabIndex = 1;
+            this.Group_TerminalType.TabIndex = 5;
             this.Group_TerminalType.TabStop = false;
             this.Group_TerminalType.Text = "This is a";
             // 
@@ -751,7 +751,7 @@
             this.Group_DeviceNumber.Location = new System.Drawing.Point( 15, 260 );
             this.Group_DeviceNumber.Name = "Group_DeviceNumber";
             this.Group_DeviceNumber.Size = new System.Drawing.Size( 242, 56 );
-            this.Group_DeviceNumber.TabIndex = 2;
+            this.Group_DeviceNumber.TabIndex = 4;
             this.Group_DeviceNumber.TabStop = false;
             this.Group_DeviceNumber.Text = "Device number (from spcwin.ini)";
             // 
@@ -761,7 +761,7 @@
             this.DeviceNumber_DeviceNumber.Location = new System.Drawing.Point( 29, 19 );
             this.DeviceNumber_DeviceNumber.Name = "DeviceNumber_DeviceNumber";
             this.DeviceNumber_DeviceNumber.Size = new System.Drawing.Size( 47, 26 );
-            this.DeviceNumber_DeviceNumber.TabIndex = 5;
+            this.DeviceNumber_DeviceNumber.TabIndex = 0;
             // 
             // LogList
             // 
@@ -777,7 +777,7 @@
             this.Group_AccpacID.Location = new System.Drawing.Point( 15, 198 );
             this.Group_AccpacID.Name = "Group_AccpacID";
             this.Group_AccpacID.Size = new System.Drawing.Size( 242, 56 );
-            this.Group_AccpacID.TabIndex = 2;
+            this.Group_AccpacID.TabIndex = 3;
             this.Group_AccpacID.TabStop = false;
             this.Group_AccpacID.Text = "Accpac ID";
             // 
@@ -813,7 +813,7 @@
             this.Group_PosdriverBackofficePassword.Location = new System.Drawing.Point( 262, 162 );
             this.Group_PosdriverBackofficePassword.Name = "Group_PosdriverBackofficePassword";
             this.Group_PosdriverBackofficePassword.Size = new System.Drawing.Size( 242, 56 );
-            this.Group_PosdriverBackofficePassword.TabIndex = 3;
+            this.Group_PosdriverBackofficePassword.TabIndex = 6;
             this.Group_PosdriverBackofficePassword.TabStop = false;
             this.Group_PosdriverBackofficePassword.Text = "Password for Pos/Back";
             this.Group_PosdriverBackofficePassword.Visible = false;
