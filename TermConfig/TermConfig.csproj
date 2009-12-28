@@ -72,7 +72,6 @@
       <DependentUpon>StartupWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="Configurators\PosiwConfigurator.cs" />
-    <Compile Include="SettingCommitter.cs" />
     <Compile Include="Configurators\PositermConfigurator.cs" />
     <Compile Include="TermConfigWindow.cs">
       <SubType>Form</SubType>

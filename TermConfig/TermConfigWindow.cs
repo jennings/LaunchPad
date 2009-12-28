@@ -167,68 +167,28 @@ namespace TermConfig
 
             settings.Validate();
 
+            var network = new NetworkConfigurator( settings );
             var positerm = new PositermConfigurator( settings );
             var posiw = new PosiwConfigurator( settings );
+            var vnc = new VNCConfigurator( settings );
 
-            try
-            {
-                // Change IP Address
-                if ( SkippedIPAddress )
-                {
-                    WriteLog( "......... Skipping IP Address." );
-                }
-                else
-                {
-                    WriteLog( "......... Setting IP Address." );
-                    SettingCommitter.ChangeTerminalIPAddress( IPAddress_AddressTextBox.Text );
-                    WriteLog( "OK.... Set IP Address." );
-                }
+            WriteLog( "Configuring network..." );
+            network.Configure();
+            WriteLog( "Network OK" );
 
-                // Copy INI files from remote terminal
-                if ( SkippedSourceTerminal )
-                {
-                    WriteLog( "......... Skipping copying INIs." );
-                }
-                else
-                {
-                    WriteLog( "......... Copying INIs." );
-                    // SettingCommitter.CopyINIs( SourceTerminal_IPAddress.Text, SourceTerminal_Username.Text, SourceTerminal_Password.Text );
-                    WriteLog( "OK.... Copied INIs." );
-                }
+            WriteLog( "Configuring Positerm..." );
+            positerm.Configure();
+            WriteLog( "Positerm OK" );
 
-                // Write TERM.$$$
-                WriteLog( "......... Writing TERM.$$$." );
-                // SettingCommitter.WriteTerm( Convert.ToInt32( DeviceNumber_DeviceNumber.Text ) );
-                WriteLog( "OK.... Wrote TERM.$$$." );
+            WriteLog( "Configuring Posiw..." );
+            posiw.Configure();
+            WriteLog( "Posiw OK" );
 
-                // Write Posiw.ini
-                WriteLog( "......... Writing Posiw.ini." );
-                SettingCommitter.WritePosiw( Convert.ToInt32( DeviceNumber_DeviceNumber.Text ) );
-                WriteLog( "OK.... Wrote Posiw.ini." );
+            WriteLog( "Configuring VNC..." );
+            vnc.Configure();
+            WriteLog( "VNC OK" );
 
-                // Install VNC
-                if ( SkippedVNC )
-                {
-                    WriteLog( "......... Skipping VNC." );
-                }
-                else
-                {
-                    WriteLog( "......... Installing VNC." );
-                    if ( VNC_cbsinc.Checked ) SettingCommitter.InstallVNC( "cbsinc" );
-                    else if ( VNC_sliders.Checked ) SettingCommitter.InstallVNC( "sliders" );
-                    else if ( VNC_CustomPassword.Checked ) SettingCommitter.InstallVNC( VNC_CustomPasswordTextBox.Text );
-                    WriteLog( "OK.... Installed VNC." );
-                }
-
-                // Reboot
-                WriteLog( "Rebooting..." );
-                SettingCommitter.RebootTerminal();
-            }
-            catch ( Exception ex )
-            {
-                WriteLog( "EXCEPTION: " + ex.Message );
-                throw;
-            }
+            // Reboot
         }
 
         private void SubmitIPAddressGroup()
