@@ -8,8 +8,19 @@ namespace TermConfig.Launchers
     {
         public bool LaunchesTerminal { get; set; }
 
+        private List<ILauncher> Launchers = new List<ILauncher>();
+
+        public AlohaLaunchController()
+        {
+            Launchers.Add( new AlohaTerminalLauncher() );
+        }
+
         public void Launch()
         {
+            foreach ( var launcher in Launchers )
+            {
+                launcher.Launch();
+            }
         }
     }
 }

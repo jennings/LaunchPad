@@ -69,6 +69,7 @@
       <DependentUpon>AlohaStartupWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="Launchers\AlohaLaunchController.cs" />
+    <Compile Include="Launchers\AlohaTerminalLauncher.cs" />
     <Compile Include="Launchers\ILaunchController.cs" />
     <Compile Include="Launchers\ILauncher.cs" />
     <Compile Include="Launchers\LaunchController.cs" />
