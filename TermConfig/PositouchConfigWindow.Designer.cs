@@ -680,6 +680,7 @@
             // TerminalType_Backoffice
             // 
             this.TerminalType_Backoffice.AutoSize = true;
+            this.TerminalType_Backoffice.Enabled = false;
             this.TerminalType_Backoffice.Font = new System.Drawing.Font( "Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ( (byte)( 0 ) ) );
             this.TerminalType_Backoffice.Location = new System.Drawing.Point( 20, 97 );
             this.TerminalType_Backoffice.Name = "TerminalType_Backoffice";
@@ -692,6 +693,7 @@
             // TerminalType_Posdriver
             // 
             this.TerminalType_Posdriver.AutoSize = true;
+            this.TerminalType_Posdriver.Enabled = false;
             this.TerminalType_Posdriver.Font = new System.Drawing.Font( "Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ( (byte)( 0 ) ) );
             this.TerminalType_Posdriver.Location = new System.Drawing.Point( 20, 71 );
             this.TerminalType_Posdriver.Name = "TerminalType_Posdriver";
@@ -779,7 +781,7 @@
             this.Group_AccpacID.Size = new System.Drawing.Size( 242, 56 );
             this.Group_AccpacID.TabIndex = 3;
             this.Group_AccpacID.TabStop = false;
-            this.Group_AccpacID.Text = "Accpac ID";
+            this.Group_AccpacID.Text = "Customer Password";
             // 
             // AccpacID_AccpacID
             // 
@@ -826,7 +828,7 @@
             this.PosdriverBackofficePassword_Password.Size = new System.Drawing.Size( 230, 26 );
             this.PosdriverBackofficePassword_Password.TabIndex = 0;
             // 
-            // TermConfigWindow
+            // PositouchConfigWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF( 6F, 13F );
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -840,7 +842,7 @@
             this.Controls.Add( this.Group_TerminalType );
             this.Controls.Add( this.KeyboardPanel );
             this.Controls.Add( this.Group_IPAddress );
-            this.Name = "TermConfigWindow";
+            this.Name = "PositouchConfigWindow";
             this.Text = "TermConfig - Custom Business Solutions";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Group_IPAddress.ResumeLayout( false );

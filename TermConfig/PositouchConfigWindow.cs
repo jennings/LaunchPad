@@ -129,11 +129,16 @@ namespace TermConfig
             var settings = new TerminalStation();
 
             // Terminal type
-            if ( TerminalType_Posdriver.Checked ) settings.Type = TerminalStationType.Posdriver;
-            else if ( TerminalType_Redundant.Checked ) settings.Type = TerminalStationType.Redunant;
-            else if ( TerminalType_Backoffice.Checked ) settings.Type = TerminalStationType.Backoffice;
-            else if ( TerminalType_Normal.Checked ) settings.Type = TerminalStationType.Normal;
-            else throw new Exception( @"No TerminalType radio button selected." );
+            if ( TerminalType_Posdriver.Checked )
+                settings.Type = TerminalStationType.Posdriver;
+            else if ( TerminalType_Redundant.Checked )
+                settings.Type = TerminalStationType.Redunant;
+            else if ( TerminalType_Backoffice.Checked )
+                settings.Type = TerminalStationType.Backoffice;
+            else if ( TerminalType_Normal.Checked )
+                settings.Type = TerminalStationType.Normal;
+            else
+                throw new Exception( @"No TerminalType radio button selected." );
 
             // Device number
             settings.DeviceNumber = Convert.ToInt32( DeviceNumber_DeviceNumber.Text );
@@ -146,7 +151,8 @@ namespace TermConfig
 
             // Password
             settings.Password = AccpacID_AccpacID.Text.ToUpper();
-            if ( settings.Password.Length == 0 ) throw new Exception( @"Accpac ID cannot be blank." );
+            if ( settings.Password.Length == 0 )
+                throw new Exception( @"Accpac ID cannot be blank." );
 
             settings.Validate();
 
@@ -178,13 +184,29 @@ namespace TermConfig
 
         private void TerminalType_CheckedChanged( object sender, EventArgs e )
         {
-            if ( TerminalType_Posdriver.Checked || TerminalType_Backoffice.Checked )
+            if ( TerminalType_Backoffice.Checked )
             {
                 Group_PosdriverBackofficePassword.Visible = true;
+                DeviceNumber_DeviceNumber.Enabled = false;
+                DeviceNumber_DeviceNumber.Text = "99";
             }
-            else
+            else if ( TerminalType_Posdriver.Checked )
+            {
+                Group_PosdriverBackofficePassword.Visible = true;
+                DeviceNumber_DeviceNumber.Enabled = false;
+                DeviceNumber_DeviceNumber.Text = "89";
+            }
+            else if ( TerminalType_Redundant.Checked )
             {
                 Group_PosdriverBackofficePassword.Visible = false;
+                DeviceNumber_DeviceNumber.Enabled = true;
+                DeviceNumber_DeviceNumber.Text = String.Empty;
+            }
+            else if ( TerminalType_Normal.Checked )
+            {
+                Group_PosdriverBackofficePassword.Visible = false;
+                DeviceNumber_DeviceNumber.Enabled = true;
+                DeviceNumber_DeviceNumber.Text = String.Empty;
             }
         }
     }
