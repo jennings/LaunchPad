@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using System.IO;
 
 namespace TermConfig
 {
@@ -14,7 +15,15 @@ namespace TermConfig
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault( false );
-            Application.Run( new PositouchStartupWindow() );
+
+            if ( File.Exists( @"POSITOUCH" ) )
+            {
+                Application.Run( new PositouchStartupWindow() );
+            }
+            else if ( File.Exists( @"ALOHA" ) )
+            {
+                Application.Run( new AlohaStartupWindow() );
+            }
         }
     }
 }
