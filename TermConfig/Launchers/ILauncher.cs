@@ -4,7 +4,7 @@ using System.Text;
 
 namespace TermConfig.Launchers
 {
-    interface ILauncher
+    public interface ILauncher
     {
         void Launch();
     }
