@@ -8,19 +8,15 @@ using TermConfig.Launchers;
 
 namespace TermConfig
 {
-    public partial class AlohaStartupWindow : Form
+    public partial class AlohaStartupWindow : StartupWindow
     {
-        private int SecondsBeforeClose;
-        private Timer DelayTimer;
-
         public AlohaStartupWindow()
         {
             InitializeComponent();
 
-            GetIPAddress();
-            GetPosiwSetting();
+            PopulateLaunchList();
 
-            SecondsBeforeClose = 4;
+            GetIPAddress();
 
             DelayTimer = new Timer();
             DelayTimer.Interval = 1000;
@@ -28,40 +24,14 @@ namespace TermConfig
             DelayTimer.Start();
         }
 
-        private void CountdownTick( object sender, EventArgs e )
+        protected override void CountdownTick( object sender, EventArgs e )
         {
-            if ( SecondsBeforeClose > 0 )
-            {
-                SecondsBeforeClose--;
-                CountdownTimerLabel.Text = SecondsBeforeClose.ToString() + "...";
-            }
-            else
-            {
-                DelayTimer.Stop();
+            base.CountdownTick( sender, e );
+            CountdownTimerLabel.Text = SecondsBeforeClose.ToString() + "...";
+        }
 
-                var Launchers = new List<ILauncher>();
-                Launchers.Add( new PosiwLauncher() );
-                Launchers.Add( new PositermLauncher() );
-                Launchers.Add( new VNCLauncher() );
-
-                foreach ( var launcher in Launchers )
-                {
-                    try
-                    {
-                        launcher.Launch();
-                    }
-                    catch ( NotImplementedException )
-                    {
-                        MessageBox.Show( "Launcher not implemented: " + launcher.GetType().ToString() );
-                    }
-                    catch ( Exception ex )
-                    {
-                        MessageBox.Show( "Exception: " + launcher.GetType().ToString() + ": " + ex.Message );
-                    }
-                }
-
-                Application.Exit();
-            }
+        private void PopulateLaunchList()
+        {
         }
 
         private void GetIPAddress()
@@ -85,25 +55,13 @@ namespace TermConfig
             IPAddressLabel.Text = String.Join( ", ", addresses.ToArray() );
         }
 
-        private void GetPosiwSetting()
-        {
-            if ( File.Exists( @"C:\SC\Posiw.ini" ) )
-            {
-                var rx = new Regex( @"POSIW=(\d+)", RegexOptions.IgnoreCase );
-                var rxmatch = rx.Match( File.ReadAllText( @"C:\SC\Posiw.ini" ) );
-                if ( rxmatch.Captures.Count > 0 )
-                {
-                    PosiwLabel.Text = rxmatch.Result( "$1" );
-                }
-            }
-        }
-
         private void RCButton_Click( object sender, EventArgs e )
         {
             DelayTimer.Stop();
             this.Hide();
-            var config = new PositouchConfigWindow();
-            config.ShowDialog();
+            // var config = new PositouchConfigWindow();
+            // config.ShowDialog();
+            MessageBox.Show( @"TODO: No AlohaConfigWindow created yet." );
             this.Show();
         }
     }
