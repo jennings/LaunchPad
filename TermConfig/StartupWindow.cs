@@ -12,6 +12,7 @@ namespace TermConfig
         protected int SecondsBeforeClose = 4;
         protected Timer DelayTimer;
         protected List<ILauncher> LaunchList = new List<ILauncher>();
+        protected ILaunchController LaunchController;
 
         protected virtual void CountdownTick( object sender, EventArgs e )
         {
@@ -22,23 +23,7 @@ namespace TermConfig
             else
             {
                 DelayTimer.Stop();
-
-                foreach ( var launcher in LaunchList )
-                {
-                    try
-                    {
-                        launcher.Launch();
-                    }
-                    catch ( NotImplementedException )
-                    {
-                        MessageBox.Show( "Launcher not implemented: " + launcher.GetType().ToString() );
-                    }
-                    catch ( Exception ex )
-                    {
-                        MessageBox.Show( "Exception: " + launcher.GetType().ToString() + ": " + ex.Message );
-                    }
-                }
-
+                LaunchController.Launch();
                 Application.Exit();
             }
         }

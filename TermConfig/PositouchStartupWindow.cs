@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Management;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using TermConfig.Launchers;
@@ -14,7 +12,7 @@ namespace TermConfig
         {
             InitializeComponent();
 
-            PopulateLaunchList();
+            LaunchController = new PositouchLaunchController();
 
             IPAddressLabel.Text = GetIPAddress();
 
@@ -30,13 +28,6 @@ namespace TermConfig
         {
             base.CountdownTick( sender, e );
             CountdownTimerLabel.Text = SecondsBeforeClose.ToString() + "...";
-        }
-
-        private void PopulateLaunchList()
-        {
-            LaunchList.Add( new PosiwLauncher() );
-            LaunchList.Add( new PositermLauncher() );
-            LaunchList.Add( new VNCLauncher() );
         }
 
         private void GetPosiwSetting()
