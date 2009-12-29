@@ -160,7 +160,7 @@
             this.CountdownTimerLabel.Text = "4...";
             this.CountdownTimerLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // StartupWindow
+            // PositouchStartupWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF( 6F, 13F );
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -168,8 +168,8 @@
             this.Controls.Add( this.CountdownTimerLabel );
             this.Controls.Add( this.groupBox1 );
             this.Controls.Add( this.RCButton );
-            this.Name = "StartupWindow";
-            this.Text = "CBS Terminal Config";
+            this.Name = "PositouchStartupWindow";
+            this.Text = "CBS Terminal Config (POSitouch)";
             this.groupBox1.ResumeLayout( false );
             this.groupBox1.PerformLayout();
             this.ResumeLayout( false );
