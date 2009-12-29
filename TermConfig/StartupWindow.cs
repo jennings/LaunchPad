@@ -8,11 +8,11 @@ namespace TermConfig
 {
     public abstract class StartupWindow : Form
     {
-        protected int SecondsBeforeClose;
+        protected int SecondsBeforeClose = 4;
         protected Timer DelayTimer;
-        protected List<ILauncher> LaunchList;
+        protected List<ILauncher> LaunchList = new List<ILauncher>();
 
-        protected void CountdownTick( object sender, EventArgs e )
+        protected virtual void CountdownTick( object sender, EventArgs e )
         {
             if ( SecondsBeforeClose > 0 )
             {

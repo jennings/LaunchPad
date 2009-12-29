@@ -24,6 +24,10 @@ namespace TermConfig
             {
                 Application.Run( new AlohaStartupWindow() );
             }
+            else
+            {
+                MessageBox.Show( @"Add POSITOUCH or ALOHA flag file to use." );
+            }
         }
     }
 }

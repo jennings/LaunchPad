@@ -8,19 +8,16 @@ using TermConfig.Launchers;
 
 namespace TermConfig
 {
-    public partial class PositouchStartupWindow : Form
+    public partial class PositouchStartupWindow : StartupWindow
     {
-        private int SecondsBeforeClose;
-        private Timer DelayTimer;
-
         public PositouchStartupWindow()
         {
             InitializeComponent();
 
+            PopulateLaunchList();
+            
             GetIPAddress();
             GetPosiwSetting();
-
-            SecondsBeforeClose = 4;
 
             DelayTimer = new Timer();
             DelayTimer.Interval = 1000;
@@ -28,40 +25,17 @@ namespace TermConfig
             DelayTimer.Start();
         }
 
-        private void CountdownTick( object sender, EventArgs e )
+        protected override void CountdownTick( object sender, EventArgs e )
         {
-            if ( SecondsBeforeClose > 0 )
-            {
-                SecondsBeforeClose--;
-                CountdownTimerLabel.Text = SecondsBeforeClose.ToString() + "...";
-            }
-            else
-            {
-                DelayTimer.Stop();
+            base.CountdownTick( sender, e );
+            CountdownTimerLabel.Text = SecondsBeforeClose.ToString() + "...";
+        }
 
-                var Launchers = new List<ILauncher>();
-                Launchers.Add( new PosiwLauncher() );
-                Launchers.Add( new PositermLauncher() );
-                Launchers.Add( new VNCLauncher() );
-
-                foreach ( var launcher in Launchers )
-                {
-                    try
-                    {
-                        launcher.Launch();
-                    }
-                    catch ( NotImplementedException )
-                    {
-                        MessageBox.Show( "Launcher not implemented: " + launcher.GetType().ToString() );
-                    }
-                    catch ( Exception ex )
-                    {
-                        MessageBox.Show( "Exception: " + launcher.GetType().ToString() + ": " + ex.Message );
-                    }
-                }
-
-                Application.Exit();
-            }
+        private void PopulateLaunchList()
+        {
+            LaunchList.Add( new PosiwLauncher() );
+            LaunchList.Add( new PositermLauncher() );
+            LaunchList.Add( new VNCLauncher() );
         }
 
         private void GetIPAddress()
