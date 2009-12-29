@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Diagnostics;
 
 namespace TermConfig.Launchers
 {
@@ -8,7 +9,10 @@ namespace TermConfig.Launchers
     {
         public void Launch()
         {
-            throw new NotImplementedException();
+            var info = new ProcessStartInfo();
+            info.FileName = @"C:\IBERCFG.BAT";
+            info.WorkingDirectory = @"C:\";
+            Process.Start( info );
         }
     }
 }

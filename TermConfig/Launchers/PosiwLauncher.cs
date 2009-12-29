@@ -6,8 +6,6 @@ namespace TermConfig.Launchers
 {
     class PosiwLauncher : ILauncher
     {
-        #region ILauncher Members
-
         public void Launch()
         {
             if ( !File.Exists( @"C:\SC\Posiw.exe" ) )
@@ -16,11 +14,9 @@ namespace TermConfig.Launchers
             }
 
             var info = new ProcessStartInfo();
-            info.WorkingDirectory = @"C:\SC";
+            info.WorkingDirectory = @"C:\SC\";
             info.FileName = @"C:\SC\Posiw.exe";
             Process.Start( info );
         }
-
-        #endregion
     }
 }
