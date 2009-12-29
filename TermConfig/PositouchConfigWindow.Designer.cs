@@ -1,6 +1,6 @@
 ﻿namespace TermConfig
 {
-    partial class TermConfigWindow
+    partial class PositouchConfigWindow
     {
         /// <summary>
         /// Required designer variable.

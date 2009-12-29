@@ -102,7 +102,7 @@ namespace TermConfig
         {
             DelayTimer.Stop();
             this.Hide();
-            var config = new TermConfigWindow();
+            var config = new PositouchConfigWindow();
             config.ShowDialog();
             this.Show();
         }

@@ -11,7 +11,7 @@ using System.Diagnostics;
 
 namespace TermConfig
 {
-    public partial class TermConfigWindow : Form
+    public partial class PositouchConfigWindow : Form
     {
         private Control CurrentControl;
 
@@ -21,7 +21,7 @@ namespace TermConfig
 
         private List<Control> ControlOrder;
 
-        public TermConfigWindow()
+        public PositouchConfigWindow()
         {
             InitializeComponent();
 
