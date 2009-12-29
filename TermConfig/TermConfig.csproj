@@ -68,9 +68,12 @@
     <Compile Include="AlohaStartupWindow.Designer.cs">
       <DependentUpon>AlohaStartupWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="Launchers\AlohaLaunchController.cs" />
+    <Compile Include="Launchers\ILaunchController.cs" />
     <Compile Include="Launchers\ILauncher.cs" />
     <Compile Include="Launchers\LaunchController.cs" />
     <Compile Include="Launchers\PositermLauncher.cs" />
+    <Compile Include="Launchers\PositouchLaunchController.cs" />
     <Compile Include="Launchers\PosiwLauncher.cs" />
     <Compile Include="Launchers\VNCLauncher.cs" />
     <Compile Include="PositouchStartupWindow.cs">
