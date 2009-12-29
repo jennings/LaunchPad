@@ -8,12 +8,12 @@ using TermConfig.Launchers;
 
 namespace TermConfig
 {
-    public partial class StartupWindow : Form
+    public partial class PositouchStartupWindow : Form
     {
         private int SecondsBeforeClose;
         private Timer DelayTimer;
 
-        public StartupWindow()
+        public PositouchStartupWindow()
         {
             InitializeComponent();
 

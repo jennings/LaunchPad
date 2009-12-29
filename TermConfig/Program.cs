@@ -14,7 +14,7 @@ namespace TermConfig
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault( false );
-            Application.Run( new StartupWindow() );
+            Application.Run( new PositouchStartupWindow() );
         }
     }
 }

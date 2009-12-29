@@ -67,11 +67,11 @@
     <Compile Include="Launchers\PositermLauncher.cs" />
     <Compile Include="Launchers\PosiwLauncher.cs" />
     <Compile Include="Launchers\VNCLauncher.cs" />
-    <Compile Include="StartupWindow.cs">
+    <Compile Include="PositouchStartupWindow.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="StartupWindow.Designer.cs">
-      <DependentUpon>StartupWindow.cs</DependentUpon>
+    <Compile Include="PositouchStartupWindow.Designer.cs">
+      <DependentUpon>PositouchStartupWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="Configurators\PosiwConfigurator.cs" />
     <Compile Include="Configurators\PositermConfigurator.cs" />
@@ -83,8 +83,8 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="StartupWindow.resx">
-      <DependentUpon>StartupWindow.cs</DependentUpon>
+    <EmbeddedResource Include="PositouchStartupWindow.resx">
+      <DependentUpon>PositouchStartupWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TermConfigWindow.resx">
       <DependentUpon>TermConfigWindow.cs</DependentUpon>
