@@ -15,8 +15,9 @@ namespace TermConfig
             InitializeComponent();
 
             PopulateLaunchList();
-            
-            GetIPAddress();
+
+            IPAddressLabel.Text = GetIPAddress();
+
             GetPosiwSetting();
 
             DelayTimer = new Timer();
@@ -36,27 +37,6 @@ namespace TermConfig
             LaunchList.Add( new PosiwLauncher() );
             LaunchList.Add( new PositermLauncher() );
             LaunchList.Add( new VNCLauncher() );
-        }
-
-        private void GetIPAddress()
-        {
-            string AddressList = String.Empty;
-            var MC = new ManagementClass( "Win32_NetworkAdapterConfiguration" );
-            var collection = MC.GetInstances();
-            var addresses = new List<string>();
-
-            // Terminals have only one NIC, so this should be okay.
-            foreach ( ManagementObject obj in collection )
-            {
-                if ( (bool)( obj["IPEnabled"] ) )
-                {
-                    // This returns IPv6 addresses as well on Vista and higher,
-                    // but terminals are all XP and lower to this is okay.
-                    addresses.AddRange( (string[])( obj.GetPropertyValue( "IPAddress" ) ) );
-                }
-            }
-
-            IPAddressLabel.Text = String.Join( ", ", addresses.ToArray() );
         }
 
         private void GetPosiwSetting()
