@@ -62,6 +62,12 @@
     <Compile Include="Configurators\NetworkConfigurator.cs" />
     <Compile Include="Configurators\RebootConfigurator.cs" />
     <Compile Include="Configurators\VNCConfigurator.cs" />
+    <Compile Include="AlohaStartupWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AlohaStartupWindow.Designer.cs">
+      <DependentUpon>AlohaStartupWindow.cs</DependentUpon>
+    </Compile>
     <Compile Include="Launchers\ILauncher.cs" />
     <Compile Include="Launchers\LaunchController.cs" />
     <Compile Include="Launchers\PositermLauncher.cs" />
@@ -83,6 +89,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AlohaStartupWindow.resx">
+      <DependentUpon>AlohaStartupWindow.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PositouchStartupWindow.resx">
       <DependentUpon>PositouchStartupWindow.cs</DependentUpon>
     </EmbeddedResource>
