@@ -7,10 +7,10 @@ namespace TermConfig.Configurators
 {
     class NetworkConfigurator : IConfigurator
     {
-        TerminalStation StationSettings;
+        ITerminalStation StationSettings;
 
 
-        public NetworkConfigurator( TerminalStation settings )
+        public NetworkConfigurator( ITerminalStation settings )
         {
             settings.Validate();
             StationSettings = settings;
@@ -36,7 +36,7 @@ namespace TermConfig.Configurators
                 foreach ( ManagementObject obj in MOC )
                 {
                     var inputParams = obj.GetMethodParameters( "Rename" );
-                    inputParams["Name"] = StationSettings.Name;
+                    inputParams["Name"] = StationSettings.ComputerName;
                     output = obj.InvokeMethod( "Rename", inputParams, null );
                 }
 

@@ -7,13 +7,13 @@ namespace TermConfig.Configurators
 {
     class VNCConfigurator : IConfigurator
     {
-        TerminalStation StationSettings;
+        ITerminalStation StationSettings;
 
         private const string VNCDirectory = @"C:\Program Files\UltraVNC";
         private const string VNCBackupDirectory = @"C:\Program Files\UltraVNC2";
         private const string SourceVNCDirectory = @"Configurators\UltraVNC";
 
-        public VNCConfigurator( TerminalStation settings )
+        public VNCConfigurator( ITerminalStation settings )
         {
             settings.Validate();
             StationSettings = settings;

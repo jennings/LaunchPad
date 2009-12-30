@@ -13,6 +13,7 @@ namespace TermConfig.Configurators
         public void Configure()
         {
             SetPosAccountPassword();
+            SetAutoLogon();
         }
 
         private void SetPosAccountPassword()

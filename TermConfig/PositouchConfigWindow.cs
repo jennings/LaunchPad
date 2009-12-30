@@ -126,7 +126,7 @@ namespace TermConfig
             // Disable reboot button
             kbd_SaveAndReboot.Enabled = false;
 
-            var settings = new TerminalStation();
+            var settings = new PositouchTerminalStation();
 
             // Terminal type
             if ( TerminalType_Posdriver.Checked )

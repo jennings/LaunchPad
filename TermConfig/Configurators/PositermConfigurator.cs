@@ -6,7 +6,7 @@ namespace TermConfig.Configurators
 {
     class PositermConfigurator : IConfigurator
     {
-        public TerminalStation StationSettings { get; private set; }
+        public ITerminalStation StationSettings { get; private set; }
 
         private List<string> Filenames = new List<string>()
         {
@@ -19,7 +19,7 @@ namespace TermConfig.Configurators
         private bool Connected { get; set; }
 
 
-        public PositermConfigurator( TerminalStation TerminalStationSettings )
+        public PositermConfigurator( ITerminalStation TerminalStationSettings )
         {
             TerminalStationSettings.Validate();
             StationSettings = TerminalStationSettings;
@@ -55,7 +55,7 @@ namespace TermConfig.Configurators
 
             using ( var sw = new StreamWriter( @"C:\SC\TERM.$$$" ) )
             {
-                sw.Write( StationSettings.Name );
+                sw.Write( StationSettings.ComputerName );
             }
         }
     }
