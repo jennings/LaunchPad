@@ -39,14 +39,16 @@
             this.PositermLabel = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.CountdownTimerLabel = new System.Windows.Forms.Label();
+            this.CalibrateButton = new System.Windows.Forms.Button();
+            this.LaunchNowButton = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // RCButton
             // 
-            this.RCButton.Location = new System.Drawing.Point( 274, 12 );
+            this.RCButton.Location = new System.Drawing.Point( 321, 12 );
             this.RCButton.Name = "RCButton";
-            this.RCButton.Size = new System.Drawing.Size( 109, 62 );
+            this.RCButton.Size = new System.Drawing.Size( 62, 62 );
             this.RCButton.TabIndex = 0;
             this.RCButton.Text = "RC";
             this.RCButton.UseVisualStyleBackColor = true;
@@ -153,18 +155,43 @@
             // 
             this.CountdownTimerLabel.AutoSize = true;
             this.CountdownTimerLabel.Font = new System.Drawing.Font( "Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ( (byte)( 0 ) ) );
-            this.CountdownTimerLabel.Location = new System.Drawing.Point( 36, 24 );
+            this.CountdownTimerLabel.Location = new System.Drawing.Point( 259, 32 );
             this.CountdownTimerLabel.Name = "CountdownTimerLabel";
             this.CountdownTimerLabel.Size = new System.Drawing.Size( 34, 20 );
             this.CountdownTimerLabel.TabIndex = 2;
             this.CountdownTimerLabel.Text = "4...";
             this.CountdownTimerLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // CalibrateButton
+            // 
+            this.CalibrateButton.BackColor = System.Drawing.Color.FromArgb( ( (int)( ( (byte)( 0 ) ) ) ), ( (int)( ( (byte)( 192 ) ) ) ), ( (int)( ( (byte)( 0 ) ) ) ) );
+            this.CalibrateButton.Font = new System.Drawing.Font( "Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ( (byte)( 0 ) ) );
+            this.CalibrateButton.ForeColor = System.Drawing.Color.Black;
+            this.CalibrateButton.Location = new System.Drawing.Point( 12, 12 );
+            this.CalibrateButton.Name = "CalibrateButton";
+            this.CalibrateButton.Size = new System.Drawing.Size( 128, 62 );
+            this.CalibrateButton.TabIndex = 3;
+            this.CalibrateButton.Text = "Calibrate";
+            this.CalibrateButton.UseVisualStyleBackColor = false;
+            this.CalibrateButton.Click += new System.EventHandler( this.CalibrateButton_Click );
+            // 
+            // LaunchNowButton
+            // 
+            this.LaunchNowButton.Location = new System.Drawing.Point( 146, 12 );
+            this.LaunchNowButton.Name = "LaunchNowButton";
+            this.LaunchNowButton.Size = new System.Drawing.Size( 90, 62 );
+            this.LaunchNowButton.TabIndex = 4;
+            this.LaunchNowButton.Text = "Launch Now";
+            this.LaunchNowButton.UseVisualStyleBackColor = true;
+            this.LaunchNowButton.Click += new System.EventHandler( this.LaunchNowButton_Click );
+            // 
             // PositouchStartupWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF( 6F, 13F );
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size( 395, 270 );
+            this.Controls.Add( this.LaunchNowButton );
+            this.Controls.Add( this.CalibrateButton );
             this.Controls.Add( this.CountdownTimerLabel );
             this.Controls.Add( this.groupBox1 );
             this.Controls.Add( this.RCButton );
@@ -191,5 +218,7 @@
         private System.Windows.Forms.Label PositermLabel;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label CountdownTimerLabel;
+        private System.Windows.Forms.Button CalibrateButton;
+        private System.Windows.Forms.Button LaunchNowButton;
     }
 }
