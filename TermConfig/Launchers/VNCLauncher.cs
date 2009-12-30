@@ -13,26 +13,43 @@ namespace TermConfig.Launchers
 
         public void Launch()
         {
-            var service = new ServiceController( "winvnc" );
+            ServiceController service;
+            ServiceControllerStatus status;
 
             try
             {
-                if ( service.Status == ServiceControllerStatus.Stopped )
+                service = new ServiceController( "winvnc" );
+                status = service.Status;
+            }
+            catch ( InvalidOperationException )
+            {
+                try
                 {
-                    service.Start();
+                    service = new ServiceController( "uvnc_service" );
+                    status = service.Status;
+                }
+                catch ( InvalidOperationException )
+                {
+                    // Service not installed, try to launch as an application
+
+                    if ( !File.Exists( @"C:\Program Files\UltraVNC\winvnc.exe" ) )
+                    {
+                        throw new Exception( @"UltraVNC appears not to be installed in C:\Program Files\UltraVNC." );
+                    }
+
+                    var info = new ProcessStartInfo();
+                    info.WorkingDirectory = @"C:\Program Files\UltraVNC";
+                    info.FileName = @"C:\Program Files\UltraVNC\winvnc.exe";
+                    Process.Start( info );
+
+                    return;
                 }
             }
-            catch ( Exception )
-            {
-                if ( !File.Exists( @"C:\Program Files\UltraVNC\winvnc.exe" ) )
-                {
-                    throw new Exception( @"UltraVNC appears not to be installed in C:\Program Files\UltraVNC." );
-                }
 
-                var info = new ProcessStartInfo();
-                info.WorkingDirectory = @"C:\Program Files\UltraVNC";
-                info.FileName = @"C:\Program Files\UltraVNC\winvnc.exe";
-                Process.Start( info );
+            // status contains the service status
+            if ( status == ServiceControllerStatus.Stopped )
+            {
+                service.Start();
             }
         }
 
