@@ -13,6 +13,7 @@ namespace TermConfig.Configurators
         private const string VNCBackupDirectory = @"C:\Program Files\UltraVNC2";
         private const string SourceVNCDirectory = @"Configurators\UltraVNC";
 
+        private VNCConfigurator() { }
         public VNCConfigurator( ITerminalStation settings )
         {
             settings.Validate();
@@ -27,11 +28,11 @@ namespace TermConfig.Configurators
 
             MoveExistingVNCDirectory();
             System.Threading.Thread.Sleep( 500 );
-            
+
             CreateNewVNCDirectory();
-            
+
             ChangeVNCPassword();
-            
+
             RegisterVNCService();
         }
 

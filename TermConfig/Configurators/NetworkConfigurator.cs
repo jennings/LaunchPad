@@ -10,6 +10,7 @@ namespace TermConfig.Configurators
         ITerminalStation StationSettings;
 
 
+        private NetworkConfigurator() { }
         public NetworkConfigurator( ITerminalStation settings )
         {
             settings.Validate();

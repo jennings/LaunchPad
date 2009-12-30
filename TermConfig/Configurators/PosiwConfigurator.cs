@@ -9,6 +9,7 @@ namespace TermConfig.Configurators
     {
         public PositouchTerminalStation StationSettings { get; private set; }
 
+        private PosiwConfigurator() { }
         public PosiwConfigurator( PositouchTerminalStation TerminalStationSettings )
         {
             TerminalStationSettings.Validate();

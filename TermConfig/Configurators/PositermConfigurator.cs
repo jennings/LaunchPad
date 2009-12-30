@@ -19,6 +19,7 @@ namespace TermConfig.Configurators
         private bool Connected { get; set; }
 
 
+        private PositermConfigurator() { }
         public PositermConfigurator( ITerminalStation TerminalStationSettings )
         {
             TerminalStationSettings.Validate();
