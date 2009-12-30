@@ -7,15 +7,19 @@ namespace TermConfig.Launchers
 {
     public class PositouchLaunchController : ILaunchController
     {
-        public bool LaunchesPosiw { get; set; }
-        public bool LaunchesPositerm { get; set; }
-        public bool LaunchesVNC { get; set; }
+        public bool LaunchesPosiw { get; private set; }
+        public bool LaunchesPositerm { get; private set; }
+        public bool LaunchesVNC { get; private set; }
 
         private List<ILauncher> Launchers = new List<ILauncher>();
         private const string ConfigDatabase = @"TermConfig.mdb";
 
         public PositouchLaunchController()
         {
+            LaunchesPositerm = false;
+            LaunchesPosiw = false;
+            LaunchesVNC = false;
+
             if ( !File.Exists( ConfigDatabase ) )
             {
                 var cat = new Catalog();
@@ -44,15 +48,24 @@ namespace TermConfig.Launchers
                             {
                                 case "LAUNCH_POSIW":
                                     if ( reader["value"].ToString().ToUpper() == "YES" )
+                                    {
+                                        LaunchesPosiw = true;
                                         Launchers.Add( new PosiwLauncher() );
+                                    }
                                     break;
                                 case "LAUNCH_POSITERM":
                                     if ( reader["value"].ToString().ToUpper() == "YES" )
+                                    {
+                                        LaunchesPositerm = true;
                                         Launchers.Add( new PositermLauncher() );
+                                    }
                                     break;
                                 case "LAUNCH_VNC":
                                     if ( reader["value"].ToString().ToUpper() == "YES" )
+                                    {
+                                        LaunchesVNC = true;
                                         Launchers.Add( new VNCLauncher() );
+                                    }
                                     break;
                             }
                         }

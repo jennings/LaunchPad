@@ -11,7 +11,6 @@ namespace TermConfig
     {
         protected int SecondsBeforeClose = 4;
         protected Timer DelayTimer;
-        protected List<ILauncher> LaunchList = new List<ILauncher>();
         protected ILaunchController LaunchController;
 
         protected virtual void CountdownTick( object sender, EventArgs e )

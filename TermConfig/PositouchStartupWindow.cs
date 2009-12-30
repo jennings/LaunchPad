@@ -15,6 +15,9 @@ namespace TermConfig
 
             LaunchController = new PositouchLaunchController();
 
+            PositermLabel.Text = ( (PositouchLaunchController)LaunchController ).LaunchesPositerm ? "Yes" : "No";
+            VNCServerLabel.Text = ( (PositouchLaunchController)LaunchController ).LaunchesVNC ? "Yes" : "No";
+
             IPAddressLabel.Text = GetIPAddress();
 
             GetPosiwSetting();
