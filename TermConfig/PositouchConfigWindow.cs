@@ -154,30 +154,8 @@ namespace TermConfig
 
             settings.Validate();
 
-            var network = new NetworkConfigurator( settings );
-            var positerm = new PositermConfigurator( settings );
-            var posiw = new PosiwConfigurator( settings );
-            var vnc = new VNCConfigurator( settings );
-            var reboot = new RebootConfigurator();
-
-            WriteLog( "Configuring network..." );
-            network.Configure();
-            WriteLog( "Network OK" );
-
-            WriteLog( "Configuring Positerm..." );
-            positerm.Configure();
-            WriteLog( "Positerm OK" );
-
-            WriteLog( "Configuring Posiw..." );
-            posiw.Configure();
-            WriteLog( "Posiw OK" );
-
-            WriteLog( "Configuring VNC..." );
-            vnc.Configure();
-            WriteLog( "VNC OK" );
-
-            WriteLog( "Rebooting..." );
-            reboot.Configure();
+            var configuratorController = new PositouchConfiguratorController( settings );
+            configuratorController.Configure();
         }
 
         private void TerminalType_CheckedChanged( object sender, EventArgs e )
