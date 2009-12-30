@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Windows.Forms;
 using TermConfig.Launchers;
+using System.IO;
+using System.Diagnostics;
 
 namespace TermConfig
 {
@@ -11,6 +13,8 @@ namespace TermConfig
             InitializeComponent();
 
             LaunchController = new AlohaLaunchController();
+
+            AlohaFOHLabel.Text = ( (AlohaLaunchController)LaunchController ).LaunchesTerminal ? "Yes" : "No";
 
             IPAddressLabel.Text = GetIPAddress();
 
@@ -33,6 +37,42 @@ namespace TermConfig
             // var config = new PositouchConfigWindow();
             // config.ShowDialog();
             MessageBox.Show( @"TODO: No AlohaConfigWindow created yet." );
+            this.Show();
+        }
+
+        private void CalibrateButton_Click( object sender, EventArgs e )
+        {
+            DelayTimer.Stop();
+            this.Hide();
+
+            var eloTouchPath = Path.Combine(
+                Environment.GetFolderPath( Environment.SpecialFolder.System ),
+                @"EloTouch.cpl" );
+            var mtsTouchPath = Path.Combine(
+                Environment.GetFolderPath( Environment.SpecialFolder.System ),
+                @"MtsTouch.cpl" );
+
+            if ( File.Exists( eloTouchPath ) )
+            {
+                var info = new ProcessStartInfo();
+                info.FileName = eloTouchPath;
+                info.UseShellExecute = true;
+                var proc = Process.Start( info );
+                proc.WaitForExit();
+            }
+            else if ( File.Exists( mtsTouchPath ) )
+            {
+                var info = new ProcessStartInfo();
+                info.FileName = mtsTouchPath;
+                info.UseShellExecute = true;
+                var proc = Process.Start( info );
+                proc.WaitForExit();
+            }
+            else
+            {
+                MessageBox.Show( "Could not find calibration utility." );
+            }
+
             this.Show();
         }
     }

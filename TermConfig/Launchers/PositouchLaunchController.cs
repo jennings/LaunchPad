@@ -31,6 +31,7 @@ namespace TermConfig.Launchers
                 DataSource = ConfigDatabase,
                 Provider = @"Microsoft.Jet.OLEDB.4.0"
             };
+            
             using ( var db = new OleDbConnection( csb.ConnectionString ) )
             {
                 db.Open();
