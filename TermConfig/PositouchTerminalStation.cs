@@ -9,8 +9,13 @@ namespace TermConfig
     {
         public PointOfSale PointOfSale { get { return PointOfSale.Positouch; } }
 
+        private string _WindowsPassword;
         public string WindowsUsername { get { return "pos"; } }
-        public string WindowsPassword { get; set; }
+        public string WindowsPassword
+        {
+            get { return _WindowsPassword; }
+            set { _WindowsPassword = value.ToUpper(); }
+        }
 
         public TerminalStationType? @Type { get; set; }
         public bool PosdriverTerminal { get { return @Type == TerminalStationType.Posdriver; } }

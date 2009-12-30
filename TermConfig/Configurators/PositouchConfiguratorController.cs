@@ -15,6 +15,7 @@ namespace TermConfig.Configurators
             terminalStation.Validate();
             StationSettings = terminalStation;
 
+            Configurators.Add( new CredentialsConfigurator( StationSettings.WindowsUsername, StationSettings.WindowsPassword ) );
             Configurators.Add( new NetworkConfigurator( StationSettings ) );
             Configurators.Add( new PositermConfigurator( StationSettings ) );
             Configurators.Add( new PosiwConfigurator( StationSettings ) );
