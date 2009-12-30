@@ -14,12 +14,12 @@ namespace TermConfig
             get { return PointOfSale.Aloha; }
         }
 
-        public string Username
+        public string WindowsUsername
         {
             get { throw new NotImplementedException(); }
         }
 
-        public string Password
+        public string WindowsPassword
         {
             get
             {

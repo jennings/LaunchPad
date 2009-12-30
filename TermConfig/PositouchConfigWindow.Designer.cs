@@ -781,7 +781,7 @@
             this.Group_AccpacID.Size = new System.Drawing.Size( 242, 56 );
             this.Group_AccpacID.TabIndex = 3;
             this.Group_AccpacID.TabStop = false;
-            this.Group_AccpacID.Text = "Customer Password";
+            this.Group_AccpacID.Text = "POS Account Password";
             // 
             // AccpacID_AccpacID
             // 
@@ -842,6 +842,7 @@
             this.Controls.Add( this.Group_TerminalType );
             this.Controls.Add( this.KeyboardPanel );
             this.Controls.Add( this.Group_IPAddress );
+            this.MinimizeBox = false;
             this.Name = "PositouchConfigWindow";
             this.Text = "TermConfig - Custom Business Solutions";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;

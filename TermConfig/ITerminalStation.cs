@@ -8,8 +8,8 @@ namespace TermConfig
     interface ITerminalStation
     {
         PointOfSale @PointOfSale { get; }
-        string Username { get; }
-        string Password { get; set; }
+        string WindowsUsername { get; }
+        string WindowsPassword { get; set; }
         IPAddress @IPAddress { get; set; }
         string ComputerName { get; }
 

@@ -9,8 +9,8 @@ namespace TermConfig
     {
         public PointOfSale PointOfSale { get { return PointOfSale.Positouch; } }
 
-        public string Username { get { return "pos"; } }
-        public string Password { get; set; }
+        public string WindowsUsername { get { return "pos"; } }
+        public string WindowsPassword { get; set; }
 
         public TerminalStationType? @Type { get; set; }
         public bool PosdriverTerminal { get { return @Type == TerminalStationType.Posdriver; } }
@@ -49,7 +49,7 @@ namespace TermConfig
                 errors += @"DeviceNumber is not set. ";
             if ( DeviceNumber < 1 || 99 < DeviceNumber )
                 errors += @"DeviceNumber must be between 1 and 99.";
-            if ( Password == null )
+            if ( WindowsPassword == null )
                 errors += @"Password is not set. ";
             if ( @IPAddress == null )
                 errors += @"IPAddress is not set. ";

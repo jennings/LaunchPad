@@ -47,6 +47,7 @@ namespace TermConfig
             if ( CurrentControl == null )
             {
                 CurrentControl = ControlOrder[0];
+                CurrentControl.Focus();
                 CurrentControl.BackColor = Color.Yellow;
                 return;
             }
@@ -57,6 +58,7 @@ namespace TermConfig
             if ( ControlOrder.Count > currentIndex + 1 )
             {
                 CurrentControl = ControlOrder[currentIndex + 1];
+                CurrentControl.Focus();
                 CurrentControl.BackColor = Color.Yellow;
             }
             else
@@ -150,8 +152,8 @@ namespace TermConfig
             settings.BackofficeIPAddress = IPAddress.Parse( BackofficeIP_IPAddress.Text );
 
             // Password
-            settings.Password = AccpacID_AccpacID.Text.ToUpper();
-            if ( settings.Password.Length == 0 )
+            settings.WindowsPassword = AccpacID_AccpacID.Text.ToUpper();
+            if ( settings.WindowsPassword.Length == 0 )
                 throw new Exception( @"Accpac ID cannot be blank." );
 
             settings.Validate();

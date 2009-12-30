@@ -168,6 +168,7 @@
             this.Controls.Add( this.CountdownTimerLabel );
             this.Controls.Add( this.groupBox1 );
             this.Controls.Add( this.RCButton );
+            this.MinimizeBox = false;
             this.Name = "AlohaStartupWindow";
             this.Text = "CBS Terminal Config (Aloha)";
             this.groupBox1.ResumeLayout( false );

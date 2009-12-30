@@ -7,7 +7,7 @@ using System.Management;
 
 namespace TermConfig
 {
-    public abstract class StartupWindow : Form
+    public class StartupWindow : Form
     {
         protected int SecondsBeforeClose = 4;
         protected Timer DelayTimer;
