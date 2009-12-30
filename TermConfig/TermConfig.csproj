@@ -60,9 +60,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AlohaTerminalStation.cs" />
+    <Compile Include="Configurators\AlohaConfiguratorController.cs" />
     <Compile Include="Configurators\CredentialsConfigurator.cs" />
     <Compile Include="Configurators\IConfigurator.cs" />
+    <Compile Include="Configurators\IConfiguratorController.cs" />
     <Compile Include="Configurators\NetworkConfigurator.cs" />
+    <Compile Include="Configurators\PositouchConfiguratorController.cs" />
     <Compile Include="Configurators\RebootConfigurator.cs" />
     <Compile Include="Configurators\VNCConfigurator.cs" />
     <Compile Include="AlohaStartupWindow.cs">

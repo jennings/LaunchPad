@@ -15,10 +15,6 @@ namespace TermConfig
     {
         private Control CurrentControl;
 
-        private bool SkippedIPAddress = false;
-        private bool SkippedSourceTerminal = false;
-        private bool SkippedVNC = false;
-
         private List<Control> ControlOrder;
 
         public PositouchConfigWindow()
