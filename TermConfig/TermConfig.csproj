@@ -51,6 +51,7 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
+    <Reference Include="System.DirectoryServices" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Management" />
     <Reference Include="System.ServiceProcess" />
@@ -58,6 +59,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configurators\CredentialsConfigurator.cs" />
     <Compile Include="Configurators\IConfigurator.cs" />
     <Compile Include="Configurators\NetworkConfigurator.cs" />
     <Compile Include="Configurators\RebootConfigurator.cs" />
