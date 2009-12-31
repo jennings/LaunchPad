@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using System.Net;
+using TermConfig.Configurators;
 
 namespace TermConfig
 {
@@ -108,6 +109,16 @@ namespace TermConfig
             var @ipAddress = IPAddress.Parse(IPAddress_AddressTextBox.Text);
             var @posdriverIpAddress = IPAddress.Parse( PosdriverIP_IPAddress.Text );
             var @backofficeIpAddress = IPAddress.Parse( BackofficeIP_IPAddress.Text );
+
+            var settings = new PositouchTerminalStation();
+            settings.IPAddress = ipAddress;
+            settings.PosdriverIPAddress = posdriverIpAddress;
+            settings.BackofficeIPAddress = backofficeIpAddress;
+            settings.WindowsPassword = CustomerPassword_CustomerPasswordText.Text;
+
+            var config = new PositouchInitialConfiguratorController( settings );
+            
+            config.Configure();
         }
 
 

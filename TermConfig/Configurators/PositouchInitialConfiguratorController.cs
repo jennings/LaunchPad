@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Text;
 using System.Net;
 using System.Data.OleDb;
+using System.IO;
+using ADOX;
 
 namespace TermConfig.Configurators
 {
@@ -17,6 +19,12 @@ namespace TermConfig.Configurators
         {
             settings.ValidateInitial();
             StationSettings = settings;
+
+            if ( !File.Exists( @"Settings.mdb" ) )
+            {
+                var cat = new Catalog();
+                cat.Create( @"Provider=Microsoft.Jet.OLEDB.4.0; Data Source=Settings.mdb;" );
+            }
 
             var csb = new OleDbConnectionStringBuilder()
             {

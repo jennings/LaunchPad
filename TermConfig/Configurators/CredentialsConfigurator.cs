@@ -45,9 +45,5 @@ namespace TermConfig.Configurators
             Registry.SetValue( WinlogonKey, "DefaultPassword", NewPassword, RegistryValueKind.String );
             Registry.SetValue( WinlogonKey, "AutoAdminLogon", "1", RegistryValueKind.String );
         }
-
-        private void RecordSettings()
-        {
-        }
     }
 }

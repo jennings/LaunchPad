@@ -9,20 +9,25 @@ namespace TermConfig.Configurators
     class NetworkConfigurator : IConfigurator
     {
         ITerminalStation StationSettings;
-
+        OleDbConnection SettingsDatabase;
 
         private NetworkConfigurator() { }
         public NetworkConfigurator( ITerminalStation settings )
         {
-            settings.Validate();
             StationSettings = settings;
         }
 
 
         public void Configure( OleDbConnection databaseConnection )
         {
+            SettingsDatabase = databaseConnection;
+            SettingsDatabase.Open();
+
             SetNetBIOSName();
             SetIPAddress();
+            RecordSettings();
+
+            SettingsDatabase.Close();
         }
 
 
@@ -73,6 +78,34 @@ namespace TermConfig.Configurators
 
                     var setIP = obj.InvokeMethod( "EnableStatic", newIP, null );
                 }
+            }
+        }
+
+        private void RecordSettings()
+        {
+            var query = @"DELETE FROM tblSettings WHERE UPPER(key)='IPADDRESS' or UPPER(key)='POSDRIVER_IPADDRESS' or UPPER(key)='BACKOFFICE_IPADDRESS'";
+            using ( var cmd = new OleDbCommand( query, SettingsDatabase ) )
+            {
+                cmd.ExecuteNonQuery();
+            }
+
+            var query2 = @"INSERT INTO tblSettings (key, value) VALUES ( @Name, @Value )";
+            using ( var cmd = new OleDbCommand( query2, SettingsDatabase ) )
+            {
+                cmd.Parameters.Clear();
+                cmd.Parameters.Add( new OleDbParameter( "@Name", "IPADDRESS" ) );
+                cmd.Parameters.Add( new OleDbParameter( "@Value", StationSettings.IPAddress.ToString() ) );
+                cmd.ExecuteNonQuery();
+
+                cmd.Parameters.Clear();
+                cmd.Parameters.Add( new OleDbParameter( "@Name", "POSDRIVER_IPADDRESS" ) );
+                cmd.Parameters.Add( new OleDbParameter( "@Value", StationSettings.IPAddress.ToString() ) );
+                cmd.ExecuteNonQuery();
+
+                cmd.Parameters.Clear();
+                cmd.Parameters.Add( new OleDbParameter( "@Name", "BACKOFFICE_IPADDRESS" ) );
+                cmd.Parameters.Add( new OleDbParameter( "@Value", StationSettings.IPAddress.ToString() ) );
+                cmd.ExecuteNonQuery();
             }
         }
     }
