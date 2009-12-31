@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Management;
+using System.Data.OleDb;
 
 namespace TermConfig.Configurators
 {
@@ -18,7 +19,7 @@ namespace TermConfig.Configurators
         }
 
 
-        public void Configure()
+        public void Configure( OleDbConnection databaseConnection )
         {
             SetNetBIOSName();
             SetIPAddress();

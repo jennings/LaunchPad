@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.IO;
+using System.Data.OleDb;
 
 namespace TermConfig.Configurators
 {
@@ -16,7 +17,7 @@ namespace TermConfig.Configurators
             StationSettings = TerminalStationSettings;
         }
 
-        public void Configure()
+        public void Configure( OleDbConnection databaseConnection )
         {
             if ( !Directory.Exists( @"C:\SC" ) ) Directory.CreateDirectory( @"C:\SC" );
             if ( !Directory.Exists( @"C:\Temp" ) ) Directory.CreateDirectory( @"C:\Temp" );

@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.IO;
 using System.ServiceProcess;
+using System.Data.OleDb;
 
 namespace TermConfig.Configurators
 {
@@ -21,7 +22,7 @@ namespace TermConfig.Configurators
         }
 
 
-        public void Configure()
+        public void Configure( OleDbConnection databaseConnection )
         {
             StopVNCProcesses();
             System.Threading.Thread.Sleep( 500 );

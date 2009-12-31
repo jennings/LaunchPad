@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Diagnostics;
+using System.Data.OleDb;
 
 namespace TermConfig.Configurators
 {
@@ -28,7 +29,7 @@ namespace TermConfig.Configurators
         }
 
 
-        public void Configure()
+        public void Configure( OleDbConnection databaseConnection )
         {
             CreateCShare();
 

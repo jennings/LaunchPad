@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Management;
+using System.Data.OleDb;
 
 namespace TermConfig.Configurators
 {
     class RebootConfigurator : IConfigurator
     {
-        public void Configure()
+        public void Configure( OleDbConnection databaseConnection )
         {
             ManagementBaseObject mboShutdown = null;
             ManagementClass mcWin32 = new ManagementClass( "Win32_OperatingSystem" );

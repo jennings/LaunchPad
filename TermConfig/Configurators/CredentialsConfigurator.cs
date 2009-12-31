@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.DirectoryServices;
 using System.Text;
 using Microsoft.Win32;
+using System.Data.OleDb;
 
 namespace TermConfig.Configurators
 {
@@ -18,7 +19,7 @@ namespace TermConfig.Configurators
             NewPassword = password;
         }
 
-        public void Configure()
+        public void Configure( OleDbConnection databaseConnection )
         {
             SetPosAccountPassword();
             SetAutoLogon();
@@ -43,6 +44,10 @@ namespace TermConfig.Configurators
             Registry.SetValue( WinlogonKey, "DefaultUserName", "pos", RegistryValueKind.String );
             Registry.SetValue( WinlogonKey, "DefaultPassword", NewPassword, RegistryValueKind.String );
             Registry.SetValue( WinlogonKey, "AutoAdminLogon", "1", RegistryValueKind.String );
+        }
+
+        private void RecordSettings()
+        {
         }
     }
 }
