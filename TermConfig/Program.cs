@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using System.IO;
+using System.Data.OleDb;
+using System.Data;
 
 namespace TermConfig
 {
@@ -16,17 +18,74 @@ namespace TermConfig
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault( false );
 
-            if ( File.Exists( @"POSITOUCH" ) )
+            var Positouch = File.Exists( @"POSITOUCH" );
+            var Aloha = File.Exists( @"ALOHA" );
+
+            try
             {
-                Application.Run( new PositouchStartupWindow() );
+                bool foundOK = false;
+
+                var csb = new OleDbConnectionStringBuilder()
+                {
+                    DataSource = @"Settings.mdb",
+                    Provider = @"Microsoft.Jet.OLEDB.4.0"
+                };
+
+                using ( var db = new OleDbConnection( csb.ConnectionString ) )
+                {
+                    db.Open();
+                    var query = @"SELECT key, value FROM tblSettings WHERE key='INTEGRITY';";
+
+                    using ( var cmd = new OleDbCommand( query, db ) )
+                    {
+                        var reader = cmd.ExecuteReader();
+                        while ( reader.Read() )
+                        {
+                            if ( reader["value"].ToString().ToUpper() == "OK" )
+                            {
+                                foundOK = true;
+                            }
+                        }
+                    }
+
+                    db.Close();
+                }
+
+                if ( foundOK )
+                {
+                    if ( Positouch )
+                    {
+                        Application.Run( new PositouchStartupWindow() );
+                    }
+                    else if ( Aloha )
+                    {
+                        Application.Run( new AlohaStartupWindow() );
+                    }
+                    else
+                    {
+                        MessageBox.Show( @"Add POSITOUCH or ALOHA flag file to use." );
+                    }
+                }
+                else
+                {
+                    throw new Exception();
+                }
             }
-            else if ( File.Exists( @"ALOHA" ) )
+            catch ( Exception )
             {
-                Application.Run( new AlohaStartupWindow() );
-            }
-            else
-            {
-                MessageBox.Show( @"Add POSITOUCH or ALOHA flag file to use." );
+                File.Delete( @"Settings.mdb" );
+                if ( Positouch )
+                {
+                    Application.Run( new PositouchInitialConfigWindow() );
+                }
+                else if ( Aloha )
+                {
+                    Application.Run( new AlohaInitialConfigWindow() );
+                }
+                else
+                {
+                    MessageBox.Show( @"Add POSITOUCH or ALOHA flag file to use." );
+                }
             }
         }
     }

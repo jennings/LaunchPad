@@ -45,6 +45,25 @@ namespace TermConfig
             }
         }
 
+        public void ValidateInitial()
+        {
+            var errors = String.Empty;
+
+            if ( WindowsPassword == null )
+                errors += @"Password is not set. ";
+            if ( @IPAddress == null )
+                errors += @"IPAddress is not set. ";
+            if ( PosdriverIPAddress == null )
+                errors += @"PosdriverIPAddress is not set. ";
+            if ( BackofficeIPAddress == null )
+                errors += @"BackofficeIPAddress is not set. ";
+            
+            if ( !errors.Equals( string.Empty ) )
+            {
+                throw new Exception( errors );
+            }
+        }
+        
         public void Validate()
         {
             var errors = String.Empty;

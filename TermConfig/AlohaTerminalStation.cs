@@ -53,6 +53,11 @@ namespace TermConfig
             throw new NotImplementedException();
         }
 
+        public void ValidateInitial()
+        {
+            throw new NotImplementedException();
+        }
+
         #endregion
     }
 }

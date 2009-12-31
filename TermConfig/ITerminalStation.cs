@@ -14,6 +14,7 @@ namespace TermConfig
         string ComputerName { get; }
 
         void Validate();
+        void ValidateInitial();
     }
 
     enum PointOfSale
