@@ -162,6 +162,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="SettingsReader.cs" />
     <Compile Include="StartupWindow.cs">
       <SubType>Form</SubType>
     </Compile>
