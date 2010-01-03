@@ -13,13 +13,15 @@ namespace TermConfig.Configurators
         public AlohaConfiguratorController( AlohaTerminalStation terminalStation )
         {
             StationSettings = terminalStation;
-
-            Configurators.Add( new RebootConfigurator() );
         }
 
         public void Configure()
         {
             throw new NotImplementedException();
+
+            SettingsReader.Instance.Commit();
+
+            Rebooter.Reboot();
         }
     }
 }

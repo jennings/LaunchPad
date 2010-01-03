@@ -73,7 +73,7 @@
     <Compile Include="Configurators\IConfiguratorController.cs" />
     <Compile Include="Configurators\NetworkConfigurator.cs" />
     <Compile Include="Configurators\PositouchConfiguratorController.cs" />
-    <Compile Include="Configurators\RebootConfigurator.cs" />
+    <Compile Include="Configurators\Rebooter.cs" />
     <Compile Include="Configurators\VNCConfigurator.cs" />
     <Compile Include="AlohaStartupWindow.cs">
       <SubType>Form</SubType>

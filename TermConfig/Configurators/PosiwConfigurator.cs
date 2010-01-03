@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Text;
 using System.IO;
-using System.Data.OleDb;
 
 namespace TermConfig.Configurators
 {
@@ -17,10 +16,12 @@ namespace TermConfig.Configurators
             StationSettings = TerminalStationSettings;
         }
 
-        public void Configure( OleDbConnection databaseConnection )
+        public void Configure()
         {
-            if ( !Directory.Exists( @"C:\SC" ) ) Directory.CreateDirectory( @"C:\SC" );
-            if ( !Directory.Exists( @"C:\Temp" ) ) Directory.CreateDirectory( @"C:\Temp" );
+            if ( !Directory.Exists( @"C:\SC" ) )
+                Directory.CreateDirectory( @"C:\SC" );
+            if ( !Directory.Exists( @"C:\Temp" ) )
+                Directory.CreateDirectory( @"C:\Temp" );
 
             if ( File.Exists( @"C:\SC\Posiw.ini" ) )
             {
@@ -96,12 +97,16 @@ namespace TermConfig.Configurators
                 sw.WriteLine( @"[Network]" );
                 sw.WriteLine( @"TCP/IP=YES" );
 
-                if ( !StationSettings.PosdriverTerminal ) sw.WriteLine( @"Spcwin=" + StationSettings.PosdriverIPAddress );
-                if ( !StationSettings.Backoffice ) sw.WriteLine( @"BackOffice=" + StationSettings.BackofficeIPAddress );
+                if ( !StationSettings.PosdriverTerminal )
+                    sw.WriteLine( @"Spcwin=" + StationSettings.PosdriverIPAddress );
+                if ( !StationSettings.Backoffice )
+                    sw.WriteLine( @"BackOffice=" + StationSettings.BackofficeIPAddress );
 
-                if ( !StationSettings.RedundantTerminal ) sw.WriteLine( @"BackUpServer=" + StationSettings.RedundantIPAddress );
+                if ( !StationSettings.RedundantTerminal )
+                    sw.WriteLine( @"BackUpServer=" + StationSettings.RedundantIPAddress );
 
-                if ( !StationSettings.Backoffice ) sw.WriteLine( @"Posiw99=" + StationSettings.BackofficeIPAddress );
+                if ( !StationSettings.Backoffice )
+                    sw.WriteLine( @"Posiw99=" + StationSettings.BackofficeIPAddress );
                 sw.WriteLine( @"" );
 
                 sw.Flush();

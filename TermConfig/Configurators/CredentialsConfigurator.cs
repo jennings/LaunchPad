@@ -19,7 +19,7 @@ namespace TermConfig.Configurators
             NewPassword = password;
         }
 
-        public void Configure( OleDbConnection databaseConnection )
+        public void Configure()
         {
             SetPosAccountPassword();
             SetAutoLogon();

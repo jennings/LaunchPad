@@ -7,6 +7,6 @@ namespace TermConfig.Configurators
 {
     interface IConfigurator
     {
-        void Configure( OleDbConnection databaseConnection );
+        void Configure();
     }
 }

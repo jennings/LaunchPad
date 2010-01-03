@@ -29,7 +29,7 @@ namespace TermConfig.Configurators
         }
 
 
-        public void Configure( OleDbConnection databaseConnection )
+        public void Configure()
         {
             CreateCShare();
 
