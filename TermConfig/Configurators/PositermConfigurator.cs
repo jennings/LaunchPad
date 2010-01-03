@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Diagnostics;
-using System.Data.OleDb;
+using System.IO;
 
 namespace TermConfig.Configurators
 {
