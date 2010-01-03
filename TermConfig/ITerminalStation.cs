@@ -16,12 +16,4 @@ namespace TermConfig
         void Validate();
         void ValidateInitial();
     }
-
-    enum PointOfSale
-    {
-        Positouch,
-        Aloha
-    }
-
-
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Data.OleDb;
 using System.Net;
+using System.IO;
 
 namespace TermConfig
 {
@@ -26,6 +27,20 @@ namespace TermConfig
         private OleDbConnection Db;
 
         #region Settings
+
+        public bool Integrous { get; private set; }
+
+        private bool @_PointOfSale_Changed = false;
+        private PointOfSale @_PointOfSale;
+        public PointOfSale @PointOfSale
+        {
+            get { return _PointOfSale; }
+            set
+            {
+                _PointOfSale_Changed = true;
+                _PointOfSale = value;
+            }
+        }
 
         private bool _ComputerName_Changed = false;
         private string _ComputerName;
@@ -155,6 +170,11 @@ namespace TermConfig
 
         private void ClearSettings()
         {
+            Integrous = false;
+
+            _PointOfSale = PointOfSale.None;
+            _PointOfSale_Changed = false;
+
             _ComputerName = null;
             _ComputerName_Changed = false;
             _IPAddress = null;
@@ -177,9 +197,55 @@ namespace TermConfig
             _LaunchIbercfg_Changed = false;
         }
 
+        private void CheckIntegrity()
+        {
+            Integrous = false;
+
+            if ( _ComputerName == null )
+                return;
+            if ( _IPAddress == null )
+                return;
+            if ( _LaunchVNC == null )
+                return;
+
+            if ( PointOfSale == PointOfSale.Positouch )
+            {
+                if ( _PosdriverIPAddress == null )
+                    return;
+                if ( _BackofficeIPAddress == null )
+                    return;
+                // Might be a 1 terminal system, so redundant terminal null is OK.
+                if ( _LaunchPosiw == null )
+                    return;
+                if ( _LaunchPositerm == null )
+                    return;
+            }
+            else if ( PointOfSale == PointOfSale.Aloha )
+            {
+                if ( _LaunchIbercfg == null )
+                    return;
+            }
+
+            Integrous = true;
+        }
+
         public void ReadSettings()
         {
             ClearSettings();
+
+            if ( File.Exists( @"POSITOUCH" ) )
+            {
+                _PointOfSale = PointOfSale.Positouch;
+            }
+            else if ( File.Exists( @"ALOHA" ) )
+            {
+                _PointOfSale = PointOfSale.Aloha;
+            }
+            else
+            {
+                _PointOfSale = PointOfSale.None;
+            }
+            _PointOfSale_Changed = false;
 
             Db.Open();
 
@@ -236,6 +302,8 @@ namespace TermConfig
             }
 
             Db.Close();
+
+            CheckIntegrity();
         }
 
         public void Commit()
@@ -282,5 +350,12 @@ namespace TermConfig
 
             ReadSettings();
         }
+    }
+
+    enum PointOfSale
+    {
+        Positouch,
+        Aloha,
+        None
     }
 }
