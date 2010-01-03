@@ -159,18 +159,42 @@ namespace TermConfig
 
         private SettingsReader()
         {
-            if ( !File.Exists( Filename ) )
-            {
-                var cat = new Catalog();
-                cat.Create( @"Provider=Microsoft.Jet.OLEDB.4.0; Data Source=" + Filename + @";" );
-            }
-
+            var cat = new Catalog();
             var csb = new OleDbConnectionStringBuilder()
             {
                 DataSource = Filename,
                 Provider = @"Microsoft.Jet.OLEDB.4.0"
             };
+
+            if ( !File.Exists( Filename ) )
+            {
+                cat.Create( csb.ConnectionString );
+            }
+
             Db = new OleDbConnection( csb.ConnectionString );
+
+            Db.Open();
+
+            try
+            {
+                var selectquery = @"SELECT key, value FROM tblSettings;";
+                using ( var cmd = new OleDbCommand( selectquery, Db ) )
+                {
+                    cmd.ExecuteReader();
+                }
+            }
+            catch ( OleDbException )
+            {
+                // tblSettings does not exist
+
+                var createquery = @"CREATE TABLE tblSettings ([key] CHAR NOT NULL, [value] CHAR NOT NULL);";
+                using ( var cmd = new OleDbCommand( createquery, Db ) )
+                {
+                    cmd.ExecuteNonQuery();
+                }
+            }
+
+            Db.Close();
 
             ReadSettings();
         }
@@ -333,14 +357,8 @@ namespace TermConfig
 
             var txn = Db.BeginTransaction();
 
-            var dropquery = @"DROP TABLE IF EXISTS tblSettings;";
-            using ( var cmd = new OleDbCommand( dropquery, Db ) )
-            {
-                cmd.ExecuteNonQuery();
-            }
-
-            var createquery = @"CREATE TABLE tblSettings ( key text not null, value text not null );";
-            using ( var cmd = new OleDbCommand( createquery, Db ) )
+            var deletequery = @"DELETE FROM tblSettings;";
+            using ( var cmd = new OleDbCommand( deletequery, Db ) )
             {
                 cmd.ExecuteNonQuery();
             }

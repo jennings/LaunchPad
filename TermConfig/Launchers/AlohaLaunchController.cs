@@ -8,7 +8,6 @@ namespace TermConfig.Launchers
         public bool LaunchesVNC { get; private set; }
 
         private List<ILauncher> Launchers = new List<ILauncher>();
-        private const string ConfigDatabase = @"TermConfig.mdb";
 
         public AlohaLaunchController()
         {
