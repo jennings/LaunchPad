@@ -14,7 +14,7 @@ namespace TermConfig
 
             LaunchController = new AlohaLaunchController();
 
-            AlohaFOHLabel.Text = ( (AlohaLaunchController)LaunchController ).LaunchesTerminal ? "Yes" : "No";
+            AlohaFOHLabel.Text = ( (AlohaLaunchController)LaunchController ).LaunchesIbercfg ? "Yes" : "No";
 
             IPAddressLabel.Text = GetIPAddress();
 

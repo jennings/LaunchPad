@@ -5,7 +5,7 @@ using System.Diagnostics;
 
 namespace TermConfig.Launchers
 {
-    class AlohaTerminalLauncher : ILauncher
+    class IbercfgLauncher : ILauncher
     {
         public void Launch()
         {

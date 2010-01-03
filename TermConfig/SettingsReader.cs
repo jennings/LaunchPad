@@ -4,6 +4,7 @@ using System.Text;
 using System.Data.OleDb;
 using System.Net;
 using System.IO;
+using ADOX;
 
 namespace TermConfig
 {
@@ -158,6 +159,12 @@ namespace TermConfig
 
         private SettingsReader()
         {
+            if ( !File.Exists( Filename ) )
+            {
+                var cat = new Catalog();
+                cat.Create( @"Provider=Microsoft.Jet.OLEDB.4.0; Data Source=" + Filename + @";" );
+            }
+
             var csb = new OleDbConnectionStringBuilder()
             {
                 DataSource = Filename,
@@ -326,8 +333,14 @@ namespace TermConfig
 
             var txn = Db.BeginTransaction();
 
-            var dropquery = @"DELETE FROM tblSettings;";
+            var dropquery = @"DROP TABLE IF EXISTS tblSettings;";
             using ( var cmd = new OleDbCommand( dropquery, Db ) )
+            {
+                cmd.ExecuteNonQuery();
+            }
+
+            var createquery = @"CREATE TABLE tblSettings ( key text not null, value text not null );";
+            using ( var cmd = new OleDbCommand( createquery, Db ) )
             {
                 cmd.ExecuteNonQuery();
             }
