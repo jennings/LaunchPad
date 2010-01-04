@@ -106,14 +106,10 @@ namespace TermConfig
             // Disable reboot button
             kbd_SaveAndReboot.Enabled = false;
 
-            var @ipAddress = IPAddress.Parse(IPAddress_AddressTextBox.Text);
-            var @posdriverIpAddress = IPAddress.Parse( PosdriverIP_IPAddress.Text );
-            var @backofficeIpAddress = IPAddress.Parse( BackofficeIP_IPAddress.Text );
-
             var settings = new PositouchTerminalStation();
-            settings.IPAddress = ipAddress;
-            settings.PosdriverIPAddress = posdriverIpAddress;
-            settings.BackofficeIPAddress = backofficeIpAddress;
+            settings.IPAddress = IPAddress.Parse(IPAddress_AddressTextBox.Text);
+            settings.PosdriverIPAddress = IPAddress.Parse( PosdriverIP_IPAddress.Text );
+            settings.BackofficeIPAddress = IPAddress.Parse( BackofficeIP_IPAddress.Text );
             settings.WindowsPassword = CustomerPassword_CustomerPasswordText.Text;
 
             var config = new PositouchInitialConfiguratorController( settings );

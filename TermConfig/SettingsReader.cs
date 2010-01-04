@@ -346,7 +346,12 @@ namespace TermConfig
 
             settingsToChange.Add( "POSDRIVER_IPADDRESS", _PosdriverIPAddress.ToString() );
             settingsToChange.Add( "BACKOFFICE_IPADDRESS", _BackofficeIPAddress.ToString() );
-            settingsToChange.Add( "REDUNDANT_IPADDRESS", _RedundantIPAddress.ToString() );
+            try
+            {
+                settingsToChange.Add( "REDUNDANT_IPADDRESS", _RedundantIPAddress.ToString() );
+            }
+            catch ( NullReferenceException )
+            { }
 
             settingsToChange.Add( "LAUNCH_POSIW", _LaunchPosiw ? "YES" : "NO" );
             settingsToChange.Add( "LAUNCH_POSITERM", _LaunchPositerm ? "YES" : "NO" );
@@ -358,21 +363,21 @@ namespace TermConfig
             var txn = Db.BeginTransaction();
 
             var deletequery = @"DELETE FROM tblSettings;";
-            using ( var cmd = new OleDbCommand( deletequery, Db ) )
+            using ( var cmd = new OleDbCommand( deletequery, Db, txn ) )
             {
                 cmd.ExecuteNonQuery();
             }
 
-            var query = @"INSERT INTO tblSettings ( key, value ) VALUES ( ?, ? );";
-            using ( var cmd = new OleDbCommand( query, Db ) )
+            var query = @"INSERT INTO tblSettings ( [key], [value] ) VALUES ( ?, ? );";
+            using ( var cmd = new OleDbCommand( query, Db, txn ) )
             {
                 foreach ( var kvp in settingsToChange )
                 {
                     cmd.Parameters.Clear();
                     cmd.Parameters.Add( new OleDbParameter( "@Key", kvp.Key ) );
                     cmd.Parameters.Add( new OleDbParameter( "@Value", kvp.Value ) );
+                    cmd.ExecuteNonQuery();
                 }
-                cmd.ExecuteNonQuery();
             }
 
             txn.Commit();

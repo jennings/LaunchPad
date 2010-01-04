@@ -34,7 +34,7 @@ namespace TermConfig
             {
                 if ( DeviceNumber == null )
                 {
-                    throw new Exception( @"DeviceNumber is not set." );
+                    return "TERMxxx";
                 }
                 else
                 {

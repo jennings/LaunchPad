@@ -79,6 +79,14 @@ namespace TermConfig.Configurators
             var settings = SettingsReader.Instance;
             settings.ComputerName = StationSettings.ComputerName;
             settings.IPAddress = StationSettings.IPAddress;
+
+            if ( settings.PointOfSale == PointOfSale.Positouch )
+            {
+                var source = (PositouchTerminalStation)StationSettings;
+                settings.PosdriverIPAddress = source.PosdriverIPAddress;
+                settings.BackofficeIPAddress = source.BackofficeIPAddress;
+                settings.RedundantIPAddress = source.RedundantIPAddress;
+            }
         }
     }
 }
