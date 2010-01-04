@@ -177,7 +177,7 @@ namespace TermConfig
 
             try
             {
-                var selectquery = @"SELECT key, value FROM tblSettings;";
+                var selectquery = @"SELECT [key], [value] FROM tblSettings;";
                 using ( var cmd = new OleDbCommand( selectquery, Db ) )
                 {
                     cmd.ExecuteReader();
@@ -187,7 +187,7 @@ namespace TermConfig
             {
                 // tblSettings does not exist
 
-                var createquery = @"CREATE TABLE tblSettings ([key] CHAR NOT NULL, [value] CHAR NOT NULL);";
+                var createquery = @"CREATE TABLE tblSettings ([key] VARCHAR NOT NULL, [value] VARCHAR NOT NULL);";
                 using ( var cmd = new OleDbCommand( createquery, Db ) )
                 {
                     cmd.ExecuteNonQuery();
@@ -280,14 +280,15 @@ namespace TermConfig
 
             Db.Open();
 
-            var query = @"SELECT key, value FROM tblSettings;";
+            var query = @"SELECT [key], [value] FROM tblSettings;";
             using ( var cmd = new OleDbCommand( query, Db ) )
             {
                 using ( var reader = cmd.ExecuteReader() )
                 {
                     while ( reader.Read() )
                     {
-                        switch ( reader["key"].ToString().ToUpper() )
+                        var key = reader["key"].ToString().ToUpper();
+                        switch ( key )
                         {
                             case "COMPUTER_NAME":
                                 _ComputerName = reader["value"].ToString();
