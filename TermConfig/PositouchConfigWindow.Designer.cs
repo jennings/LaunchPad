@@ -28,8 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.Group_IPAddress = new System.Windows.Forms.GroupBox();
-            this.IPAddress_AddressTextBox = new System.Windows.Forms.TextBox();
             this.KeyboardPanel = new System.Windows.Forms.Panel();
             this.kbd_Hyphen = new System.Windows.Forms.Button();
             this.kbd_Shift = new System.Windows.Forms.Button();
@@ -79,44 +77,16 @@
             this.TerminalType_Posdriver = new System.Windows.Forms.RadioButton();
             this.TerminalType_Redundant = new System.Windows.Forms.RadioButton();
             this.TerminalType_Normal = new System.Windows.Forms.RadioButton();
-            this.Group_PosdriverIP = new System.Windows.Forms.GroupBox();
-            this.PosdriverIP_IPAddress = new System.Windows.Forms.TextBox();
             this.Group_DeviceNumber = new System.Windows.Forms.GroupBox();
             this.DeviceNumber_DeviceNumber = new System.Windows.Forms.TextBox();
             this.LogList = new System.Windows.Forms.ListBox();
-            this.Group_AccpacID = new System.Windows.Forms.GroupBox();
-            this.AccpacID_AccpacID = new System.Windows.Forms.TextBox();
-            this.Group_BackofficeIP = new System.Windows.Forms.GroupBox();
-            this.BackofficeIP_IPAddress = new System.Windows.Forms.TextBox();
             this.Group_PosdriverBackofficePassword = new System.Windows.Forms.GroupBox();
             this.PosdriverBackofficePassword_Password = new System.Windows.Forms.TextBox();
-            this.Group_IPAddress.SuspendLayout();
             this.KeyboardPanel.SuspendLayout();
             this.Group_TerminalType.SuspendLayout();
-            this.Group_PosdriverIP.SuspendLayout();
             this.Group_DeviceNumber.SuspendLayout();
-            this.Group_AccpacID.SuspendLayout();
-            this.Group_BackofficeIP.SuspendLayout();
             this.Group_PosdriverBackofficePassword.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // Group_IPAddress
-            // 
-            this.Group_IPAddress.Controls.Add( this.IPAddress_AddressTextBox );
-            this.Group_IPAddress.Location = new System.Drawing.Point( 15, 13 );
-            this.Group_IPAddress.Name = "Group_IPAddress";
-            this.Group_IPAddress.Size = new System.Drawing.Size( 242, 55 );
-            this.Group_IPAddress.TabIndex = 0;
-            this.Group_IPAddress.TabStop = false;
-            this.Group_IPAddress.Text = "IP Address";
-            // 
-            // IPAddress_AddressTextBox
-            // 
-            this.IPAddress_AddressTextBox.Font = new System.Drawing.Font( "Courier New", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ( (byte)( 0 ) ) );
-            this.IPAddress_AddressTextBox.Location = new System.Drawing.Point( 6, 19 );
-            this.IPAddress_AddressTextBox.Name = "IPAddress_AddressTextBox";
-            this.IPAddress_AddressTextBox.Size = new System.Drawing.Size( 230, 26 );
-            this.IPAddress_AddressTextBox.TabIndex = 0;
             // 
             // KeyboardPanel
             // 
@@ -729,28 +699,10 @@
             this.TerminalType_Normal.UseVisualStyleBackColor = true;
             this.TerminalType_Normal.CheckedChanged += new System.EventHandler( this.TerminalType_CheckedChanged );
             // 
-            // Group_PosdriverIP
-            // 
-            this.Group_PosdriverIP.Controls.Add( this.PosdriverIP_IPAddress );
-            this.Group_PosdriverIP.Location = new System.Drawing.Point( 15, 74 );
-            this.Group_PosdriverIP.Name = "Group_PosdriverIP";
-            this.Group_PosdriverIP.Size = new System.Drawing.Size( 242, 56 );
-            this.Group_PosdriverIP.TabIndex = 1;
-            this.Group_PosdriverIP.TabStop = false;
-            this.Group_PosdriverIP.Text = "Posdriver IP Address";
-            // 
-            // PosdriverIP_IPAddress
-            // 
-            this.PosdriverIP_IPAddress.Font = new System.Drawing.Font( "Courier New", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ( (byte)( 0 ) ) );
-            this.PosdriverIP_IPAddress.Location = new System.Drawing.Point( 6, 19 );
-            this.PosdriverIP_IPAddress.Name = "PosdriverIP_IPAddress";
-            this.PosdriverIP_IPAddress.Size = new System.Drawing.Size( 230, 26 );
-            this.PosdriverIP_IPAddress.TabIndex = 0;
-            // 
             // Group_DeviceNumber
             // 
             this.Group_DeviceNumber.Controls.Add( this.DeviceNumber_DeviceNumber );
-            this.Group_DeviceNumber.Location = new System.Drawing.Point( 15, 260 );
+            this.Group_DeviceNumber.Location = new System.Drawing.Point( 12, 13 );
             this.Group_DeviceNumber.Name = "Group_DeviceNumber";
             this.Group_DeviceNumber.Size = new System.Drawing.Size( 242, 56 );
             this.Group_DeviceNumber.TabIndex = 4;
@@ -772,42 +724,6 @@
             this.LogList.Name = "LogList";
             this.LogList.Size = new System.Drawing.Size( 245, 355 );
             this.LogList.TabIndex = 0;
-            // 
-            // Group_AccpacID
-            // 
-            this.Group_AccpacID.Controls.Add( this.AccpacID_AccpacID );
-            this.Group_AccpacID.Location = new System.Drawing.Point( 15, 198 );
-            this.Group_AccpacID.Name = "Group_AccpacID";
-            this.Group_AccpacID.Size = new System.Drawing.Size( 242, 56 );
-            this.Group_AccpacID.TabIndex = 3;
-            this.Group_AccpacID.TabStop = false;
-            this.Group_AccpacID.Text = "POS Account Password";
-            // 
-            // AccpacID_AccpacID
-            // 
-            this.AccpacID_AccpacID.Font = new System.Drawing.Font( "Courier New", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ( (byte)( 0 ) ) );
-            this.AccpacID_AccpacID.Location = new System.Drawing.Point( 6, 19 );
-            this.AccpacID_AccpacID.Name = "AccpacID_AccpacID";
-            this.AccpacID_AccpacID.Size = new System.Drawing.Size( 230, 26 );
-            this.AccpacID_AccpacID.TabIndex = 0;
-            // 
-            // Group_BackofficeIP
-            // 
-            this.Group_BackofficeIP.Controls.Add( this.BackofficeIP_IPAddress );
-            this.Group_BackofficeIP.Location = new System.Drawing.Point( 15, 136 );
-            this.Group_BackofficeIP.Name = "Group_BackofficeIP";
-            this.Group_BackofficeIP.Size = new System.Drawing.Size( 242, 56 );
-            this.Group_BackofficeIP.TabIndex = 2;
-            this.Group_BackofficeIP.TabStop = false;
-            this.Group_BackofficeIP.Text = "Backoffice IP Address";
-            // 
-            // BackofficeIP_IPAddress
-            // 
-            this.BackofficeIP_IPAddress.Font = new System.Drawing.Font( "Courier New", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ( (byte)( 0 ) ) );
-            this.BackofficeIP_IPAddress.Location = new System.Drawing.Point( 6, 19 );
-            this.BackofficeIP_IPAddress.Name = "BackofficeIP_IPAddress";
-            this.BackofficeIP_IPAddress.Size = new System.Drawing.Size( 230, 26 );
-            this.BackofficeIP_IPAddress.TabIndex = 0;
             // 
             // Group_PosdriverBackofficePassword
             // 
@@ -834,31 +750,19 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size( 764, 522 );
             this.Controls.Add( this.Group_PosdriverBackofficePassword );
-            this.Controls.Add( this.Group_BackofficeIP );
-            this.Controls.Add( this.Group_AccpacID );
             this.Controls.Add( this.LogList );
             this.Controls.Add( this.Group_DeviceNumber );
-            this.Controls.Add( this.Group_PosdriverIP );
             this.Controls.Add( this.Group_TerminalType );
             this.Controls.Add( this.KeyboardPanel );
-            this.Controls.Add( this.Group_IPAddress );
             this.MinimizeBox = false;
             this.Name = "PositouchConfigWindow";
             this.Text = "TermConfig - Custom Business Solutions";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.Group_IPAddress.ResumeLayout( false );
-            this.Group_IPAddress.PerformLayout();
             this.KeyboardPanel.ResumeLayout( false );
             this.Group_TerminalType.ResumeLayout( false );
             this.Group_TerminalType.PerformLayout();
-            this.Group_PosdriverIP.ResumeLayout( false );
-            this.Group_PosdriverIP.PerformLayout();
             this.Group_DeviceNumber.ResumeLayout( false );
             this.Group_DeviceNumber.PerformLayout();
-            this.Group_AccpacID.ResumeLayout( false );
-            this.Group_AccpacID.PerformLayout();
-            this.Group_BackofficeIP.ResumeLayout( false );
-            this.Group_BackofficeIP.PerformLayout();
             this.Group_PosdriverBackofficePassword.ResumeLayout( false );
             this.Group_PosdriverBackofficePassword.PerformLayout();
             this.ResumeLayout( false );
@@ -867,7 +771,6 @@
 
         #endregion
 
-        private System.Windows.Forms.GroupBox Group_IPAddress;
         private System.Windows.Forms.Panel KeyboardPanel;
         private System.Windows.Forms.Button kbd_K;
         private System.Windows.Forms.Button kbd_Period;
@@ -909,10 +812,7 @@
         private System.Windows.Forms.Button kbd_L;
         private System.Windows.Forms.Button kbd_P;
         private System.Windows.Forms.Button kbd_O;
-        private System.Windows.Forms.TextBox IPAddress_AddressTextBox;
         private System.Windows.Forms.GroupBox Group_TerminalType;
-        private System.Windows.Forms.GroupBox Group_PosdriverIP;
-        private System.Windows.Forms.TextBox PosdriverIP_IPAddress;
         private System.Windows.Forms.RadioButton TerminalType_Redundant;
         private System.Windows.Forms.RadioButton TerminalType_Normal;
         private System.Windows.Forms.GroupBox Group_DeviceNumber;
@@ -921,11 +821,7 @@
         private System.Windows.Forms.ListBox LogList;
         private System.Windows.Forms.RadioButton TerminalType_Posdriver;
         private System.Windows.Forms.Button kbd_Shift;
-        private System.Windows.Forms.GroupBox Group_AccpacID;
-        private System.Windows.Forms.TextBox AccpacID_AccpacID;
         private System.Windows.Forms.RadioButton TerminalType_Backoffice;
-        private System.Windows.Forms.GroupBox Group_BackofficeIP;
-        private System.Windows.Forms.TextBox BackofficeIP_IPAddress;
         private System.Windows.Forms.Button kbd_Hyphen;
         private System.Windows.Forms.GroupBox Group_PosdriverBackofficePassword;
         private System.Windows.Forms.TextBox PosdriverBackofficePassword_Password;

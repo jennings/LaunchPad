@@ -23,10 +23,6 @@ namespace TermConfig
 
             ControlOrder = new List<Control>()
             {
-                IPAddress_AddressTextBox,
-                PosdriverIP_IPAddress,
-                BackofficeIP_IPAddress,
-                AccpacID_AccpacID,
                 DeviceNumber_DeviceNumber
             };
 
@@ -88,10 +84,6 @@ namespace TermConfig
         private void kbd_StartOver_Click( object sender, EventArgs e )
         {
             // Clear all fields
-            IPAddress_AddressTextBox.Text = "";
-            PosdriverIP_IPAddress.Text = "";
-            BackofficeIP_IPAddress.Text = "";
-            AccpacID_AccpacID.Text = "";
             DeviceNumber_DeviceNumber.Text = "";
             TerminalType_Normal.Select();
             kbd_SaveAndReboot.Visible = false;
@@ -140,17 +132,6 @@ namespace TermConfig
 
             // Device number
             settings.DeviceNumber = Convert.ToInt32( DeviceNumber_DeviceNumber.Text );
-
-            // IP Address
-            settings.IPAddress = IPAddress.Parse( IPAddress_AddressTextBox.Text );
-            settings.PosdriverIPAddress = IPAddress.Parse( PosdriverIP_IPAddress.Text );
-            // settings.RedundantIPAddress = IPAddress.Parse( RedundantTerminal_IPAddress.Text );
-            settings.BackofficeIPAddress = IPAddress.Parse( BackofficeIP_IPAddress.Text );
-
-            // Password
-            settings.WindowsPassword = AccpacID_AccpacID.Text.ToUpper();
-            if ( settings.WindowsPassword.Length == 0 )
-                throw new Exception( @"Accpac ID cannot be blank." );
 
             settings.Validate();
 
