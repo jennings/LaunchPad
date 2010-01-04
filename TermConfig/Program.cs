@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using System.IO;
 using System.Data;
+using TermConfig.Forms;
 
 namespace TermConfig
 {

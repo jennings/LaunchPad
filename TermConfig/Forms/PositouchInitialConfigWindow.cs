@@ -8,7 +8,7 @@ using System.Windows.Forms;
 using System.Net;
 using TermConfig.Configurators;
 
-namespace TermConfig
+namespace TermConfig.Forms
 {
     public partial class PositouchInitialConfigWindow : Form
     {

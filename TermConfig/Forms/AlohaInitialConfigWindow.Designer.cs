@@ -1,4 +1,4 @@
-﻿namespace TermConfig
+﻿namespace TermConfig.Forms
 {
     partial class AlohaInitialConfigWindow
     {

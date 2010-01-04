@@ -59,10 +59,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AlohaInitialConfigWindow.cs">
+    <Compile Include="Forms\AlohaInitialConfigWindow.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AlohaInitialConfigWindow.Designer.cs">
+    <Compile Include="Forms\AlohaInitialConfigWindow.Designer.cs">
       <DependentUpon>AlohaInitialConfigWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="AlohaTerminalStation.cs" />
@@ -75,16 +75,16 @@
     <Compile Include="Configurators\PositouchConfiguratorController.cs" />
     <Compile Include="Configurators\Rebooter.cs" />
     <Compile Include="Configurators\VNCConfigurator.cs" />
-    <Compile Include="AlohaStartupWindow.cs">
+    <Compile Include="Forms\AlohaStartupWindow.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AlohaStartupWindow.Designer.cs">
+    <Compile Include="Forms\AlohaStartupWindow.Designer.cs">
       <DependentUpon>AlohaStartupWindow.cs</DependentUpon>
     </Compile>
-    <Compile Include="PositouchInitialConfigWindow.cs">
+    <Compile Include="Forms\PositouchInitialConfigWindow.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PositouchInitialConfigWindow.Designer.cs">
+    <Compile Include="Forms\PositouchInitialConfigWindow.Designer.cs">
       <DependentUpon>PositouchInitialConfigWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="Launchers\AlohaLaunchController.cs" />
@@ -95,33 +95,33 @@
     <Compile Include="Launchers\PositouchLaunchController.cs" />
     <Compile Include="Launchers\PosiwLauncher.cs" />
     <Compile Include="Launchers\VNCLauncher.cs" />
-    <Compile Include="PositouchStartupWindow.cs">
+    <Compile Include="Forms\PositouchStartupWindow.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PositouchStartupWindow.Designer.cs">
+    <Compile Include="Forms\PositouchStartupWindow.Designer.cs">
       <DependentUpon>PositouchStartupWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="Configurators\PosiwConfigurator.cs" />
     <Compile Include="Configurators\PositermConfigurator.cs" />
-    <Compile Include="PositouchConfigWindow.cs">
+    <Compile Include="Forms\PositouchConfigWindow.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PositouchConfigWindow.Designer.cs">
+    <Compile Include="Forms\PositouchConfigWindow.Designer.cs">
       <DependentUpon>PositouchConfigWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="PositouchTerminalStation.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="AlohaStartupWindow.resx">
+    <EmbeddedResource Include="Forms\AlohaStartupWindow.resx">
       <DependentUpon>AlohaStartupWindow.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PositouchInitialConfigWindow.resx">
+    <EmbeddedResource Include="Forms\PositouchInitialConfigWindow.resx">
       <DependentUpon>PositouchInitialConfigWindow.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PositouchStartupWindow.resx">
+    <EmbeddedResource Include="Forms\PositouchStartupWindow.resx">
       <DependentUpon>PositouchStartupWindow.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PositouchConfigWindow.resx">
+    <EmbeddedResource Include="Forms\PositouchConfigWindow.resx">
       <DependentUpon>PositouchConfigWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -162,7 +162,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="SettingsReader.cs" />
-    <Compile Include="StartupWindow.cs">
+    <Compile Include="Forms\StartupWindow.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ITerminalStation.cs" />

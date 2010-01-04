@@ -5,7 +5,7 @@ using System.Windows.Forms;
 using TermConfig.Launchers;
 using System.Management;
 
-namespace TermConfig
+namespace TermConfig.Forms
 {
     public class StartupWindow : Form
     {

@@ -4,7 +4,7 @@ using TermConfig.Launchers;
 using System.IO;
 using System.Diagnostics;
 
-namespace TermConfig
+namespace TermConfig.Forms
 {
     public partial class AlohaStartupWindow : StartupWindow
     {

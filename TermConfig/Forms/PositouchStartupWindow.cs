@@ -5,7 +5,7 @@ using System.Windows.Forms;
 using TermConfig.Launchers;
 using System.Diagnostics;
 
-namespace TermConfig
+namespace TermConfig.Forms
 {
     public partial class PositouchStartupWindow : StartupWindow
     {

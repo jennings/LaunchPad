@@ -9,7 +9,7 @@ using System.Net;
 using TermConfig.Configurators;
 using System.Diagnostics;
 
-namespace TermConfig
+namespace TermConfig.Forms
 {
     public partial class PositouchConfigWindow : Form
     {
