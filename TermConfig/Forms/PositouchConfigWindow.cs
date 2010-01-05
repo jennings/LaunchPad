@@ -29,11 +29,6 @@ namespace TermConfig.Forms
             ActivateNextControl();
         }
 
-        private void WriteLog( string text )
-        {
-            LogList.Items.Add( text );
-        }
-
         private void ActivateNextControl()
         {
             if ( CurrentControl == null )
@@ -87,7 +82,6 @@ namespace TermConfig.Forms
             DeviceNumber_DeviceNumber.Text = "";
             TerminalType_Normal.Select();
             kbd_SaveAndReboot.Visible = false;
-            LogList.Items.Clear();
 
             foreach ( var control in ControlOrder )
             {
@@ -164,6 +158,26 @@ namespace TermConfig.Forms
                 Group_PosdriverBackofficePassword.Visible = false;
                 DeviceNumber_DeviceNumber.Enabled = true;
                 DeviceNumber_DeviceNumber.Text = String.Empty;
+            }
+        }
+
+        private void RefreshTerminalsButton_Click( object sender, EventArgs e )
+        {
+            var terminals = TerminalsReader.Instance;
+            terminals.RefreshTerminalList();
+
+            foreach ( var terminal in terminals.Terminals )
+            {
+                ListViewItem item;
+                try
+                {
+                    item = new ListViewItem( new string[] { terminal.DeviceNumber.ToString(), terminal.Name, terminal.IPAddress.ToString() } );
+                }
+                catch ( NullReferenceException )
+                {
+                    item = new ListViewItem( new string[] { terminal.DeviceNumber.ToString(), terminal.Name, "" } );
+                }
+                TerminalsListView.Items.Add( item );
             }
         }
     }

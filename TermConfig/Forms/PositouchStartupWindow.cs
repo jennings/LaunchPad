@@ -14,13 +14,13 @@ namespace TermConfig.Forms
             InitializeComponent();
 
             LaunchController = new PositouchLaunchController();
+            var settings = SettingsReader.Instance;
 
-            PositermLabel.Text = ( (PositouchLaunchController)LaunchController ).LaunchesPositerm ? "Yes" : "No";
-            VNCServerLabel.Text = ( (PositouchLaunchController)LaunchController ).LaunchesVNC ? "Yes" : "No";
+            PositermLabel.Text = settings.LaunchPositerm ? "Yes" : "No";
+            PosiwLabel.Text = settings.LaunchPosiw ? "Yes" : "No";
+            VNCServerLabel.Text = settings.LaunchVNC ? "Yes" : "No";
 
             IPAddressLabel.Text = GetIPAddress();
-
-            GetPosiwSetting();
 
             DelayTimer = new Timer();
             DelayTimer.Interval = 1000;
@@ -32,19 +32,6 @@ namespace TermConfig.Forms
         {
             base.CountdownTick( sender, e );
             CountdownTimerLabel.Text = SecondsBeforeClose.ToString() + "...";
-        }
-
-        private void GetPosiwSetting()
-        {
-            if ( File.Exists( @"C:\SC\Posiw.ini" ) )
-            {
-                var rx = new Regex( @"POSIW=(\d+)", RegexOptions.IgnoreCase );
-                var rxmatch = rx.Match( File.ReadAllText( @"C:\SC\Posiw.ini" ) );
-                if ( rxmatch.Captures.Count > 0 )
-                {
-                    PosiwLabel.Text = rxmatch.Result( "$1" );
-                }
-            }
         }
 
         private void RCButton_Click( object sender, EventArgs e )
