@@ -38,7 +38,7 @@ namespace TermConfig.Forms
         {
             DelayTimer.Stop();
             this.Hide();
-            var config = new PositouchConfigWindow();
+            var config = new PositouchTerminalSelectionWindow();
             config.ShowDialog();
             this.Show();
         }

@@ -1,6 +1,6 @@
 ﻿namespace TermConfig.Forms
 {
-    partial class PositouchConfigWindow
+    partial class PositouchTerminalSelectionWindow
     {
         /// <summary>
         /// Required designer variable.

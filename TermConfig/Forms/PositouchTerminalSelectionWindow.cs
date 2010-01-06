@@ -11,13 +11,13 @@ using System.Diagnostics;
 
 namespace TermConfig.Forms
 {
-    public partial class PositouchConfigWindow : Form
+    public partial class PositouchTerminalSelectionWindow : Form
     {
         private Control CurrentControl;
 
         private List<Control> ControlOrder;
 
-        public PositouchConfigWindow()
+        public PositouchTerminalSelectionWindow()
         {
             InitializeComponent();
 
