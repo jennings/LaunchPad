@@ -163,6 +163,8 @@ namespace TermConfig.Forms
 
         private void RefreshTerminalsButton_Click( object sender, EventArgs e )
         {
+            TerminalsListView.Items.Clear();
+
             var terminals = TerminalsReader.Instance;
             terminals.RefreshTerminalList();
 

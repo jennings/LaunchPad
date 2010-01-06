@@ -78,6 +78,16 @@ namespace TermConfig
             ReadSettings();
         }
 
+        private void ClearTerminalCache()
+        {
+            Db.Open();
+            var query = @"DELETE FROM tblTerminals;";
+            using ( var cmd = new OleDbCommand( query, Db ) )
+            {
+                cmd.ExecuteNonQuery();
+            }
+            Db.Close();
+        }
 
         private void ClearSettings()
         {
@@ -131,6 +141,8 @@ namespace TermConfig
 
         public void RefreshTerminalList()
         {
+            ClearTerminalCache();
+
             CopySpcwinAndNametermToTemp();
 
             // Add Nameterm terminals to tblTerminals
@@ -216,27 +228,37 @@ namespace TermConfig
                 Environment.GetFolderPath( Environment.SpecialFolder.System ),
                 "net.exe" );
 
-            var posdriverCFolder = String.Format(
-                @"\\{0}\C",
-                SettingsReader.Instance.PosdriverIPAddress.ToString() );
-
-            var info = new ProcessStartInfo();
-            info.Arguments = @"use L: " + posdriverCFolder;
-            info.FileName = netExecutable;
-
             if ( !File.Exists( netExecutable ) )
             {
                 throw new Exception( @"net.exe does not exist in system/system32 folder." );
             }
 
-            var netProcess = Process.Start( info );
+            var info = new ProcessStartInfo();
+            info.Arguments = @"use L: /d";
+            info.FileName = netExecutable;
 
-            if ( netProcess.WaitForExit( 15000 ) )
+            var netDeleteProcess = Process.Start( info );
+
+            if ( netDeleteProcess.WaitForExit( 15000 ) )
             {
             }
             else
             {
-                throw new Exception( @"NET USE did not exit within 15 seconds." );
+                throw new Exception( @"NET USE L: /D did not exit within 15 seconds." );
+            }
+
+            var posdriverCFolder = String.Format(
+                @"\\{0}\C",
+                SettingsReader.Instance.PosdriverIPAddress.ToString() );
+            info.Arguments = @"use L: " + posdriverCFolder;
+            var netUseProcess = Process.Start( info );
+
+            if ( netUseProcess.WaitForExit( 15000 ) )
+            {
+            }
+            else
+            {
+                throw new Exception( @"NET USE L: "+ posdriverCFolder +@" did not exit within 15 seconds." );
             }
         }
     }
