@@ -140,7 +140,8 @@ namespace TermConfig.Forms
             // Device number
             settings.DeviceNumber = Convert.ToInt32( DeviceNumber_DeviceNumber.Text );
 
-            settings.Validate();
+            // IP Address
+            settings.IPAddress = IPAddress.Parse( IPAddress_AddressTextBox.Text );
 
             var configuratorController = new PositouchConfiguratorController( settings );
             configuratorController.Configure();

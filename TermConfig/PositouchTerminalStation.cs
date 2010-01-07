@@ -57,13 +57,13 @@ namespace TermConfig
                 errors += @"PosdriverIPAddress is not set. ";
             if ( BackofficeIPAddress == null )
                 errors += @"BackofficeIPAddress is not set. ";
-            
+
             if ( !errors.Equals( string.Empty ) )
             {
                 throw new Exception( errors );
             }
         }
-        
+
         public void Validate()
         {
             var errors = String.Empty;
@@ -73,14 +73,8 @@ namespace TermConfig
                 errors += @"DeviceNumber is not set. ";
             if ( DeviceNumber < 1 || 99 < DeviceNumber )
                 errors += @"DeviceNumber must be between 1 and 99.";
-            if ( WindowsPassword == null )
-                errors += @"Password is not set. ";
             if ( @IPAddress == null )
                 errors += @"IPAddress is not set. ";
-            if ( PosdriverIPAddress == null )
-                errors += @"PosdriverIPAddress is not set. ";
-            // if ( RedundantIPAddress == null ) errors += @"RedundantIPAddress is not set. ";
-            // if ( BackofficeIPAddress == null ) errors += @"BackofficeIPAddress is not set. ";
 
             if ( !errors.Equals( string.Empty ) )
             {

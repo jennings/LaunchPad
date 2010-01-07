@@ -16,7 +16,6 @@ namespace TermConfig.Configurators
         private VNCConfigurator() { }
         public VNCConfigurator( ITerminalStation settings )
         {
-            settings.Validate();
             StationSettings = settings;
         }
 

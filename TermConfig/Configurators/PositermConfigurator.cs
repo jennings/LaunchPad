@@ -23,7 +23,6 @@ namespace TermConfig.Configurators
         private PositermConfigurator() { }
         public PositermConfigurator( PositouchTerminalStation TerminalStationSettings )
         {
-            TerminalStationSettings.Validate();
             StationSettings = TerminalStationSettings;
         }
 
@@ -33,7 +32,7 @@ namespace TermConfig.Configurators
             CreateCShare();
 
             // Copy INI files
-            ConnectToRemoteShare();
+            DriveMapper.MapDriveLetter( 'L', SettingsReader.Instance.PosdriverIPAddress.ToString() );
             CopyINIFiles();
 
             // Write TERM.$$$
@@ -64,42 +63,6 @@ namespace TermConfig.Configurators
             else
             {
                 throw new Exception( @"NET SHARE did not exit within 15 seconds." );
-            }
-        }
-
-
-        private void ConnectToRemoteShare()
-        {
-            var netExecutable = Path.Combine(
-                Environment.GetFolderPath( Environment.SpecialFolder.System ),
-                "net.exe" );
-
-            PosdriverCFolder = String.Format(
-                @"\\{0}\C",
-                StationSettings.PosdriverIPAddress.ToString() );
-
-            var info = new ProcessStartInfo();
-            info.Arguments = @"use " + PosdriverCFolder;
-            info.FileName = netExecutable;
-
-            if ( !File.Exists( netExecutable ) )
-            {
-                throw new Exception( @"net.exe does not exist in system/system32 folder." );
-            }
-
-            var netProcess = Process.Start( info );
-
-            if ( netProcess.WaitForExit( 15000 ) )
-            {
-            }
-            else
-            {
-                throw new Exception( @"NET USE did not exit within 15 seconds." );
-            }
-
-            if ( !Directory.Exists( Path.Combine( PosdriverCFolder, "SC" ) ) )
-            {
-                throw new Exception( @"Could not find path " + Path.Combine( PosdriverCFolder, "SC" ) );
             }
         }
 

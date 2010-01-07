@@ -12,7 +12,6 @@ namespace TermConfig.Configurators
         private PosiwConfigurator() { }
         public PosiwConfigurator( PositouchTerminalStation TerminalStationSettings )
         {
-            TerminalStationSettings.Validate();
             StationSettings = TerminalStationSettings;
         }
 
