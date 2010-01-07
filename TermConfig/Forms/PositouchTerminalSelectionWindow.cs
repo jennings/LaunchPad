@@ -176,6 +176,11 @@ namespace TermConfig.Forms
 
         private void RefreshTerminalsButton_Click( object sender, EventArgs e )
         {
+            RefreshTerminalsList();
+        }
+
+        private void RefreshTerminalsList()
+        {
             TerminalsListView.Items.Clear();
 
             var terminals = TerminalsReader.Instance;
@@ -336,30 +341,40 @@ namespace TermConfig.Forms
 
         private void SwitchToAutomatic()
         {
-            // Disable keyboard except go button
-            kbd_Enter.Enabled = false;
-            kbd_StartOver.Enabled = false;
-            kbd_Backspace.Enabled = false;
+            try
+            {
+                // Disable keyboard except go button
+                kbd_Enter.Enabled = false;
+                kbd_StartOver.Enabled = false;
+                kbd_Backspace.Enabled = false;
 
-            // Clear and reset manual controls
-            ResetCurrentControl();
-            ResetScreen();
+                // Clear and reset manual controls
+                ResetCurrentControl();
+                ResetScreen();
 
-            // Disable manual controls
-            DeviceNumber_DeviceNumber.Enabled = false;
-            IPAddress_AddressTextBox.Enabled = false;
-            TerminalType_Normal.Enabled = false;
-            TerminalType_Redundant.Enabled = false;
-            // TerminalType_Posdriver.Enabled = false;
-            // TerminalType_Backoffice.Enabled = false;
-            TerminalsListView.Enabled = true;
+                // Disable manual controls
+                DeviceNumber_DeviceNumber.Enabled = false;
+                IPAddress_AddressTextBox.Enabled = false;
+                TerminalType_Normal.Enabled = false;
+                TerminalType_Redundant.Enabled = false;
+                // TerminalType_Posdriver.Enabled = false;
+                // TerminalType_Backoffice.Enabled = false;
+                TerminalsListView.Enabled = true;
 
-            // Enable automatic controls
-            TerminalsListView.Enabled = true;
-            TerminalsListView.SelectedItems.Clear();
+                // Enable automatic controls
+                TerminalsListView.Enabled = true;
+                TerminalsListView.SelectedItems.Clear();
 
-            // Rename auto/manual button
-            AutomaticManualButton.Text = "Switch to Manual";
+                // Rename auto/manual button
+                AutomaticManualButton.Text = "Switch to Manual";
+
+                RefreshTerminalsList();
+            }
+            catch ( Exception e )
+            {
+                MessageBox.Show( String.Format( "Error: {0}. Switching to manual mode.", e.Message ) );
+                SwitchToManual();
+            }
         }
     }
 }

@@ -150,54 +150,62 @@ namespace TermConfig
 
             var dbfdb = new OleDbConnection( @"Provider=Microsoft.Jet.OLEDB.4.0; Data Source=C:\Temp; Extended Properties=""dBASE IV""" );
 
-            Db.Open();
-            dbfdb.Open();
-
-            using ( var dbfcmd = new OleDbCommand() )
+            try
             {
-                dbfcmd.Connection = dbfdb;
-                dbfcmd.CommandText = @"SELECT [Code], [Name] FROM nameterm;";
-                var dbfreader = dbfcmd.ExecuteReader();
+                Db.Open();
+                dbfdb.Open();
 
-                using ( var cmd = new OleDbCommand( @"INSERT INTO tblTerminals ([devicenum],[name],[ipaddress]) VALUES (?,?,?);", Db ) )
+                using ( var dbfcmd = new OleDbCommand() )
                 {
-                    while ( dbfreader.Read() )
+                    dbfcmd.Connection = dbfdb;
+                    dbfcmd.CommandText = @"SELECT [Code], [Name] FROM nameterm;";
+                    var dbfreader = dbfcmd.ExecuteReader();
+
+                    using ( var cmd = new OleDbCommand( @"INSERT INTO tblTerminals ([devicenum],[name],[ipaddress]) VALUES (?,?,?);", Db ) )
                     {
-                        var devnum = Convert.ToInt32( dbfreader["Code"] );
-                        var termname = dbfreader["Name"].ToString();
-                        IPAddress @ipaddress = null;
+                        while ( dbfreader.Read() )
+                        {
+                            var devnum = Convert.ToInt32( dbfreader["Code"] );
+                            var termname = dbfreader["Name"].ToString();
+                            IPAddress @ipaddress = null;
 
-                        var rx = new Regex( @"Device" + devnum.ToString( "D" ) + @"=(\S+)" );
-                        var spcwinIni = File.ReadAllText( @"C:\Temp\spcwin.ini" );
-                        var ipmatch = rx.Matches( spcwinIni );
-                        var first = true;
-                        foreach ( Match match in ipmatch )
-                        {
-                            if ( first == false )
-                                throw new Exception( @"Spcwin.ini has more than one Device" + devnum.ToString( "D" ) + " line." );
-                            first = false;
-                            var ip = match.Groups[1].Value;
-                            ipaddress = IPAddress.Parse( ip );
-                        }
+                            var rx = new Regex( @"Device" + devnum.ToString( "D" ) + @"=(\S+)" );
+                            var spcwinIni = File.ReadAllText( @"C:\Temp\spcwin.ini" );
+                            var ipmatch = rx.Matches( spcwinIni );
+                            var first = true;
+                            foreach ( Match match in ipmatch )
+                            {
+                                if ( first == false )
+                                    throw new Exception( @"Spcwin.ini has more than one Device" + devnum.ToString( "D" ) + " line." );
+                                first = false;
+                                var ip = match.Groups[1].Value;
+                                ipaddress = IPAddress.Parse( ip );
+                            }
 
-                        cmd.Parameters.Clear();
-                        cmd.Parameters.Add( new OleDbParameter( @"DevNum", devnum.ToString() ) );
-                        cmd.Parameters.Add( new OleDbParameter( @"Name", termname ) );
-                        try
-                        {
-                            cmd.Parameters.Add( new OleDbParameter( @"IPAddress", ipaddress.ToString() ) );
+                            cmd.Parameters.Clear();
+                            cmd.Parameters.Add( new OleDbParameter( @"DevNum", devnum.ToString() ) );
+                            cmd.Parameters.Add( new OleDbParameter( @"Name", termname ) );
+                            try
+                            {
+                                cmd.Parameters.Add( new OleDbParameter( @"IPAddress", ipaddress.ToString() ) );
+                            }
+                            catch ( NullReferenceException )
+                            {
+                                cmd.Parameters.Add( new OleDbParameter( @"IPAddress", "" ) );
+                            }
+                            cmd.ExecuteNonQuery();
                         }
-                        catch ( NullReferenceException )
-                        {
-                            cmd.Parameters.Add( new OleDbParameter( @"IPAddress", "" ) );
-                        }
-                        cmd.ExecuteNonQuery();
                     }
                 }
-            }
 
-            dbfdb.Close();
-            Db.Close();
+                dbfdb.Close();
+                Db.Close();
+            }
+            catch ( Exception e )
+            {
+                Db.Close();
+                throw;
+            }
 
             ReadSettings();
         }
