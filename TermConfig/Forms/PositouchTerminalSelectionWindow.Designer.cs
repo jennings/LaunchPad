@@ -82,8 +82,9 @@
             this.Group_PosdriverBackofficePassword = new System.Windows.Forms.GroupBox();
             this.PosdriverBackofficePassword_Password = new System.Windows.Forms.TextBox();
             this.ManualPanel = new System.Windows.Forms.Panel();
-            this.AutomaticButton = new System.Windows.Forms.Button();
-            this.ManualButton = new System.Windows.Forms.Button();
+            this.Group_IPAddress = new System.Windows.Forms.GroupBox();
+            this.IPAddress_AddressTextBox = new System.Windows.Forms.TextBox();
+            this.AutomaticManualButton = new System.Windows.Forms.Button();
             this.AutomaticPanel = new System.Windows.Forms.Panel();
             this.TerminalsListView = new System.Windows.Forms.ListView();
             this.DeviceNumberColumn = new System.Windows.Forms.ColumnHeader();
@@ -95,6 +96,7 @@
             this.Group_DeviceNumber.SuspendLayout();
             this.Group_PosdriverBackofficePassword.SuspendLayout();
             this.ManualPanel.SuspendLayout();
+            this.Group_IPAddress.SuspendLayout();
             this.AutomaticPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -650,9 +652,9 @@
             this.Group_TerminalType.Controls.Add( this.TerminalType_Posdriver );
             this.Group_TerminalType.Controls.Add( this.TerminalType_Redundant );
             this.Group_TerminalType.Controls.Add( this.TerminalType_Normal );
-            this.Group_TerminalType.Location = new System.Drawing.Point( 63, 79 );
+            this.Group_TerminalType.Location = new System.Drawing.Point( 63, 125 );
             this.Group_TerminalType.Name = "Group_TerminalType";
-            this.Group_TerminalType.Size = new System.Drawing.Size( 242, 143 );
+            this.Group_TerminalType.Size = new System.Drawing.Size( 242, 127 );
             this.Group_TerminalType.TabIndex = 5;
             this.Group_TerminalType.TabStop = false;
             this.Group_TerminalType.Text = "This is a";
@@ -712,7 +714,7 @@
             // Group_DeviceNumber
             // 
             this.Group_DeviceNumber.Controls.Add( this.DeviceNumber_DeviceNumber );
-            this.Group_DeviceNumber.Location = new System.Drawing.Point( 63, 17 );
+            this.Group_DeviceNumber.Location = new System.Drawing.Point( 63, 4 );
             this.Group_DeviceNumber.Name = "Group_DeviceNumber";
             this.Group_DeviceNumber.Size = new System.Drawing.Size( 242, 56 );
             this.Group_DeviceNumber.TabIndex = 4;
@@ -730,7 +732,7 @@
             // Group_PosdriverBackofficePassword
             // 
             this.Group_PosdriverBackofficePassword.Controls.Add( this.PosdriverBackofficePassword_Password );
-            this.Group_PosdriverBackofficePassword.Location = new System.Drawing.Point( 63, 228 );
+            this.Group_PosdriverBackofficePassword.Location = new System.Drawing.Point( 63, 258 );
             this.Group_PosdriverBackofficePassword.Name = "Group_PosdriverBackofficePassword";
             this.Group_PosdriverBackofficePassword.Size = new System.Drawing.Size( 242, 56 );
             this.Group_PosdriverBackofficePassword.TabIndex = 6;
@@ -748,33 +750,42 @@
             // 
             // ManualPanel
             // 
+            this.ManualPanel.Controls.Add( this.Group_IPAddress );
             this.ManualPanel.Controls.Add( this.Group_DeviceNumber );
             this.ManualPanel.Controls.Add( this.Group_PosdriverBackofficePassword );
             this.ManualPanel.Controls.Add( this.Group_TerminalType );
-            this.ManualPanel.Enabled = false;
             this.ManualPanel.Location = new System.Drawing.Point( 384, 57 );
             this.ManualPanel.Name = "ManualPanel";
             this.ManualPanel.Size = new System.Drawing.Size( 365, 321 );
             this.ManualPanel.TabIndex = 8;
             // 
-            // AutomaticButton
+            // Group_IPAddress
             // 
-            this.AutomaticButton.Enabled = false;
-            this.AutomaticButton.Location = new System.Drawing.Point( 188, 12 );
-            this.AutomaticButton.Name = "AutomaticButton";
-            this.AutomaticButton.Size = new System.Drawing.Size( 190, 37 );
-            this.AutomaticButton.TabIndex = 9;
-            this.AutomaticButton.Text = "Automatic";
-            this.AutomaticButton.UseVisualStyleBackColor = true;
+            this.Group_IPAddress.Controls.Add( this.IPAddress_AddressTextBox );
+            this.Group_IPAddress.Location = new System.Drawing.Point( 63, 64 );
+            this.Group_IPAddress.Name = "Group_IPAddress";
+            this.Group_IPAddress.Size = new System.Drawing.Size( 242, 55 );
+            this.Group_IPAddress.TabIndex = 7;
+            this.Group_IPAddress.TabStop = false;
+            this.Group_IPAddress.Text = "IP Address";
             // 
-            // ManualButton
+            // IPAddress_AddressTextBox
             // 
-            this.ManualButton.Location = new System.Drawing.Point( 384, 12 );
-            this.ManualButton.Name = "ManualButton";
-            this.ManualButton.Size = new System.Drawing.Size( 190, 37 );
-            this.ManualButton.TabIndex = 10;
-            this.ManualButton.Text = "Manual";
-            this.ManualButton.UseVisualStyleBackColor = true;
+            this.IPAddress_AddressTextBox.Font = new System.Drawing.Font( "Courier New", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ( (byte)( 0 ) ) );
+            this.IPAddress_AddressTextBox.Location = new System.Drawing.Point( 6, 19 );
+            this.IPAddress_AddressTextBox.Name = "IPAddress_AddressTextBox";
+            this.IPAddress_AddressTextBox.Size = new System.Drawing.Size( 230, 26 );
+            this.IPAddress_AddressTextBox.TabIndex = 0;
+            // 
+            // AutomaticManualButton
+            // 
+            this.AutomaticManualButton.Location = new System.Drawing.Point( 289, 12 );
+            this.AutomaticManualButton.Name = "AutomaticManualButton";
+            this.AutomaticManualButton.Size = new System.Drawing.Size( 190, 37 );
+            this.AutomaticManualButton.TabIndex = 10;
+            this.AutomaticManualButton.Text = "Switch to Manual";
+            this.AutomaticManualButton.UseVisualStyleBackColor = true;
+            this.AutomaticManualButton.Click += new System.EventHandler( this.AutomaticManualButton_Click );
             // 
             // AutomaticPanel
             // 
@@ -797,6 +808,7 @@
             this.TerminalsListView.TabIndex = 0;
             this.TerminalsListView.UseCompatibleStateImageBehavior = false;
             this.TerminalsListView.View = System.Windows.Forms.View.Details;
+            this.TerminalsListView.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler( this.TerminalsListView_ItemSelectionChanged );
             // 
             // DeviceNumberColumn
             // 
@@ -823,19 +835,18 @@
             this.RefreshTerminalsButton.UseVisualStyleBackColor = true;
             this.RefreshTerminalsButton.Click += new System.EventHandler( this.RefreshTerminalsButton_Click );
             // 
-            // PositouchConfigWindow
+            // PositouchTerminalSelectionWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF( 6F, 13F );
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size( 764, 522 );
             this.Controls.Add( this.RefreshTerminalsButton );
             this.Controls.Add( this.AutomaticPanel );
-            this.Controls.Add( this.ManualButton );
-            this.Controls.Add( this.AutomaticButton );
+            this.Controls.Add( this.AutomaticManualButton );
             this.Controls.Add( this.ManualPanel );
             this.Controls.Add( this.KeyboardPanel );
             this.MinimizeBox = false;
-            this.Name = "PositouchConfigWindow";
+            this.Name = "PositouchTerminalSelectionWindow";
             this.Text = "Positouch Terminal Configuration";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.KeyboardPanel.ResumeLayout( false );
@@ -846,6 +857,8 @@
             this.Group_PosdriverBackofficePassword.ResumeLayout( false );
             this.Group_PosdriverBackofficePassword.PerformLayout();
             this.ManualPanel.ResumeLayout( false );
+            this.Group_IPAddress.ResumeLayout( false );
+            this.Group_IPAddress.PerformLayout();
             this.AutomaticPanel.ResumeLayout( false );
             this.ResumeLayout( false );
 
@@ -907,14 +920,15 @@
         private System.Windows.Forms.GroupBox Group_PosdriverBackofficePassword;
         private System.Windows.Forms.TextBox PosdriverBackofficePassword_Password;
         private System.Windows.Forms.Panel ManualPanel;
-        private System.Windows.Forms.Button AutomaticButton;
-        private System.Windows.Forms.Button ManualButton;
+        private System.Windows.Forms.Button AutomaticManualButton;
         private System.Windows.Forms.Panel AutomaticPanel;
         private System.Windows.Forms.ListView TerminalsListView;
         private System.Windows.Forms.ColumnHeader DeviceNumberColumn;
         private System.Windows.Forms.ColumnHeader NameColumn;
         private System.Windows.Forms.ColumnHeader IPAddressColumn;
         private System.Windows.Forms.Button RefreshTerminalsButton;
+        private System.Windows.Forms.GroupBox Group_IPAddress;
+        private System.Windows.Forms.TextBox IPAddress_AddressTextBox;
     }
 }
 

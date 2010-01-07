@@ -23,9 +23,12 @@ namespace TermConfig.Forms
 
             ControlOrder = new List<Control>()
             {
-                DeviceNumber_DeviceNumber
+                DeviceNumber_DeviceNumber,
+                IPAddress_AddressTextBox
             };
 
+            ResetScreen();
+            SwitchToAutomatic();
             ActivateNextControl();
         }
 
@@ -55,6 +58,17 @@ namespace TermConfig.Forms
                 kbd_SaveAndReboot.Visible = true;
                 kbd_SaveAndReboot.Enabled = true;
             }
+        }
+
+        private void ResetCurrentControl()
+        {
+            if ( CurrentControl != null )
+            {
+                CurrentControl.BackColor = Color.White;
+                CurrentControl = null;
+            }
+            
+            ActivateNextControl();
         }
 
         private void kbd_KeyPress( object sender, EventArgs e )
@@ -171,16 +185,150 @@ namespace TermConfig.Forms
             foreach ( var terminal in terminals.Terminals )
             {
                 ListViewItem item;
+                item = new ListViewItem( terminal.DeviceNumber.ToString() );
+                item.SubItems.Add( new ListViewItem.ListViewSubItem()
+                {
+                    Name = "Name",
+                    Text = terminal.Name
+                } );
+
                 try
                 {
-                    item = new ListViewItem( new string[] { terminal.DeviceNumber.ToString(), terminal.Name, terminal.IPAddress.ToString() } );
+                    item.SubItems.Add( new ListViewItem.ListViewSubItem()
+                    {
+                        Name = "IPAddress",
+                        Text = terminal.IPAddress.ToString()
+                    } );
                 }
                 catch ( NullReferenceException )
                 {
-                    item = new ListViewItem( new string[] { terminal.DeviceNumber.ToString(), terminal.Name, "" } );
+                    item.SubItems.Add( new ListViewItem.ListViewSubItem()
+                    {
+                        Name = "IPAddress",
+                        Text = ""
+                    } );
                 }
+
+                item.SubItems.Add( new ListViewItem.ListViewSubItem()
+                {
+                    Name = "DeviceNumber",
+                    Text = terminal.DeviceNumber.ToString()
+                } );
+
                 TerminalsListView.Items.Add( item );
             }
+        }
+
+        private void PopulateManualFields( int devnum, IPAddress ipaddress, PosiwTerminalType type )
+        {
+            switch ( type )
+            {
+                case PosiwTerminalType.BackoffServer:
+                    TerminalType_Backoffice.Checked = true;
+                    DeviceNumber_DeviceNumber.Text = "99";
+                    break;
+                case PosiwTerminalType.PrimaryServer:
+                    TerminalType_Posdriver.Checked = true;
+                    DeviceNumber_DeviceNumber.Text = "89";
+                    break;
+                case PosiwTerminalType.BackupServer:
+                    TerminalType_Redundant.Checked = true;
+                    DeviceNumber_DeviceNumber.Text = devnum.ToString( "D" );
+                    break;
+                case PosiwTerminalType.Normal:
+                    TerminalType_Normal.Checked = true;
+                    DeviceNumber_DeviceNumber.Text = devnum.ToString( "D" );
+                    break;
+            }
+
+            IPAddress_AddressTextBox.Text = ipaddress.ToString();
+        }
+
+        private void TerminalsListView_ItemSelectionChanged( object sender, ListViewItemSelectionChangedEventArgs e )
+        {
+            int devnum = -1;
+            IPAddress ipaddress = null;
+            PosiwTerminalType type = PosiwTerminalType.Normal;
+
+            foreach ( System.Windows.Forms.ListViewItem.ListViewSubItem subitem in e.Item.SubItems )
+            {
+                switch ( subitem.Name )
+                {
+                    case "DeviceNumber":
+                        devnum = Convert.ToInt32( subitem.Text );
+                        break;
+
+                    case "IPAddress":
+                        ipaddress = IPAddress.Parse( subitem.Text );
+                        if ( ipaddress.Equals( SettingsReader.Instance.PosdriverIPAddress ) )
+                        {
+                            type = PosiwTerminalType.PrimaryServer;
+                        }
+                        else if ( ipaddress.Equals( SettingsReader.Instance.BackofficeIPAddress ) )
+                        {
+                            type = PosiwTerminalType.BackoffServer;
+                        }
+                        else if ( ipaddress.Equals( SettingsReader.Instance.RedundantIPAddress ) )
+                        {
+                            type = PosiwTerminalType.BackupServer;
+                        }
+                        else
+                        {
+                            type = PosiwTerminalType.Normal;
+                        }
+                        break;
+                }
+            }
+
+            PopulateManualFields( devnum, ipaddress, type );
+        }
+
+        private void AutomaticManualButton_Click( object sender, EventArgs e )
+        {
+            switch ( AutomaticManualButton.Text )
+            {
+                case "Switch to Manual":
+                    AutomaticManualButton.Text = "Switch to Automatic";
+                    ResetScreen();
+                    SwitchToManual();
+                    break;
+                
+                default:
+                    AutomaticManualButton.Text = "Switch to Manual";
+                    ResetScreen();
+                    SwitchToAutomatic();
+                    break;
+            }
+        }
+
+        private void ResetScreen()
+        {
+            DeviceNumber_DeviceNumber.Text = "";
+            IPAddress_AddressTextBox.Text = "";
+            TerminalType_Normal.Checked = true;
+            TerminalsListView.Items.Clear();
+        }
+
+        private void SwitchToManual()
+        {
+            DeviceNumber_DeviceNumber.Enabled = true;
+            IPAddress_AddressTextBox.Enabled = true;
+            TerminalType_Normal.Enabled = true;
+            TerminalType_Redundant.Enabled = true;
+            // TerminalType_Posdriver.Enabled = true;
+            // TerminalType_Backoffice.Enabled = true;
+            TerminalsListView.Enabled = false;
+        }
+
+        private void SwitchToAutomatic()
+        {
+            DeviceNumber_DeviceNumber.Enabled = false;
+            IPAddress_AddressTextBox.Enabled = false;
+            TerminalType_Normal.Enabled = false;
+            TerminalType_Redundant.Enabled = false;
+            // TerminalType_Posdriver.Enabled = false;
+            // TerminalType_Backoffice.Enabled = false;
+            TerminalsListView.Enabled = true;
         }
     }
 }

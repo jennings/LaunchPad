@@ -204,7 +204,7 @@ namespace TermConfig
 
         private void CopySpcwinAndNametermToTemp()
         {
-            MapLDriveToPosdriver();
+            DriveMapper.MapToPosdriver( 'L' );
 
             var posidbfwinfo = new ProcessStartInfo();
             posidbfwinfo.FileName = @"L:\SC\Posidbfw.exe";
@@ -220,46 +220,6 @@ namespace TermConfig
             File.Copy( @"L:\DBF\NAMETERM.DBF", @"C:\Temp\NAMETERM.DBF", true );
             File.Copy( @"L:\SC\SPCWIN.INI", @"C:\Temp\SPCWIN.INI", true );
 
-        }
-
-        private void MapLDriveToPosdriver()
-        {
-            var netExecutable = Path.Combine(
-                Environment.GetFolderPath( Environment.SpecialFolder.System ),
-                "net.exe" );
-
-            if ( !File.Exists( netExecutable ) )
-            {
-                throw new Exception( @"net.exe does not exist in system/system32 folder." );
-            }
-
-            var info = new ProcessStartInfo();
-            info.Arguments = @"use L: /d";
-            info.FileName = netExecutable;
-
-            var netDeleteProcess = Process.Start( info );
-
-            if ( netDeleteProcess.WaitForExit( 15000 ) )
-            {
-            }
-            else
-            {
-                throw new Exception( @"NET USE L: /D did not exit within 15 seconds." );
-            }
-
-            var posdriverCFolder = String.Format(
-                @"\\{0}\C",
-                SettingsReader.Instance.PosdriverIPAddress.ToString() );
-            info.Arguments = @"use L: " + posdriverCFolder;
-            var netUseProcess = Process.Start( info );
-
-            if ( netUseProcess.WaitForExit( 15000 ) )
-            {
-            }
-            else
-            {
-                throw new Exception( @"NET USE L: "+ posdriverCFolder +@" did not exit within 15 seconds." );
-            }
         }
     }
 
