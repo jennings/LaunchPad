@@ -173,28 +173,36 @@ namespace TermConfig
 
             Db = new OleDbConnection( csb.ConnectionString );
 
-            Db.Open();
-
             try
             {
-                var selectquery = @"SELECT [key], [value] FROM tblSettings;";
-                using ( var cmd = new OleDbCommand( selectquery, Db ) )
+                Db.Open();
+
+                try
                 {
-                    cmd.ExecuteReader();
+                    var selectquery = @"SELECT [key], [value] FROM tblSettings;";
+                    using ( var cmd = new OleDbCommand( selectquery, Db ) )
+                    {
+                        cmd.ExecuteReader();
+                    }
                 }
+                catch ( OleDbException )
+                {
+                    // tblSettings does not exist
+
+                    var createquery = @"CREATE TABLE tblSettings ([key] VARCHAR NOT NULL, [value] VARCHAR NOT NULL);";
+                    using ( var cmd = new OleDbCommand( createquery, Db ) )
+                    {
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+
+                Db.Close();
             }
-            catch ( OleDbException )
+            catch ( Exception )
             {
-                // tblSettings does not exist
-
-                var createquery = @"CREATE TABLE tblSettings ([key] VARCHAR NOT NULL, [value] VARCHAR NOT NULL);";
-                using ( var cmd = new OleDbCommand( createquery, Db ) )
-                {
-                    cmd.ExecuteNonQuery();
-                }
+                Db.Close();
+                throw;
             }
-
-            Db.Close();
 
             ReadSettings();
         }
@@ -278,62 +286,71 @@ namespace TermConfig
             }
             _PointOfSale_Changed = false;
 
-            Db.Open();
-
-            var query = @"SELECT [key], [value] FROM tblSettings;";
-            using ( var cmd = new OleDbCommand( query, Db ) )
+            try
             {
-                using ( var reader = cmd.ExecuteReader() )
+                Db.Open();
+
+                var query = @"SELECT [key], [value] FROM tblSettings;";
+                using ( var cmd = new OleDbCommand( query, Db ) )
                 {
-                    while ( reader.Read() )
+                    using ( var reader = cmd.ExecuteReader() )
                     {
-                        var key = reader["key"].ToString().ToUpper();
-                        switch ( key )
+                        while ( reader.Read() )
                         {
-                            case "COMPUTER_NAME":
-                                _ComputerName = reader["value"].ToString();
-                                _ComputerName_Changed = false;
-                                break;
-                            case "IPADDRESS":
-                                _IPAddress = IPAddress.Parse( reader["value"].ToString() );
-                                _IPAddress_Changed = false;
-                                break;
+                            var key = reader["key"].ToString().ToUpper();
+                            switch ( key )
+                            {
+                                case "COMPUTER_NAME":
+                                    _ComputerName = reader["value"].ToString();
+                                    _ComputerName_Changed = false;
+                                    break;
+                                case "IPADDRESS":
+                                    _IPAddress = IPAddress.Parse( reader["value"].ToString() );
+                                    _IPAddress_Changed = false;
+                                    break;
 
-                            case "POSDRIVER_IPADDRESS":
-                                _PosdriverIPAddress = IPAddress.Parse( reader["value"].ToString() );
-                                _PosdriverIPAddress_Changed = false;
-                                break;
-                            case "BACKOFFICE_IPADDRESS":
-                                _BackofficeIPAddress = IPAddress.Parse( reader["value"].ToString() );
-                                _BackofficeIPAddress_Changed = false;
-                                break;
-                            case "REDUNDANT_IPADDRESS":
-                                _RedundantIPAddress = IPAddress.Parse( reader["value"].ToString() );
-                                _RedundantIPAddress_Changed = false;
-                                break;
+                                case "POSDRIVER_IPADDRESS":
+                                    _PosdriverIPAddress = IPAddress.Parse( reader["value"].ToString() );
+                                    _PosdriverIPAddress_Changed = false;
+                                    break;
+                                case "BACKOFFICE_IPADDRESS":
+                                    _BackofficeIPAddress = IPAddress.Parse( reader["value"].ToString() );
+                                    _BackofficeIPAddress_Changed = false;
+                                    break;
+                                case "REDUNDANT_IPADDRESS":
+                                    _RedundantIPAddress = IPAddress.Parse( reader["value"].ToString() );
+                                    _RedundantIPAddress_Changed = false;
+                                    break;
 
-                            case "LAUNCH_POSIW":
-                                _LaunchPosiw = reader["value"].ToString().ToUpper().Equals( "YES" );
-                                _LaunchPosiw_Changed = false;
-                                break;
-                            case "LAUNCH_POSITERM":
-                                _LaunchPositerm = reader["value"].ToString().ToUpper().Equals( "YES" );
-                                _LaunchPositerm_Changed = false;
-                                break;
-                            case "LAUNCH_VNC":
-                                _LaunchVNC = reader["value"].ToString().ToUpper().Equals( "YES" );
-                                _LaunchVNC_Changed = false;
-                                break;
-                            case "LAUNCH_IBERCFG":
-                                _LaunchIbercfg = reader["value"].ToString().ToUpper().Equals( "YES" );
-                                _LaunchIbercfg_Changed = false;
-                                break;
+                                case "LAUNCH_POSIW":
+                                    _LaunchPosiw = reader["value"].ToString().ToUpper().Equals( "YES" );
+                                    _LaunchPosiw_Changed = false;
+                                    break;
+                                case "LAUNCH_POSITERM":
+                                    _LaunchPositerm = reader["value"].ToString().ToUpper().Equals( "YES" );
+                                    _LaunchPositerm_Changed = false;
+                                    break;
+                                case "LAUNCH_VNC":
+                                    _LaunchVNC = reader["value"].ToString().ToUpper().Equals( "YES" );
+                                    _LaunchVNC_Changed = false;
+                                    break;
+                                case "LAUNCH_IBERCFG":
+                                    _LaunchIbercfg = reader["value"].ToString().ToUpper().Equals( "YES" );
+                                    _LaunchIbercfg_Changed = false;
+                                    break;
+                            }
                         }
                     }
                 }
-            }
 
-            Db.Close();
+                Db.Close();
+
+            }
+            catch ( Exception )
+            {
+                Db.Close();
+                throw;
+            }
 
             CheckIntegrity();
         }
@@ -359,31 +376,39 @@ namespace TermConfig
             settingsToChange.Add( "LAUNCH_VNC", _LaunchVNC ? "YES" : "NO" );
             settingsToChange.Add( "LAUNCH_IBERCFG", _LaunchIbercfg ? "YES" : "NO" );
 
-            Db.Open();
-
-            var txn = Db.BeginTransaction();
-
-            var deletequery = @"DELETE FROM tblSettings;";
-            using ( var cmd = new OleDbCommand( deletequery, Db, txn ) )
+            try
             {
-                cmd.ExecuteNonQuery();
-            }
+                Db.Open();
 
-            var query = @"INSERT INTO tblSettings ( [key], [value] ) VALUES ( ?, ? );";
-            using ( var cmd = new OleDbCommand( query, Db, txn ) )
-            {
-                foreach ( var kvp in settingsToChange )
+                var txn = Db.BeginTransaction();
+
+                var deletequery = @"DELETE FROM tblSettings;";
+                using ( var cmd = new OleDbCommand( deletequery, Db, txn ) )
                 {
-                    cmd.Parameters.Clear();
-                    cmd.Parameters.Add( new OleDbParameter( "@Key", kvp.Key ) );
-                    cmd.Parameters.Add( new OleDbParameter( "@Value", kvp.Value ) );
                     cmd.ExecuteNonQuery();
                 }
+
+                var query = @"INSERT INTO tblSettings ( [key], [value] ) VALUES ( ?, ? );";
+                using ( var cmd = new OleDbCommand( query, Db, txn ) )
+                {
+                    foreach ( var kvp in settingsToChange )
+                    {
+                        cmd.Parameters.Clear();
+                        cmd.Parameters.Add( new OleDbParameter( "@Key", kvp.Key ) );
+                        cmd.Parameters.Add( new OleDbParameter( "@Value", kvp.Value ) );
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+
+                txn.Commit();
+
+                Db.Close();
             }
-
-            txn.Commit();
-
-            Db.Close();
+            catch ( Exception )
+            {
+                Db.Close();
+                throw;
+            }
 
             ReadSettings();
         }

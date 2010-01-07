@@ -52,28 +52,37 @@ namespace TermConfig
 
             Db = new OleDbConnection( csb.ConnectionString );
 
-            Db.Open();
-
             try
             {
-                var selectquery = @"SELECT [devicenum], [name], [ipaddress] FROM tblTerminals;";
-                using ( var cmd = new OleDbCommand( selectquery, Db ) )
+                Db.Open();
+
+                try
                 {
-                    cmd.ExecuteReader();
+                    var selectquery = @"SELECT [devicenum], [name], [ipaddress] FROM tblTerminals;";
+                    using ( var cmd = new OleDbCommand( selectquery, Db ) )
+                    {
+                        cmd.ExecuteReader();
+                    }
                 }
+                catch ( OleDbException )
+                {
+                    // tblSettings does not exist
+
+                    var createquery = @"CREATE TABLE tblTerminals ( [devicenum] VARCHAR NOT NULL, [name] VARCHAR NOT NULL, [ipaddress] VARCHAR NOT NULL );";
+                    using ( var cmd = new OleDbCommand( createquery, Db ) )
+                    {
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+
+                Db.Close();
+
             }
-            catch ( OleDbException )
+            catch ( Exception )
             {
-                // tblSettings does not exist
-
-                var createquery = @"CREATE TABLE tblTerminals ( [devicenum] VARCHAR NOT NULL, [name] VARCHAR NOT NULL, [ipaddress] VARCHAR NOT NULL );";
-                using ( var cmd = new OleDbCommand( createquery, Db ) )
-                {
-                    cmd.ExecuteNonQuery();
-                }
+                Db.Close();
+                throw;
             }
-
-            Db.Close();
 
             ReadSettings();
         }
@@ -106,32 +115,40 @@ namespace TermConfig
         {
             ClearSettings();
 
-            Db.Open();
-
-            var query = @"SELECT [devicenum], [name], [ipaddress] FROM tblTerminals;";
-            using ( var cmd = new OleDbCommand( query, Db ) )
+            try
             {
-                using ( var reader = cmd.ExecuteReader() )
+                Db.Open();
+
+                var query = @"SELECT [devicenum], [name], [ipaddress] FROM tblTerminals;";
+                using ( var cmd = new OleDbCommand( query, Db ) )
                 {
-                    while ( reader.Read() )
+                    using ( var reader = cmd.ExecuteReader() )
                     {
-                        var devicenum = Convert.ToInt32( reader["devicenum"] );
-                        var name = reader["name"].ToString();
-
-                        try
+                        while ( reader.Read() )
                         {
-                            var test = reader["ipaddress"].ToString();
-                            var ipaddress = IPAddress.Parse( test );
-                            Terminals.Add( new TerminalStation( devicenum, name, ipaddress ) );
-                        }
-                        catch ( FormatException )
-                        {
-                            Terminals.Add( new TerminalStation( devicenum, name, null ) );
-                        }
+                            var devicenum = Convert.ToInt32( reader["devicenum"] );
+                            var name = reader["name"].ToString();
+
+                            try
+                            {
+                                var test = reader["ipaddress"].ToString();
+                                var ipaddress = IPAddress.Parse( test );
+                                Terminals.Add( new TerminalStation( devicenum, name, ipaddress ) );
+                            }
+                            catch ( FormatException )
+                            {
+                                Terminals.Add( new TerminalStation( devicenum, name, null ) );
+                            }
 
 
+                        }
                     }
                 }
+            }
+            catch ( Exception )
+            {
+                Db.Close();
+                throw;
             }
 
             Db.Close();
@@ -201,7 +218,7 @@ namespace TermConfig
                 dbfdb.Close();
                 Db.Close();
             }
-            catch ( Exception e )
+            catch ( Exception )
             {
                 Db.Close();
                 throw;
