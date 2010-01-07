@@ -29,7 +29,6 @@ namespace TermConfig.Forms
 
             ResetScreen();
             SwitchToAutomatic();
-            ActivateNextControl();
         }
 
         private void ActivateNextControl()
@@ -67,7 +66,7 @@ namespace TermConfig.Forms
                 CurrentControl.BackColor = Color.White;
                 CurrentControl = null;
             }
-            
+
             ActivateNextControl();
         }
 
@@ -288,13 +287,11 @@ namespace TermConfig.Forms
             switch ( AutomaticManualButton.Text )
             {
                 case "Switch to Manual":
-                    AutomaticManualButton.Text = "Switch to Automatic";
                     ResetScreen();
                     SwitchToManual();
                     break;
-                
+
                 default:
-                    AutomaticManualButton.Text = "Switch to Manual";
                     ResetScreen();
                     SwitchToAutomatic();
                     break;
@@ -311,6 +308,12 @@ namespace TermConfig.Forms
 
         private void SwitchToManual()
         {
+            // Enable Keyboard
+            kbd_Enter.Enabled = true;
+            kbd_StartOver.Enabled = true;
+            kbd_Backspace.Enabled = true;
+
+            // Enable manual controls
             DeviceNumber_DeviceNumber.Enabled = true;
             IPAddress_AddressTextBox.Enabled = true;
             TerminalType_Normal.Enabled = true;
@@ -318,10 +321,31 @@ namespace TermConfig.Forms
             // TerminalType_Posdriver.Enabled = true;
             // TerminalType_Backoffice.Enabled = true;
             TerminalsListView.Enabled = false;
+
+            // Clear and reset manual controls
+            ResetCurrentControl();
+            ResetScreen();
+
+            // Disable automatic controls
+            TerminalsListView.Enabled = false;
+            TerminalsListView.SelectedItems.Clear();
+
+            // Rename auto/manual button
+            AutomaticManualButton.Text = "Switch to Automatic";
         }
 
         private void SwitchToAutomatic()
         {
+            // Disable keyboard except go button
+            kbd_Enter.Enabled = false;
+            kbd_StartOver.Enabled = false;
+            kbd_Backspace.Enabled = false;
+
+            // Clear and reset manual controls
+            ResetCurrentControl();
+            ResetScreen();
+
+            // Disable manual controls
             DeviceNumber_DeviceNumber.Enabled = false;
             IPAddress_AddressTextBox.Enabled = false;
             TerminalType_Normal.Enabled = false;
@@ -329,6 +353,13 @@ namespace TermConfig.Forms
             // TerminalType_Posdriver.Enabled = false;
             // TerminalType_Backoffice.Enabled = false;
             TerminalsListView.Enabled = true;
+
+            // Enable automatic controls
+            TerminalsListView.Enabled = true;
+            TerminalsListView.SelectedItems.Clear();
+
+            // Rename auto/manual button
+            AutomaticManualButton.Text = "Switch to Manual";
         }
     }
 }
