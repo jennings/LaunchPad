@@ -174,11 +174,6 @@ namespace TermConfig.Forms
             }
         }
 
-        private void RefreshTerminalsButton_Click( object sender, EventArgs e )
-        {
-            RefreshTerminalsList();
-        }
-
         private void RefreshTerminalsList()
         {
             TerminalsListView.Items.Clear();
@@ -285,6 +280,8 @@ namespace TermConfig.Forms
             }
 
             PopulateManualFields( devnum, ipaddress, type );
+            kbd_SaveAndReboot.Visible = true;
+            kbd_SaveAndReboot.Enabled = true;
         }
 
         private void AutomaticManualButton_Click( object sender, EventArgs e )
@@ -328,6 +325,8 @@ namespace TermConfig.Forms
             TerminalsListView.Enabled = false;
 
             // Clear and reset manual controls
+            kbd_SaveAndReboot.Visible = false;
+            kbd_SaveAndReboot.Enabled = false;
             ResetCurrentControl();
             ResetScreen();
 
@@ -349,6 +348,8 @@ namespace TermConfig.Forms
                 kbd_Backspace.Enabled = false;
 
                 // Clear and reset manual controls
+                kbd_SaveAndReboot.Visible = false;
+                kbd_SaveAndReboot.Enabled = false;
                 ResetCurrentControl();
                 ResetScreen();
 

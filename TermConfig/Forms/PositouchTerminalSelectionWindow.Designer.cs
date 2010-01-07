@@ -90,7 +90,6 @@
             this.DeviceNumberColumn = new System.Windows.Forms.ColumnHeader();
             this.NameColumn = new System.Windows.Forms.ColumnHeader();
             this.IPAddressColumn = new System.Windows.Forms.ColumnHeader();
-            this.RefreshTerminalsButton = new System.Windows.Forms.Button();
             this.KeyboardPanel.SuspendLayout();
             this.Group_TerminalType.SuspendLayout();
             this.Group_DeviceNumber.SuspendLayout();
@@ -779,9 +778,10 @@
             // 
             // AutomaticManualButton
             // 
-            this.AutomaticManualButton.Location = new System.Drawing.Point( 289, 12 );
+            this.AutomaticManualButton.Font = new System.Drawing.Font( "Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ( (byte)( 0 ) ) );
+            this.AutomaticManualButton.Location = new System.Drawing.Point( 229, 12 );
             this.AutomaticManualButton.Name = "AutomaticManualButton";
-            this.AutomaticManualButton.Size = new System.Drawing.Size( 190, 37 );
+            this.AutomaticManualButton.Size = new System.Drawing.Size( 313, 37 );
             this.AutomaticManualButton.TabIndex = 10;
             this.AutomaticManualButton.Text = "Switch to Manual";
             this.AutomaticManualButton.UseVisualStyleBackColor = true;
@@ -825,22 +825,11 @@
             this.IPAddressColumn.Text = "IP Address";
             this.IPAddressColumn.Width = 98;
             // 
-            // RefreshTerminalsButton
-            // 
-            this.RefreshTerminalsButton.Location = new System.Drawing.Point( 12, 12 );
-            this.RefreshTerminalsButton.Name = "RefreshTerminalsButton";
-            this.RefreshTerminalsButton.Size = new System.Drawing.Size( 132, 37 );
-            this.RefreshTerminalsButton.TabIndex = 12;
-            this.RefreshTerminalsButton.Text = "Refresh";
-            this.RefreshTerminalsButton.UseVisualStyleBackColor = true;
-            this.RefreshTerminalsButton.Click += new System.EventHandler( this.RefreshTerminalsButton_Click );
-            // 
             // PositouchTerminalSelectionWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF( 6F, 13F );
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size( 764, 522 );
-            this.Controls.Add( this.RefreshTerminalsButton );
             this.Controls.Add( this.AutomaticPanel );
             this.Controls.Add( this.AutomaticManualButton );
             this.Controls.Add( this.ManualPanel );
@@ -926,7 +915,6 @@
         private System.Windows.Forms.ColumnHeader DeviceNumberColumn;
         private System.Windows.Forms.ColumnHeader NameColumn;
         private System.Windows.Forms.ColumnHeader IPAddressColumn;
-        private System.Windows.Forms.Button RefreshTerminalsButton;
         private System.Windows.Forms.GroupBox Group_IPAddress;
         private System.Windows.Forms.TextBox IPAddress_AddressTextBox;
     }
