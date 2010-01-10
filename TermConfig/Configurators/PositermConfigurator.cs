@@ -33,6 +33,7 @@ namespace TermConfig.Configurators
 
             // Copy INI files
             Utilities.MapDriveLetter( 'L', SettingsReader.Instance.PosdriverIPAddress.ToString() );
+            PosdriverCFolder = @"L:\";
             CopyINIFiles();
 
             // Write TERM.$$$
@@ -51,15 +52,10 @@ namespace TermConfig.Configurators
         {
             foreach ( var filename in Filenames )
             {
-                System.Windows.Forms.MessageBox.Show( "Going to copy " + filename );
-                System.Threading.Thread.Sleep( 1000 );
-
                 var fullfilename = Path.Combine( PosdriverCFolder, @"SC" + filename );
                 if ( File.Exists( fullfilename ) )
                 {
                     File.Copy( fullfilename, Path.Combine( @"C:\SC", filename ), true );
-                    System.Windows.Forms.MessageBox.Show( "Copied " + filename );
-                    System.Threading.Thread.Sleep( 1000 );
                 }
             }
         }
