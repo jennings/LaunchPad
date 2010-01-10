@@ -10,7 +10,7 @@ namespace TermConfig.Configurators
         ITerminalStation StationSettings;
 
         private NetworkConfigurator() { }
-        public NetworkConfigurator( ITerminalStation settings )
+        public NetworkConfigurator(ITerminalStation settings)
         {
             StationSettings = settings;
         }
@@ -30,25 +30,25 @@ namespace TermConfig.Configurators
             {
                 object output = null;
 
-                var MC = new ManagementClass( "Win32_ComputerSystem" );
+                var MC = new ManagementClass("Win32_ComputerSystem");
                 var MOC = MC.GetInstances();
 
-                foreach ( ManagementObject obj in MOC )
+                foreach (ManagementObject obj in MOC)
                 {
-                    var inputParams = obj.GetMethodParameters( "Rename" );
+                    var inputParams = obj.GetMethodParameters("Rename");
                     inputParams["Name"] = StationSettings.ComputerName;
-                    output = obj.InvokeMethod( "Rename", inputParams, null );
+                    output = obj.InvokeMethod("Rename", inputParams, null);
                 }
 
-                var returnvalue = Convert.ToInt32( ( (ManagementBaseObject)output ).Properties["ReturnValue"].Value );
-                if ( returnvalue != 0 )
+                var returnvalue = Convert.ToInt32(((ManagementBaseObject)output).Properties["ReturnValue"].Value);
+                if (returnvalue != 0)
                 {
-                    throw new Exception( @"Could not change network name." );
+                    throw new Exception(@"Could not change network name.");
                 }
             }
-            catch ( Exception ex )
+            catch (Exception ex)
             {
-                System.Windows.Forms.MessageBox.Show( @"Could not change computer name: " + ex.Message );
+                System.Windows.Forms.MessageBox.Show(@"Could not change computer name: " + ex.Message);
                 return;
             }
         }
@@ -56,20 +56,20 @@ namespace TermConfig.Configurators
 
         public void SetIPAddress()
         {
-            var MC = new ManagementClass( "Win32_NetworkAdapterConfiguration" );
+            var MC = new ManagementClass("Win32_NetworkAdapterConfiguration");
             var collection = MC.GetInstances();
 
             // Terminals have only one NIC, so this should be okay.
-            foreach ( ManagementObject obj in collection )
+            foreach (ManagementObject obj in collection)
             {
-                if ( (bool)( obj["IPEnabled"] ) )
+                if ((bool)(obj["IPEnabled"]))
                 {
-                    var newIP = obj.GetMethodParameters( "EnableStatic" );
+                    var newIP = obj.GetMethodParameters("EnableStatic");
 
                     newIP["IPAddress"] = new string[] { StationSettings.IPAddress.ToString() };
                     newIP["SubnetMask"] = new string[] { "255.255.255.0" };
 
-                    var setIP = obj.InvokeMethod( "EnableStatic", newIP, null );
+                    var setIP = obj.InvokeMethod("EnableStatic", newIP, null);
                 }
             }
         }
@@ -80,12 +80,21 @@ namespace TermConfig.Configurators
             settings.ComputerName = StationSettings.ComputerName;
             settings.IPAddress = StationSettings.IPAddress;
 
-            if ( settings.PointOfSale == PointOfSale.Positouch )
+            if (settings.PointOfSale == PointOfSale.Positouch)
             {
                 var source = (PositouchTerminalStation)StationSettings;
-                settings.PosdriverIPAddress = source.PosdriverIPAddress;
-                settings.BackofficeIPAddress = source.BackofficeIPAddress;
-                settings.RedundantIPAddress = source.RedundantIPAddress;
+                if (source.PosdriverIPAddress != null)
+                {
+                    settings.PosdriverIPAddress = source.PosdriverIPAddress;
+                }
+                if (source.BackofficeIPAddress != null)
+                {
+                    settings.BackofficeIPAddress = source.BackofficeIPAddress;
+                }
+                if (source.RedundantIPAddress != null)
+                {
+                    settings.RedundantIPAddress = source.RedundantIPAddress;
+                }
             }
         }
     }

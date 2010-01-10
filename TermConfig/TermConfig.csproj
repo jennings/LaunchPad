@@ -59,7 +59,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DriveMapper.cs" />
+    <Compile Include="Utilities.cs" />
     <Compile Include="Forms\AlohaInitialConfigWindow.cs">
       <SubType>Form</SubType>
     </Compile>

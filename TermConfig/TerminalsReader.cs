@@ -229,7 +229,7 @@ namespace TermConfig
 
         private void CopySpcwinAndNametermToTemp()
         {
-            DriveMapper.MapToPosdriver( 'L' );
+            Utilities.MapToPosdriver( 'L' );
 
             var posidbfwinfo = new ProcessStartInfo();
             posidbfwinfo.FileName = @"L:\SC\Posidbfw.exe";

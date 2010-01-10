@@ -6,7 +6,7 @@ using System.Diagnostics;
 
 namespace TermConfig
 {
-    class DriveMapper
+    class Utilities
     {
         public static void MapToPosdriver( char driveLetterChar )
         {
@@ -32,27 +32,26 @@ namespace TermConfig
 
         public static void MapDriveLetterToShare( char driveLetter, string computer, string shareName )
         {
-            var info = new ProcessStartInfo()
-            {
-                FileName = Path.Combine( Environment.SystemDirectory, @"net.exe" ),
-                Arguments = String.Format( @"use {0}: /d", driveLetter )
-            };
-
-            if ( !Process.Start( info ).WaitForExit( 10000 ) )
-            {
-                throw new Exception( String.Format( @"net {0} did not exit within 10 seconds.", info.Arguments ) );
-            }
-
-            info.Arguments = String.Format( @"use {0}: \\{1}\{2}", driveLetter, computer, shareName );
-
-            if ( !Process.Start( info ).WaitForExit( 15000 ) )
-            {
-                throw new Exception( String.Format( @"net {0} did not exit within 15 seconds.", info.Arguments ) );
-            }
+            RunNet( String.Format( @"use {0}: /d", driveLetter ), 10000 );
+            RunNet( String.Format( @"use {0}: \\{1}\{2}", driveLetter, computer, shareName ), 15000 );
 
             if ( !Directory.Exists( String.Format( @"{0}:\", driveLetter ) ) )
             {
                 throw new Exception( String.Format( @"{0}:\ does not exist.", driveLetter ) );
+            }
+        }
+
+        public static void RunNet( string args, int timeout )
+        {
+            var info = new ProcessStartInfo()
+            {
+                FileName = Path.Combine( Environment.SystemDirectory, @"net.exe" ),
+                Arguments = args
+            };
+
+            if ( !Process.Start( info ).WaitForExit( timeout ) )
+            {
+                throw new Exception( string.Format( @"net {0} did not exit within {1} milliseconds.", args, timeout ) );
             }
         }
     }

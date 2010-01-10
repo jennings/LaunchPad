@@ -32,7 +32,7 @@ namespace TermConfig.Configurators
             CreateCShare();
 
             // Copy INI files
-            DriveMapper.MapDriveLetter( 'L', SettingsReader.Instance.PosdriverIPAddress.ToString() );
+            Utilities.MapDriveLetter( 'L', SettingsReader.Instance.PosdriverIPAddress.ToString() );
             CopyINIFiles();
 
             // Write TERM.$$$
@@ -42,28 +42,8 @@ namespace TermConfig.Configurators
 
         private void CreateCShare()
         {
-            var netExecutable = Path.Combine(
-                Environment.GetFolderPath( Environment.SpecialFolder.System ),
-                "net.exe" );
-
-            var info = new ProcessStartInfo();
-            info.Arguments = @"share C=C:\";
-            info.FileName = netExecutable;
-
-            if ( !File.Exists( netExecutable ) )
-            {
-                throw new Exception( @"net.exe does not exist in system/system32 folder." );
-            }
-
-            var netProcess = Process.Start( info );
-
-            if ( netProcess.WaitForExit( 15000 ) )
-            {
-            }
-            else
-            {
-                throw new Exception( @"NET SHARE did not exit within 15 seconds." );
-            }
+            Utilities.RunNet( @"share C /DELETE", 10000 );
+            Utilities.RunNet( @"share C=C:\", 10000 );
         }
 
 
