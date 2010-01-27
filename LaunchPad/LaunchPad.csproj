@@ -139,19 +139,19 @@
     <None Include="Configurators\PosiwExamples\Backoffice.INI" />
     <None Include="Configurators\PosiwExamples\Posdriver.INI" />
     <None Include="Configurators\PosiwExamples\Redundant.INI" />
-    <None Include="Configurators\UltraVNC\mslogon.log">
+    <None Include="UltraVNC\mslogon.log">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Configurators\UltraVNC\MSRC4Plugin.dsm">
+    <None Include="UltraVNC\MSRC4Plugin.dsm">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Configurators\UltraVNC\Plugins\MSRC4Plugin.dsm">
+    <None Include="UltraVNC\Plugins\MSRC4Plugin.dsm">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Configurators\UltraVNC\ultravnc.ini">
+    <None Include="UltraVNC\ultravnc.ini">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Configurators\UltraVNC\unins000.dat">
+    <None Include="UltraVNC\unins000.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Properties\Settings.settings">
@@ -198,58 +198,58 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Configurators\UltraVNC\authadmin.dll">
+    <Content Include="UltraVNC\authadmin.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Configurators\UltraVNC\authSSP.dll">
+    <Content Include="UltraVNC\authSSP.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Configurators\UltraVNC\check_install.exe">
+    <Content Include="UltraVNC\check_install.exe">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Configurators\UltraVNC\ldapauth.dll">
+    <Content Include="UltraVNC\ldapauth.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Configurators\UltraVNC\Licence.txt">
+    <Content Include="UltraVNC\Licence.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Configurators\UltraVNC\logging.dll">
+    <Content Include="UltraVNC\logging.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Configurators\UltraVNC\logmessages.dll">
+    <Content Include="UltraVNC\logmessages.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Configurators\UltraVNC\MSLogonACL.exe">
+    <Content Include="UltraVNC\MSLogonACL.exe">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Configurators\UltraVNC\Plugins\Licence.txt">
+    <Content Include="UltraVNC\Plugins\Licence.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Configurators\UltraVNC\Plugins\Readme.txt">
+    <Content Include="UltraVNC\Plugins\Readme.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Configurators\UltraVNC\Plugins\Whatsnew.txt">
+    <Content Include="UltraVNC\Plugins\Whatsnew.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Configurators\UltraVNC\Readme.txt">
+    <Content Include="UltraVNC\Readme.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Configurators\UltraVNC\uvnc_settings.exe">
+    <Content Include="UltraVNC\uvnc_settings.exe">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Configurators\UltraVNC\vnchooks.dll">
+    <Content Include="UltraVNC\vnchooks.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Configurators\UltraVNC\vncviewer.exe">
+    <Content Include="UltraVNC\vncviewer.exe">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Configurators\UltraVNC\Whatsnew.txt">
+    <Content Include="UltraVNC\Whatsnew.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Configurators\UltraVNC\winvnc.exe">
+    <Content Include="UltraVNC\winvnc.exe">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Configurators\UltraVNC\workgrpdomnt4.dll">
+    <Content Include="UltraVNC\workgrpdomnt4.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Settings.txt" />

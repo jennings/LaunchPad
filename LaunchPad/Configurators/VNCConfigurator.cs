@@ -11,7 +11,7 @@ namespace LaunchPad.Configurators
 
         private const string VNCDirectory = @"C:\Program Files\UltraVNC";
         private const string VNCBackupDirectory = @"C:\Program Files\UltraVNC2";
-        private const string SourceVNCDirectory = @"Configurators\UltraVNC";
+        private const string SourceVNCDirectory = @"UltraVNC";
 
         private VNCConfigurator() { }
         public VNCConfigurator( ITerminalStation settings )
