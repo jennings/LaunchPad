@@ -8,8 +8,8 @@
     <ProjectGuid>{0E9F3059-6BB6-4008-99B7-DCF9E4733155}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TermConfig</RootNamespace>
-    <AssemblyName>TermConfig</AssemblyName>
+    <RootNamespace>LaunchPad</RootNamespace>
+    <AssemblyName>LaunchPad</AssemblyName>
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkSubset>
@@ -133,6 +133,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="app.config" />
     <None Include="Configurators\PosiwExamples\Backoffice.INI" />
