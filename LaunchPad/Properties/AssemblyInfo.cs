@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle( "TermConfig" )]
+[assembly: AssemblyTitle( "LaunchPad" )]
 [assembly: AssemblyDescription( "" )]
 [assembly: AssemblyConfiguration( "" )]
-[assembly: AssemblyCompany( "Microsoft" )]
-[assembly: AssemblyProduct( "TermConfig" )]
-[assembly: AssemblyCopyright( "Copyright © Microsoft 2009" )]
+[assembly: AssemblyCompany( "" )]
+[assembly: AssemblyProduct( "LaunchPad" )]
+[assembly: AssemblyCopyright( "Copyright © Stephen Jennings 2009" )]
 [assembly: AssemblyTrademark( "" )]
 [assembly: AssemblyCulture( "" )]
 

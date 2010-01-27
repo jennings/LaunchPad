@@ -137,7 +137,7 @@
             this.Controls.Add( this.RCButton );
             this.MinimizeBox = false;
             this.Name = "AlohaStartupWindow";
-            this.Text = "CBS Terminal Config (Aloha)";
+            this.Text = "Launch Pad (Aloha)";
             this.groupBox1.ResumeLayout( false );
             this.groupBox1.PerformLayout();
             this.ResumeLayout( false );

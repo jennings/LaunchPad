@@ -30,7 +30,7 @@ namespace LaunchPad.Configurators
 
             using ( var sw = new StreamWriter( @"C:\SC\Posiw.ini" ) )
             {
-                sw.WriteLine( @"; POSIW Built by TermConfig." );
+                sw.WriteLine( @"; POSIW Built by Launch Pad." );
                 sw.WriteLine( @"; Built " + DateTime.Now.ToShortDateString() );
                 sw.WriteLine( @"" );
 

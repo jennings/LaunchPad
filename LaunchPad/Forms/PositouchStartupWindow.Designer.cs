@@ -197,7 +197,7 @@
             this.Controls.Add( this.RCButton );
             this.MinimizeBox = false;
             this.Name = "PositouchStartupWindow";
-            this.Text = "CBS Terminal Config (POSitouch)";
+            this.Text = "Launch Pad (POSitouch)";
             this.groupBox1.ResumeLayout( false );
             this.groupBox1.PerformLayout();
             this.ResumeLayout( false );
