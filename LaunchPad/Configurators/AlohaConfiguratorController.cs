@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace TermConfig.Configurators
+namespace LaunchPad.Configurators
 {
     class AlohaConfiguratorController : IConfiguratorController
     {

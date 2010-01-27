@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TermConfig.Configurators
+namespace LaunchPad.Configurators
 {
     interface IConfigurator
     {

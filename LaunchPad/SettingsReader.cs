@@ -6,7 +6,7 @@ using System.Net;
 using System.IO;
 using ADOX;
 
-namespace TermConfig
+namespace LaunchPad
 {
     class SettingsReader
     {

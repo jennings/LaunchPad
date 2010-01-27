@@ -1,4 +1,4 @@
-﻿namespace TermConfig.Forms
+﻿namespace LaunchPad.Forms
 {
     partial class AlohaStartupWindow
     {

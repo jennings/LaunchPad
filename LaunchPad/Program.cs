@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using System.IO;
 using System.Data;
-using TermConfig.Forms;
+using LaunchPad.Forms;
 
-namespace TermConfig
+namespace LaunchPad
 {
     static class Program
     {

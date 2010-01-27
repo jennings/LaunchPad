@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Windows.Forms;
-using TermConfig.Launchers;
+using LaunchPad.Launchers;
 using System.IO;
 using System.Diagnostics;
 
-namespace TermConfig.Forms
+namespace LaunchPad.Forms
 {
     public partial class AlohaStartupWindow : StartupWindow
     {

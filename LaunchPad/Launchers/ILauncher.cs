@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace TermConfig.Launchers
+namespace LaunchPad.Launchers
 {
     public interface ILauncher
     {

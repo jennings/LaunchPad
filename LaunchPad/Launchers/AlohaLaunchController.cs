@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace TermConfig.Launchers
+namespace LaunchPad.Launchers
 {
     public class AlohaLaunchController : ILaunchController
     {

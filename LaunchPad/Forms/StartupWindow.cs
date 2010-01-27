@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Windows.Forms;
-using TermConfig.Launchers;
+using LaunchPad.Launchers;
 using System.Management;
 
-namespace TermConfig.Forms
+namespace LaunchPad.Forms
 {
     public class StartupWindow : Form
     {

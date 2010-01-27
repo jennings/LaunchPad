@@ -6,9 +6,9 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using System.Net;
-using TermConfig.Configurators;
+using LaunchPad.Configurators;
 
-namespace TermConfig.Forms
+namespace LaunchPad.Forms
 {
     public partial class PositouchInitialConfigWindow : Form
     {

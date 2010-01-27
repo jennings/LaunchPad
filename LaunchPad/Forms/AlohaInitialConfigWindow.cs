@@ -6,7 +6,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 
-namespace TermConfig.Forms
+namespace LaunchPad.Forms
 {
     public partial class AlohaInitialConfigWindow : Form
     {

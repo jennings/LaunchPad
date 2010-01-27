@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Management;
 
-namespace TermConfig.Configurators
+namespace LaunchPad.Configurators
 {
     class NetworkConfigurator : IConfigurator
     {

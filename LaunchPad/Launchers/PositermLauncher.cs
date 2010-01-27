@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using System.IO;
 
-namespace TermConfig.Launchers
+namespace LaunchPad.Launchers
 {
     class PositermLauncher : ILauncher
     {

@@ -2,7 +2,7 @@
 using System.DirectoryServices;
 using Microsoft.Win32;
 
-namespace TermConfig.Configurators
+namespace LaunchPad.Configurators
 {
     class CredentialsConfigurator : IConfigurator
     {

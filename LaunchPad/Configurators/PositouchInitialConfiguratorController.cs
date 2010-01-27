@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace TermConfig.Configurators
+namespace LaunchPad.Configurators
 {
     class PositouchInitialConfiguratorController : IConfiguratorController
     {

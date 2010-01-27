@@ -5,7 +5,7 @@ using System.ServiceProcess;
 using System.IO;
 using System.Diagnostics;
 
-namespace TermConfig.Launchers
+namespace LaunchPad.Launchers
 {
     class VNCLauncher : ILauncher
     {

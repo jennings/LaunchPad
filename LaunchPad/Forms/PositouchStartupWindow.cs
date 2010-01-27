@@ -2,10 +2,10 @@
 using System.IO;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
-using TermConfig.Launchers;
+using LaunchPad.Launchers;
 using System.Diagnostics;
 
-namespace TermConfig.Forms
+namespace LaunchPad.Forms
 {
     public partial class PositouchStartupWindow : StartupWindow
     {
