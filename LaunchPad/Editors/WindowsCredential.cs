@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.DirectoryServices;
 
 namespace LaunchPad.Editors
 {
     class WindowsCredential
     {
+        private DirectoryEntry UserEntry;
+
         private WindowsCredential() { }
 
 
@@ -17,7 +20,27 @@ namespace LaunchPad.Editors
         /// <exception cref="CredentialException">Credential does not exist.</exception>
         public static WindowsCredential Select( string username )
         {
-            throw new NotImplementedException();
+            var localDirectory = @"WinNT://" + Environment.MachineName;
+            var local = new DirectoryEntry( localDirectory );
+
+            try
+            {
+                var deUser = local.Children.Find( username, "user" );
+                var cred = new WindowsCredential();
+                cred.UserEntry = deUser;
+                return cred;
+            }
+            catch ( DirectoryServicesCOMException e )
+            {
+                if ( e.ErrorCode == 0x2030 )
+                {
+                    throw new CredentialException( "User '" + username + "' was not found in the local directory ('" + localDirectory + "').", e );
+                }
+                else
+                {
+                    throw;
+                }
+            }
         }
 
 
@@ -42,19 +65,8 @@ namespace LaunchPad.Editors
         /// <exception cref="CredentialException">Cannot change password.</exception>
         public void ChangePassword( string newPassword )
         {
-            throw new NotImplementedException();
-        }
-
-
-        /// <summary>
-        /// Change password of this credential.
-        /// </summary>
-        /// <param name="newPassword">New password.</param>
-        /// <param name="oldPassword">Old password.</param>
-        /// <exception cref="CredentialException">Cannot change password.</exception>
-        public void ChangePassword( string newPassword, string oldPassword )
-        {
-            throw new NotImplementedException();
+            UserEntry.Invoke( "SetPassword", new object[] { newPassword } );
+            UserEntry.CommitChanges();
         }
     }
 
