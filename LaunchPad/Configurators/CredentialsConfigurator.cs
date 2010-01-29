@@ -1,5 +1,4 @@
-﻿using System;
-using System.DirectoryServices;
+﻿using LaunchPad.Editors;
 using Microsoft.Win32;
 
 namespace LaunchPad.Configurators
@@ -18,26 +17,10 @@ namespace LaunchPad.Configurators
 
         public void Configure()
         {
-            SetPosAccountPassword();
-            SetAutoLogon();
-        }
+            var cred = WindowsCredential.Select( Username );
+            cred.ChangePassword( NewPassword );
 
-        private void SetPosAccountPassword()
-        {
-            var local = new DirectoryEntry( @"WinNT://" + Environment.MachineName );
-            var posUser = local.Children.Find( Username, "user" );
-
-            posUser.Invoke( "SetPassword", new object[] { NewPassword } );
-            posUser.CommitChanges();
-
-            posUser.Close();
-            local.Close();
-        }
-
-        private void SetAutoLogon()
-        {
             var WinlogonKey = @"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon";
-
             Registry.SetValue( WinlogonKey, "DefaultUserName", "pos", RegistryValueKind.String );
             Registry.SetValue( WinlogonKey, "DefaultPassword", NewPassword, RegistryValueKind.String );
             Registry.SetValue( WinlogonKey, "AutoAdminLogon", "1", RegistryValueKind.String );

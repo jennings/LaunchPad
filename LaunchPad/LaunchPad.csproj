@@ -60,6 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Editors\WindowsCredential.cs" />
+    <Compile Include="Editors\WindowsNetwork.cs" />
     <Compile Include="Utilities.cs" />
     <Compile Include="Forms\AlohaInitialConfigWindow.cs">
       <SubType>Form</SubType>
