@@ -61,6 +61,9 @@
   <ItemGroup>
     <Compile Include="Editors\WindowsCredential.cs" />
     <Compile Include="Editors\WindowsNetwork.cs" />
+    <Compile Include="LaunchPadService.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Utilities.cs" />
     <Compile Include="Forms\AlohaInitialConfigWindow.cs">
       <SubType>Form</SubType>
@@ -113,7 +116,7 @@
       <DependentUpon>PositouchTerminalSelectionWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="PositouchTerminalStation.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="LaunchPad.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Forms\AlohaStartupWindow.resx">
       <DependentUpon>AlohaStartupWindow.cs</DependentUpon>
