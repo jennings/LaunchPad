@@ -13,51 +13,63 @@ namespace LaunchPad
         [STAThread]
         static void Main( string[] args )
         {
-            if ( args.Length > 0 && ( args[0].Equals( "-s" ) || args[0].Equals( "/s" ) ) )
+            string arg1 = args.Length > 0 ? args[0] : "";
+
+            switch ( arg1 )
             {
-                // Run as service
-                ServiceBase[] ServicesToRun;
-                ServicesToRun = new ServiceBase[] { new LaunchPadService() };
-                ServiceBase.Run( ServicesToRun );
-            }
-            else
-            {
-                // Run front-end application
+                case "-s":
+                case "-S":
+                case "/s":
+                case "/S":
+                    // Run as service
+                    ServiceBase[] ServicesToRun;
+                    ServicesToRun = new ServiceBase[] { new LaunchPadService() };
+                    ServiceBase.Run( ServicesToRun );
+                    break;
 
-                Application.EnableVisualStyles();
-                Application.SetCompatibleTextRenderingDefault( false );
+                case "":
+                    // Run front-end application
 
-                var settings = SettingsReader.Instance;
+                    Application.EnableVisualStyles();
+                    Application.SetCompatibleTextRenderingDefault( false );
 
-                switch ( settings.PointOfSale )
-                {
-                    case PointOfSale.Positouch:
-                        if ( settings.Integrous )
-                        {
-                            Application.Run( new PositouchStartupWindow() );
-                        }
-                        else
-                        {
-                            Application.Run( new PositouchInitialConfigWindow() );
-                        }
-                        break;
+                    var settings = SettingsReader.Instance;
 
-                    case PointOfSale.Aloha:
-                        if ( settings.Integrous )
-                        {
-                            Application.Run( new AlohaStartupWindow() );
-                        }
-                        else
-                        {
-                            Application.Run( new AlohaInitialConfigWindow() );
-                        }
-                        break;
+                    switch ( settings.PointOfSale )
+                    {
+                        case PointOfSale.Positouch:
+                            if ( settings.Integrous )
+                            {
+                                Application.Run( new PositouchStartupWindow() );
+                            }
+                            else
+                            {
+                                Application.Run( new PositouchInitialConfigWindow() );
+                            }
+                            break;
 
-                    case PointOfSale.None:
-                    default:
-                        MessageBox.Show( @"Add POSITOUCH or ALOHA flag file to use." );
-                        break;
-                }
+                        case PointOfSale.Aloha:
+                            if ( settings.Integrous )
+                            {
+                                Application.Run( new AlohaStartupWindow() );
+                            }
+                            else
+                            {
+                                Application.Run( new AlohaInitialConfigWindow() );
+                            }
+                            break;
+
+                        case PointOfSale.None:
+                        default:
+                            MessageBox.Show( @"Add POSITOUCH or ALOHA flag file to use." );
+                            break;
+
+                    }
+                    break;
+
+                default:
+                    MessageBox.Show( "Usage:\n\n   'LaunchPad.exe' to run front-end.\n\n   'LaunchPad.exe -s' to run the background service." );
+                    break;
             }
         }
     }
