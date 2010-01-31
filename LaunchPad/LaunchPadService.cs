@@ -2,6 +2,10 @@
 using System.IO;
 using System.Reflection;
 using System.ServiceProcess;
+using System.Runtime.Remoting.Channels.Tcp;
+using System.Runtime.Remoting.Channels;
+using System.Runtime.Remoting;
+using LaunchPad.Service;
 
 namespace LaunchPad
 {
@@ -20,9 +24,10 @@ namespace LaunchPad
 
         protected override void OnStart( string[] args )
         {
-            var runFrom = Assembly.GetExecutingAssembly().Location;
-            Directory.GetParent( runFrom );
-            System.IO.File.WriteAllText( LogFilePath, "Last run at: " + DateTime.Now );
+            TcpServerChannel tservices = new TcpServerChannel( 9091 );
+            ChannelServices.RegisterChannel( tservices, true );
+            RemotingConfiguration.ApplicationName = "LaunchPadService";
+            RemotingConfiguration.RegisterActivatedServiceType( typeof( MessageHandler ) );
         }
     }
 }
