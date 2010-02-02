@@ -7,6 +7,9 @@ namespace LaunchPad.Configuration.Configurators
 {
     class PosiwConfigurator : IConfigurator
     {
+        public bool RequiresElevation { get { return true; } }
+        public bool RequiresAuthorization { get { return false; } }
+
         public PositouchTerminalStation StationSettings { get; private set; }
 
         private PosiwConfigurator() { }

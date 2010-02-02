@@ -7,6 +7,9 @@ namespace LaunchPad.Configuration.Configurators
 {
     class PositermConfigurator : IConfigurator
     {
+        public bool RequiresElevation { get { return false; } }
+        public bool RequiresAuthorization { get { return false; } }
+
         public PositouchTerminalStation StationSettings { get; private set; }
 
         private List<string> Filenames = new List<string>()

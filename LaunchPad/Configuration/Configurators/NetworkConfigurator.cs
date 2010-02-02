@@ -4,6 +4,9 @@ namespace LaunchPad.Configuration.Configurators
 {
     class NetworkConfigurator : IConfigurator
     {
+        public bool RequiresElevation { get { return true; } }
+        public bool RequiresAuthorization { get { return false; } }
+
         ITerminalStation StationSettings;
 
         private NetworkConfigurator() { }

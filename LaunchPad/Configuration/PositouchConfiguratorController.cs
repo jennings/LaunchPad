@@ -24,7 +24,15 @@ namespace LaunchPad.Configuration
         {
             foreach ( var configurator in Configurators )
             {
-                configurator.Configure();
+                if ( configurator.RequiresElevation )
+                {
+                    // TODO: Send to LaunchPadService
+                    configurator.Configure();
+                }
+                else
+                {
+                    configurator.Configure();
+                }
             }
 
             SettingsReader.Instance.Commit();

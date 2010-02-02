@@ -7,6 +7,9 @@ namespace LaunchPad.Configuration.Configurators
 {
     class VNCConfigurator : IConfigurator
     {
+        public bool RequiresElevation { get { return true; } }
+        public bool RequiresAuthorization { get { return false; } }
+
         ITerminalStation StationSettings;
 
         private const string VNCDirectory = @"C:\Program Files\UltraVNC";
