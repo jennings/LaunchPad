@@ -1,6 +1,6 @@
 ﻿using LaunchPad.Editors;
 
-namespace LaunchPad.Configurators
+namespace LaunchPad.Configuration.Configurators
 {
     class NetworkConfigurator : IConfigurator
     {

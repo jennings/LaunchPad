@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace LaunchPad.Configurators
+namespace LaunchPad.Configuration.Configurators
 {
     interface IConfigurator
     {

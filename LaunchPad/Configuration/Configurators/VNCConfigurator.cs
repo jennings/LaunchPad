@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.IO;
 using System.ServiceProcess;
 
-namespace LaunchPad.Configurators
+namespace LaunchPad.Configuration.Configurators
 {
     class VNCConfigurator : IConfigurator
     {

@@ -78,15 +78,15 @@
       <DependentUpon>AlohaInitialConfigWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="AlohaTerminalStation.cs" />
-    <Compile Include="Configurators\AlohaConfiguratorController.cs" />
-    <Compile Include="Configurators\CredentialsConfigurator.cs" />
-    <Compile Include="Configurators\PositouchInitialConfiguratorController.cs" />
-    <Compile Include="Configurators\IConfigurator.cs" />
-    <Compile Include="Configurators\IConfiguratorController.cs" />
-    <Compile Include="Configurators\NetworkConfigurator.cs" />
-    <Compile Include="Configurators\PositouchConfiguratorController.cs" />
-    <Compile Include="Configurators\Rebooter.cs" />
-    <Compile Include="Configurators\VNCConfigurator.cs" />
+    <Compile Include="Configuration\AlohaConfiguratorController.cs" />
+    <Compile Include="Configuration\Configurators\CredentialsConfigurator.cs" />
+    <Compile Include="Configuration\PositouchInitialConfiguratorController.cs" />
+    <Compile Include="Configuration\Configurators\IConfigurator.cs" />
+    <Compile Include="Configuration\IConfiguratorController.cs" />
+    <Compile Include="Configuration\Configurators\NetworkConfigurator.cs" />
+    <Compile Include="Configuration\PositouchConfiguratorController.cs" />
+    <Compile Include="Configuration\Configurators\Rebooter.cs" />
+    <Compile Include="Configuration\Configurators\VNCConfigurator.cs" />
     <Compile Include="Forms\AlohaStartupWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -113,8 +113,8 @@
     <Compile Include="Forms\PositouchStartupWindow.Designer.cs">
       <DependentUpon>PositouchStartupWindow.cs</DependentUpon>
     </Compile>
-    <Compile Include="Configurators\PosiwConfigurator.cs" />
-    <Compile Include="Configurators\PositermConfigurator.cs" />
+    <Compile Include="Configuration\Configurators\PosiwConfigurator.cs" />
+    <Compile Include="Configuration\Configurators\PositermConfigurator.cs" />
     <Compile Include="Forms\PositouchTerminalSelectionWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -147,9 +147,9 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <None Include="app.config" />
-    <None Include="Configurators\PosiwExamples\Backoffice.INI" />
-    <None Include="Configurators\PosiwExamples\Posdriver.INI" />
-    <None Include="Configurators\PosiwExamples\Redundant.INI" />
+    <None Include="Configuration\PosiwExamples\Backoffice.INI" />
+    <None Include="Configuration\PosiwExamples\Posdriver.INI" />
+    <None Include="Configuration\PosiwExamples\Redundant.INI" />
     <None Include="UltraVNC\mslogon.log">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

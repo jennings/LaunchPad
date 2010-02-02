@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace LaunchPad.Configurators
+namespace LaunchPad.Configuration
 {
     interface IConfiguratorController
     {

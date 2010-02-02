@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Management;
 
-namespace LaunchPad.Configurators
+namespace LaunchPad.Configuration.Configurators
 {
     class Rebooter
     {

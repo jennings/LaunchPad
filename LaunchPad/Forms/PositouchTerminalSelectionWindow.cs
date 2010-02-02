@@ -6,8 +6,9 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using System.Net;
-using LaunchPad.Configurators;
+using LaunchPad.Configuration;
 using System.Diagnostics;
+using LaunchPad.Configuration.Configurators;
 
 namespace LaunchPad.Forms
 {

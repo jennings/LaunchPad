@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using LaunchPad.Configuration.Configurators;
 
-namespace LaunchPad.Configurators
+namespace LaunchPad.Configuration
 {
     class AlohaConfiguratorController : IConfiguratorController
     {

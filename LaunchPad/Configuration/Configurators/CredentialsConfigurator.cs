@@ -1,7 +1,7 @@
 ﻿using LaunchPad.Editors;
 using Microsoft.Win32;
 
-namespace LaunchPad.Configurators
+namespace LaunchPad.Configuration.Configurators
 {
     class CredentialsConfigurator : IConfigurator
     {
