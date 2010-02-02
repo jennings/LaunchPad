@@ -5,6 +5,7 @@ using System.Runtime.Remoting.Channels;
 using System.Runtime.Remoting.Channels.Tcp;
 using LaunchPad.Authentication;
 using LaunchPad.Configuration.Configurators;
+using System.Net;
 
 namespace LaunchPad.Configuration
 {
@@ -52,14 +53,24 @@ namespace LaunchPad.Configuration
         #endregion
 
 
-        public void Add( IConfigurator task )
-        {
-            if ( task.RequiresAuthentication )
-            {
-                GenerateChallenge();
-            }
+        //public void Add( IConfigurator task )
+        //{
+        //    if ( task.RequiresAuthentication )
+        //    {
+        //        GenerateChallenge();
+        //    }
 
-            TaskList.Add( task );
+        //    TaskList.Add( task );
+        //}
+
+        public void AddCredentialTask( string baseCustomerPassword )
+        {
+            TaskList.Add( new CredentialsConfigurator( baseCustomerPassword ) );
+        }
+
+        public void AddIPAddressTask( IPAddress ipaddress )
+        {
+            TaskList.Add( new NetworkConfigurator() );
         }
 
         public void Process()
@@ -74,6 +85,11 @@ namespace LaunchPad.Configuration
 
             foreach ( var task in TaskList )
             {
+                if ( task.GetType() == typeof( CredentialsConfigurator ) )
+                {
+                    var foo = (CredentialsConfigurator)task;
+                    System.Windows.Forms.MessageBox.Show( "CredentialsConfigurator running as: " + foo.GetCurrentCredentials() );
+                }
                 task.Configure();
             }
         }

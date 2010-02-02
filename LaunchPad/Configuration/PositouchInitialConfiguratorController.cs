@@ -21,12 +21,14 @@ namespace LaunchPad.Configuration
             settings.ValidateInitial();
             StationSettings = settings;
 
-            RemoteConfigurators.Add( new CredentialsConfigurator( StationSettings.WindowsUsername, StationSettings.WindowsPassword ) );
+            RemoteConfigurators.Add( new CredentialsConfigurator( StationSettings.WindowsPassword ) );
             RemoteConfigurators.Add( new NetworkConfigurator( StationSettings ) );
         }
 
         public void Configure()
         {
+            System.Windows.Forms.MessageBox.Show( "PositouchInitialConfiguratorController running as: " + GetCurrentCredentials() );
+
             if ( RemoteConfigurators.RequiresAuthentication )
             {
                 // TODO: Challenge / Response
@@ -42,7 +44,12 @@ namespace LaunchPad.Configuration
 
             SettingsReader.Instance.Commit();
 
-            Rebooter.Reboot();
+            //Rebooter.Reboot();
+        }
+
+        public string GetCurrentCredentials()
+        {
+            return System.Security.Principal.WindowsIdentity.GetCurrent().Name;
         }
     }
 }
