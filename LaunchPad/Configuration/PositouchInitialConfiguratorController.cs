@@ -20,18 +20,26 @@ namespace LaunchPad.Configuration
 
         public void Configure()
         {
+            var remoteDispatch = new RemoteConfiguratorDispatcher();
+
             foreach ( var configurator in Configurators )
             {
                 if ( configurator.RequiresElevation )
                 {
-                    // TODO: Send to LaunchPadService
-                    configurator.Configure();
+                    remoteDispatch.Add( configurator );
                 }
                 else
                 {
                     configurator.Configure();
                 }
             }
+
+            if ( remoteDispatch.RequiresAuthentication )
+            {
+                // TODO: Challenge / Response
+            }
+            
+            remoteDispatch.Process();
 
             SettingsReader.Instance.Commit();
 

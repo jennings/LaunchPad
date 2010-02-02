@@ -60,6 +60,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Authentication\Challenge.cs" />
+    <Compile Include="Authentication\Response.cs" />
     <Compile Include="Editors\WindowsCredential.cs" />
     <Compile Include="Editors\WindowsNetwork.cs" />
     <Compile Include="LaunchPadService.cs">

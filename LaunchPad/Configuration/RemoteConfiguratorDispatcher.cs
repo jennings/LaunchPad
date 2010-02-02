@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.Remoting;
 using System.Runtime.Remoting.Channels;
 using System.Runtime.Remoting.Channels.Tcp;
+using LaunchPad.Authentication;
 using LaunchPad.Configuration.Configurators;
 
 namespace LaunchPad.Configuration
@@ -22,8 +23,8 @@ namespace LaunchPad.Configuration
             }
         }
 
-        public string Challenge { get; private set; }
-        public string Response { get; set; }
+        public Challenge @Challenge { get; private set; }
+        public Response @Response { get; set; }
 
         private List<IConfigurator> TaskList = new List<IConfigurator>();
         private const int ListenPort = 9091;
@@ -65,9 +66,9 @@ namespace LaunchPad.Configuration
         {
             if ( RequiresAuthentication )
             {
-                if ( !ValidateResponse( Challenge, Response ) )
+                if ( !ValidateResponse() )
                 {
-                    throw new Exception( "At least one task requires authentication." );
+                    throw new Exception( "Invalid response to challenge. Not processing task list." );
                 }
             }
 
@@ -80,10 +81,10 @@ namespace LaunchPad.Configuration
         private void GenerateChallenge()
         {
             // TODO
-            Challenge = "";
+            Challenge = new Challenge();
         }
 
-        private bool ValidateResponse( string challenge, string response )
+        private bool ValidateResponse()
         {
             // TODO
             return false;
