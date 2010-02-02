@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Runtime.Remoting;
 using System.Runtime.Remoting.Channels;
-using System.Runtime.Remoting.Channels.Tcp;
+using System.Runtime.Remoting.Channels.Ipc;
 using LaunchPad.Authentication;
 using LaunchPad.Configuration.Configurators;
 using System.Net;
+using System.Collections;
 
 namespace LaunchPad.Configuration
 {
@@ -29,24 +30,28 @@ namespace LaunchPad.Configuration
 
         private List<IConfigurator> TaskList = new List<IConfigurator>();
         private const int ListenPort = 9091;
+        private const string IpcChannelName = "LaunchPadService";
 
 
         #region Listener/Receiver
 
         public static void RegisterClientType()
         {
-            var channel = new TcpClientChannel();
+            var channel = new IpcClientChannel();
             ChannelServices.RegisterChannel( channel, true );
             RemotingConfiguration.RegisterActivatedClientType(
                 typeof( RemoteConfiguratorDispatcher ),
-                @"tcp://localhost:" + ListenPort + @"/LaunchPadService" );
+                @"ipc://" + IpcChannelName );
         }
 
         public static void RegisterServerType()
         {
-            TcpServerChannel channel = new TcpServerChannel( ListenPort );
+            var ipcProperties = new Hashtable();
+            ipcProperties["portName"] = IpcChannelName;
+            ipcProperties["authorizedGroup"] = "Everyone";
+            
+            var channel = new IpcServerChannel( ipcProperties, null );
             ChannelServices.RegisterChannel( channel, true );
-            RemotingConfiguration.ApplicationName = "LaunchPadService";
             RemotingConfiguration.RegisterActivatedServiceType( typeof( RemoteConfiguratorDispatcher ) );
         }
 
@@ -68,7 +73,7 @@ namespace LaunchPad.Configuration
             TaskList.Add( new IPAddressConfigurator( ipaddress ) );
         }
 
-        public void Process()
+        public void Dispatch()
         {
             if ( RequiresAuthentication )
             {

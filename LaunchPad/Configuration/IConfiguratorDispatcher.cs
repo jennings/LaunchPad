@@ -10,5 +10,6 @@ namespace LaunchPad.Configuration
     /// </summary>
     interface IConfiguratorDispatcher
     {
+        void Dispatch();
     }
 }

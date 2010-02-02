@@ -65,6 +65,7 @@
     <Compile Include="Configuration\Configurators\ComputerNameConfigurator.cs" />
     <Compile Include="Configuration\Configurators\IPAddressConfigurator.cs" />
     <Compile Include="Configuration\IConfiguratorDispatcher.cs" />
+    <Compile Include="Configuration\LocalConfiguratorDispatcher.cs" />
     <Compile Include="LaunchPadService.cs">
       <SubType>Component</SubType>
     </Compile>

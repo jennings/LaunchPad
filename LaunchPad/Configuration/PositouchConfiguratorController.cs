@@ -37,7 +37,7 @@ namespace LaunchPad.Configuration
                 RemoteConfigurators.Response = new Response( RemoteConfigurators.Challenge );
             }
 
-            RemoteConfigurators.Process();
+            RemoteConfigurators.Dispatch();
 
             foreach ( var configurator in Configurators )
             {
