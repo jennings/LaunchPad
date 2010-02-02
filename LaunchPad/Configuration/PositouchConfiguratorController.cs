@@ -21,8 +21,9 @@ namespace LaunchPad.Configuration
             terminalStation.Validate();
             StationSettings = terminalStation;
 
-            RemoteConfigurators.Add( new NetworkConfigurator( StationSettings ) );
-            
+            RemoteConfigurators.AddComputerNameTask( StationSettings.ComputerName );
+            RemoteConfigurators.AddIPAddressTask( StationSettings.IPAddress );
+
             Configurators.Add( new PositermConfigurator( StationSettings ) );
             Configurators.Add( new PosiwConfigurator( StationSettings ) );
             Configurators.Add( new VNCConfigurator( StationSettings ) );

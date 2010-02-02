@@ -68,9 +68,14 @@ namespace LaunchPad.Configuration
             TaskList.Add( new CredentialsConfigurator( baseCustomerPassword ) );
         }
 
+        public void AddComputerNameTask( string computerName )
+        {
+            TaskList.Add( new ComputerNameConfigurator( computerName ) );
+        }
+
         public void AddIPAddressTask( IPAddress ipaddress )
         {
-            TaskList.Add( new NetworkConfigurator() );
+            TaskList.Add( new IPAddressConfigurator( ipaddress ) );
         }
 
         public void Process()

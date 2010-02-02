@@ -18,8 +18,8 @@ namespace LaunchPad.Configuration.Configurators
 
         public void Configure()
         {
-            WindowsNetwork.SetNetBIOSName( StationSettings.ComputerName );
-            WindowsNetwork.SetIPAddress( StationSettings.IPAddress );
+            //WindowsNetwork.SetNetBIOSName( StationSettings.ComputerName );
+            //WindowsNetwork.SetIPAddress( StationSettings.IPAddress );
             RecordSettings();
         }
 

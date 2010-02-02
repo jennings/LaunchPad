@@ -62,8 +62,9 @@
   <ItemGroup>
     <Compile Include="Authentication\Challenge.cs" />
     <Compile Include="Authentication\Response.cs" />
+    <Compile Include="Configuration\Configurators\ComputerNameConfigurator.cs" />
+    <Compile Include="Configuration\Configurators\IPAddressConfigurator.cs" />
     <Compile Include="Editors\WindowsCredential.cs" />
-    <Compile Include="Editors\WindowsNetwork.cs" />
     <Compile Include="LaunchPadService.cs">
       <SubType>Component</SubType>
     </Compile>

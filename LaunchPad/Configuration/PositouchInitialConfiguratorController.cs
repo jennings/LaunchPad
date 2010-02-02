@@ -21,8 +21,9 @@ namespace LaunchPad.Configuration
             settings.ValidateInitial();
             StationSettings = settings;
 
-            RemoteConfigurators.Add( new CredentialsConfigurator( StationSettings.WindowsPassword ) );
-            RemoteConfigurators.Add( new NetworkConfigurator( StationSettings ) );
+            RemoteConfigurators.AddCredentialTask( StationSettings.WindowsPassword );
+            RemoteConfigurators.AddComputerNameTask( StationSettings.ComputerName );
+            RemoteConfigurators.AddIPAddressTask( StationSettings.IPAddress );
         }
 
         public void Configure()

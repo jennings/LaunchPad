@@ -1,12 +1,23 @@
 ﻿using System;
 using System.Management;
-using System.Net;
 
-namespace LaunchPad.Editors
+namespace LaunchPad.Configuration.Configurators
 {
-    class WindowsNetwork
+    class ComputerNameConfigurator : IConfigurator
     {
-        public static void SetNetBIOSName( string computername )
+        public bool RequiresElevation { get { return true; } }
+        public bool RequiresAuthentication { get { return false; } }
+
+        string NewComputerName;
+
+        private ComputerNameConfigurator() { }
+        public ComputerNameConfigurator( string newComputerName )
+        {
+            NewComputerName = newComputerName;
+        }
+
+
+        public void Configure()
         {
             try
             {
@@ -18,7 +29,7 @@ namespace LaunchPad.Editors
                 foreach ( ManagementObject obj in MOC )
                 {
                     var inputParams = obj.GetMethodParameters( "Rename" );
-                    inputParams["Name"] = computername;
+                    inputParams["Name"] = NewComputerName;
                     output = obj.InvokeMethod( "Rename", inputParams, null );
                 }
 
@@ -32,27 +43,6 @@ namespace LaunchPad.Editors
             {
                 System.Windows.Forms.MessageBox.Show( @"Could not change computer name: " + ex.Message );
                 return;
-            }
-        }
-
-
-        public static void SetIPAddress( IPAddress address )
-        {
-            var MC = new ManagementClass( "Win32_NetworkAdapterConfiguration" );
-            var collection = MC.GetInstances();
-
-            // Terminals have only one NIC, so this should be okay.
-            foreach ( ManagementObject obj in collection )
-            {
-                if ( (bool)( obj["IPEnabled"] ) )
-                {
-                    var newIP = obj.GetMethodParameters( "EnableStatic" );
-
-                    newIP["IPAddress"] = new string[] { address.ToString() };
-                    newIP["SubnetMask"] = new string[] { "255.255.255.0" };
-
-                    var setIP = obj.InvokeMethod( "EnableStatic", newIP, null );
-                }
             }
         }
     }
