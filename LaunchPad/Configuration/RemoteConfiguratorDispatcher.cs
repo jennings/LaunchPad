@@ -9,7 +9,7 @@ using System.Net;
 
 namespace LaunchPad.Configuration
 {
-    class RemoteConfiguratorDispatcher
+    class RemoteConfiguratorDispatcher : MarshalByRefObject, IConfiguratorDispatcher
     {
         public bool RequiresAuthentication
         {
@@ -53,16 +53,6 @@ namespace LaunchPad.Configuration
         #endregion
 
 
-        //public void Add( IConfigurator task )
-        //{
-        //    if ( task.RequiresAuthentication )
-        //    {
-        //        GenerateChallenge();
-        //    }
-
-        //    TaskList.Add( task );
-        //}
-
         public void AddCredentialTask( string baseCustomerPassword )
         {
             TaskList.Add( new CredentialsConfigurator( baseCustomerPassword ) );
@@ -90,11 +80,6 @@ namespace LaunchPad.Configuration
 
             foreach ( var task in TaskList )
             {
-                if ( task.GetType() == typeof( CredentialsConfigurator ) )
-                {
-                    var foo = (CredentialsConfigurator)task;
-                    System.Windows.Forms.MessageBox.Show( "CredentialsConfigurator running as: " + foo.GetCurrentCredentials() );
-                }
                 task.Configure();
             }
         }

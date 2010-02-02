@@ -28,8 +28,6 @@ namespace LaunchPad.Configuration
 
         public void Configure()
         {
-            System.Windows.Forms.MessageBox.Show( "PositouchInitialConfiguratorController running as: " + GetCurrentCredentials() );
-
             if ( RemoteConfigurators.RequiresAuthentication )
             {
                 // TODO: Challenge / Response
@@ -45,12 +43,7 @@ namespace LaunchPad.Configuration
 
             SettingsReader.Instance.Commit();
 
-            //Rebooter.Reboot();
-        }
-
-        public string GetCurrentCredentials()
-        {
-            return System.Security.Principal.WindowsIdentity.GetCurrent().Name;
+            Rebooter.Reboot();
         }
     }
 }

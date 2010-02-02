@@ -1,5 +1,4 @@
-﻿using LaunchPad.Editors;
-using System.Net;
+﻿using System.Net;
 using System.Management;
 
 namespace LaunchPad.Configuration.Configurators

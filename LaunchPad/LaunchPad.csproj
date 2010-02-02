@@ -64,7 +64,7 @@
     <Compile Include="Authentication\Response.cs" />
     <Compile Include="Configuration\Configurators\ComputerNameConfigurator.cs" />
     <Compile Include="Configuration\Configurators\IPAddressConfigurator.cs" />
-    <Compile Include="Editors\WindowsCredential.cs" />
+    <Compile Include="Configuration\IConfiguratorDispatcher.cs" />
     <Compile Include="LaunchPadService.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -146,9 +146,6 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <None Include="app.config" />
-    <None Include="Configuration\PosiwExamples\Backoffice.INI" />
-    <None Include="Configuration\PosiwExamples\Posdriver.INI" />
-    <None Include="Configuration\PosiwExamples\Redundant.INI" />
     <None Include="UltraVNC\mslogon.log">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

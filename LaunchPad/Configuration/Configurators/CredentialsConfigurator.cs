@@ -1,6 +1,7 @@
-﻿using LaunchPad.Editors;
-using Microsoft.Win32;
+﻿using Microsoft.Win32;
 using System.Collections.Generic;
+using System.DirectoryServices;
+using System;
 
 namespace LaunchPad.Configuration.Configurators
 {
@@ -27,8 +28,7 @@ namespace LaunchPad.Configuration.Configurators
         {
             foreach ( var cred in Credentials )
             {
-                var foo = WindowsCredential.Select( cred.Username );
-                foo.ChangePassword( cred.Password );
+                ChangePassword( cred.Username, cred.Password );
             }
 
             var WinlogonKey = @"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon";
@@ -48,9 +48,28 @@ namespace LaunchPad.Configuration.Configurators
             return basePassword;
         }
 
-        public string GetCurrentCredentials()
+        private void ChangePassword( string username, string password )
         {
-            return System.Security.Principal.WindowsIdentity.GetCurrent().Name;
+            var localDirectory = @"WinNT://" + Environment.MachineName;
+            var local = new DirectoryEntry( localDirectory );
+
+            try
+            {
+                var deUser = local.Children.Find( username, "user" );
+                deUser.Invoke( "SetPassword", new object[] { password } );
+                deUser.CommitChanges();
+            }
+            catch ( DirectoryServicesCOMException e )
+            {
+                if ( e.ErrorCode == 0x2030 )
+                {
+                    throw new Exception( "User '" + username + "' was not found in the local directory ('" + localDirectory + "').", e );
+                }
+                else
+                {
+                    throw;
+                }
+            }
         }
     }
 

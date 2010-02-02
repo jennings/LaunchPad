@@ -4,6 +4,7 @@ using System.Text;
 
 namespace LaunchPad.Authentication
 {
+    [Serializable]
     class Response
     {
         public Challenge @Challenge { get; private set; }

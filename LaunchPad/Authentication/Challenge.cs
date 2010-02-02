@@ -4,6 +4,7 @@ using System.Text;
 
 namespace LaunchPad.Authentication
 {
+    [Serializable]
     class Challenge
     {
         public DateTime Timestamp { get; private set; }

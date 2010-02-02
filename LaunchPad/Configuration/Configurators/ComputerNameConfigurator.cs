@@ -41,7 +41,8 @@ namespace LaunchPad.Configuration.Configurators
             }
             catch ( Exception ex )
             {
-                System.Windows.Forms.MessageBox.Show( @"Could not change computer name: " + ex.Message );
+                // FIXME
+                // System.Windows.Forms.MessageBox.Show( @"Could not change computer name: " + ex.Message );
                 return;
             }
         }
