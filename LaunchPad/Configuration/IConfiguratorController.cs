@@ -6,6 +6,7 @@ namespace LaunchPad.Configuration
 {
     interface IConfiguratorController
     {
+        bool RequiresAuthentication { get; }
         void Configure();
     }
 }
