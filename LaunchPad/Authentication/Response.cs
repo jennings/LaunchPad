@@ -16,6 +16,9 @@ namespace LaunchPad.Authentication
 
         public bool Validate()
         {
+            // TODO
+            return true;
+
             // If the challenge was created within 5 minutes
             // and Decrypt( ResponseString ) == Timestamp
             // then return true; otherwise return false;
@@ -26,6 +29,11 @@ namespace LaunchPad.Authentication
                 // TODO: return Decrypt( ResponseString ) == Timestamp
             }
             return false;
+        }
+
+        public override string ToString()
+        {
+            return ResponseString;
         }
     }
 }

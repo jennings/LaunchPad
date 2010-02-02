@@ -66,7 +66,7 @@ namespace LaunchPad.Configuration
         {
             if ( RequiresAuthentication )
             {
-                if ( !ValidateResponse() )
+                if ( Response == null || !Response.Validate() )
                 {
                     throw new Exception( "Invalid response to challenge. Not processing task list." );
                 }
@@ -82,12 +82,6 @@ namespace LaunchPad.Configuration
         {
             // TODO
             Challenge = new Challenge();
-        }
-
-        private bool ValidateResponse()
-        {
-            // TODO
-            return false;
         }
     }
 }

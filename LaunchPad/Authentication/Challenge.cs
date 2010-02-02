@@ -12,5 +12,10 @@ namespace LaunchPad.Authentication
         {
             Timestamp = DateTime.Now;
         }
+
+        public override string ToString()
+        {
+            return Timestamp.ToString( "yyyyMMddHHmmss" );
+        }
     }
 }
