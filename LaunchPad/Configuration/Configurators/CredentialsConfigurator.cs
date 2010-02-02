@@ -6,7 +6,7 @@ namespace LaunchPad.Configuration.Configurators
     class CredentialsConfigurator : IConfigurator
     {
         public bool RequiresElevation { get { return true; } }
-        public bool RequiresAuthorization { get { return true; } }
+        public bool RequiresAuthentication { get { return true; } }
 
         private string Username;
         private string NewPassword;

@@ -1,11 +1,7 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Reflection;
 using System.ServiceProcess;
-using System.Runtime.Remoting.Channels.Tcp;
-using System.Runtime.Remoting.Channels;
-using System.Runtime.Remoting;
-using LaunchPad.Service;
+using LaunchPad.Configuration;
 
 namespace LaunchPad
 {
@@ -24,10 +20,7 @@ namespace LaunchPad
 
         protected override void OnStart( string[] args )
         {
-            TcpServerChannel tservices = new TcpServerChannel( 9091 );
-            ChannelServices.RegisterChannel( tservices, true );
-            RemotingConfiguration.ApplicationName = "LaunchPadService";
-            RemotingConfiguration.RegisterActivatedServiceType( typeof( MessageHandler ) );
+            RemoteConfiguratorDispatcher.RegisterServerType();
         }
     }
 }

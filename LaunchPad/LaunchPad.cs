@@ -2,6 +2,7 @@
 using System.ServiceProcess;
 using System.Windows.Forms;
 using LaunchPad.Forms;
+using LaunchPad.Configuration;
 
 namespace LaunchPad
 {
@@ -34,6 +35,7 @@ namespace LaunchPad
                     Application.SetCompatibleTextRenderingDefault( false );
 
                     var settings = SettingsReader.Instance;
+                    RemoteConfiguratorDispatcher.RegisterClientType();
 
                     switch ( settings.PointOfSale )
                     {

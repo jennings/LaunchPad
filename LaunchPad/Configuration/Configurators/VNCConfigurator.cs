@@ -8,7 +8,7 @@ namespace LaunchPad.Configuration.Configurators
     class VNCConfigurator : IConfigurator
     {
         public bool RequiresElevation { get { return true; } }
-        public bool RequiresAuthorization { get { return false; } }
+        public bool RequiresAuthentication { get { return false; } }
 
         ITerminalStation StationSettings;
 
