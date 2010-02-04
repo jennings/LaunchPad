@@ -9,9 +9,9 @@ namespace LaunchPad
 
         #region ITerminalStation Members
 
-        public PointOfSale PointOfSale
+        public PointOfSaleType PointOfSale
         {
-            get { return PointOfSale.Aloha; }
+            get { return PointOfSaleType.Aloha; }
         }
 
         public string WindowsUsername

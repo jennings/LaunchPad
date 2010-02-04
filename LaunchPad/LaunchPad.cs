@@ -39,7 +39,7 @@ namespace LaunchPad
 
                     switch ( settings.PointOfSale )
                     {
-                        case PointOfSale.Positouch:
+                        case PointOfSaleType.Positouch:
                             if ( settings.Integrous )
                             {
                                 Application.Run( new PositouchStartupWindow() );
@@ -50,7 +50,7 @@ namespace LaunchPad
                             }
                             break;
 
-                        case PointOfSale.Aloha:
+                        case PointOfSaleType.Aloha:
                             if ( settings.Integrous )
                             {
                                 Application.Run( new AlohaStartupWindow() );
@@ -61,7 +61,7 @@ namespace LaunchPad
                             }
                             break;
 
-                        case PointOfSale.None:
+                        case PointOfSaleType.None:
                         default:
                             MessageBox.Show( @"Add POSITOUCH or ALOHA flag file to use." );
                             break;

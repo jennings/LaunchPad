@@ -7,7 +7,7 @@ namespace LaunchPad
 {
     class PositouchTerminalStation : ITerminalStation
     {
-        public PointOfSale PointOfSale { get { return PointOfSale.Positouch; } }
+        public PointOfSaleType PointOfSale { get { return PointOfSaleType.Positouch; } }
 
         private string _WindowsPassword;
         public string WindowsUsername { get { return "pos"; } }

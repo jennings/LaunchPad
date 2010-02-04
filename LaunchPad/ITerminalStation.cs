@@ -7,7 +7,7 @@ namespace LaunchPad
 {
     interface ITerminalStation
     {
-        PointOfSale @PointOfSale { get; }
+        PointOfSaleType @PointOfSale { get; }
         string WindowsUsername { get; }
         string WindowsPassword { get; set; }
         IPAddress @IPAddress { get; set; }

@@ -32,12 +32,18 @@ namespace LaunchPad
         public bool Integrous { get; private set; }
 
         private bool @_PointOfSale_Changed = false;
-        private PointOfSale @_PointOfSale;
-        public PointOfSale @PointOfSale
+        private PointOfSaleType? @_PointOfSale;
+        public PointOfSaleType? @PointOfSale
         {
             get { return _PointOfSale; }
             set
             {
+                if ( value == null )
+                {
+                    _PointOfSale_Changed = false;
+                    _PointOfSale = null;
+                    return;
+                }
                 _PointOfSale_Changed = true;
                 _PointOfSale = value;
             }
@@ -50,6 +56,12 @@ namespace LaunchPad
             get { return _ComputerName; }
             set
             {
+                if ( value == null )
+                {
+                    _ComputerName_Changed = false;
+                    _ComputerName = null;
+                    return;
+                }
                 _ComputerName_Changed = true;
                 _ComputerName = value;
             }
@@ -62,6 +74,12 @@ namespace LaunchPad
             get { return _IPAddress; }
             set
             {
+                if ( value == null )
+                {
+                    _IPAddress_Changed = false;
+                    _IPAddress = null;
+                    return;
+                }
                 _IPAddress_Changed = true;
                 _IPAddress = value;
             }
@@ -75,6 +93,12 @@ namespace LaunchPad
             get { return _PosdriverIPAddress; }
             set
             {
+                if ( value == null )
+                {
+                    _PosdriverIPAddress_Changed = false;
+                    _PosdriverIPAddress = null;
+                    return;
+                }
                 _PosdriverIPAddress_Changed = true;
                 _PosdriverIPAddress = value;
             }
@@ -87,6 +111,12 @@ namespace LaunchPad
             get { return _BackofficeIPAddress; }
             set
             {
+                if ( value == null )
+                {
+                    _BackofficeIPAddress_Changed = false;
+                    _BackofficeIPAddress = null;
+                    return;
+                }
                 _BackofficeIPAddress_Changed = true;
                 _BackofficeIPAddress = value;
             }
@@ -99,6 +129,12 @@ namespace LaunchPad
             get { return _RedundantIPAddress; }
             set
             {
+                if ( value == null )
+                {
+                    _RedundantIPAddress_Changed = false;
+                    _RedundantIPAddress = null;
+                    return;
+                }
                 _RedundantIPAddress_Changed = true;
                 _RedundantIPAddress = value;
             }
@@ -106,36 +142,54 @@ namespace LaunchPad
 
 
         private bool _LaunchPositerm_Changed = false;
-        private bool _LaunchPositerm;
+        private bool? _LaunchPositerm;
         public bool LaunchPositerm
         {
-            get { return _LaunchPositerm; }
+            get { return _LaunchPositerm ?? false; }
             set
             {
+                if ( value == null )
+                {
+                    _LaunchPositerm_Changed = false;
+                    _LaunchPositerm = null;
+                    return;
+                }
                 _LaunchPositerm_Changed = true;
                 _LaunchPositerm = value;
             }
         }
 
         private bool _LaunchPosiw_Changed = false;
-        private bool _LaunchPosiw;
+        private bool? _LaunchPosiw;
         public bool LaunchPosiw
         {
-            get { return _LaunchPosiw; }
+            get { return _LaunchPosiw ?? false; }
             set
             {
+                if ( value == null )
+                {
+                    _LaunchPosiw_Changed = false;
+                    _LaunchPosiw = null;
+                    return;
+                }
                 _LaunchPosiw_Changed = true;
                 _LaunchPosiw = value;
             }
         }
 
         private bool _LaunchVNC_Changed = false;
-        private bool _LaunchVNC;
+        private bool? _LaunchVNC;
         public bool LaunchVNC
         {
-            get { return _LaunchVNC; }
+            get { return _LaunchVNC ?? false; }
             set
             {
+                if ( value == null )
+                {
+                    _LaunchVNC_Changed = false;
+                    _LaunchVNC = null;
+                    return;
+                }
                 _LaunchVNC_Changed = true;
                 _LaunchVNC = value;
             }
@@ -143,12 +197,18 @@ namespace LaunchPad
 
 
         private bool _LaunchIbercfg_Changed = false;
-        private bool _LaunchIbercfg;
+        private bool? _LaunchIbercfg;
         public bool LaunchIbercfg
         {
-            get { return _LaunchIbercfg; }
+            get { return _LaunchIbercfg ?? false; }
             set
             {
+                if ( value == null )
+                {
+                    _LaunchIbercfg_Changed = false;
+                    _LaunchIbercfg = null;
+                    return;
+                }
                 _LaunchIbercfg_Changed = true;
                 _LaunchIbercfg = value;
             }
@@ -211,7 +271,7 @@ namespace LaunchPad
         {
             Integrous = false;
 
-            _PointOfSale = PointOfSale.None;
+            _PointOfSale = PointOfSaleType.None;
             _PointOfSale_Changed = false;
 
             _ComputerName = null;
@@ -247,7 +307,7 @@ namespace LaunchPad
             if ( _LaunchVNC == null )
                 return;
 
-            if ( PointOfSale == PointOfSale.Positouch )
+            if ( PointOfSale == PointOfSaleType.Positouch )
             {
                 if ( _PosdriverIPAddress == null )
                     return;
@@ -259,7 +319,7 @@ namespace LaunchPad
                 if ( _LaunchPositerm == null )
                     return;
             }
-            else if ( PointOfSale == PointOfSale.Aloha )
+            else if ( PointOfSale == PointOfSaleType.Aloha )
             {
                 if ( _LaunchIbercfg == null )
                     return;
@@ -274,15 +334,15 @@ namespace LaunchPad
 
             if ( File.Exists( @"POSITOUCH" ) )
             {
-                _PointOfSale = PointOfSale.Positouch;
+                _PointOfSale = PointOfSaleType.Positouch;
             }
             else if ( File.Exists( @"ALOHA" ) )
             {
-                _PointOfSale = PointOfSale.Aloha;
+                _PointOfSale = PointOfSaleType.Aloha;
             }
             else
             {
-                _PointOfSale = PointOfSale.None;
+                _PointOfSale = PointOfSaleType.None;
             }
             _PointOfSale_Changed = false;
 
@@ -359,22 +419,26 @@ namespace LaunchPad
         {
             var settingsToChange = new Dictionary<string, string>();
 
-            settingsToChange.Add( "COMPUTER_NAME", _ComputerName );
-            settingsToChange.Add( "IPADDRESS", _IPAddress.ToString() );
+            if ( _ComputerName_Changed )
+                settingsToChange.Add( "COMPUTER_NAME", ComputerName );
+            if ( _IPAddress_Changed )
+                settingsToChange.Add( "IPADDRESS", IPAddress.ToString() );
 
-            settingsToChange.Add( "POSDRIVER_IPADDRESS", _PosdriverIPAddress.ToString() );
-            settingsToChange.Add( "BACKOFFICE_IPADDRESS", _BackofficeIPAddress.ToString() );
-            try
-            {
-                settingsToChange.Add( "REDUNDANT_IPADDRESS", _RedundantIPAddress.ToString() );
-            }
-            catch ( NullReferenceException )
-            { }
+            if ( _PosdriverIPAddress_Changed )
+                settingsToChange.Add( "POSDRIVER_IPADDRESS", PosdriverIPAddress.ToString() );
+            if ( _BackofficeIPAddress_Changed )
+                settingsToChange.Add( "BACKOFFICE_IPADDRESS", BackofficeIPAddress.ToString() );
+            if ( _RedundantIPAddress_Changed )
+                settingsToChange.Add( "REDUNDANT_IPADDRESS", RedundantIPAddress.ToString() );
 
-            settingsToChange.Add( "LAUNCH_POSIW", _LaunchPosiw ? "YES" : "NO" );
-            settingsToChange.Add( "LAUNCH_POSITERM", _LaunchPositerm ? "YES" : "NO" );
-            settingsToChange.Add( "LAUNCH_VNC", _LaunchVNC ? "YES" : "NO" );
-            settingsToChange.Add( "LAUNCH_IBERCFG", _LaunchIbercfg ? "YES" : "NO" );
+            if ( _LaunchPosiw_Changed )
+                settingsToChange.Add( "LAUNCH_POSIW", LaunchPosiw ? "YES" : "NO" );
+            if ( _LaunchPositerm_Changed )
+                settingsToChange.Add( "LAUNCH_POSITERM", LaunchPositerm ? "YES" : "NO" );
+            if ( _LaunchVNC_Changed )
+                settingsToChange.Add( "LAUNCH_VNC", LaunchVNC ? "YES" : "NO" );
+            if ( _LaunchIbercfg_Changed )
+                settingsToChange.Add( "LAUNCH_IBERCFG", LaunchIbercfg ? "YES" : "NO" );
 
             try
             {
@@ -382,14 +446,19 @@ namespace LaunchPad
 
                 var txn = Db.BeginTransaction();
 
-                var deletequery = @"DELETE FROM tblSettings;";
-                using ( var cmd = new OleDbCommand( deletequery, Db, txn ) )
+                var delQuery = @"DELETE FROM tblSettings WHERE [key] = ?";
+                using ( var cmd = new OleDbCommand( delQuery, Db, txn ) )
                 {
-                    cmd.ExecuteNonQuery();
+                    foreach ( var kvp in settingsToChange )
+                    {
+                        cmd.Parameters.Clear();
+                        cmd.Parameters.Add( new OleDbParameter( "@Key", kvp.Key ) );
+                        cmd.ExecuteNonQuery();
+                    }
                 }
 
-                var query = @"INSERT INTO tblSettings ( [key], [value] ) VALUES ( ?, ? );";
-                using ( var cmd = new OleDbCommand( query, Db, txn ) )
+                var insQuery = @"INSERT INTO tblSettings ( [key], [value] ) VALUES ( ?, ? );";
+                using ( var cmd = new OleDbCommand( insQuery, Db, txn ) )
                 {
                     foreach ( var kvp in settingsToChange )
                     {
@@ -414,7 +483,7 @@ namespace LaunchPad
         }
     }
 
-    enum PointOfSale
+    enum PointOfSaleType
     {
         Positouch,
         Aloha,
