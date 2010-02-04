@@ -83,7 +83,6 @@
     <Compile Include="Configuration\PositouchInitialConfiguratorController.cs" />
     <Compile Include="Configuration\Configurators\IConfigurator.cs" />
     <Compile Include="Configuration\IConfiguratorController.cs" />
-    <Compile Include="Configuration\Configurators\NetworkConfigurator.cs" />
     <Compile Include="Configuration\PositouchConfiguratorController.cs" />
     <Compile Include="Configuration\Configurators\Rebooter.cs" />
     <Compile Include="Configuration\Configurators\VNCConfigurator.cs" />
