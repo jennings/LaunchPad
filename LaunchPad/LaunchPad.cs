@@ -1,8 +1,8 @@
 ﻿using System;
 using System.ServiceProcess;
 using System.Windows.Forms;
+using LaunchPad.Configuration.Dispatch;
 using LaunchPad.Forms;
-using LaunchPad.Configuration;
 
 namespace LaunchPad
 {

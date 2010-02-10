@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace LaunchPad.Configuration
+namespace LaunchPad.Configuration.Dispatch
 {
     class LocalConfiguratorDispatcher : IConfiguratorDispatcher
     {

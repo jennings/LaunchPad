@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace LaunchPad.Configuration
+namespace LaunchPad.Configuration.Dispatch
 {
     /// <summary>
     /// A dispatcher is responsible for actually commanding

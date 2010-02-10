@@ -65,12 +65,12 @@
     <Compile Include="Configuration\Configurators\AutomaticLogonConfigurator.cs" />
     <Compile Include="Configuration\Configurators\ComputerNameConfigurator.cs" />
     <Compile Include="Configuration\Configurators\IPAddressConfigurator.cs" />
-    <Compile Include="Configuration\IConfiguratorDispatcher.cs" />
-    <Compile Include="Configuration\LocalConfiguratorDispatcher.cs" />
+    <Compile Include="Configuration\Dispatch\IConfiguratorDispatcher.cs" />
+    <Compile Include="Configuration\Dispatch\LocalConfiguratorDispatcher.cs" />
     <Compile Include="LaunchPadService.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Configuration\RemoteConfiguratorDispatcher.cs" />
+    <Compile Include="Configuration\Dispatch\RemoteConfiguratorDispatcher.cs" />
     <Compile Include="Utilities.cs" />
     <Compile Include="Forms\AlohaInitialConfigWindow.cs">
       <SubType>Form</SubType>

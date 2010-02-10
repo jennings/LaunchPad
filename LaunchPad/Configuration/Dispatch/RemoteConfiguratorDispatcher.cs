@@ -8,7 +8,7 @@ using LaunchPad.Configuration.Configurators;
 using System.Net;
 using System.Collections;
 
-namespace LaunchPad.Configuration
+namespace LaunchPad.Configuration.Dispatch
 {
     class RemoteConfiguratorDispatcher : MarshalByRefObject, IConfiguratorDispatcher
     {
