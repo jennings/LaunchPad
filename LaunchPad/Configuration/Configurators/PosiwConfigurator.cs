@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.IO;
+using System.Net;
 
 namespace LaunchPad.Configuration.Configurators
 {
@@ -10,12 +11,30 @@ namespace LaunchPad.Configuration.Configurators
         public bool RequiresElevation { get { return true; } }
         public bool RequiresAuthentication { get { return false; } }
 
-        public PositouchTerminalStation StationSettings { get; private set; }
+        public string DeviceNumberString { get { return DeviceNumber.ToString( "D2" ); } }
+        public int DeviceNumber { get; private set; }
 
-        private PosiwConfigurator() { }
-        public PosiwConfigurator( PositouchTerminalStation TerminalStationSettings )
+        public bool Backoffice { get; private set; }
+        public bool PosdriverTerminal { get; private set; }
+        public bool RedundantTerminal { get; private set; }
+
+        public IPAddress @BackofficeIPAddress { get; private set; }
+        public IPAddress @PosdriverIPAddress { get; private set; }
+        public IPAddress @RedundantIPAddress { get; private set; }
+
+
+        public PosiwConfigurator( int deviceNumber, bool backoffice, bool posdriver, bool redundant, IPAddress backofficeip, IPAddress posdriverip, IPAddress redundantip )
         {
-            StationSettings = TerminalStationSettings;
+            DeviceNumber = deviceNumber;
+
+            Backoffice = backoffice;
+            BackofficeIPAddress = backofficeip;
+
+            PosdriverTerminal = posdriver;
+            PosdriverIPAddress = posdriverip;
+
+            RedundantTerminal = redundant;
+            RedundantIPAddress = redundantip;
         }
 
         public void Configure()
@@ -39,37 +58,37 @@ namespace LaunchPad.Configuration.Configurators
 
                 sw.WriteLine( @"[Startup]" );
                 sw.WriteLine( @"POSDRVR=POSDRVR-89" );
-                sw.WriteLine( @"POSIW=" + StationSettings.DeviceNumberString );
-                sw.WriteLine( @"DateTimeServer=" + ( StationSettings.Backoffice ? "YES" : "NO" ) );
+                sw.WriteLine( @"POSIW=" + DeviceNumberString );
+                sw.WriteLine( @"DateTimeServer=" + ( Backoffice ? "YES" : "NO" ) );
                 sw.WriteLine( @"KeyServer=NO" );
 
-                if ( StationSettings.PosdriverTerminal )
+                if ( PosdriverTerminal )
                 {
-                    sw.WriteLine( @"NetDriveMap1=L:\\" + StationSettings.BackofficeIPAddress + @"\C" );
-                    sw.WriteLine( @"NetDriveMap2=M:\\" + StationSettings.RedundantIPAddress + @"\C" );
+                    sw.WriteLine( @"NetDriveMap1=L:\\" + BackofficeIPAddress + @"\C" );
+                    sw.WriteLine( @"NetDriveMap2=M:\\" + RedundantIPAddress + @"\C" );
                 }
-                else if ( StationSettings.RedundantTerminal )
+                else if ( RedundantTerminal )
                 {
-                    sw.WriteLine( @"NetDriveMap1=L:\\" + StationSettings.PosdriverIPAddress + @"\C" );
+                    sw.WriteLine( @"NetDriveMap1=L:\\" + PosdriverIPAddress + @"\C" );
                 }
-                else if ( StationSettings.Backoffice )
+                else if ( Backoffice )
                 {
-                    sw.WriteLine( @"NetDriveMap1=L:\\" + StationSettings.PosdriverIPAddress + @"\C" );
-                    sw.WriteLine( @"NetDriveMap2=M:\\" + StationSettings.RedundantIPAddress + @"\C" );
+                    sw.WriteLine( @"NetDriveMap1=L:\\" + PosdriverIPAddress + @"\C" );
+                    sw.WriteLine( @"NetDriveMap2=M:\\" + RedundantIPAddress + @"\C" );
                 }
                 else
                 {
-                    sw.WriteLine( @"NetDriveMap1=L:\\" + StationSettings.PosdriverIPAddress + @"\C" );
-                    sw.WriteLine( @"NetDriveMap2=M:\\" + StationSettings.RedundantIPAddress + @"\C" );
+                    sw.WriteLine( @"NetDriveMap1=L:\\" + PosdriverIPAddress + @"\C" );
+                    sw.WriteLine( @"NetDriveMap2=M:\\" + RedundantIPAddress + @"\C" );
                 }
 
                 sw.WriteLine( @"" );
 
                 sw.WriteLine( @"[Backup]" );
                 sw.WriteLine( @"MirrorPath=L:\SC" );
-                sw.WriteLine( @"PrimaryServer=" + ( StationSettings.PosdriverTerminal ? "YES" : "NO" ) );
-                sw.WriteLine( @"BackupServer=" + ( StationSettings.RedundantTerminal ? "YES" : "NO" ) );
-                sw.WriteLine( @"BackoffServer=" + ( StationSettings.Backoffice ? "YES" : "NO" ) );
+                sw.WriteLine( @"PrimaryServer=" + ( PosdriverTerminal ? "YES" : "NO" ) );
+                sw.WriteLine( @"BackupServer=" + ( RedundantTerminal ? "YES" : "NO" ) );
+                sw.WriteLine( @"BackoffServer=" + ( Backoffice ? "YES" : "NO" ) );
                 sw.WriteLine( @"FileServer=NO" );
 
                 sw.WriteLine( @"PrimaryInterval=10" );
@@ -99,16 +118,16 @@ namespace LaunchPad.Configuration.Configurators
                 sw.WriteLine( @"[Network]" );
                 sw.WriteLine( @"TCP/IP=YES" );
 
-                if ( !StationSettings.PosdriverTerminal )
-                    sw.WriteLine( @"Spcwin=" + StationSettings.PosdriverIPAddress );
-                if ( !StationSettings.Backoffice )
-                    sw.WriteLine( @"BackOffice=" + StationSettings.BackofficeIPAddress );
+                if ( !PosdriverTerminal )
+                    sw.WriteLine( @"Spcwin=" + PosdriverIPAddress );
+                if ( !Backoffice )
+                    sw.WriteLine( @"BackOffice=" + BackofficeIPAddress );
 
-                if ( !StationSettings.RedundantTerminal )
-                    sw.WriteLine( @"BackUpServer=" + StationSettings.RedundantIPAddress );
+                if ( !RedundantTerminal )
+                    sw.WriteLine( @"BackUpServer=" + RedundantIPAddress );
 
-                if ( !StationSettings.Backoffice )
-                    sw.WriteLine( @"Posiw99=" + StationSettings.BackofficeIPAddress );
+                if ( !Backoffice )
+                    sw.WriteLine( @"Posiw99=" + BackofficeIPAddress );
                 sw.WriteLine( @"" );
 
                 sw.Flush();

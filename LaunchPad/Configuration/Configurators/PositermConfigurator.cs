@@ -10,7 +10,7 @@ namespace LaunchPad.Configuration.Configurators
         public bool RequiresElevation { get { return false; } }
         public bool RequiresAuthentication { get { return false; } }
 
-        public PositouchTerminalStation StationSettings { get; private set; }
+        public string ComputerName { get; private set; }
 
         private List<string> Filenames = new List<string>()
         {
@@ -24,12 +24,11 @@ namespace LaunchPad.Configuration.Configurators
         private string PosdriverCFolder;
 
         private PositermConfigurator() { }
-        public PositermConfigurator( PositouchTerminalStation TerminalStationSettings )
+        public PositermConfigurator( string computername )
         {
-            StationSettings = TerminalStationSettings;
+            ComputerName = computername;
         }
-
-
+        
         public void Configure()
         {
             CreateCShare();
@@ -74,7 +73,7 @@ namespace LaunchPad.Configuration.Configurators
 
             using ( var sw = new StreamWriter( @"C:\SC\TERM.$$$" ) )
             {
-                sw.Write( StationSettings.ComputerName );
+                sw.Write( ComputerName );
             }
         }
     }

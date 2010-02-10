@@ -1,7 +1,5 @@
-﻿using System;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.IO;
-using System.ServiceProcess;
 
 namespace LaunchPad.Configuration.Configurators
 {
@@ -10,18 +8,9 @@ namespace LaunchPad.Configuration.Configurators
         public bool RequiresElevation { get { return true; } }
         public bool RequiresAuthentication { get { return false; } }
 
-        ITerminalStation StationSettings;
-
         private const string VNCDirectory = @"C:\Program Files\UltraVNC";
         private const string VNCBackupDirectory = @"C:\Program Files\UltraVNC2";
         private const string SourceVNCDirectory = @"UltraVNC";
-
-        private VNCConfigurator() { }
-        public VNCConfigurator( ITerminalStation settings )
-        {
-            StationSettings = settings;
-        }
-
 
         public void Configure()
         {

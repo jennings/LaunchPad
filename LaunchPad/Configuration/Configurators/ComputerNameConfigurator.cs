@@ -8,7 +8,7 @@ namespace LaunchPad.Configuration.Configurators
         public bool RequiresElevation { get { return true; } }
         public bool RequiresAuthentication { get { return false; } }
 
-        string NewComputerName;
+        private string NewComputerName;
 
         private ComputerNameConfigurator() { }
         public ComputerNameConfigurator( string newComputerName )

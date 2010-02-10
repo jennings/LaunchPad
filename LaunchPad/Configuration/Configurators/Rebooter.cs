@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Management;
+﻿using System.Management;
 
 namespace LaunchPad.Configuration.Configurators
 {
