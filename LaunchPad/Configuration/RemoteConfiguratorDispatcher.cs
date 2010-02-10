@@ -58,9 +58,14 @@ namespace LaunchPad.Configuration
         #endregion
 
 
-        public void AddCredentialTask( string baseCustomerPassword )
+        public void AddCredentialTask( string username, string password )
         {
-            TaskList.Add( new CredentialsConfigurator( baseCustomerPassword ) );
+            TaskList.Add( new CredentialsConfigurator( username, password ) );
+        }
+
+        public void AddAutomaticLogonTask( string username, string password )
+        {
+            TaskList.Add( new AutomaticLogonConfigurator( username, password ) );
         }
 
         public void AddComputerNameTask( string computerName )

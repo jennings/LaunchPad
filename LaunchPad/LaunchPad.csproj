@@ -62,6 +62,7 @@
   <ItemGroup>
     <Compile Include="Authentication\Challenge.cs" />
     <Compile Include="Authentication\Response.cs" />
+    <Compile Include="Configuration\Configurators\AutomaticLogonConfigurator.cs" />
     <Compile Include="Configuration\Configurators\ComputerNameConfigurator.cs" />
     <Compile Include="Configuration\Configurators\IPAddressConfigurator.cs" />
     <Compile Include="Configuration\IConfiguratorDispatcher.cs" />

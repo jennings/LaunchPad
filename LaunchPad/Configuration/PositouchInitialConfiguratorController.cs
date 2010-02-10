@@ -21,7 +21,10 @@ namespace LaunchPad.Configuration
             settings.ValidateInitial();
             StationSettings = settings;
 
-            RemoteConfigurators.AddCredentialTask( StationSettings.WindowsPassword );
+            RemoteConfigurators.AddCredentialTask( "pos", "pos" );
+            RemoteConfigurators.AddAutomaticLogonTask( "pos", "pos" );
+            RemoteConfigurators.AddCredentialTask( "cbs", StationSettings.WindowsPassword );
+            RemoteConfigurators.AddCredentialTask( "acronis", StationSettings.WindowsPassword );
             RemoteConfigurators.AddComputerNameTask( StationSettings.ComputerName );
             RemoteConfigurators.AddIPAddressTask( StationSettings.IPAddress );
         }
@@ -43,7 +46,7 @@ namespace LaunchPad.Configuration
 
             SettingsReader.Instance.Commit();
 
-            //Rebooter.Reboot();
+            Rebooter.Reboot();
         }
     }
 }
