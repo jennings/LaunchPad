@@ -128,13 +128,13 @@ namespace LaunchPad.Forms
 
             // Terminal type
             if ( TerminalType_Posdriver.Checked )
-                settings.Type = TerminalStationType.Posdriver;
+                settings.@PositermType = PositouchTerminalType.Posdriver;
             else if ( TerminalType_Redundant.Checked )
-                settings.Type = TerminalStationType.Redunant;
+                settings.@PositermType = PositouchTerminalType.Redunant;
             else if ( TerminalType_Backoffice.Checked )
-                settings.Type = TerminalStationType.Backoffice;
+                settings.@PositermType = PositouchTerminalType.Backoffice;
             else if ( TerminalType_Normal.Checked )
-                settings.Type = TerminalStationType.Normal;
+                settings.@PositermType = PositouchTerminalType.Normal;
             else
                 throw new Exception( @"No TerminalType radio button selected." );
 

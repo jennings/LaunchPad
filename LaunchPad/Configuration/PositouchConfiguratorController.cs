@@ -2,6 +2,7 @@
 using LaunchPad.Authentication;
 using LaunchPad.Configuration.Configurators;
 using LaunchPad.Configuration.Dispatch;
+using LaunchPad.Configuration.Tasks;
 
 namespace LaunchPad.Configuration
 {
@@ -26,14 +27,12 @@ namespace LaunchPad.Configuration
             RemoteConfigurators.AddIPAddressTask( StationSettings.IPAddress );
 
             Configurators.Add( new PositermConfigurator( StationSettings.ComputerName ) );
-            Configurators.Add( new PosiwConfigurator(
+            Configurators.Add( new PosiwConfigurator( new PosiwTask(
                 StationSettings.DeviceNumber ?? 0, // FIXME
-                StationSettings.Backoffice,
-                StationSettings.PosdriverTerminal,
-                StationSettings.RedundantTerminal,
+                StationSettings.PosiwType ?? PosiwTerminalType.Normal, // FIXME
                 StationSettings.BackofficeIPAddress,
                 StationSettings.PosdriverIPAddress,
-                StationSettings.RedundantIPAddress ) );
+                StationSettings.RedundantIPAddress ) ));
             Configurators.Add( new VNCConfigurator() );
         }
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.IO;
 using System.Net;
+using LaunchPad.Configuration.Tasks;
 
 namespace LaunchPad.Configuration.Configurators
 {
@@ -14,27 +15,25 @@ namespace LaunchPad.Configuration.Configurators
         public string DeviceNumberString { get { return DeviceNumber.ToString( "D2" ); } }
         public int DeviceNumber { get; private set; }
 
-        public bool Backoffice { get; private set; }
-        public bool PosdriverTerminal { get; private set; }
-        public bool RedundantTerminal { get; private set; }
+        public PosiwTerminalType @Type { get; private set; }
+        public bool Backoffice { get { return Type == PosiwTerminalType.BackoffServer; } }
+        public bool PosdriverTerminal { get { return Type == PosiwTerminalType.PrimaryServer; } }
+        public bool RedundantTerminal { get { return Type == PosiwTerminalType.BackupServer; } }
 
         public IPAddress @BackofficeIPAddress { get; private set; }
         public IPAddress @PosdriverIPAddress { get; private set; }
         public IPAddress @RedundantIPAddress { get; private set; }
 
 
-        public PosiwConfigurator( int deviceNumber, bool backoffice, bool posdriver, bool redundant, IPAddress backofficeip, IPAddress posdriverip, IPAddress redundantip )
+        public PosiwConfigurator( PosiwTask task )
         {
-            DeviceNumber = deviceNumber;
+            DeviceNumber = task.DeviceNumber;
 
-            Backoffice = backoffice;
-            BackofficeIPAddress = backofficeip;
+            @Type = task.Type;
 
-            PosdriverTerminal = posdriver;
-            PosdriverIPAddress = posdriverip;
-
-            RedundantTerminal = redundant;
-            RedundantIPAddress = redundantip;
+            BackofficeIPAddress = task.BackofficeIPAddress;
+            PosdriverIPAddress = task.PosdriverIPAddress;
+            RedundantIPAddress = task.RedundantIPAddress;
         }
 
         public void Configure()
@@ -133,14 +132,5 @@ namespace LaunchPad.Configuration.Configurators
                 sw.Flush();
             }
         }
-    }
-
-    enum PosiwTerminalType
-    {
-        PrimaryServer,
-        BackupServer,
-        BackoffServer,
-        FileServer,
-        Normal
     }
 }

@@ -67,6 +67,14 @@
     <Compile Include="Configuration\Configurators\IPAddressConfigurator.cs" />
     <Compile Include="Configuration\Dispatch\IConfiguratorDispatcher.cs" />
     <Compile Include="Configuration\Dispatch\LocalConfiguratorDispatcher.cs" />
+    <Compile Include="Configuration\Tasks\AutomaticLogonTask.cs" />
+    <Compile Include="Configuration\Tasks\ComputerNameTask.cs" />
+    <Compile Include="Configuration\Tasks\CredentialsTask.cs" />
+    <Compile Include="Configuration\Tasks\IPAddressTask.cs" />
+    <Compile Include="Configuration\Tasks\PositermTask.cs" />
+    <Compile Include="Configuration\Tasks\PosiwTask.cs" />
+    <Compile Include="Configuration\Tasks\VNCTask.cs" />
+    <Compile Include="Configuration\Tasks\ITask.cs" />
     <Compile Include="LaunchPadService.cs">
       <SubType>Component</SubType>
     </Compile>
