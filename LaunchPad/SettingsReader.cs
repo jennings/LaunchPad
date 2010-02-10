@@ -1,15 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Data.OleDb;
-using System.Net;
 using System.IO;
+using System.Net;
+using System.Reflection;
 using ADOX;
 
 namespace LaunchPad
 {
     class SettingsReader
     {
+        public static readonly string WorkingDirectory;
+        public static readonly string LaunchPadDirectory;
+        private static readonly string Filename;
+
+        static SettingsReader()
+        {
+            WorkingDirectory = Path.GetDirectoryName( Assembly.GetExecutingAssembly().Location );
+            LaunchPadDirectory = @"C:\LaunchPad";
+            Filename = Path.Combine( LaunchPadDirectory, @"Settings.mdb" );
+        }
+
         // Singleton
         private static SettingsReader _Instance = null;
         public static SettingsReader Instance
@@ -24,7 +35,6 @@ namespace LaunchPad
             }
         }
 
-        private const string Filename = @"Settings.mdb";
         private OleDbConnection Db;
 
         #region Settings
