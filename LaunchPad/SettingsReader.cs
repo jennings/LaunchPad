@@ -29,7 +29,42 @@ namespace LaunchPad
 
         #region Settings
 
-        public bool Integrous { get; private set; }
+        public bool Integrous
+        {
+            get
+            {
+                if ( _ComputerName == null )
+                    return false;
+                if ( _IPAddress == null )
+                    return false;
+                if ( _LaunchVNC == null )
+                    return false;
+
+                if ( PointOfSale == PointOfSaleType.Positouch )
+                {
+                    if ( _PosdriverIPAddress == null )
+                        return false;
+                    if ( _BackofficeIPAddress == null )
+                        return false;
+                    // Might be a 1 terminal system, so redundant terminal null is OK.
+                    if ( _LaunchPosiw == null )
+                        return false;
+                    if ( _LaunchPositerm == null )
+                        return false;
+                }
+                else if ( PointOfSale == PointOfSaleType.Aloha )
+                {
+                    if ( _LaunchIbercfg == null )
+                        return false;
+                }
+                else if ( PointOfSale == null )
+                {
+                    return false;
+                }
+
+                return true;
+            }
+        }
 
         private bool @_PointOfSale_Changed = false;
         private PointOfSaleType? @_PointOfSale;
@@ -269,9 +304,7 @@ namespace LaunchPad
 
         private void ClearSettings()
         {
-            Integrous = false;
-
-            _PointOfSale = PointOfSaleType.None;
+            _PointOfSale = null;
             _PointOfSale_Changed = false;
 
             _ComputerName = null;
@@ -294,38 +327,6 @@ namespace LaunchPad
             _LaunchVNC_Changed = false;
             _LaunchIbercfg = false;
             _LaunchIbercfg_Changed = false;
-        }
-
-        private void CheckIntegrity()
-        {
-            Integrous = false;
-
-            if ( _ComputerName == null )
-                return;
-            if ( _IPAddress == null )
-                return;
-            if ( _LaunchVNC == null )
-                return;
-
-            if ( PointOfSale == PointOfSaleType.Positouch )
-            {
-                if ( _PosdriverIPAddress == null )
-                    return;
-                if ( _BackofficeIPAddress == null )
-                    return;
-                // Might be a 1 terminal system, so redundant terminal null is OK.
-                if ( _LaunchPosiw == null )
-                    return;
-                if ( _LaunchPositerm == null )
-                    return;
-            }
-            else if ( PointOfSale == PointOfSaleType.Aloha )
-            {
-                if ( _LaunchIbercfg == null )
-                    return;
-            }
-
-            Integrous = true;
         }
 
         public void ReadSettings()
@@ -411,8 +412,6 @@ namespace LaunchPad
                 Db.Close();
                 throw;
             }
-
-            CheckIntegrity();
         }
 
         public void Commit()
