@@ -80,6 +80,7 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Configuration\Dispatch\RemoteConfiguratorDispatcher.cs" />
+    <Compile Include="Models\PositouchTerminalSelectionModel.cs" />
     <Compile Include="Models\PositouchInitialConfigurationModel.cs" />
     <Compile Include="Utilities.cs" />
     <Compile Include="Forms\AlohaInitialConfigWindow.cs">
