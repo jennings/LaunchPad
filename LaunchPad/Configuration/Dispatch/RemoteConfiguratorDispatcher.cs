@@ -7,6 +7,7 @@ using LaunchPad.Authentication;
 using LaunchPad.Configuration.Configurators;
 using System.Net;
 using System.Collections;
+using LaunchPad.Configuration.Tasks;
 
 namespace LaunchPad.Configuration.Dispatch
 {
@@ -49,7 +50,7 @@ namespace LaunchPad.Configuration.Dispatch
             var ipcProperties = new Hashtable();
             ipcProperties["portName"] = IpcChannelName;
             ipcProperties["authorizedGroup"] = "Everyone";
-            
+
             var channel = new IpcServerChannel( ipcProperties, null );
             ChannelServices.RegisterChannel( channel, true );
             RemotingConfiguration.RegisterActivatedServiceType( typeof( RemoteConfiguratorDispatcher ) );
@@ -58,9 +59,9 @@ namespace LaunchPad.Configuration.Dispatch
         #endregion
 
 
-        public void AddCredentialTask( string username, string password )
+        public void AddCredentialTask( CredentialsTask task )
         {
-            TaskList.Add( new CredentialsConfigurator( username, password ) );
+            TaskList.Add( new CredentialsConfigurator( task ) );
         }
 
         public void AddAutomaticLogonTask( string username, string password )
@@ -68,14 +69,14 @@ namespace LaunchPad.Configuration.Dispatch
             TaskList.Add( new AutomaticLogonConfigurator( username, password ) );
         }
 
-        public void AddComputerNameTask( string computerName )
+        public void AddComputerNameTask( ComputerNameTask task )
         {
-            TaskList.Add( new ComputerNameConfigurator( computerName ) );
+            TaskList.Add( new ComputerNameConfigurator( task ) );
         }
 
-        public void AddIPAddressTask( IPAddress ipaddress )
+        public void AddIPAddressTask( IPAddressTask task )
         {
-            TaskList.Add( new IPAddressConfigurator( ipaddress ) );
+            TaskList.Add( new IPAddressConfigurator( task ) );
         }
 
         public void Dispatch()

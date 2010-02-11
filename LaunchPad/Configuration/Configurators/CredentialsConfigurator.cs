@@ -1,7 +1,6 @@
-﻿using Microsoft.Win32;
-using System.Collections.Generic;
+﻿using System;
 using System.DirectoryServices;
-using System;
+using LaunchPad.Configuration.Tasks;
 
 namespace LaunchPad.Configuration.Configurators
 {
@@ -14,10 +13,10 @@ namespace LaunchPad.Configuration.Configurators
         private string Password;
 
         private CredentialsConfigurator() { }
-        public CredentialsConfigurator( string username, string password )
+        public CredentialsConfigurator( CredentialsTask task )
         {
-            Username = username;
-            Password = password;
+            Username = task.Username;
+            Password = task.Password;
         }
 
         public void Configure()

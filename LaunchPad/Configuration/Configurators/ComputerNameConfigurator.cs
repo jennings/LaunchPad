@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Management;
+using LaunchPad.Configuration.Tasks;
 
 namespace LaunchPad.Configuration.Configurators
 {
@@ -11,9 +12,9 @@ namespace LaunchPad.Configuration.Configurators
         private string NewComputerName;
 
         private ComputerNameConfigurator() { }
-        public ComputerNameConfigurator( string newComputerName )
+        public ComputerNameConfigurator( ComputerNameTask task )
         {
-            NewComputerName = newComputerName;
+            NewComputerName = task.ComputerName;
         }
 
 

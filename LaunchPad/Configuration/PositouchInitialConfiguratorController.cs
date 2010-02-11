@@ -2,6 +2,7 @@
 using LaunchPad.Authentication;
 using LaunchPad.Configuration.Configurators;
 using LaunchPad.Configuration.Dispatch;
+using LaunchPad.Configuration.Tasks;
 
 namespace LaunchPad.Configuration
 {
@@ -22,12 +23,12 @@ namespace LaunchPad.Configuration
             settings.ValidateInitial();
             StationSettings = settings;
 
-            RemoteConfigurators.AddCredentialTask( "pos", "pos" );
+            RemoteConfigurators.AddCredentialTask( new CredentialsTask( "pos", "pos" ) );
             RemoteConfigurators.AddAutomaticLogonTask( "pos", "pos" );
-            RemoteConfigurators.AddCredentialTask( "cbs", StationSettings.WindowsPassword );
-            RemoteConfigurators.AddCredentialTask( "acronis", StationSettings.WindowsPassword );
-            RemoteConfigurators.AddComputerNameTask( StationSettings.ComputerName );
-            RemoteConfigurators.AddIPAddressTask( StationSettings.IPAddress );
+            RemoteConfigurators.AddCredentialTask( new CredentialsTask( "cbs", StationSettings.WindowsPassword ) );
+            RemoteConfigurators.AddCredentialTask( new CredentialsTask( "acronis", StationSettings.WindowsPassword ) );
+            RemoteConfigurators.AddComputerNameTask( new ComputerNameTask( StationSettings.ComputerName ) );
+            RemoteConfigurators.AddIPAddressTask( new IPAddressTask( StationSettings.IPAddress ) );
         }
 
         public void Configure()

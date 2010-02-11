@@ -23,8 +23,8 @@ namespace LaunchPad.Configuration
             terminalStation.Validate();
             StationSettings = terminalStation;
 
-            RemoteConfigurators.AddComputerNameTask( StationSettings.ComputerName );
-            RemoteConfigurators.AddIPAddressTask( StationSettings.IPAddress );
+            RemoteConfigurators.AddComputerNameTask( new ComputerNameTask( StationSettings.ComputerName ) );
+            RemoteConfigurators.AddIPAddressTask( new IPAddressTask( StationSettings.IPAddress ) );
 
             Configurators.Add( new PositermConfigurator( new PositermTask( StationSettings.ComputerName ) ) );
             Configurators.Add( new PosiwConfigurator( new PosiwTask(
