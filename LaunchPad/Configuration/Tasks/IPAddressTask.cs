@@ -1,7 +1,9 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
 
 namespace LaunchPad.Configuration.Tasks
 {
+    [Serializable]
     public class IPAddressTask : ITask
     {
         public IPAddress @IPAddress { get; private set; }

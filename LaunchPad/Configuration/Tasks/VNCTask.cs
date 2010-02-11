@@ -4,6 +4,7 @@ using System.Text;
 
 namespace LaunchPad.Configuration.Tasks
 {
+    [Serializable]
     public class VNCTask : ITask
     {
     }

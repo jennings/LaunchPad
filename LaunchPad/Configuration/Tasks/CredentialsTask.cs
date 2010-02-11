@@ -1,6 +1,8 @@
-﻿
+﻿using System;
+
 namespace LaunchPad.Configuration.Tasks
 {
+    [Serializable]
     public class CredentialsTask : ITask
     {
         public string Username { get; private set; }

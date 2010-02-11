@@ -5,6 +5,7 @@ using System.Net;
 
 namespace LaunchPad.Configuration.Tasks
 {
+    [Serializable]
     public class PosiwTask : ITask
     {
         public int DeviceNumber { get; private set; }

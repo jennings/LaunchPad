@@ -2,6 +2,7 @@
 
 namespace LaunchPad.Configuration.Tasks
 {
+    [Serializable]
     public class PositermTask : ITask
     {
         public string ComputerName { get; private set; }
