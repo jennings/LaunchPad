@@ -3,6 +3,7 @@ using LaunchPad.Authentication;
 using LaunchPad.Configuration.Configurators;
 using LaunchPad.Configuration.Dispatch;
 using LaunchPad.Configuration.Tasks;
+using LaunchPad.Models;
 
 namespace LaunchPad.Configuration
 {
@@ -13,22 +14,35 @@ namespace LaunchPad.Configuration
             get { return RemoteConfigurators.RequiresAuthentication; }
         }
 
-        PositouchTerminalStation StationSettings;
-        List<IConfigurator> Configurators = new List<IConfigurator>();
-        RemoteConfiguratorDispatcher RemoteConfigurators = new RemoteConfiguratorDispatcher();
+        private List<IConfigurator> Configurators = new List<IConfigurator>();
+        private RemoteConfiguratorDispatcher RemoteConfigurators = new RemoteConfiguratorDispatcher();
+        private PositouchInitialConfigurationModel Model;
 
         private PositouchInitialConfiguratorController() { }
-        public PositouchInitialConfiguratorController( PositouchTerminalStation settings )
+        public PositouchInitialConfiguratorController( PositouchInitialConfigurationModel model )
         {
-            settings.ValidateInitial();
-            StationSettings = settings;
+            Model = model;
 
-            RemoteConfigurators.AddCredentialTask( new CredentialsTask( "pos", "pos" ) );
-            RemoteConfigurators.AddAutomaticLogonTask( new AutomaticLogonTask( "pos", "pos" ) );
-            RemoteConfigurators.AddCredentialTask( new CredentialsTask( "cbs", StationSettings.WindowsPassword ) );
-            RemoteConfigurators.AddCredentialTask( new CredentialsTask( "acronis", StationSettings.WindowsPassword ) );
-            RemoteConfigurators.AddComputerNameTask( new ComputerNameTask( StationSettings.ComputerName ) );
-            RemoteConfigurators.AddIPAddressTask( new IPAddressTask( StationSettings.IPAddress ) );
+            if ( Model.BasePassword != null )
+            {
+                RemoteConfigurators.AddCredentialTask( new CredentialsTask( "pos", "pos" ) );
+                RemoteConfigurators.AddAutomaticLogonTask( new AutomaticLogonTask( "pos", "pos" ) );
+                RemoteConfigurators.AddCredentialTask( new CredentialsTask( "cbs", Model.CbsPassword ) );
+                RemoteConfigurators.AddCredentialTask( new CredentialsTask( "acronis", Model.AcronisPassword ) );
+            }
+
+            if ( Model.IPAddress != null )
+            {
+                RemoteConfigurators.AddIPAddressTask( new IPAddressTask( Model.IPAddress ) );
+            }
+
+            if ( Model.PosdriverIPAddress != null )
+            {
+            }
+
+            if ( Model.BackofficeIPAddress != null )
+            {
+            }
         }
 
         public void Configure()

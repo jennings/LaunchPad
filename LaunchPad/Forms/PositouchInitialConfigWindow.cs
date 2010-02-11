@@ -7,6 +7,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Net;
 using LaunchPad.Configuration;
+using LaunchPad.Models;
 
 namespace LaunchPad.Forms
 {
@@ -106,13 +107,15 @@ namespace LaunchPad.Forms
             // Disable reboot button
             kbd_SaveAndReboot.Enabled = false;
 
-            var settings = new PositouchTerminalStation();
-            settings.IPAddress = IPAddress.Parse(IPAddress_AddressTextBox.Text);
-            settings.PosdriverIPAddress = IPAddress.Parse( PosdriverIP_IPAddress.Text );
-            settings.BackofficeIPAddress = IPAddress.Parse( BackofficeIP_IPAddress.Text );
-            settings.WindowsPassword = CustomerPassword_CustomerPasswordText.Text;
+            var model = new PositouchInitialConfigurationModel()
+            {
+                BasePassword = CustomerPassword_CustomerPasswordText.Text,
+                IPAddress = IPAddress.Parse( IPAddress_AddressTextBox.Text ),
+                PosdriverIPAddress = IPAddress.Parse( PosdriverIP_IPAddress.Text ),
+                BackofficeIPAddress = IPAddress.Parse( BackofficeIP_IPAddress.Text )
+            };
 
-            var config = new PositouchInitialConfiguratorController( settings );
+            var config = new PositouchInitialConfiguratorController( model );
             
             config.Configure();
         }
