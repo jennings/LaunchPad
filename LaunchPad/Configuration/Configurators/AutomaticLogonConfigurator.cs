@@ -1,7 +1,5 @@
-﻿using Microsoft.Win32;
-using System.Collections.Generic;
-using System.DirectoryServices;
-using System;
+﻿using LaunchPad.Configuration.Tasks;
+using Microsoft.Win32;
 
 namespace LaunchPad.Configuration.Configurators
 {
@@ -14,10 +12,10 @@ namespace LaunchPad.Configuration.Configurators
         private string Password;
 
         private AutomaticLogonConfigurator() { }
-        public AutomaticLogonConfigurator( string username, string password )
+        public AutomaticLogonConfigurator( AutomaticLogonTask task )
         {
-            Username = username;
-            Password = password;
+            Username = task.Username;
+            Password = task.Password;
         }
 
         public void Configure()

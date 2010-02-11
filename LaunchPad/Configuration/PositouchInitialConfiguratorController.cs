@@ -24,7 +24,7 @@ namespace LaunchPad.Configuration
             StationSettings = settings;
 
             RemoteConfigurators.AddCredentialTask( new CredentialsTask( "pos", "pos" ) );
-            RemoteConfigurators.AddAutomaticLogonTask( "pos", "pos" );
+            RemoteConfigurators.AddAutomaticLogonTask( new AutomaticLogonTask( "pos", "pos" ) );
             RemoteConfigurators.AddCredentialTask( new CredentialsTask( "cbs", StationSettings.WindowsPassword ) );
             RemoteConfigurators.AddCredentialTask( new CredentialsTask( "acronis", StationSettings.WindowsPassword ) );
             RemoteConfigurators.AddComputerNameTask( new ComputerNameTask( StationSettings.ComputerName ) );

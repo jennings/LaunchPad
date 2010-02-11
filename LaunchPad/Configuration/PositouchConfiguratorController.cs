@@ -33,7 +33,7 @@ namespace LaunchPad.Configuration
                 StationSettings.BackofficeIPAddress,
                 StationSettings.PosdriverIPAddress,
                 StationSettings.RedundantIPAddress ) ) );
-            Configurators.Add( new VNCConfigurator() );
+            Configurators.Add( new VNCConfigurator( new VNCTask() ) );
         }
 
         public void Configure()

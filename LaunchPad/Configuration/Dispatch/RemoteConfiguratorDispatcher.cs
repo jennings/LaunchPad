@@ -64,9 +64,9 @@ namespace LaunchPad.Configuration.Dispatch
             TaskList.Add( new CredentialsConfigurator( task ) );
         }
 
-        public void AddAutomaticLogonTask( string username, string password )
+        public void AddAutomaticLogonTask( AutomaticLogonTask task )
         {
-            TaskList.Add( new AutomaticLogonConfigurator( username, password ) );
+            TaskList.Add( new AutomaticLogonConfigurator( task ) );
         }
 
         public void AddComputerNameTask( ComputerNameTask task )

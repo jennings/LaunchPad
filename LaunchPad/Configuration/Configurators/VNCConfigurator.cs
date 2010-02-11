@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using System.IO;
+using LaunchPad.Configuration.Tasks;
 
 namespace LaunchPad.Configuration.Configurators
 {
@@ -11,6 +12,11 @@ namespace LaunchPad.Configuration.Configurators
         private const string VNCDirectory = @"C:\Program Files\UltraVNC";
         private const string VNCBackupDirectory = @"C:\Program Files\UltraVNC2";
         private const string SourceVNCDirectory = @"UltraVNC";
+
+        private VNCConfigurator() { }
+        public VNCConfigurator( VNCTask task )
+        {
+        }
 
         public void Configure()
         {
