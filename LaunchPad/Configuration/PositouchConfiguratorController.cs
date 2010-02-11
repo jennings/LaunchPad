@@ -26,13 +26,13 @@ namespace LaunchPad.Configuration
             RemoteConfigurators.AddComputerNameTask( StationSettings.ComputerName );
             RemoteConfigurators.AddIPAddressTask( StationSettings.IPAddress );
 
-            Configurators.Add( new PositermConfigurator( StationSettings.ComputerName ) );
+            Configurators.Add( new PositermConfigurator( new PositermTask( StationSettings.ComputerName ) ) );
             Configurators.Add( new PosiwConfigurator( new PosiwTask(
                 StationSettings.DeviceNumber ?? 0, // FIXME
                 StationSettings.PosiwType ?? PosiwTerminalType.Normal, // FIXME
                 StationSettings.BackofficeIPAddress,
                 StationSettings.PosdriverIPAddress,
-                StationSettings.RedundantIPAddress ) ));
+                StationSettings.RedundantIPAddress ) ) );
             Configurators.Add( new VNCConfigurator() );
         }
 

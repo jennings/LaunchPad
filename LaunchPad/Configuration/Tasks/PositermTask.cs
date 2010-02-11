@@ -1,10 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace LaunchPad.Configuration.Tasks
 {
     public class PositermTask : ITask
     {
+        public string ComputerName { get; private set; }
+
+        private PositermTask() { }
+        public PositermTask( string computername )
+        {
+            ComputerName = computername;
+        }
     }
 }

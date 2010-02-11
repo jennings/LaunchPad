@@ -1,5 +1,6 @@
-﻿using System.Net;
-using System.Management;
+﻿using System.Management;
+using System.Net;
+using LaunchPad.Configuration.Tasks;
 
 namespace LaunchPad.Configuration.Configurators
 {
@@ -11,9 +12,9 @@ namespace LaunchPad.Configuration.Configurators
         private IPAddress NewIPAddress;
 
         private IPAddressConfigurator() { }
-        public IPAddressConfigurator( IPAddress ipaddress )
+        public IPAddressConfigurator( IPAddressTask task )
         {
-            NewIPAddress = ipaddress;
+            NewIPAddress = task.IPAddress;
         }
 
 

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
+using LaunchPad.Configuration.Tasks;
 
 namespace LaunchPad.Configuration.Configurators
 {
@@ -24,9 +24,9 @@ namespace LaunchPad.Configuration.Configurators
         private string PosdriverCFolder;
 
         private PositermConfigurator() { }
-        public PositermConfigurator( string computername )
+        public PositermConfigurator( PositermTask task )
         {
-            ComputerName = computername;
+            ComputerName = task.ComputerName;
         }
         
         public void Configure()
