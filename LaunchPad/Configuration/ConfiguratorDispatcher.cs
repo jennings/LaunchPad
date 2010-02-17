@@ -1,18 +1,17 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.Remoting;
+using System.Runtime.Remoting.Activation;
 using System.Runtime.Remoting.Channels;
 using System.Runtime.Remoting.Channels.Ipc;
 using LaunchPad.Authentication;
 using LaunchPad.Configuration.Configurators;
-using System.Net;
-using System.Collections;
 using LaunchPad.Configuration.Tasks;
-using System.Runtime.Remoting.Activation;
 
-namespace LaunchPad.Configuration.Dispatch
+namespace LaunchPad.Configuration
 {
-    class ConfiguratorDispatcher : MarshalByRefObject, IConfiguratorDispatcher
+    class ConfiguratorDispatcher : MarshalByRefObject
     {
         public bool RequiresAuthentication
         {

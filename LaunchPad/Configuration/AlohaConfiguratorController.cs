@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using LaunchPad.Configuration.Configurators;
-using LaunchPad.Configuration.Dispatch;
 
 namespace LaunchPad.Configuration
 {

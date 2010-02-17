@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using LaunchPad.Authentication;
 using LaunchPad.Configuration.Configurators;
-using LaunchPad.Configuration.Dispatch;
 using LaunchPad.Configuration.Tasks;
 using LaunchPad.Models;
 
