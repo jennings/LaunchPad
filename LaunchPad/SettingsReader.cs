@@ -39,15 +39,13 @@ namespace LaunchPad
 
         #region Settings
 
-        public bool Integrous
+        public bool IntegrousInitialSettings
         {
             get
             {
                 if ( _ComputerName == null )
                     return false;
                 if ( _IPAddress == null )
-                    return false;
-                if ( _LaunchVNC == null )
                     return false;
 
                 if ( PointOfSale == PointOfSaleType.Positouch )
@@ -57,6 +55,31 @@ namespace LaunchPad
                     if ( _BackofficeIPAddress == null )
                         return false;
                     // Might be a 1 terminal system, so redundant terminal null is OK.
+                }
+                else if ( PointOfSale == PointOfSaleType.Aloha )
+                {
+                }
+                else if ( PointOfSale == PointOfSaleType.None )
+                {
+                    return false;
+                }
+
+                return true;
+            }
+        }
+
+        public bool IntegrousLaunchSettings
+        {
+            get
+            {
+                if ( !IntegrousInitialSettings )
+                    return false;
+
+                if ( _LaunchVNC == null )
+                    return false;
+
+                if ( PointOfSale == PointOfSaleType.Positouch )
+                {
                     if ( _LaunchPosiw == null )
                         return false;
                     if ( _LaunchPositerm == null )
@@ -67,9 +90,8 @@ namespace LaunchPad
                     if ( _LaunchIbercfg == null )
                         return false;
                 }
-                else if ( PointOfSale == null )
+                else if ( PointOfSale == PointOfSaleType.None )
                 {
-                    return false;
                 }
 
                 return true;

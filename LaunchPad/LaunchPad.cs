@@ -40,7 +40,7 @@ namespace LaunchPad
                     switch ( settings.PointOfSale )
                     {
                         case PointOfSaleType.Positouch:
-                            if ( settings.Integrous )
+                            if ( settings.IntegrousInitialSettings )
                             {
                                 Application.Run( new PositouchStartupWindow() );
                             }
@@ -51,7 +51,7 @@ namespace LaunchPad
                             break;
 
                         case PointOfSaleType.Aloha:
-                            if ( settings.Integrous )
+                            if ( settings.IntegrousInitialSettings )
                             {
                                 Application.Run( new AlohaStartupWindow() );
                             }
