@@ -60,7 +60,13 @@ namespace LaunchPad.Configuration
                 configurator.Configure();
             }
 
-            SettingsReader.Instance.Commit();
+            // FIXME: This should be done by the Configurators as
+            // they run because if one fails, this will still get set.
+            var settings = SettingsReader.Instance;
+            settings.IPAddress = Model.IPAddress;
+            settings.PosdriverIPAddress = Model.PosdriverIPAddress;
+            settings.BackofficeIPAddress = Model.BackofficeIPAddress;
+            settings.Commit();
 
             Rebooter.Reboot();
         }

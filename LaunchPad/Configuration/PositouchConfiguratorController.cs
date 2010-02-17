@@ -3,6 +3,7 @@ using LaunchPad.Authentication;
 using LaunchPad.Configuration.Configurators;
 using LaunchPad.Configuration.Dispatch;
 using LaunchPad.Configuration.Tasks;
+using LaunchPad.Models;
 
 namespace LaunchPad.Configuration
 {
@@ -16,6 +17,7 @@ namespace LaunchPad.Configuration
         private PositouchTerminalStation StationSettings;
         private List<IConfigurator> Configurators = new List<IConfigurator>();
         private RemoteConfiguratorDispatcher RemoteConfigurators = new RemoteConfiguratorDispatcher();
+        private PositouchTerminalSelectionModel Model;
 
         private PositouchConfiguratorController() { }
         public PositouchConfiguratorController( PositouchTerminalStation terminalStation )
@@ -51,7 +53,9 @@ namespace LaunchPad.Configuration
                 configurator.Configure();
             }
 
-            SettingsReader.Instance.Commit();
+            var settings = SettingsReader.Instance;
+            settings.IPAddress = Model.IPAddress;
+            settings.Commit();
 
             Rebooter.Reboot();
         }
