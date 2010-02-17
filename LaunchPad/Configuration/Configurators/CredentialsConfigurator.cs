@@ -43,10 +43,4 @@ namespace LaunchPad.Configuration.Configurators
             }
         }
     }
-
-    class Credential
-    {
-        public string Username;
-        public string Password;
-    }
 }

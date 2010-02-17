@@ -76,23 +76,7 @@ namespace LaunchPad
             }
         }
 
-        private bool @_PointOfSale_Changed = false;
-        private PointOfSaleType? @_PointOfSale;
-        public PointOfSaleType? @PointOfSale
-        {
-            get { return _PointOfSale; }
-            set
-            {
-                if ( value == null )
-                {
-                    _PointOfSale_Changed = false;
-                    _PointOfSale = null;
-                    return;
-                }
-                _PointOfSale_Changed = true;
-                _PointOfSale = value;
-            }
-        }
+        public PointOfSaleType @PointOfSale { get; set; }
 
         private bool _ComputerName_Changed = false;
         private string _ComputerName;
@@ -314,9 +298,6 @@ namespace LaunchPad
 
         private void ClearSettings()
         {
-            _PointOfSale = null;
-            _PointOfSale_Changed = false;
-
             _ComputerName = null;
             _ComputerName_Changed = false;
             _IPAddress = null;
@@ -345,17 +326,16 @@ namespace LaunchPad
 
             if ( File.Exists( @"POSITOUCH" ) )
             {
-                _PointOfSale = PointOfSaleType.Positouch;
+                PointOfSale = PointOfSaleType.Positouch;
             }
             else if ( File.Exists( @"ALOHA" ) )
             {
-                _PointOfSale = PointOfSaleType.Aloha;
+                PointOfSale = PointOfSaleType.Aloha;
             }
             else
             {
-                _PointOfSale = PointOfSaleType.None;
+                PointOfSale = PointOfSaleType.None;
             }
-            _PointOfSale_Changed = false;
 
             try
             {

@@ -40,7 +40,7 @@ namespace LaunchPad.Configuration.Configurators
                     throw new Exception( @"Could not change network name." );
                 }
             }
-            catch ( Exception ex )
+            catch ( Exception )
             {
                 // FIXME
                 // System.Windows.Forms.MessageBox.Show( @"Could not change computer name: " + ex.Message );
