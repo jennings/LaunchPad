@@ -14,7 +14,7 @@ namespace LaunchPad.Configuration
 
         private AlohaTerminalStation StationSettings;
         private List<IConfigurator> Configurators = new List<IConfigurator>();
-        private RemoteConfiguratorDispatcher RemoteConfigurators = new RemoteConfiguratorDispatcher();
+        private ConfiguratorDispatcher RemoteConfigurators = new ConfiguratorDispatcher();
 
         private AlohaConfiguratorController() { }
         public AlohaConfiguratorController( AlohaTerminalStation terminalStation )

@@ -31,12 +31,17 @@ namespace LaunchPad.Configuration.Configurators
         
         public void Configure()
         {
-            CreateCShare();
+            try
+            {
+                CreateCShare();
 
-            // Copy INI files
-            Utilities.MapDriveLetter( 'L', SettingsReader.Instance.PosdriverIPAddress.ToString() );
-            PosdriverCFolder = @"L:\";
-            CopyINIFiles();
+                // Copy INI files
+                Utilities.MapDriveLetter( 'L', SettingsReader.Instance.PosdriverIPAddress.ToString() );
+                PosdriverCFolder = @"L:\";
+                CopyINIFiles();
+            }
+            catch ( Exception )
+            { }
 
             // Write TERM.$$$
             WriteTerminalName();

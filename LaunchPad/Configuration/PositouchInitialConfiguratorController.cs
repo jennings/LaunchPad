@@ -11,29 +11,32 @@ namespace LaunchPad.Configuration
     {
         public bool RequiresAuthentication
         {
-            get { return RemoteConfigurators.RequiresAuthentication; }
+            get { return RemoteDispatcher.RequiresAuthentication; }
         }
 
         private List<IConfigurator> Configurators = new List<IConfigurator>();
-        private RemoteConfiguratorDispatcher RemoteConfigurators = new RemoteConfiguratorDispatcher();
+        private ConfiguratorDispatcher LocalDispatcher;
+        private ConfiguratorDispatcher RemoteDispatcher;
         private PositouchInitialConfigurationModel Model;
 
         private PositouchInitialConfiguratorController() { }
         public PositouchInitialConfiguratorController( PositouchInitialConfigurationModel model )
         {
             Model = model;
+            LocalDispatcher = new ConfiguratorDispatcher();
+            RemoteDispatcher = ConfiguratorDispatcher.CreateRemoteDispatcher();
 
             if ( Model.BasePassword != null )
             {
-                RemoteConfigurators.AddCredentialTask( new CredentialsTask( "pos", "pos" ) );
-                RemoteConfigurators.AddAutomaticLogonTask( new AutomaticLogonTask( "pos", "pos" ) );
-                RemoteConfigurators.AddCredentialTask( new CredentialsTask( "cbs", Model.CbsPassword ) );
-                RemoteConfigurators.AddCredentialTask( new CredentialsTask( "acronis", Model.AcronisPassword ) );
+                RemoteDispatcher.AddTask( new CredentialsTask( "pos", "pos" ) );
+                RemoteDispatcher.AddTask( new AutomaticLogonTask( "pos", "pos" ) );
+                RemoteDispatcher.AddTask( new CredentialsTask( "cbs", Model.CbsPassword ) );
+                RemoteDispatcher.AddTask( new CredentialsTask( "acronis", Model.AcronisPassword ) );
             }
 
             if ( Model.IPAddress != null )
             {
-                RemoteConfigurators.AddIPAddressTask( new IPAddressTask( Model.IPAddress ) );
+                RemoteDispatcher.AddTask( new IPAddressTask( Model.IPAddress ) );
             }
 
             if ( Model.PosdriverIPAddress != null )
@@ -47,13 +50,13 @@ namespace LaunchPad.Configuration
 
         public void Configure()
         {
-            if ( RemoteConfigurators.RequiresAuthentication )
+            if ( RemoteDispatcher.RequiresAuthentication )
             {
                 // TODO: Challenge / Response
-                RemoteConfigurators.Response = new Response( RemoteConfigurators.Challenge );
+                RemoteDispatcher.Response = new Response( RemoteDispatcher.Challenge );
             }
 
-            RemoteConfigurators.Dispatch();
+            RemoteDispatcher.Dispatch();
 
             foreach ( var configurator in Configurators )
             {

@@ -8,10 +8,11 @@ using LaunchPad.Configuration.Configurators;
 using System.Net;
 using System.Collections;
 using LaunchPad.Configuration.Tasks;
+using System.Runtime.Remoting.Activation;
 
 namespace LaunchPad.Configuration.Dispatch
 {
-    class RemoteConfiguratorDispatcher : MarshalByRefObject, IConfiguratorDispatcher
+    class ConfiguratorDispatcher : MarshalByRefObject, IConfiguratorDispatcher
     {
         public bool RequiresAuthentication
         {
@@ -30,19 +31,20 @@ namespace LaunchPad.Configuration.Dispatch
         public Response @Response { get; set; }
 
         private List<IConfigurator> TaskList = new List<IConfigurator>();
-        private const int ListenPort = 9091;
         private const string IpcChannelName = "LaunchPadService";
 
 
         #region Listener/Receiver
 
-        public static void RegisterClientType()
+        public static ConfiguratorDispatcher CreateRemoteDispatcher()
         {
             var channel = new IpcClientChannel();
             ChannelServices.RegisterChannel( channel, true );
-            RemotingConfiguration.RegisterActivatedClientType(
-                typeof( RemoteConfiguratorDispatcher ),
-                @"ipc://" + IpcChannelName );
+
+            return (ConfiguratorDispatcher)Activator.CreateInstance(
+                typeof( ConfiguratorDispatcher ),
+                null,
+                new object[] { new UrlAttribute( @"ipc://" + IpcChannelName ) } );
         }
 
         public static void RegisterServerType()
@@ -53,30 +55,44 @@ namespace LaunchPad.Configuration.Dispatch
 
             var channel = new IpcServerChannel( ipcProperties, null );
             ChannelServices.RegisterChannel( channel, true );
-            RemotingConfiguration.RegisterActivatedServiceType( typeof( RemoteConfiguratorDispatcher ) );
+            RemotingConfiguration.RegisterActivatedServiceType( typeof( ConfiguratorDispatcher ) );
         }
 
         #endregion
 
 
-        public void AddCredentialTask( CredentialsTask task )
+        public void AddTask( ITask task )
         {
-            TaskList.Add( new CredentialsConfigurator( task ) );
-        }
+            var type = task.GetType();
 
-        public void AddAutomaticLogonTask( AutomaticLogonTask task )
-        {
-            TaskList.Add( new AutomaticLogonConfigurator( task ) );
-        }
-
-        public void AddComputerNameTask( ComputerNameTask task )
-        {
-            TaskList.Add( new ComputerNameConfigurator( task ) );
-        }
-
-        public void AddIPAddressTask( IPAddressTask task )
-        {
-            TaskList.Add( new IPAddressConfigurator( task ) );
+            if ( type == typeof( CredentialsTask ) )
+            {
+                TaskList.Add( new CredentialsConfigurator( (CredentialsTask)task ) );
+            }
+            else if ( type == typeof( AutomaticLogonTask ) )
+            {
+                TaskList.Add( new AutomaticLogonConfigurator( (AutomaticLogonTask)task ) );
+            }
+            else if ( type == typeof( ComputerNameTask ) )
+            {
+                TaskList.Add( new ComputerNameConfigurator( (ComputerNameTask)task ) );
+            }
+            else if ( type == typeof( IPAddressTask ) )
+            {
+                TaskList.Add( new IPAddressConfigurator( (IPAddressTask)task ) );
+            }
+            else if ( type == typeof( PositermTask ) )
+            {
+                TaskList.Add( new PositermConfigurator( (PositermTask)task ) );
+            }
+            else if ( type == typeof( PosiwTask ) )
+            {
+                TaskList.Add( new PosiwConfigurator( (PosiwTask)task ) );
+            }
+            else if ( type == typeof( VNCTask ) )
+            {
+                TaskList.Add( new VNCConfigurator( (VNCTask)task ) );
+            }
         }
 
         public void Dispatch()

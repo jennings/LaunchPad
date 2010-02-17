@@ -35,7 +35,6 @@ namespace LaunchPad
                     Application.SetCompatibleTextRenderingDefault( false );
 
                     var settings = SettingsReader.Instance;
-                    RemoteConfiguratorDispatcher.RegisterClientType();
 
                     switch ( settings.PointOfSale )
                     {

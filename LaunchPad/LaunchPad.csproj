@@ -67,7 +67,6 @@
     <Compile Include="Configuration\Configurators\ComputerNameConfigurator.cs" />
     <Compile Include="Configuration\Configurators\IPAddressConfigurator.cs" />
     <Compile Include="Configuration\Dispatch\IConfiguratorDispatcher.cs" />
-    <Compile Include="Configuration\Dispatch\LocalConfiguratorDispatcher.cs" />
     <Compile Include="Configuration\Tasks\AutomaticLogonTask.cs" />
     <Compile Include="Configuration\Tasks\ComputerNameTask.cs" />
     <Compile Include="Configuration\Tasks\CredentialsTask.cs" />
@@ -79,7 +78,7 @@
     <Compile Include="LaunchPadService.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Configuration\Dispatch\RemoteConfiguratorDispatcher.cs" />
+    <Compile Include="Configuration\Dispatch\ConfiguratorDispatcher.cs" />
     <Compile Include="Models\PositouchTerminalSelectionModel.cs" />
     <Compile Include="Models\PositouchInitialConfigurationModel.cs" />
     <Compile Include="Utilities.cs" />

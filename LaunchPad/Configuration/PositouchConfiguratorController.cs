@@ -16,7 +16,7 @@ namespace LaunchPad.Configuration
 
         private PositouchTerminalStation StationSettings;
         private List<IConfigurator> Configurators = new List<IConfigurator>();
-        private RemoteConfiguratorDispatcher RemoteConfigurators = new RemoteConfiguratorDispatcher();
+        private ConfiguratorDispatcher RemoteConfigurators = new ConfiguratorDispatcher();
         private PositouchTerminalSelectionModel Model;
 
         private PositouchConfiguratorController() { }
@@ -25,8 +25,8 @@ namespace LaunchPad.Configuration
             terminalStation.Validate();
             StationSettings = terminalStation;
 
-            RemoteConfigurators.AddComputerNameTask( new ComputerNameTask( StationSettings.ComputerName ) );
-            RemoteConfigurators.AddIPAddressTask( new IPAddressTask( StationSettings.IPAddress ) );
+            RemoteConfigurators.AddTask( new ComputerNameTask( StationSettings.ComputerName ) );
+            RemoteConfigurators.AddTask( new IPAddressTask( StationSettings.IPAddress ) );
 
             Configurators.Add( new PositermConfigurator( new PositermTask( StationSettings.ComputerName ) ) );
             Configurators.Add( new PosiwConfigurator( new PosiwTask(

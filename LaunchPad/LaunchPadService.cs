@@ -15,7 +15,7 @@ namespace LaunchPad
 
         protected override void OnStart( string[] args )
         {
-            RemoteConfiguratorDispatcher.RegisterServerType();
+            ConfiguratorDispatcher.RegisterServerType();
         }
     }
 }
