@@ -54,7 +54,6 @@ namespace LaunchPad.Configuration
             }
 
             var settings = SettingsReader.Instance;
-            settings.IPAddress = Model.IPAddress;
             settings.Commit();
 
             Rebooter.Reboot();

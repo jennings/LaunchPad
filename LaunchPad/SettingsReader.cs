@@ -43,11 +43,6 @@ namespace LaunchPad
         {
             get
             {
-                if ( _ComputerName == null )
-                    return false;
-                if ( _IPAddress == null )
-                    return false;
-
                 if ( PointOfSale == PointOfSaleType.Positouch )
                 {
                     if ( _PosdriverIPAddress == null )
