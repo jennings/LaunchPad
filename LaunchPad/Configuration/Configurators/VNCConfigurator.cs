@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using System.IO;
 using LaunchPad.Configuration.Tasks;
 
@@ -9,13 +10,17 @@ namespace LaunchPad.Configuration.Configurators
         public bool RequiresElevation { get { return true; } }
         public bool RequiresAuthentication { get { return false; } }
 
-        private const string VNCDirectory = @"C:\Program Files\UltraVNC";
-        private const string VNCBackupDirectory = @"C:\Program Files\UltraVNC2";
-        private const string SourceVNCDirectory = @"UltraVNC";
+        private readonly string VNCDirectory;
+        private readonly string VNCBackupDirectory;
+        private readonly string SourceVNCDirectory;
 
         private VNCConfigurator() { }
         public VNCConfigurator( VNCTask task )
         {
+            var pfpath = Environment.GetFolderPath( Environment.SpecialFolder.ProgramFiles );
+            VNCDirectory = Path.Combine( pfpath, @"UltraVNC" );
+            VNCBackupDirectory = Path.Combine( pfpath, @"UltraVNC2" );
+            SourceVNCDirectory = Path.Combine( SettingsReader.LaunchPadDirectory, @"UltraVNC" );
         }
 
         public void Configure()
@@ -63,20 +68,22 @@ namespace LaunchPad.Configuration.Configurators
 
         private void CreateNewVNCDirectory()
         {
-            CopyDirectoryRecursively( new DirectoryInfo( SourceVNCDirectory ), new DirectoryInfo( VNCDirectory ) );
+            CopyDirectoryRecursively(
+                new DirectoryInfo( SourceVNCDirectory ),
+                new DirectoryInfo( VNCDirectory ) );
         }
 
 
         private void ChangeVNCPassword()
         {
-            // Hrm...
+            // FIXME
         }
 
 
         private void RegisterVNCService()
         {
             var info = new ProcessStartInfo();
-            info.FileName = @"C:\Program Files\UltraVNC\winvnc.exe";
+            info.FileName = Path.Combine( VNCDirectory, "winvnc.exe" );
             info.Arguments = "-remove";
             Process.Start( info );
             System.Threading.Thread.Sleep( 500 );

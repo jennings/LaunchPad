@@ -10,13 +10,11 @@ namespace LaunchPad
 {
     class SettingsReader
     {
-        public static readonly string WorkingDirectory;
         public static readonly string LaunchPadDirectory;
         private static readonly string Filename;
 
         static SettingsReader()
         {
-            WorkingDirectory = Path.GetDirectoryName( Assembly.GetExecutingAssembly().Location );
             LaunchPadDirectory = @"C:\LaunchPad";
             Filename = Path.Combine( LaunchPadDirectory, @"Settings.mdb" );
         }

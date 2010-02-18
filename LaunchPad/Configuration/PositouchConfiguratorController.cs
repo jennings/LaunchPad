@@ -10,12 +10,13 @@ namespace LaunchPad.Configuration
     {
         public bool RequiresAuthentication
         {
-            get { return RemoteConfigurators.RequiresAuthentication; }
+            get { return RemoteDispatcher.RequiresAuthentication; }
         }
 
         private PositouchTerminalStation StationSettings;
-        private List<IConfigurator> Configurators = new List<IConfigurator>();
-        private ConfiguratorDispatcher RemoteConfigurators = new ConfiguratorDispatcher();
+
+        private ConfiguratorDispatcher LocalDispatcher;
+        private ConfiguratorDispatcher RemoteDispatcher;
         private PositouchTerminalSelectionModel Model;
 
         private PositouchConfiguratorController() { }
@@ -24,33 +25,33 @@ namespace LaunchPad.Configuration
             terminalStation.Validate();
             StationSettings = terminalStation;
 
-            RemoteConfigurators.AddTask( new ComputerNameTask( StationSettings.ComputerName ) );
-            RemoteConfigurators.AddTask( new IPAddressTask( StationSettings.IPAddress ) );
+            LocalDispatcher = new ConfiguratorDispatcher();
+            RemoteDispatcher = ConfiguratorDispatcher.CreateRemoteDispatcher();
 
-            Configurators.Add( new PositermConfigurator( new PositermTask( StationSettings.ComputerName ) ) );
-            Configurators.Add( new PosiwConfigurator( new PosiwTask(
+            RemoteDispatcher.AddTask( new ComputerNameTask( StationSettings.ComputerName ) );
+            RemoteDispatcher.AddTask( new IPAddressTask( StationSettings.IPAddress ) );
+
+            LocalDispatcher.AddTask( new PositermTask( StationSettings.ComputerName ) );
+            LocalDispatcher.AddTask( new PosiwTask(
                 StationSettings.DeviceNumber ?? 0, // FIXME
                 StationSettings.PosiwType ?? PosiwTerminalType.Normal, // FIXME
                 StationSettings.BackofficeIPAddress,
                 StationSettings.PosdriverIPAddress,
-                StationSettings.RedundantIPAddress ) ) );
-            Configurators.Add( new VNCConfigurator( new VNCTask() ) );
+                StationSettings.RedundantIPAddress ) );
+
+            LocalDispatcher.AddTask( new VNCTask() );
         }
 
         public void Configure()
         {
-            if ( RemoteConfigurators.RequiresAuthentication )
+            if ( RemoteDispatcher.RequiresAuthentication )
             {
                 // TODO: Challenge / Response
-                RemoteConfigurators.Response = new Response( RemoteConfigurators.Challenge );
+                RemoteDispatcher.Response = new Response( RemoteDispatcher.Challenge );
             }
 
-            RemoteConfigurators.Dispatch();
-
-            foreach ( var configurator in Configurators )
-            {
-                configurator.Configure();
-            }
+            RemoteDispatcher.Dispatch();
+            LocalDispatcher.Dispatch();
 
             var settings = SettingsReader.Instance;
             settings.Commit();

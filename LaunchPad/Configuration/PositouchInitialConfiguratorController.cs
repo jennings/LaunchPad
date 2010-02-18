@@ -45,6 +45,8 @@ namespace LaunchPad.Configuration
             if ( Model.BackofficeIPAddress != null )
             {
             }
+
+            RemoteDispatcher.AddTask( new VNCTask() );
         }
 
         public void Configure()
