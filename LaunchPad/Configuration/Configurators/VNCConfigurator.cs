@@ -84,7 +84,7 @@ namespace LaunchPad.Configuration.Configurators
         {
             var info = new ProcessStartInfo();
             info.FileName = Path.Combine( VNCDirectory, "winvnc.exe" );
-            info.Arguments = "-remove";
+            info.Arguments = "-uninstall";
             Process.Start( info );
             System.Threading.Thread.Sleep( 500 );
 

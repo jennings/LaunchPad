@@ -30,6 +30,7 @@ namespace LaunchPad.Configuration
 
             RemoteDispatcher.AddTask( new ComputerNameTask( StationSettings.ComputerName ) );
             RemoteDispatcher.AddTask( new IPAddressTask( StationSettings.IPAddress ) );
+            RemoteDispatcher.AddTask( new VNCTask() );
 
             LocalDispatcher.AddTask( new PositermTask( StationSettings.ComputerName ) );
             LocalDispatcher.AddTask( new PosiwTask(
@@ -38,8 +39,6 @@ namespace LaunchPad.Configuration
                 StationSettings.BackofficeIPAddress,
                 StationSettings.PosdriverIPAddress,
                 StationSettings.RedundantIPAddress ) );
-
-            LocalDispatcher.AddTask( new VNCTask() );
         }
 
         public void Configure()
