@@ -4,6 +4,7 @@ using System.Text;
 using System.ServiceProcess;
 using System.IO;
 using System.Diagnostics;
+using System.ComponentModel;
 
 namespace LaunchPad.Launchers
 {
@@ -49,7 +50,22 @@ namespace LaunchPad.Launchers
             // status contains the service status
             if ( status == ServiceControllerStatus.Stopped )
             {
-                service.Start();
+                try
+                {
+                    service.Start();
+                }
+                catch ( Win32Exception )
+                {
+                    if ( !File.Exists( @"C:\Program Files\UltraVNC\winvnc.exe" ) )
+                    {
+                        throw new Exception( @"UltraVNC appears not to be installed in C:\Program Files\UltraVNC." );
+                    }
+
+                    var info = new ProcessStartInfo();
+                    info.WorkingDirectory = @"C:\Program Files\UltraVNC";
+                    info.FileName = @"C:\Program Files\UltraVNC\winvnc.exe";
+                    Process.Start( info );
+                }
             }
         }
 
