@@ -78,6 +78,7 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Configuration\ConfiguratorDispatcher.cs" />
+    <Compile Include="Models\PositouchTerminalStationEnum.cs" />
     <Compile Include="Models\PositouchTerminalSelectionModel.cs" />
     <Compile Include="Models\PositouchInitialConfigurationModel.cs" />
     <Compile Include="Utilities.cs" />
@@ -130,7 +131,6 @@
     <Compile Include="Forms\PositouchTerminalSelectionWindow.Designer.cs">
       <DependentUpon>PositouchTerminalSelectionWindow.cs</DependentUpon>
     </Compile>
-    <Compile Include="PositouchTerminalStation.cs" />
     <Compile Include="LaunchPad.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Forms\AlohaStartupWindow.resx">

@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.IO;
 using System.Net;
 using LaunchPad.Configuration.Tasks;
+using LaunchPad.Models;
 
 namespace LaunchPad.Configuration.Configurators
 {
@@ -15,10 +14,10 @@ namespace LaunchPad.Configuration.Configurators
         public string DeviceNumberString { get { return DeviceNumber.ToString( "D2" ); } }
         public int DeviceNumber { get; private set; }
 
-        public PosiwTerminalType @Type { get; private set; }
-        public bool Backoffice { get { return Type == PosiwTerminalType.BackoffServer; } }
-        public bool PosdriverTerminal { get { return Type == PosiwTerminalType.PrimaryServer; } }
-        public bool RedundantTerminal { get { return Type == PosiwTerminalType.BackupServer; } }
+        public PositouchTerminalType @Type { get; private set; }
+        public bool Backoffice { get { return Type == PositouchTerminalType.Backoffice; } }
+        public bool PosdriverTerminal { get { return Type == PositouchTerminalType.PosdriverTerminal; } }
+        public bool RedundantTerminal { get { return Type == PositouchTerminalType.RedundantTerminal; } }
 
         public IPAddress @BackofficeIPAddress { get; private set; }
         public IPAddress @PosdriverIPAddress { get; private set; }

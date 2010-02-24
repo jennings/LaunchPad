@@ -131,13 +131,13 @@ namespace LaunchPad.Forms
 
             // Terminal type
             if ( TerminalType_Posdriver.Checked )
-                model.Type = PosiwTerminalType.PrimaryServer;
+                model.Type = PositouchTerminalType.PosdriverTerminal;
             else if ( TerminalType_Redundant.Checked )
-                model.Type = PosiwTerminalType.BackupServer;
+                model.Type = PositouchTerminalType.RedundantTerminal;
             else if ( TerminalType_Backoffice.Checked )
-                model.Type = PosiwTerminalType.BackoffServer;
+                model.Type = PositouchTerminalType.Backoffice;
             else if ( TerminalType_Normal.Checked )
-                model.Type = PosiwTerminalType.Normal;
+                model.Type = PositouchTerminalType.NormalTerminal;
             else
                 throw new Exception( @"No TerminalType radio button selected." );
 
@@ -217,23 +217,23 @@ namespace LaunchPad.Forms
             }
         }
 
-        private void PopulateManualFields( int devnum, IPAddress ipaddress, PosiwTerminalType type )
+        private void PopulateManualFields( int devnum, IPAddress ipaddress, PositouchTerminalType type )
         {
             switch ( type )
             {
-                case PosiwTerminalType.BackoffServer:
+                case PositouchTerminalType.Backoffice:
                     TerminalType_Backoffice.Checked = true;
                     DeviceNumber_DeviceNumber.Text = "99";
                     break;
-                case PosiwTerminalType.PrimaryServer:
+                case PositouchTerminalType.PosdriverTerminal:
                     TerminalType_Posdriver.Checked = true;
                     DeviceNumber_DeviceNumber.Text = "89";
                     break;
-                case PosiwTerminalType.BackupServer:
+                case PositouchTerminalType.RedundantTerminal:
                     TerminalType_Redundant.Checked = true;
                     DeviceNumber_DeviceNumber.Text = devnum.ToString( "D" );
                     break;
-                case PosiwTerminalType.Normal:
+                case PositouchTerminalType.NormalTerminal:
                     TerminalType_Normal.Checked = true;
                     DeviceNumber_DeviceNumber.Text = devnum.ToString( "D" );
                     break;
@@ -246,7 +246,7 @@ namespace LaunchPad.Forms
         {
             int devnum = -1;
             IPAddress ipaddress = null;
-            PosiwTerminalType type = PosiwTerminalType.Normal;
+            PositouchTerminalType type = PositouchTerminalType.NormalTerminal;
 
             foreach ( System.Windows.Forms.ListViewItem.ListViewSubItem subitem in e.Item.SubItems )
             {
@@ -260,19 +260,19 @@ namespace LaunchPad.Forms
                         ipaddress = IPAddress.Parse( subitem.Text );
                         if ( ipaddress.Equals( SettingsReader.Instance.PosdriverIPAddress ) )
                         {
-                            type = PosiwTerminalType.PrimaryServer;
+                            type = PositouchTerminalType.PosdriverTerminal;
                         }
                         else if ( ipaddress.Equals( SettingsReader.Instance.BackofficeIPAddress ) )
                         {
-                            type = PosiwTerminalType.BackoffServer;
+                            type = PositouchTerminalType.Backoffice;
                         }
                         else if ( ipaddress.Equals( SettingsReader.Instance.RedundantIPAddress ) )
                         {
-                            type = PosiwTerminalType.BackupServer;
+                            type = PositouchTerminalType.RedundantTerminal;
                         }
                         else
                         {
-                            type = PosiwTerminalType.Normal;
+                            type = PositouchTerminalType.NormalTerminal;
                         }
                         break;
                 }

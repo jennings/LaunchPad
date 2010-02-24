@@ -13,12 +13,12 @@ namespace LaunchPad.Models
         {
             get
             {
-                if ( Type == PosiwTerminalType.PrimaryServer )
+                if ( Type == PositouchTerminalType.PosdriverTerminal )
                     return "POSDRVR";
                 return "TERM" + ( DeviceNumber - 1 ).ToString( "D3" );
             }
         }
 
-        public PosiwTerminalType Type { get; set; }
+        public PositouchTerminalType Type { get; set; }
     }
 }

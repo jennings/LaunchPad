@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Net;
+using LaunchPad.Models;
 
 namespace LaunchPad.Configuration.Tasks
 {
@@ -9,7 +8,7 @@ namespace LaunchPad.Configuration.Tasks
     public class PosiwTask : ITask
     {
         public int DeviceNumber { get; private set; }
-        public PosiwTerminalType @Type { get; private set; }
+        public PositouchTerminalType @Type { get; private set; }
         
         public IPAddress @BackofficeIPAddress { get; private set; }
         public IPAddress @PosdriverIPAddress { get; private set; }
@@ -17,7 +16,7 @@ namespace LaunchPad.Configuration.Tasks
 
         private PosiwTask() { }
 
-        public PosiwTask( int devicenumber, PosiwTerminalType type, IPAddress backofficeip, IPAddress posdriverip, IPAddress redundantip )
+        public PosiwTask( int devicenumber, PositouchTerminalType type, IPAddress backofficeip, IPAddress posdriverip, IPAddress redundantip )
         {
             DeviceNumber = devicenumber;
             @Type = type;
