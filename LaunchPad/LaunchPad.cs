@@ -38,9 +38,13 @@ namespace LaunchPad
                     switch ( settings.PointOfSale )
                     {
                         case PointOfSaleType.Positouch:
-                            if ( settings.IntegrousInitialSettings )
+                            if ( settings.IntegrousInitialSettings && settings.IntegrousLaunchSettings )
                             {
                                 Application.Run( new PositouchStartupWindow() );
+                            }
+                            else if ( settings.IntegrousInitialSettings )
+                            {
+                                Application.Run( new PositouchTerminalSelectionWindow() );
                             }
                             else
                             {

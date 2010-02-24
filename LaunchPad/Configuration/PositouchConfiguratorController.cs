@@ -50,6 +50,9 @@ namespace LaunchPad.Configuration
             LocalDispatcher.Dispatch();
 
             var settings = SettingsReader.Instance;
+            settings.LaunchPosiw = true; // FIXME
+            settings.LaunchPositerm = true; // FIXME
+            settings.LaunchVNC = true; // FIXME
             settings.Commit();
 
             Rebooter.Reboot();

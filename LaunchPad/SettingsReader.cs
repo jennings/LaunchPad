@@ -325,13 +325,13 @@ namespace LaunchPad
             _RedundantIPAddress = null;
             _RedundantIPAddress_Changed = false;
 
-            _LaunchPosiw = false;
+            _LaunchPosiw = null;
             _LaunchPosiw_Changed = false;
-            _LaunchPositerm = false;
+            _LaunchPositerm = null;
             _LaunchPositerm_Changed = false;
-            _LaunchVNC = false;
+            _LaunchVNC = null;
             _LaunchVNC_Changed = false;
-            _LaunchIbercfg = false;
+            _LaunchIbercfg = null;
             _LaunchIbercfg_Changed = false;
         }
 
