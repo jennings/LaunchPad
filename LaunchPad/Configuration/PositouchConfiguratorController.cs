@@ -13,32 +13,29 @@ namespace LaunchPad.Configuration
             get { return RemoteDispatcher.RequiresAuthentication; }
         }
 
-        private PositouchTerminalStation StationSettings;
-
         private ConfiguratorDispatcher LocalDispatcher;
         private ConfiguratorDispatcher RemoteDispatcher;
         private PositouchTerminalSelectionModel Model;
 
         private PositouchConfiguratorController() { }
-        public PositouchConfiguratorController( PositouchTerminalStation terminalStation )
+        public PositouchConfiguratorController( PositouchTerminalSelectionModel model )
         {
-            terminalStation.Validate();
-            StationSettings = terminalStation;
+            Model = model;
 
             LocalDispatcher = new ConfiguratorDispatcher();
             RemoteDispatcher = ConfiguratorDispatcher.CreateRemoteDispatcher();
 
-            RemoteDispatcher.AddTask( new ComputerNameTask( StationSettings.ComputerName ) );
-            RemoteDispatcher.AddTask( new IPAddressTask( StationSettings.IPAddress ) );
+            RemoteDispatcher.AddTask( new ComputerNameTask( model.ComputerName ) );
+            RemoteDispatcher.AddTask( new IPAddressTask( model.IPAddress ) );
             RemoteDispatcher.AddTask( new VNCTask() );
 
-            LocalDispatcher.AddTask( new PositermTask( StationSettings.ComputerName ) );
+            LocalDispatcher.AddTask( new PositermTask( model.ComputerName ) );
             LocalDispatcher.AddTask( new PosiwTask(
-                StationSettings.DeviceNumber ?? 0, // FIXME
-                StationSettings.PosiwType ?? PosiwTerminalType.Normal, // FIXME
-                StationSettings.BackofficeIPAddress,
-                StationSettings.PosdriverIPAddress,
-                StationSettings.RedundantIPAddress ) );
+                model.DeviceNumber, // FIXME
+                model.Type, // FIXME
+                model.BackofficeIPAddress,
+                model.PosdriverIPAddress,
+                null ) );
         }
 
         public void Configure()

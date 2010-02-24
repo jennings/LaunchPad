@@ -9,6 +9,7 @@ using System.Net;
 using LaunchPad.Configuration;
 using System.Diagnostics;
 using LaunchPad.Configuration.Configurators;
+using LaunchPad.Models;
 
 namespace LaunchPad.Forms
 {
@@ -124,27 +125,23 @@ namespace LaunchPad.Forms
             // Disable reboot button
             kbd_SaveAndReboot.Enabled = false;
 
-            var settings = new PositouchTerminalStation();
+            var model = new PositouchTerminalSelectionModel();
+            model.DeviceNumber = Convert.ToInt32( DeviceNumber_DeviceNumber.Text );
+            model.IPAddress = IPAddress.Parse( IPAddress_AddressTextBox.Text );
 
             // Terminal type
             if ( TerminalType_Posdriver.Checked )
-                settings.@PositermType = PositouchTerminalType.Posdriver;
+                model.Type = PosiwTerminalType.PrimaryServer;
             else if ( TerminalType_Redundant.Checked )
-                settings.@PositermType = PositouchTerminalType.Redunant;
+                model.Type = PosiwTerminalType.BackupServer;
             else if ( TerminalType_Backoffice.Checked )
-                settings.@PositermType = PositouchTerminalType.Backoffice;
+                model.Type = PosiwTerminalType.BackoffServer;
             else if ( TerminalType_Normal.Checked )
-                settings.@PositermType = PositouchTerminalType.Normal;
+                model.Type = PosiwTerminalType.Normal;
             else
                 throw new Exception( @"No TerminalType radio button selected." );
 
-            // Device number
-            settings.DeviceNumber = Convert.ToInt32( DeviceNumber_DeviceNumber.Text );
-
-            // IP Address
-            settings.IPAddress = IPAddress.Parse( IPAddress_AddressTextBox.Text );
-
-            var configuratorController = new PositouchConfiguratorController( settings );
+            var configuratorController = new PositouchConfiguratorController( model );
             configuratorController.Configure();
         }
 
