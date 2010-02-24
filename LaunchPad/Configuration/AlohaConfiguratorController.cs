@@ -11,15 +11,9 @@ namespace LaunchPad.Configuration
             get { return RemoteConfigurators.RequiresAuthentication; }
         }
 
-        private AlohaTerminalStation StationSettings;
+        // private AlohaTerminalStation StationSettings;
         private List<IConfigurator> Configurators = new List<IConfigurator>();
         private ConfiguratorDispatcher RemoteConfigurators = new ConfiguratorDispatcher();
-
-        private AlohaConfiguratorController() { }
-        public AlohaConfiguratorController( AlohaTerminalStation terminalStation )
-        {
-            StationSettings = terminalStation;
-        }
 
         public void Configure()
         {

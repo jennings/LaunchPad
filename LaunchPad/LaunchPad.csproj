@@ -88,7 +88,6 @@
     <Compile Include="Forms\AlohaInitialConfigWindow.Designer.cs">
       <DependentUpon>AlohaInitialConfigWindow.cs</DependentUpon>
     </Compile>
-    <Compile Include="AlohaTerminalStation.cs" />
     <Compile Include="Configuration\AlohaConfiguratorController.cs" />
     <Compile Include="Configuration\Configurators\CredentialsConfigurator.cs" />
     <Compile Include="Configuration\PositouchInitialConfiguratorController.cs" />
@@ -184,7 +183,6 @@
     <Compile Include="Forms\StartupWindow.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ITerminalStation.cs" />
     <Compile Include="TerminalsReader.cs" />
   </ItemGroup>
   <ItemGroup>
