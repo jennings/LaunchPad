@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using LaunchPad.Configuration.Tasks;
+using System.Text.RegularExpressions;
 
 namespace LaunchPad.Configuration.Configurators
 {
@@ -28,7 +29,7 @@ namespace LaunchPad.Configuration.Configurators
         {
             ComputerName = task.ComputerName;
         }
-        
+
         public void Configure()
         {
             try
@@ -45,6 +46,8 @@ namespace LaunchPad.Configuration.Configurators
 
             // Write TERM.$$$
             WriteTerminalName();
+
+            UpdateWintermIni();
         }
 
 
@@ -80,6 +83,28 @@ namespace LaunchPad.Configuration.Configurators
             {
                 sw.Write( ComputerName );
             }
+        }
+
+
+        private void UpdateWintermIni()
+        {
+            var spcwinRx = new Regex( @"^((\s*)Spcwin(\s*)=(.*))$", RegexOptions.IgnoreCase | RegexOptions.Multiline );
+            var spcwinbackupRx = new Regex( @"^((\s*)SpcwinBackup(.*))$", RegexOptions.IgnoreCase | RegexOptions.Multiline );
+            var masterbmppathRx = new Regex( @"^((\s*)MasterBmpPath(.*))$", RegexOptions.IgnoreCase | RegexOptions.Multiline );
+            var masterdatpathRx = new Regex( @"^((\s*)MasterDatPath(.*))$", RegexOptions.IgnoreCase | RegexOptions.Multiline );
+            var altbmppathRx = new Regex( @"^((\s*)AltBmpPath(.*))$", RegexOptions.IgnoreCase | RegexOptions.Multiline );
+            var altdatpathRx = new Regex( @"^((\s*)AltDatPath(.*))$", RegexOptions.IgnoreCase | RegexOptions.Multiline );
+
+            string winterm = File.ReadAllText( @"C:\SC\Winterm.ini" );
+
+            winterm = spcwinRx.Replace( winterm, @"Spcwin=" + SettingsReader.Instance.PosdriverIPAddress.ToString() );
+            winterm = spcwinbackupRx.Replace( winterm, @"SpcwinBackup=" + ( SettingsReader.Instance.RedundantIPAddress.ToString() ?? "" ) );
+            winterm = masterbmppathRx.Replace( winterm, @"; $1" );
+            winterm = masterdatpathRx.Replace( winterm, @"; $1" );
+            winterm = altbmppathRx.Replace( winterm, @"; $1" );
+            winterm = altdatpathRx.Replace( winterm, @"; $1" );
+
+            File.WriteAllText( @"C:\SC\Winterm.ini", winterm );
         }
     }
 }
