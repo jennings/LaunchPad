@@ -1,5 +1,6 @@
 ﻿using System;
-using System.Management;
+using System.ComponentModel;
+using System.Runtime.InteropServices;
 using LaunchPad.Configuration.Tasks;
 
 namespace LaunchPad.Configuration.Configurators
@@ -17,34 +18,26 @@ namespace LaunchPad.Configuration.Configurators
             NewComputerName = task.ComputerName;
         }
 
+        [DllImport( "kernel32.dll", CharSet = CharSet.Auto )]
+        private static extern bool SetComputerNameEx( COMPUTER_NAME_FORMAT NameType, string lpBuffer );
+        private enum COMPUTER_NAME_FORMAT
+        {
+            ComputerNameNetBIOS,
+            ComputerNameDnsHostname,
+            ComputerNameDnsDomain,
+            ComputerNameDnsFullyQualified,
+            ComputerNamePhysicalNetBIOS,
+            ComputerNamePhysicalDnsHostname,
+            ComputerNamePhysicalDnsDomain,
+            ComputerNamePhysicalDnsFullyQualified
+        }
 
         public void Configure()
         {
-            try
+            bool result = SetComputerNameEx( COMPUTER_NAME_FORMAT.ComputerNamePhysicalDnsHostname, NewComputerName );
+            if ( !result )
             {
-                object output = null;
-
-                var MC = new ManagementClass( "Win32_ComputerSystem" );
-                var MOC = MC.GetInstances();
-
-                foreach ( ManagementObject obj in MOC )
-                {
-                    var inputParams = obj.GetMethodParameters( "Rename" );
-                    inputParams["Name"] = NewComputerName;
-                    output = obj.InvokeMethod( "Rename", inputParams, null );
-                }
-
-                var returnvalue = Convert.ToInt32( ( (ManagementBaseObject)output ).Properties["ReturnValue"].Value );
-                if ( returnvalue != 0 )
-                {
-                    throw new Exception( @"Could not change network name." );
-                }
-            }
-            catch ( Exception )
-            {
-                // FIXME
-                // System.Windows.Forms.MessageBox.Show( @"Could not change computer name: " + ex.Message );
-                return;
+                throw new Win32Exception();
             }
         }
     }
