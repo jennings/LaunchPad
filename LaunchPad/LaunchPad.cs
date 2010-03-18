@@ -53,7 +53,7 @@ namespace LaunchPad
                             break;
 
                         case PointOfSaleType.Aloha:
-                            if ( settings.IntegrousInitialSettings )
+                            if ( settings.IntegrousInitialSettings && settings.IntegrousLaunchSettings )
                             {
                                 Application.Run( new AlohaStartupWindow() );
                             }
