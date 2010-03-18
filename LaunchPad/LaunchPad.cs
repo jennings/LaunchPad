@@ -48,7 +48,7 @@ namespace LaunchPad
                             }
                             else
                             {
-                                Application.Run( new PositouchInitialConfigWindow() );
+                                Application.Run( new AlohaManualConfigWindow() );
                             }
                             break;
 

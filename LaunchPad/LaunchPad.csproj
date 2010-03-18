@@ -82,6 +82,12 @@
     <Compile Include="Forms\AlohaStartupWindow.Designer.cs">
       <DependentUpon>AlohaStartupWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\AlohaManualConfigWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AlohaManualConfigWindow.Designer.cs">
+      <DependentUpon>AlohaManualConfigWindow.cs</DependentUpon>
+    </Compile>
     <Compile Include="LaunchPadService.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -137,6 +143,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Forms\AlohaStartupWindow.resx">
       <DependentUpon>AlohaStartupWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\AlohaManualConfigWindow.resx">
+      <DependentUpon>AlohaManualConfigWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\PositouchInitialConfigWindow.resx">
       <DependentUpon>PositouchInitialConfigWindow.cs</DependentUpon>
