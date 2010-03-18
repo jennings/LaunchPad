@@ -65,9 +65,11 @@
     <Compile Include="Authentication\Response.cs" />
     <Compile Include="Configuration\Configurators\AutomaticLogonConfigurator.cs" />
     <Compile Include="Configuration\Configurators\ComputerNameConfigurator.cs" />
+    <Compile Include="Configuration\Configurators\IbercfgConfigurator.cs" />
     <Compile Include="Configuration\Configurators\IPAddressConfigurator.cs" />
     <Compile Include="Configuration\Tasks\AutomaticLogonTask.cs" />
     <Compile Include="Configuration\Tasks\ComputerNameTask.cs" />
+    <Compile Include="Configuration\Tasks\IbercfgTask.cs" />
     <Compile Include="Configuration\Tasks\CredentialsTask.cs" />
     <Compile Include="Configuration\Tasks\IPAddressTask.cs" />
     <Compile Include="Configuration\Tasks\PositermTask.cs" />
