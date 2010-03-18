@@ -1,7 +1,8 @@
 ﻿using System;
+using System.IO;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using LaunchPad.Launchers;
-using System.IO;
 using System.Diagnostics;
 
 namespace LaunchPad.Forms
@@ -13,8 +14,10 @@ namespace LaunchPad.Forms
             InitializeComponent();
 
             LaunchController = new AlohaLaunchController();
+            var settings = SettingsReader.Instance;
 
-            AlohaFOHLabel.Text = ( (AlohaLaunchController)LaunchController ).LaunchesIbercfg ? "Yes" : "No";
+            AlohaLabel.Text = settings.LaunchIbercfg ? "Yes" : "No";
+            VNCServerLabel.Text = settings.LaunchVNC ? "Yes" : "No";
 
             IPAddressLabel.Text = GetIPAddress();
 
@@ -34,9 +37,8 @@ namespace LaunchPad.Forms
         {
             DelayTimer.Stop();
             this.Hide();
-            // var config = new PositouchConfigWindow();
-            // config.ShowDialog();
-            MessageBox.Show( @"TODO: No AlohaConfigWindow created yet." );
+            var config = new AlohaInitialConfigWindow();
+            config.ShowDialog();
             this.Show();
         }
 
@@ -74,6 +76,12 @@ namespace LaunchPad.Forms
             }
 
             this.Show();
+        }
+
+        private void LaunchNowButton_Click( object sender, EventArgs e )
+        {
+            SecondsBeforeClose = 0;
+            base.CountdownTick( sender, e );
         }
     }
 }
