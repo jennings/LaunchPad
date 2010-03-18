@@ -22,8 +22,6 @@ namespace LaunchPad.Configuration.Configurators
             "WINTERM.INI"
         };
 
-        private string PosdriverCFolder;
-
         private PositermConfigurator() { }
         public PositermConfigurator( PositermTask task )
         {
@@ -38,10 +36,11 @@ namespace LaunchPad.Configuration.Configurators
             try
             {
                 CreateCShare();
+            }
+            catch { }
 
-                // Copy INI files
-                Utilities.MapDriveLetter( 'L', SettingsReader.Instance.PosdriverIPAddress.ToString() );
-                PosdriverCFolder = @"L:\";
+            try
+            {
                 CopyINIFiles();
             }
             catch { } // FIXME
@@ -63,9 +62,17 @@ namespace LaunchPad.Configuration.Configurators
 
         private void CopyINIFiles()
         {
+            string scDirectory;
+
+            try
+            {
+                scDirectory = Path.Combine( Utilities.PosdriverDirectory.ToString(), "SC" );
+            }
+            catch { return; } // FIXME: Log error copying INI
+
             foreach ( var filename in Filenames )
             {
-                var fullfilename = Path.Combine( PosdriverCFolder, @"SC" + filename );
+                var fullfilename = Path.Combine( scDirectory, filename );
                 if ( File.Exists( fullfilename ) )
                 {
                     File.Copy( fullfilename, Path.Combine( @"C:\SC", filename ), true );
@@ -101,7 +108,11 @@ namespace LaunchPad.Configuration.Configurators
             string winterm = File.ReadAllText( @"C:\SC\Winterm.ini" );
 
             winterm = spcwinRx.Replace( winterm, @"Spcwin=" + SettingsReader.Instance.PosdriverIPAddress.ToString() );
-            winterm = spcwinbackupRx.Replace( winterm, @"SpcwinBackup=" + ( SettingsReader.Instance.RedundantIPAddress.ToString() ?? "" ) );
+            try
+            {
+                winterm = spcwinbackupRx.Replace( winterm, @"SpcwinBackup=" + ( SettingsReader.Instance.RedundantIPAddress.ToString() ?? "" ) );
+            }
+            catch { }
             winterm = masterbmppathRx.Replace( winterm, @"; $1" );
             winterm = masterdatpathRx.Replace( winterm, @"; $1" );
             winterm = altbmppathRx.Replace( winterm, @"; $1" );

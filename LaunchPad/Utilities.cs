@@ -8,6 +8,24 @@ namespace LaunchPad
 {
     class Utilities
     {
+        public static DirectoryInfo PosdriverDirectory
+        {
+            get
+            {
+                var tempdir = @"\\" + SettingsReader.Instance.PosdriverIPAddress.ToString();
+                if ( Directory.Exists( tempdir + @"\C" ) )
+                {
+                    return new DirectoryInfo( tempdir + @"\C" );
+                }
+                else if ( Directory.Exists( tempdir + @"\C$" ) )
+                {
+                    return new DirectoryInfo( tempdir + @"\C$" );
+                }
+
+                throw new IOException( @"Unable to map to C or C$ share of: " + tempdir );
+            }
+        }
+
         public static void MapToPosdriver( char driveLetterChar )
         {
             MapDriveLetter( driveLetterChar, SettingsReader.Instance.PosdriverIPAddress.ToString() );
