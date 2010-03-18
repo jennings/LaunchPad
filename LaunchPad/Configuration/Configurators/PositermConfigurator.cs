@@ -32,6 +32,9 @@ namespace LaunchPad.Configuration.Configurators
 
         public void Configure()
         {
+            // Write TERM.$$$
+            WriteTerminalName();
+
             try
             {
                 CreateCShare();
@@ -41,13 +44,13 @@ namespace LaunchPad.Configuration.Configurators
                 PosdriverCFolder = @"L:\";
                 CopyINIFiles();
             }
-            catch ( Exception )
-            { }
+            catch { } // FIXME
 
-            // Write TERM.$$$
-            WriteTerminalName();
-
-            UpdateWintermIni();
+            try
+            {
+                UpdateWintermIni();
+            }
+            catch { } // FIXME
         }
 
 
