@@ -18,8 +18,7 @@ namespace LaunchPad.Configuration.Configurators
             "AMS32.INI",
             "DELIVERY.INI",
             "GIFTCERT.INI",
-            "ORDRSCRN.INI",
-            "WINTERM.INI"
+            "ORDRSCRN.INI"
         };
 
         private PositermConfigurator() { }
