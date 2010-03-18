@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using LaunchPad.Configuration.Configurators;
+using LaunchPad.Models;
+using LaunchPad.Configuration.Tasks;
+using LaunchPad.Authentication;
 
 namespace LaunchPad.Configuration
 {
@@ -8,18 +11,46 @@ namespace LaunchPad.Configuration
     {
         public bool RequiresAuthentication
         {
-            get { return RemoteConfigurators.RequiresAuthentication; }
+            get { return RemoteDispatcher.RequiresAuthentication; }
         }
 
-        // private AlohaTerminalStation StationSettings;
-        private List<IConfigurator> Configurators = new List<IConfigurator>();
-        private ConfiguratorDispatcher RemoteConfigurators = new ConfiguratorDispatcher();
+        private ConfiguratorDispatcher LocalDispatcher;
+        private ConfiguratorDispatcher RemoteDispatcher;
+        private AlohaTerminalModel Model;
+
+        private AlohaConfiguratorController() { }
+        public AlohaConfiguratorController( AlohaTerminalModel model )
+        {
+            Model = model;
+
+            LocalDispatcher = new ConfiguratorDispatcher();
+            RemoteDispatcher = ConfiguratorDispatcher.CreateRemoteDispatcher();
+
+            RemoteDispatcher.AddTask( new ComputerNameTask( Model.ComputerName ) );
+            RemoteDispatcher.AddTask( new IPAddressTask( Model.IPAddress ) );
+            RemoteDispatcher.AddTask( new IbercfgTask(
+                Model.TerminalNumber,
+                Model.NumberOfTerminals,
+                Model.FileserverName,
+                Model.MasterCapable,
+                Model.ServerCapable ) );
+        }
 
         public void Configure()
         {
-            throw new NotImplementedException();
+            if ( RemoteDispatcher.RequiresAuthentication )
+            {
+                // TODO: Challenge / Response
+                RemoteDispatcher.Response = new Response( RemoteDispatcher.Challenge );
+            }
 
-            SettingsReader.Instance.Commit();
+            RemoteDispatcher.Dispatch();
+            LocalDispatcher.Dispatch();
+
+            var settings = SettingsReader.Instance;
+            settings.LaunchIbercfg = true; // FIXME
+            settings.LaunchVNC = true; // FIXME
+            settings.Commit();
 
             Rebooter.Reboot();
         }
