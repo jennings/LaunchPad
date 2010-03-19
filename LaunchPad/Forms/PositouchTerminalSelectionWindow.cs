@@ -1,15 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
 using System.Net;
+using System.Windows.Forms;
 using LaunchPad.Configuration;
-using System.Diagnostics;
-using LaunchPad.Configuration.Configurators;
 using LaunchPad.Models;
+using LaunchPad.Terminals;
 
 namespace LaunchPad.Forms
 {

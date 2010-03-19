@@ -9,7 +9,7 @@ using System.Diagnostics;
 using System.Text.RegularExpressions;
 using System.Data.Odbc;
 
-namespace LaunchPad
+namespace LaunchPad.Terminals
 {
     class TerminalsReader
     {
