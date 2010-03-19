@@ -59,7 +59,7 @@ namespace LaunchPad
                             }
                             else
                             {
-                                Application.Run( new AlohaInitialConfigWindow() );
+                                Application.Run( new AlohaManualConfigWindow() );
                             }
                             break;
 
