@@ -42,7 +42,8 @@ namespace LaunchPad
             var csb = new OleDbConnectionStringBuilder()
             {
                 DataSource = Filename,
-                Provider = @"Microsoft.Jet.OLEDB.4.0"
+                Provider = @"Microsoft.Jet.OLEDB.4.0",
+
             };
 
             if ( !File.Exists( Filename ) )

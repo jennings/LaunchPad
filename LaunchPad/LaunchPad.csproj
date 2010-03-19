@@ -96,6 +96,9 @@
     <Compile Include="Models\PositouchTerminalStationEnum.cs" />
     <Compile Include="Models\PositouchTerminalSelectionModel.cs" />
     <Compile Include="Models\PositouchInitialConfigurationModel.cs" />
+    <Compile Include="Terminals\AlohaTerminalReader.cs" />
+    <Compile Include="Terminals\AlohaTerminal.cs" />
+    <Compile Include="Terminals\PositouchTerminal.cs" />
     <Compile Include="Utilities.cs" />
     <Compile Include="Forms\AlohaInitialConfigWindow.cs">
       <SubType>Form</SubType>
@@ -167,6 +170,8 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <None Include="app.config" />
+    <None Include="Examples\AlohaTerminals.csv" />
+    <None Include="Examples\PositouchTerminals.csv" />
     <None Include="UltraVNC\mslogon.log">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -195,7 +200,7 @@
     <Compile Include="Forms\StartupWindow.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="TerminalsReader.cs" />
+    <Compile Include="Terminals\TerminalsReader.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
@@ -279,7 +284,7 @@
     <Content Include="UltraVNC\workgrpdomnt4.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Settings.txt" />
+    <Content Include="Examples\Settings.txt" />
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="ADOX">
