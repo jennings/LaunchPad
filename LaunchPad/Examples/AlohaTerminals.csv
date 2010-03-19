@@ -1,4 +1,12 @@
-﻿UnitName,Term,IPAddress,NumberOfTerminals,FileserverName,MasterCapable,ServerCapable
-"Altamonte",1,"10.10.10.1",9,"alohaboh",true,true
-"Altamonte",2,"10.10.10.2",9,"alohaboh",true,true
-"Altamonte",6,"10.10.10.6",9,"alohaboh",true,true
+﻿UnitName,Term,IPAddress,SubnetMask,DefaultGateway,DNS1,DNS2,NumberOfTerminals,FileserverName,MasterCapable,ServerCapable
+"Altamonte",1,"10.10.10.1","255.255.255.0","10.10.10.254","8.8.8.8","8.8.4.4",9,"alalohaboh",true,true
+"Altamonte",2,"10.10.10.2","255.255.255.0","10.10.10.254","8.8.8.8","8.8.4.4",9,"alalohaboh",true,true
+"Altamonte",3,"10.10.10.3","255.255.255.0","10.10.10.254","8.8.8.8","8.8.4.4",9,"alalohaboh",true,true
+"Altamonte",4,"10.10.10.4","255.255.255.0","10.10.10.254","8.8.8.8","8.8.4.4",9,"alalohaboh",true,true
+"Altamonte",5,"10.10.10.5","255.255.255.0","10.10.10.254","8.8.8.8","8.8.4.4",9,"alalohaboh",true,true
+"Fresno",1,"10.10.11.1","255.255.255.0","10.10.11.254","8.8.8.8","8.8.4.4",8,"fralohaboh",true,true
+"Fresno",2,"10.10.11.2","255.255.255.0","10.10.11.254","8.8.8.8","8.8.4.4",8,"fralohaboh",true,true
+"Fresno",3,"10.10.11.3","255.255.255.0","10.10.11.254","8.8.8.8","8.8.4.4",8,"fralohaboh",true,true
+"Fresno",4,"10.10.11.4","255.255.255.0","10.10.11.254","8.8.8.8","8.8.4.4",8,"fralohaboh",true,true
+"Fresno",5,"10.10.11.5","255.255.255.0","10.10.11.254","8.8.8.8","8.8.4.4",8,"fralohaboh",true,true
+"Fresno",5,"10.10.11.6","255.255.255.0","10.10.11.254","8.8.8.8","8.8.4.4",8,"fralohaboh",true,true

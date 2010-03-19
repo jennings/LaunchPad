@@ -10,14 +10,22 @@ namespace LaunchPad.Terminals
         public string UnitName { get; set; }
         
         public int Term { get; set; }
+        public string TermName { get { return "TERM" + Term; } }
+        public string Workgroup { get; set; }
+        
         public IPAddress IPAddress { get; set; }
         public IPAddress SubnetMask { get; set; }
         public IPAddress DefaultGateway { get; set; }
+        public IPAddress DNS1 { get; set; }
+        public IPAddress DNS2 { get; set; }
         
         public int NumberOfTerminals { get; set; }
         public string FileserverName { get; set; }
         
         public bool MasterCapable { get; set; }
         public bool ServerCapable { get; set; }
+
+        // FIXME: TimeZone is too limited for this purpose.
+        // public TimeZone @TimeZone { get; set; }
     }
 }

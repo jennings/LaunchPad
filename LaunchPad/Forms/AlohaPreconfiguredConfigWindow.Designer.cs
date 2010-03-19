@@ -89,7 +89,7 @@
             this.label1.Location = new System.Drawing.Point( 12, 11 );
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size( 93, 20 );
-            this.label1.TabIndex = 2;
+            this.label1.TabIndex = 0;
             this.label1.Text = "Unit Name";
             // 
             // label2
@@ -104,16 +104,16 @@
             // 
             // IPAddressTextBox
             // 
-            this.IPAddressTextBox.Location = new System.Drawing.Point( 22, 159 );
+            this.IPAddressTextBox.Location = new System.Drawing.Point( 22, 157 );
             this.IPAddressTextBox.Name = "IPAddressTextBox";
             this.IPAddressTextBox.Size = new System.Drawing.Size( 165, 26 );
-            this.IPAddressTextBox.TabIndex = 4;
+            this.IPAddressTextBox.TabIndex = 2;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font( "Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ( (byte)( 0 ) ) );
-            this.label3.Location = new System.Drawing.Point( 19, 139 );
+            this.label3.Location = new System.Drawing.Point( 19, 137 );
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size( 86, 17 );
             this.label3.TabIndex = 5;
@@ -134,7 +134,7 @@
             this.FileserverNameTextBox.Location = new System.Drawing.Point( 193, 57 );
             this.FileserverNameTextBox.Name = "FileserverNameTextBox";
             this.FileserverNameTextBox.Size = new System.Drawing.Size( 165, 26 );
-            this.FileserverNameTextBox.TabIndex = 6;
+            this.FileserverNameTextBox.TabIndex = 8;
             // 
             // label5
             // 
@@ -151,13 +151,13 @@
             this.NumberTerminalsTextBox.Location = new System.Drawing.Point( 193, 106 );
             this.NumberTerminalsTextBox.Name = "NumberTerminalsTextBox";
             this.NumberTerminalsTextBox.Size = new System.Drawing.Size( 165, 26 );
-            this.NumberTerminalsTextBox.TabIndex = 10;
+            this.NumberTerminalsTextBox.TabIndex = 9;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font( "Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ( (byte)( 0 ) ) );
-            this.label6.Location = new System.Drawing.Point( 19, 188 );
+            this.label6.Location = new System.Drawing.Point( 19, 186 );
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size( 101, 17 );
             this.label6.TabIndex = 9;
@@ -165,10 +165,10 @@
             // 
             // SubnetMaskTextBox
             // 
-            this.SubnetMaskTextBox.Location = new System.Drawing.Point( 22, 208 );
+            this.SubnetMaskTextBox.Location = new System.Drawing.Point( 22, 206 );
             this.SubnetMaskTextBox.Name = "SubnetMaskTextBox";
             this.SubnetMaskTextBox.Size = new System.Drawing.Size( 165, 26 );
-            this.SubnetMaskTextBox.TabIndex = 8;
+            this.SubnetMaskTextBox.TabIndex = 3;
             // 
             // label7
             // 
@@ -185,13 +185,13 @@
             this.ServerCapableTextBox.Location = new System.Drawing.Point( 193, 206 );
             this.ServerCapableTextBox.Name = "ServerCapableTextBox";
             this.ServerCapableTextBox.Size = new System.Drawing.Size( 165, 26 );
-            this.ServerCapableTextBox.TabIndex = 18;
+            this.ServerCapableTextBox.TabIndex = 11;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font( "Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ( (byte)( 0 ) ) );
-            this.label8.Location = new System.Drawing.Point( 19, 288 );
+            this.label8.Location = new System.Drawing.Point( 19, 286 );
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size( 54, 17 );
             this.label8.TabIndex = 17;
@@ -199,10 +199,10 @@
             // 
             // DNS1TextBox
             // 
-            this.DNS1TextBox.Location = new System.Drawing.Point( 22, 308 );
+            this.DNS1TextBox.Location = new System.Drawing.Point( 22, 306 );
             this.DNS1TextBox.Name = "DNS1TextBox";
             this.DNS1TextBox.Size = new System.Drawing.Size( 165, 26 );
-            this.DNS1TextBox.TabIndex = 16;
+            this.DNS1TextBox.TabIndex = 5;
             // 
             // label9
             // 
@@ -219,13 +219,13 @@
             this.MasterCapableTextBox.Location = new System.Drawing.Point( 193, 157 );
             this.MasterCapableTextBox.Name = "MasterCapableTextBox";
             this.MasterCapableTextBox.Size = new System.Drawing.Size( 165, 26 );
-            this.MasterCapableTextBox.TabIndex = 14;
+            this.MasterCapableTextBox.TabIndex = 10;
             // 
             // label10
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font( "Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ( (byte)( 0 ) ) );
-            this.label10.Location = new System.Drawing.Point( 19, 239 );
+            this.label10.Location = new System.Drawing.Point( 19, 237 );
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size( 127, 17 );
             this.label10.TabIndex = 13;
@@ -233,10 +233,10 @@
             // 
             // DefaultGatewayTextBox
             // 
-            this.DefaultGatewayTextBox.Location = new System.Drawing.Point( 22, 259 );
+            this.DefaultGatewayTextBox.Location = new System.Drawing.Point( 22, 257 );
             this.DefaultGatewayTextBox.Name = "DefaultGatewayTextBox";
             this.DefaultGatewayTextBox.Size = new System.Drawing.Size( 165, 26 );
-            this.DefaultGatewayTextBox.TabIndex = 12;
+            this.DefaultGatewayTextBox.TabIndex = 4;
             // 
             // button1
             // 
@@ -244,7 +244,7 @@
             this.button1.Location = new System.Drawing.Point( 213, 377 );
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size( 136, 59 );
-            this.button1.TabIndex = 20;
+            this.button1.TabIndex = 13;
             this.button1.Text = "Set Manually";
             this.button1.UseVisualStyleBackColor = true;
             // 
@@ -254,7 +254,7 @@
             this.button2.Location = new System.Drawing.Point( 213, 254 );
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size( 136, 101 );
-            this.button2.TabIndex = 21;
+            this.button2.TabIndex = 12;
             this.button2.Text = "Apply and Reboot";
             this.button2.UseVisualStyleBackColor = true;
             // 
@@ -262,7 +262,7 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font( "Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ( (byte)( 0 ) ) );
-            this.label11.Location = new System.Drawing.Point( 19, 338 );
+            this.label11.Location = new System.Drawing.Point( 19, 337 );
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size( 54, 17 );
             this.label11.TabIndex = 23;
@@ -270,16 +270,16 @@
             // 
             // DNS2TextBox
             // 
-            this.DNS2TextBox.Location = new System.Drawing.Point( 22, 358 );
+            this.DNS2TextBox.Location = new System.Drawing.Point( 22, 357 );
             this.DNS2TextBox.Name = "DNS2TextBox";
             this.DNS2TextBox.Size = new System.Drawing.Size( 165, 26 );
-            this.DNS2TextBox.TabIndex = 22;
+            this.DNS2TextBox.TabIndex = 6;
             // 
             // label12
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font( "Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ( (byte)( 0 ) ) );
-            this.label12.Location = new System.Drawing.Point( 19, 88 );
+            this.label12.Location = new System.Drawing.Point( 19, 86 );
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size( 87, 17 );
             this.label12.TabIndex = 27;
@@ -287,10 +287,10 @@
             // 
             // WorkgroupTextBox
             // 
-            this.WorkgroupTextBox.Location = new System.Drawing.Point( 22, 108 );
+            this.WorkgroupTextBox.Location = new System.Drawing.Point( 22, 106 );
             this.WorkgroupTextBox.Name = "WorkgroupTextBox";
             this.WorkgroupTextBox.Size = new System.Drawing.Size( 165, 26 );
-            this.WorkgroupTextBox.TabIndex = 26;
+            this.WorkgroupTextBox.TabIndex = 1;
             // 
             // label13
             // 
@@ -307,13 +307,13 @@
             this.TermNameTextBox.Location = new System.Drawing.Point( 22, 57 );
             this.TermNameTextBox.Name = "TermNameTextBox";
             this.TermNameTextBox.Size = new System.Drawing.Size( 165, 26 );
-            this.TermNameTextBox.TabIndex = 24;
+            this.TermNameTextBox.TabIndex = 0;
             // 
             // label14
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font( "Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ( (byte)( 0 ) ) );
-            this.label14.Location = new System.Drawing.Point( 19, 390 );
+            this.label14.Location = new System.Drawing.Point( 19, 386 );
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size( 85, 17 );
             this.label14.TabIndex = 29;
@@ -321,10 +321,10 @@
             // 
             // TimeZoneTextBox
             // 
-            this.TimeZoneTextBox.Location = new System.Drawing.Point( 22, 410 );
+            this.TimeZoneTextBox.Location = new System.Drawing.Point( 22, 406 );
             this.TimeZoneTextBox.Name = "TimeZoneTextBox";
             this.TimeZoneTextBox.Size = new System.Drawing.Size( 165, 26 );
-            this.TimeZoneTextBox.TabIndex = 28;
+            this.TimeZoneTextBox.TabIndex = 7;
             // 
             // SettingsGroup
             // 
@@ -358,7 +358,7 @@
             this.SettingsGroup.Location = new System.Drawing.Point( 374, 12 );
             this.SettingsGroup.Name = "SettingsGroup";
             this.SettingsGroup.Size = new System.Drawing.Size( 378, 486 );
-            this.SettingsGroup.TabIndex = 30;
+            this.SettingsGroup.TabIndex = 2;
             this.SettingsGroup.TabStop = false;
             this.SettingsGroup.Text = "Settings";
             // 

@@ -62,13 +62,25 @@ namespace LaunchPad.Terminals
                 while ( reader.Read() )
                 {
                     var term = new AlohaTerminal();
+
                     term.UnitName = Convert.ToString( reader["UnitName"] );
+
                     term.Term = Convert.ToInt32( reader["Term"] );
+                    term.Workgroup = Convert.ToString( reader["Workgroup"] );
+
                     term.IPAddress = IPAddress.Parse( Convert.ToString( reader["IPAddress"] ) );
+                    term.SubnetMask = IPAddress.Parse( Convert.ToString( reader["SubnetMask"] ) );
+                    term.DefaultGateway = IPAddress.Parse( Convert.ToString( reader["DefaultGateway"] ) );
+                    term.DNS1 = IPAddress.Parse( Convert.ToString( reader["DNS1"] ) );
+                    term.DNS2 = IPAddress.Parse( Convert.ToString( reader["DNS2"] ) );
+
                     term.NumberOfTerminals = Convert.ToInt32( reader["NumberOfTerminals"] );
                     term.FileserverName = Convert.ToString( reader["FileserverName"] );
+                    
                     term.MasterCapable = Convert.ToBoolean( reader["MasterCapable"] );
                     term.ServerCapable = Convert.ToBoolean( reader["ServerCapable"] );
+
+                    // term.TimeZone = ;
 
                     Terminals.Add( term );
                 }
