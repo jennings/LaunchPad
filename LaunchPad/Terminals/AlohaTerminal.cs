@@ -7,6 +7,8 @@ namespace LaunchPad.Terminals
 {
     class AlohaTerminal
     {
+        public string UnitName { get; set; }
+        
         public int Term { get; set; }
         public IPAddress IPAddress { get; set; }
         public IPAddress SubnetMask { get; set; }

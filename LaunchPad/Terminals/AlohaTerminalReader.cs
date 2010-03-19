@@ -22,13 +22,17 @@ namespace LaunchPad.Terminals
         }
 
         public List<AlohaTerminal> Terminals { get; private set; }
+        public List<string> Units { get; private set; }
 
         private AlohaTerminalReader()
         {
             Terminals = new List<AlohaTerminal>();
+            Units = new List<string>();
+
+            ReadTerminals();
         }
 
-        public void ReadTermianls()
+        public void ReadTerminals()
         {
             Terminals.Clear();
 
@@ -36,10 +40,21 @@ namespace LaunchPad.Terminals
             cs = cs + @"Extended Properties=""text;HDR=Yes;FMT=Delimited"";";
 
             var db = new OleDbConnection( cs );
-            
+
             db.Open();
 
-            var query = @"SELECT * FROM AlohaTerminals ORDER BY Term;";
+            var unitQuery = @"SELECT DISTINCT UnitName FROM AlohaTerminals.csv ORDER BY UnitName;";
+
+            using ( var cmd = new OleDbCommand( unitQuery, db ) )
+            using ( var reader = cmd.ExecuteReader() )
+            {
+                while ( reader.Read() )
+                {
+                    Units.Add( reader["UnitName"].ToString() );
+                }
+            }
+
+            var query = @"SELECT * FROM AlohaTerminals.csv ORDER BY UnitName, Term;";
 
             using ( var cmd = new OleDbCommand( query, db ) )
             using ( var reader = cmd.ExecuteReader() )
@@ -47,6 +62,7 @@ namespace LaunchPad.Terminals
                 while ( reader.Read() )
                 {
                     var term = new AlohaTerminal();
+                    term.UnitName = Convert.ToString( reader["UnitName"] );
                     term.Term = Convert.ToInt32( reader["Term"] );
                     term.IPAddress = IPAddress.Parse( Convert.ToString( reader["IPAddress"] ) );
                     term.NumberOfTerminals = Convert.ToInt32( reader["NumberOfTerminals"] );

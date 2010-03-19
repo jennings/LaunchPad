@@ -1,1 +1,4 @@
-﻿Term,IPAddress,Numterms,Server,MasterCapable,ServerCapable
+﻿UnitName,Term,IPAddress,NumberOfTerminals,FileserverName,MasterCapable,ServerCapable
+"Altamonte",1,"10.10.10.1",9,"alohaboh",true,true
+"Altamonte",2,"10.10.10.2",9,"alohaboh",true,true
+"Altamonte",6,"10.10.10.6",9,"alohaboh",true,true
