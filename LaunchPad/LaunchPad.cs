@@ -40,7 +40,7 @@ namespace LaunchPad
                         case PointOfSaleType.Positouch:
                             if ( settings.IntegrousInitialSettings && settings.IntegrousLaunchSettings )
                             {
-                                Application.Run( new AlohaStartupWindow() );
+                                Application.Run( new PositouchStartupWindow() );
                             }
                             else if ( settings.IntegrousInitialSettings )
                             {
@@ -48,7 +48,7 @@ namespace LaunchPad
                             }
                             else
                             {
-                                Application.Run( new AlohaManualConfigWindow() );
+                                Application.Run( new PositouchInitialConfigWindow() );
                             }
                             break;
 
