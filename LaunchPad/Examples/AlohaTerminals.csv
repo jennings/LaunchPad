@@ -1,12 +1,34 @@
-﻿UnitName,Term,IPAddress,SubnetMask,DefaultGateway,DNS1,DNS2,NumberOfTerminals,FileserverName,MasterCapable,ServerCapable
-"Altamonte",1,"10.10.10.1","255.255.255.0","10.10.10.254","8.8.8.8","8.8.4.4",9,"alalohaboh",true,true
-"Altamonte",2,"10.10.10.2","255.255.255.0","10.10.10.254","8.8.8.8","8.8.4.4",9,"alalohaboh",true,true
-"Altamonte",3,"10.10.10.3","255.255.255.0","10.10.10.254","8.8.8.8","8.8.4.4",9,"alalohaboh",true,true
-"Altamonte",4,"10.10.10.4","255.255.255.0","10.10.10.254","8.8.8.8","8.8.4.4",9,"alalohaboh",true,true
-"Altamonte",5,"10.10.10.5","255.255.255.0","10.10.10.254","8.8.8.8","8.8.4.4",9,"alalohaboh",true,true
-"Fresno",1,"10.10.11.1","255.255.255.0","10.10.11.254","8.8.8.8","8.8.4.4",8,"fralohaboh",true,true
-"Fresno",2,"10.10.11.2","255.255.255.0","10.10.11.254","8.8.8.8","8.8.4.4",8,"fralohaboh",true,true
-"Fresno",3,"10.10.11.3","255.255.255.0","10.10.11.254","8.8.8.8","8.8.4.4",8,"fralohaboh",true,true
-"Fresno",4,"10.10.11.4","255.255.255.0","10.10.11.254","8.8.8.8","8.8.4.4",8,"fralohaboh",true,true
-"Fresno",5,"10.10.11.5","255.255.255.0","10.10.11.254","8.8.8.8","8.8.4.4",8,"fralohaboh",true,true
-"Fresno",5,"10.10.11.6","255.255.255.0","10.10.11.254","8.8.8.8","8.8.4.4",8,"fralohaboh",true,true
+UnitName,Term,Workgroup,IPAddress,SubnetMask,DefaultGateway,DNS1,DNS2,NumberOfTerminals,FileserverName,MasterCapable,ServerCapable
+"Altamonte",1,"Alwork","10.10.10.1","255.255.255.0","10.10.10.254","8.8.8.8","8.8.4.4",9,"alalohaboh",true,true
+"Altamonte",2,"Alwork","10.10.10.2","255.255.255.0","10.10.10.254","8.8.8.8","8.8.4.4",9,"alalohaboh",true,true
+"Altamonte",3,"Alwork","10.10.10.3","255.255.255.0","10.10.10.254","8.8.8.8","8.8.4.4",9,"alalohaboh",true,true
+"Altamonte",4,"Alwork","10.10.10.4","255.255.255.0","10.10.10.254","8.8.8.8","8.8.4.4",9,"alalohaboh",true,true
+"Altamonte",5,"Alwork","10.10.10.5","255.255.255.0","10.10.10.254","8.8.8.8","8.8.4.4",9,"alalohaboh",true,true
+"Fresno",1,"Frwork","10.10.11.1","255.255.255.0","10.10.11.254","8.8.8.8","8.8.4.4",8,"fralohaboh",true,true
+"Fresno",2,"Frwork","10.10.11.2","255.255.255.0","10.10.11.254","8.8.8.8","8.8.4.4",8,"fralohaboh",true,true
+"Fresno",3,"Frwork","10.10.11.3","255.255.255.0","10.10.11.254","8.8.8.8","8.8.4.4",8,"fralohaboh",true,true
+"Fresno",4,"Frwork","10.10.11.4","255.255.255.0","10.10.11.254","8.8.8.8","8.8.4.4",8,"fralohaboh",true,true
+"Fresno",5,"Frwork","10.10.11.5","255.255.255.0","10.10.11.254","8.8.8.8","8.8.4.4",8,"fralohaboh",true,true
+"Fresno",6,"Frwork","10.10.11.6","255.255.255.0","10.10.11.254","8.8.8.8","8.8.4.4",8,"fralohaboh",true,true
+"Thousand Oaks",1,"Alwork","10.10.10.1","255.255.255.0","10.10.10.254","8.8.8.8","8.8.4.4",9,"alalohaboh",true,true
+"Thousand Oaks",2,"Alwork","10.10.10.2","255.255.255.0","10.10.10.254","8.8.8.8","8.8.4.4",9,"alalohaboh",true,true
+"Thousand Oaks",3,"Alwork","10.10.10.3","255.255.255.0","10.10.10.254","8.8.8.8","8.8.4.4",9,"alalohaboh",true,true
+"Thousand Oaks",4,"Alwork","10.10.10.4","255.255.255.0","10.10.10.254","8.8.8.8","8.8.4.4",9,"alalohaboh",true,true
+"Thousand Oaks",5,"Alwork","10.10.10.5","255.255.255.0","10.10.10.254","8.8.8.8","8.8.4.4",9,"alalohaboh",true,true
+"Irvine",1,"Frwork","10.10.11.1","255.255.255.0","10.10.11.254","8.8.8.8","8.8.4.4",8,"fralohaboh",true,true
+"Irvine",2,"Frwork","10.10.11.2","255.255.255.0","10.10.11.254","8.8.8.8","8.8.4.4",8,"fralohaboh",true,true
+"Irvine",3,"Frwork","10.10.11.3","255.255.255.0","10.10.11.254","8.8.8.8","8.8.4.4",8,"fralohaboh",true,true
+"Irvine",4,"Frwork","10.10.11.4","255.255.255.0","10.10.11.254","8.8.8.8","8.8.4.4",8,"fralohaboh",true,true
+"Irvine",5,"Frwork","10.10.11.5","255.255.255.0","10.10.11.254","8.8.8.8","8.8.4.4",8,"fralohaboh",true,true
+"Irvine",6,"Frwork","10.10.11.6","255.255.255.0","10.10.11.254","8.8.8.8","8.8.4.4",8,"fralohaboh",true,true
+"Santa Barbara",1,"Alwork","10.10.10.1","255.255.255.0","10.10.10.254","8.8.8.8","8.8.4.4",9,"alalohaboh",true,true
+"Santa Barbara",2,"Alwork","10.10.10.2","255.255.255.0","10.10.10.254","8.8.8.8","8.8.4.4",9,"alalohaboh",true,true
+"Santa Barbara",3,"Alwork","10.10.10.3","255.255.255.0","10.10.10.254","8.8.8.8","8.8.4.4",9,"alalohaboh",true,true
+"Santa Barbara",4,"Alwork","10.10.10.4","255.255.255.0","10.10.10.254","8.8.8.8","8.8.4.4",9,"alalohaboh",true,true
+"Santa Barbara",5,"Alwork","10.10.10.5","255.255.255.0","10.10.10.254","8.8.8.8","8.8.4.4",9,"alalohaboh",true,true
+"Fresno",1,"Frwork","10.10.11.1","255.255.255.0","10.10.11.254","8.8.8.8","8.8.4.4",8,"fralohaboh",true,true
+"Fresno",2,"Frwork","10.10.11.2","255.255.255.0","10.10.11.254","8.8.8.8","8.8.4.4",8,"fralohaboh",true,true
+"Fresno",3,"Frwork","10.10.11.3","255.255.255.0","10.10.11.254","8.8.8.8","8.8.4.4",8,"fralohaboh",true,true
+"Fresno",4,"Frwork","10.10.11.4","255.255.255.0","10.10.11.254","8.8.8.8","8.8.4.4",8,"fralohaboh",true,true
+"Fresno",5,"Frwork","10.10.11.5","255.255.255.0","10.10.11.254","8.8.8.8","8.8.4.4",8,"fralohaboh",true,true
+"Fresno",6,"Frwork","10.10.11.6","255.255.255.0","10.10.11.254","8.8.8.8","8.8.4.4",8,"fralohaboh",true,true

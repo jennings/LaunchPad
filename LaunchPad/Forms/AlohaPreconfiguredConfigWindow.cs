@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using LaunchPad.Terminals;
 
 namespace LaunchPad.Forms
 {
@@ -13,6 +14,66 @@ namespace LaunchPad.Forms
         public AlohaPreconfiguredConfigWindow()
         {
             InitializeComponent();
+
+            PopulateUnitList();
+        }
+
+        public void PopulateUnitList()
+        {
+            UnitListBox.Items.Clear();
+
+            var settings = AlohaTerminalReader.Instance;
+            UnitListBox.Items.AddRange( settings.Units.ToArray() );
+        }
+
+        public void PopulateTerminalList( string Unit )
+        {
+            TermNumListBox.Items.Clear();
+
+            var settings = AlohaTerminalReader.Instance;
+            TermNumListBox.Items.AddRange( settings.ReadTerminals( Unit, null ).ToArray() );
+        }
+
+        public void PopulateTerminalSettings( string unit, int term )
+        {
+            var settings = AlohaTerminalReader.Instance;
+
+            AlohaTerminal terminal = new AlohaTerminal();
+
+            foreach ( var t in settings.Terminals )
+            {
+                if ( t.UnitName.Equals( unit, StringComparison.InvariantCultureIgnoreCase ) && t.Term.Equals( term ) )
+                {
+                    terminal = t;
+                }
+            }
+
+            TermNameTextBox.Text = terminal.TermName;
+            WorkgroupTextBox.Text = terminal.Workgroup;
+            IPAddressTextBox.Text = terminal.IPAddress.ToString();
+            SubnetMaskTextBox.Text = terminal.SubnetMask.ToString();
+            DefaultGatewayTextBox.Text = terminal.DefaultGateway.ToString();
+            DNS1TextBox.Text = terminal.DNS1.ToString();
+            DNS2TextBox.Text = terminal.DNS2.ToString();
+            FileserverNameTextBox.Text = terminal.FileserverName;
+            NumberTerminalsTextBox.Text = terminal.NumberOfTerminals.ToString();
+            MasterCapableTextBox.Text = terminal.MasterCapable.ToString();
+            ServerCapableTextBox.Text = terminal.ServerCapable.ToString();
+        }
+
+        private void UnitListBox_SelectedValueChanged( object sender, EventArgs e )
+        {
+            PopulateTerminalList( UnitListBox.SelectedItem.ToString() );
+            SettingsGroup.Visible = false;
+        }
+
+        private void TermNumListBox_SelectedValueChanged( object sender, EventArgs e )
+        {
+            PopulateTerminalSettings(
+                UnitListBox.SelectedItem.ToString(),
+                ( (AlohaTerminal)TermNumListBox.SelectedItem ).Term );
+
+            SettingsGroup.Visible = true;
         }
     }
 }

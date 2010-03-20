@@ -2,6 +2,7 @@
 using System.ServiceProcess;
 using System.Windows.Forms;
 using LaunchPad.Forms;
+using LaunchPad.Terminals;
 
 namespace LaunchPad
 {
@@ -59,7 +60,14 @@ namespace LaunchPad
                             }
                             else
                             {
-                                Application.Run( new AlohaManualConfigWindow() );
+                                if ( AlohaTerminalReader.PreconfigurationAvailable )
+                                {
+                                    Application.Run( new AlohaPreconfiguredConfigWindow() );
+                                }
+                                else
+                                {
+                                    Application.Run( new AlohaManualConfigWindow() );
+                                }
                             }
                             break;
 

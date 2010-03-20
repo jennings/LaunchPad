@@ -3,11 +3,20 @@ using System.Collections.Generic;
 using System.Text;
 using System.Data.OleDb;
 using System.Net;
+using System.IO;
 
 namespace LaunchPad.Terminals
 {
     class AlohaTerminalReader
     {
+        public static bool PreconfigurationAvailable
+        {
+            get
+            {
+                return File.Exists( @"C:\LaunchPad\AlohaTerminals.csv" );
+            }
+        }
+
         private static AlohaTerminalReader _Instance = null;
         public static AlohaTerminalReader Instance
         {
@@ -76,7 +85,7 @@ namespace LaunchPad.Terminals
 
                     term.NumberOfTerminals = Convert.ToInt32( reader["NumberOfTerminals"] );
                     term.FileserverName = Convert.ToString( reader["FileserverName"] );
-                    
+
                     term.MasterCapable = Convert.ToBoolean( reader["MasterCapable"] );
                     term.ServerCapable = Convert.ToBoolean( reader["ServerCapable"] );
 
@@ -92,6 +101,74 @@ namespace LaunchPad.Terminals
         public void WriteTerminals( List<AlohaTerminal> terminals )
         {
             throw new NotImplementedException();
+        }
+
+        public List<AlohaTerminal> ReadTerminals( string unitName, int? termNum )
+        {
+            var terminals = new List<AlohaTerminal>();
+
+            var cs = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=.\;";
+            cs = cs + @"Extended Properties=""text;HDR=Yes;FMT=Delimited"";";
+
+            var db = new OleDbConnection( cs );
+
+            db.Open();
+
+            using ( var cmd = new OleDbCommand() )
+            {
+                cmd.Connection = db;
+
+                if ( unitName != null )
+                {
+                    if ( termNum != null )
+                    {
+                        cmd.CommandText = @"SELECT * FROM AlohaTerminals.csv WHERE UnitName=@unitname AND Term=@termnum ORDER BY UnitName, Term";
+                        cmd.Parameters.Add( new OleDbParameter( "@unitname", unitName ) );
+                        cmd.Parameters.Add( new OleDbParameter( "@termnum", termNum ) );
+                    }
+                    else
+                    {
+                        cmd.CommandText = @"SELECT * FROM AlohaTerminals.csv WHERE UnitName=@unitnum ORDER BY UnitName, Term";
+                        cmd.Parameters.Add( new OleDbParameter( "@unitname", unitName ) );
+                    }
+                }
+                else
+                {
+                    cmd.CommandText = @"SELECT * FROM AlohaTerminals.csv ORDER BY UnitName, Term";
+                }
+
+                using ( var reader = cmd.ExecuteReader() )
+                {
+                    while ( reader.Read() )
+                    {
+                        var term = new AlohaTerminal();
+
+                        term.UnitName = Convert.ToString( reader["UnitName"] );
+
+                        term.Term = Convert.ToInt32( reader["Term"] );
+                        term.Workgroup = Convert.ToString( reader["Workgroup"] );
+
+                        term.IPAddress = IPAddress.Parse( Convert.ToString( reader["IPAddress"] ) );
+                        term.SubnetMask = IPAddress.Parse( Convert.ToString( reader["SubnetMask"] ) );
+                        term.DefaultGateway = IPAddress.Parse( Convert.ToString( reader["DefaultGateway"] ) );
+                        term.DNS1 = IPAddress.Parse( Convert.ToString( reader["DNS1"] ) );
+                        term.DNS2 = IPAddress.Parse( Convert.ToString( reader["DNS2"] ) );
+
+                        term.NumberOfTerminals = Convert.ToInt32( reader["NumberOfTerminals"] );
+                        term.FileserverName = Convert.ToString( reader["FileserverName"] );
+
+                        term.MasterCapable = Convert.ToBoolean( reader["MasterCapable"] );
+                        term.ServerCapable = Convert.ToBoolean( reader["ServerCapable"] );
+
+                        // term.TimeZone = ;
+
+                        terminals.Add( term );
+                    }
+                }
+            }
+            db.Close();
+
+            return terminals;
         }
     }
 }

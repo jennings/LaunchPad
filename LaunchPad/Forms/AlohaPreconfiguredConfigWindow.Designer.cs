@@ -71,6 +71,7 @@
             this.UnitListBox.Name = "UnitListBox";
             this.UnitListBox.Size = new System.Drawing.Size( 175, 464 );
             this.UnitListBox.TabIndex = 0;
+            this.UnitListBox.SelectedValueChanged += new System.EventHandler( this.UnitListBox_SelectedValueChanged );
             // 
             // TermNumListBox
             // 
@@ -81,6 +82,7 @@
             this.TermNumListBox.Name = "TermNumListBox";
             this.TermNumListBox.Size = new System.Drawing.Size( 175, 464 );
             this.TermNumListBox.TabIndex = 1;
+            this.TermNumListBox.SelectedValueChanged += new System.EventHandler( this.TermNumListBox_SelectedValueChanged );
             // 
             // label1
             // 
@@ -104,6 +106,7 @@
             // 
             // IPAddressTextBox
             // 
+            this.IPAddressTextBox.Enabled = false;
             this.IPAddressTextBox.Location = new System.Drawing.Point( 22, 157 );
             this.IPAddressTextBox.Name = "IPAddressTextBox";
             this.IPAddressTextBox.Size = new System.Drawing.Size( 165, 26 );
@@ -131,6 +134,7 @@
             // 
             // FileserverNameTextBox
             // 
+            this.FileserverNameTextBox.Enabled = false;
             this.FileserverNameTextBox.Location = new System.Drawing.Point( 193, 57 );
             this.FileserverNameTextBox.Name = "FileserverNameTextBox";
             this.FileserverNameTextBox.Size = new System.Drawing.Size( 165, 26 );
@@ -148,6 +152,7 @@
             // 
             // NumberTerminalsTextBox
             // 
+            this.NumberTerminalsTextBox.Enabled = false;
             this.NumberTerminalsTextBox.Location = new System.Drawing.Point( 193, 106 );
             this.NumberTerminalsTextBox.Name = "NumberTerminalsTextBox";
             this.NumberTerminalsTextBox.Size = new System.Drawing.Size( 165, 26 );
@@ -165,6 +170,7 @@
             // 
             // SubnetMaskTextBox
             // 
+            this.SubnetMaskTextBox.Enabled = false;
             this.SubnetMaskTextBox.Location = new System.Drawing.Point( 22, 206 );
             this.SubnetMaskTextBox.Name = "SubnetMaskTextBox";
             this.SubnetMaskTextBox.Size = new System.Drawing.Size( 165, 26 );
@@ -182,6 +188,7 @@
             // 
             // ServerCapableTextBox
             // 
+            this.ServerCapableTextBox.Enabled = false;
             this.ServerCapableTextBox.Location = new System.Drawing.Point( 193, 206 );
             this.ServerCapableTextBox.Name = "ServerCapableTextBox";
             this.ServerCapableTextBox.Size = new System.Drawing.Size( 165, 26 );
@@ -199,6 +206,7 @@
             // 
             // DNS1TextBox
             // 
+            this.DNS1TextBox.Enabled = false;
             this.DNS1TextBox.Location = new System.Drawing.Point( 22, 306 );
             this.DNS1TextBox.Name = "DNS1TextBox";
             this.DNS1TextBox.Size = new System.Drawing.Size( 165, 26 );
@@ -216,6 +224,7 @@
             // 
             // MasterCapableTextBox
             // 
+            this.MasterCapableTextBox.Enabled = false;
             this.MasterCapableTextBox.Location = new System.Drawing.Point( 193, 157 );
             this.MasterCapableTextBox.Name = "MasterCapableTextBox";
             this.MasterCapableTextBox.Size = new System.Drawing.Size( 165, 26 );
@@ -233,6 +242,7 @@
             // 
             // DefaultGatewayTextBox
             // 
+            this.DefaultGatewayTextBox.Enabled = false;
             this.DefaultGatewayTextBox.Location = new System.Drawing.Point( 22, 257 );
             this.DefaultGatewayTextBox.Name = "DefaultGatewayTextBox";
             this.DefaultGatewayTextBox.Size = new System.Drawing.Size( 165, 26 );
@@ -240,23 +250,25 @@
             // 
             // button1
             // 
+            this.button1.BackColor = System.Drawing.Color.IndianRed;
             this.button1.Font = new System.Drawing.Font( "Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ( (byte)( 0 ) ) );
             this.button1.Location = new System.Drawing.Point( 213, 377 );
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size( 136, 59 );
             this.button1.TabIndex = 13;
             this.button1.Text = "Set Manually";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button1.UseVisualStyleBackColor = false;
             // 
             // button2
             // 
+            this.button2.BackColor = System.Drawing.Color.LimeGreen;
             this.button2.Font = new System.Drawing.Font( "Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ( (byte)( 0 ) ) );
             this.button2.Location = new System.Drawing.Point( 213, 254 );
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size( 136, 101 );
             this.button2.TabIndex = 12;
             this.button2.Text = "Apply and Reboot";
-            this.button2.UseVisualStyleBackColor = true;
+            this.button2.UseVisualStyleBackColor = false;
             // 
             // label11
             // 
@@ -270,6 +282,7 @@
             // 
             // DNS2TextBox
             // 
+            this.DNS2TextBox.Enabled = false;
             this.DNS2TextBox.Location = new System.Drawing.Point( 22, 357 );
             this.DNS2TextBox.Name = "DNS2TextBox";
             this.DNS2TextBox.Size = new System.Drawing.Size( 165, 26 );
@@ -287,6 +300,7 @@
             // 
             // WorkgroupTextBox
             // 
+            this.WorkgroupTextBox.Enabled = false;
             this.WorkgroupTextBox.Location = new System.Drawing.Point( 22, 106 );
             this.WorkgroupTextBox.Name = "WorkgroupTextBox";
             this.WorkgroupTextBox.Size = new System.Drawing.Size( 165, 26 );
@@ -304,6 +318,7 @@
             // 
             // TermNameTextBox
             // 
+            this.TermNameTextBox.Enabled = false;
             this.TermNameTextBox.Location = new System.Drawing.Point( 22, 57 );
             this.TermNameTextBox.Name = "TermNameTextBox";
             this.TermNameTextBox.Size = new System.Drawing.Size( 165, 26 );
@@ -321,6 +336,7 @@
             // 
             // TimeZoneTextBox
             // 
+            this.TimeZoneTextBox.Enabled = false;
             this.TimeZoneTextBox.Location = new System.Drawing.Point( 22, 406 );
             this.TimeZoneTextBox.Name = "TimeZoneTextBox";
             this.TimeZoneTextBox.Size = new System.Drawing.Size( 165, 26 );
@@ -361,6 +377,7 @@
             this.SettingsGroup.TabIndex = 2;
             this.SettingsGroup.TabStop = false;
             this.SettingsGroup.Text = "Settings";
+            this.SettingsGroup.Visible = false;
             // 
             // AlohaPreconfiguredConfigWindow
             // 

@@ -5,7 +5,7 @@ using System.Net;
 
 namespace LaunchPad.Terminals
 {
-    class AlohaTerminal
+    public class AlohaTerminal
     {
         public string UnitName { get; set; }
         
@@ -27,5 +27,10 @@ namespace LaunchPad.Terminals
 
         // FIXME: TimeZone is too limited for this purpose.
         // public TimeZone @TimeZone { get; set; }
+
+        public override string ToString()
+        {
+            return TermName;
+        }
     }
 }
