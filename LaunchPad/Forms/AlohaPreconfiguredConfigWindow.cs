@@ -69,9 +69,14 @@ namespace LaunchPad.Forms
 
         private void TermNumListBox_SelectedValueChanged( object sender, EventArgs e )
         {
-            PopulateTerminalSettings(
-                UnitListBox.SelectedItem.ToString(),
-                ( (AlohaTerminal)TermNumListBox.SelectedItem ).Term );
+            try
+            {
+                PopulateTerminalSettings(
+                    UnitListBox.SelectedItem.ToString(),
+                    ( (AlohaTerminal)TermNumListBox.SelectedItem ).Term );
+            }
+            catch ( NullReferenceException )
+            { }
 
             SettingsGroup.Visible = true;
         }
