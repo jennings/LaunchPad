@@ -10,6 +10,12 @@ namespace LaunchPad.Terminals
         public string Name { get; set; }
         
         public int DeviceNumber { get; set; }
+
+        public string WindowsLogonUsername { get { return "pos"; } }
+        public string WindowsLogonPassword { get { return "pos"; } }
+        public string WindowsAdminUsername { get { return "cbs"; } }
+        public string WindowsAdminPassword { get; set; }
+
         public IPAddress IPAddress { get; set; }
         public IPAddress SubnetMask { get; set; }
         public IPAddress DefaultGateway { get; set; }

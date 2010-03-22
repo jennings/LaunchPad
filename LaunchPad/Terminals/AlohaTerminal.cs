@@ -12,6 +12,11 @@ namespace LaunchPad.Terminals
         public int Term { get; set; }
         public string TermName { get { return "TERM" + Term; } }
         public string Workgroup { get; set; }
+
+        public string WindowsLogonUsername { get; set; }
+        public string WindowsLogonPassword { get; set; }
+        public string WindowsAdminUsername { get; set; }
+        public string WindowsAdminPassword { get; set; }
         
         public IPAddress IPAddress { get; set; }
         public IPAddress SubnetMask { get; set; }
