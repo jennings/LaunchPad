@@ -67,6 +67,7 @@
     <Compile Include="Configuration\Configurators\ComputerNameConfigurator.cs" />
     <Compile Include="Configuration\Configurators\IbercfgConfigurator.cs" />
     <Compile Include="Configuration\Configurators\IPAddressConfigurator.cs" />
+    <Compile Include="Configuration\Configurators\TimeZoneConfigurator.cs" />
     <Compile Include="Configuration\Tasks\AutomaticLogonTask.cs" />
     <Compile Include="Configuration\Tasks\ComputerNameTask.cs" />
     <Compile Include="Configuration\Tasks\IbercfgTask.cs" />
@@ -105,7 +106,7 @@
     <Compile Include="Terminals\AlohaTerminalReader.cs" />
     <Compile Include="Terminals\AlohaTerminal.cs" />
     <Compile Include="Terminals\PositouchTerminal.cs" />
-    <Compile Include="Utilities.cs" />
+    <Compile Include="Utilities\MiscUtilities.cs" />
     <Compile Include="Forms\AlohaInitialConfigWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -212,6 +213,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Terminals\TerminalsReader.cs" />
+    <Compile Include="Utilities\TimeZoneInformation.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

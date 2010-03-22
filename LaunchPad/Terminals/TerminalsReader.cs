@@ -230,7 +230,7 @@ namespace LaunchPad.Terminals
 
         private void CopySpcwinAndNametermToTemp()
         {
-            Utilities.MapToPosdriver( 'L' );
+            MiscUtilities.MapToPosdriver( 'L' );
 
             var posidbfwinfo = new ProcessStartInfo();
             posidbfwinfo.FileName = @"L:\SC\Posidbfw.exe";

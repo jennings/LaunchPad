@@ -4,9 +4,9 @@ using System.Text;
 using System.IO;
 using System.Diagnostics;
 
-namespace LaunchPad
+namespace LaunchPad.Utilities
 {
-    class Utilities
+    class MiscUtilities
     {
         public static DirectoryInfo PosdriverDirectory
         {

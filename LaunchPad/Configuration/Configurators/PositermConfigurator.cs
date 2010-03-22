@@ -54,8 +54,8 @@ namespace LaunchPad.Configuration.Configurators
 
         private void CreateCShare()
         {
-            Utilities.RunNet( @"share C /DELETE", 10000 );
-            Utilities.RunNet( @"share C=C:\", 10000 );
+            MiscUtilities.RunNet( @"share C /DELETE", 10000 );
+            MiscUtilities.RunNet( @"share C=C:\", 10000 );
         }
 
 
@@ -65,7 +65,7 @@ namespace LaunchPad.Configuration.Configurators
 
             try
             {
-                scDirectory = Path.Combine( Utilities.PosdriverDirectory.ToString(), "SC" );
+                scDirectory = Path.Combine( MiscUtilities.PosdriverDirectory.ToString(), "SC" );
             }
             catch { return; } // FIXME: Log error copying INI
 
