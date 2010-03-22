@@ -8,8 +8,9 @@ using System.Net;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
 using System.Data.Odbc;
+using LaunchPad.Utilities;
 
-namespace LaunchPad.Terminals
+namespace LaunchPad.Models
 {
     class TerminalsReader
     {

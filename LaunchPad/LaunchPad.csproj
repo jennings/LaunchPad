@@ -103,9 +103,9 @@
     <Compile Include="Models\PositouchTerminalStationEnum.cs" />
     <Compile Include="Models\PositouchTerminalSelectionModel.cs" />
     <Compile Include="Models\PositouchInitialConfigurationModel.cs" />
-    <Compile Include="Terminals\AlohaTerminalReader.cs" />
-    <Compile Include="Terminals\AlohaTerminal.cs" />
-    <Compile Include="Terminals\PositouchTerminal.cs" />
+    <Compile Include="Models\AlohaTerminalReader.cs" />
+    <Compile Include="Models\AlohaTerminal.cs" />
+    <Compile Include="Models\PositouchTerminal.cs" />
     <Compile Include="Utilities\MiscUtilities.cs" />
     <Compile Include="Forms\AlohaInitialConfigWindow.cs">
       <SubType>Form</SubType>
@@ -212,7 +212,7 @@
     <Compile Include="Forms\StartupWindow.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Terminals\TerminalsReader.cs" />
+    <Compile Include="Models\TerminalsReader.cs" />
     <Compile Include="Utilities\TimeZoneInformation.cs" />
   </ItemGroup>
   <ItemGroup>

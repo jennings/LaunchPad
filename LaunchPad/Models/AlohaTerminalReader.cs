@@ -5,7 +5,7 @@ using System.Data.OleDb;
 using System.Net;
 using System.IO;
 
-namespace LaunchPad.Terminals
+namespace LaunchPad.Models
 {
     class AlohaTerminalReader
     {

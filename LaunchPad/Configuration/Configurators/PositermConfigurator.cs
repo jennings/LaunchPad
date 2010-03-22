@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using LaunchPad.Configuration.Tasks;
 using System.Text.RegularExpressions;
+using LaunchPad.Utilities;
 
 namespace LaunchPad.Configuration.Configurators
 {
