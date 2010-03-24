@@ -4,6 +4,7 @@ using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using LaunchPad.Launchers;
 using System.Diagnostics;
+using LaunchPad.Models;
 
 namespace LaunchPad.Forms
 {
@@ -37,9 +38,18 @@ namespace LaunchPad.Forms
         {
             DelayTimer.Stop();
             this.Hide();
-            var config = new AlohaInitialConfigWindow();
-            config.ShowDialog();
-            this.Show();
+            if ( AlohaTerminalReader.PreconfigurationAvailable )
+            {
+                var config = new AlohaPreconfiguredConfigWindow();
+                config.ShowDialog();
+                this.Show();
+            }
+            else
+            {
+                var config = new AlohaInitialConfigWindow();
+                config.ShowDialog();
+                this.Show();
+            }
         }
 
         private void CalibrateButton_Click( object sender, EventArgs e )

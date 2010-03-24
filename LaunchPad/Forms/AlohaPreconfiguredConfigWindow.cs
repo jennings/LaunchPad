@@ -66,8 +66,13 @@ namespace LaunchPad.Forms
 
         private void UnitListBox_SelectedValueChanged( object sender, EventArgs e )
         {
-            PopulateTerminalList( UnitListBox.SelectedItem.ToString() );
-            SettingsGroup.Visible = false;
+            try
+            {
+                PopulateTerminalList( UnitListBox.SelectedItem.ToString() );
+                SettingsGroup.Visible = false;
+            }
+            catch ( NullReferenceException )
+            { }
         }
 
         private void TermNumListBox_SelectedValueChanged( object sender, EventArgs e )
