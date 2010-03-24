@@ -4,7 +4,6 @@ using System.Data.OleDb;
 using System.IO;
 using System.Net;
 using System.Reflection;
-using ADOX;
 
 namespace LaunchPad
 {
@@ -16,7 +15,7 @@ namespace LaunchPad
         static SettingsReader()
         {
             LaunchPadDirectory = @"C:\LaunchPad";
-            Filename = Path.Combine( LaunchPadDirectory, @"Settings.mdb" );
+            Filename = Path.Combine( LaunchPadDirectory, @"Settings.csv" );
         }
 
         // Singleton
@@ -93,6 +92,7 @@ namespace LaunchPad
 
         public PointOfSaleType @PointOfSale { get; set; }
 
+        private const string _ComputerName_Key = "ComputerName";
         private bool _ComputerName_Changed = false;
         private string _ComputerName;
         public string ComputerName
@@ -111,6 +111,7 @@ namespace LaunchPad
             }
         }
 
+        private const string _IPAddress_Key = "IPAddress";
         private bool _IPAddress_Changed = false;
         private IPAddress _IPAddress;
         public IPAddress IPAddress
@@ -129,7 +130,7 @@ namespace LaunchPad
             }
         }
 
-
+        private const string _PosdriverIPAddress_Key = "PosdriverIPAddress";
         private bool _PosdriverIPAddress_Changed = false;
         private IPAddress _PosdriverIPAddress;
         public IPAddress PosdriverIPAddress
@@ -148,6 +149,7 @@ namespace LaunchPad
             }
         }
 
+        private const string _BackofficeIPAddress_Key = "BackofficeIPAddress";
         private bool _BackofficeIPAddress_Changed = false;
         private IPAddress _BackofficeIPAddress;
         public IPAddress BackofficeIPAddress
@@ -166,6 +168,7 @@ namespace LaunchPad
             }
         }
 
+        private const string _RedundantIPAddress_Key = "RedundantIPAddress";
         private bool _RedundantIPAddress_Changed = false;
         private IPAddress _RedundantIPAddress;
         public IPAddress RedundantIPAddress
@@ -185,6 +188,7 @@ namespace LaunchPad
         }
 
 
+        private const string _LaunchPositerm_Key = "LaunchPositerm";
         private bool _LaunchPositerm_Changed = false;
         private bool? _LaunchPositerm;
         public bool LaunchPositerm
@@ -203,6 +207,7 @@ namespace LaunchPad
             }
         }
 
+        private const string _LaunchPosiw_Key = "LaunchPosiw";
         private bool _LaunchPosiw_Changed = false;
         private bool? _LaunchPosiw;
         public bool LaunchPosiw
@@ -221,6 +226,7 @@ namespace LaunchPad
             }
         }
 
+        private const string _LaunchVNC_Key = "LaunchVNC";
         private bool _LaunchVNC_Changed = false;
         private bool? _LaunchVNC;
         public bool LaunchVNC
@@ -240,6 +246,7 @@ namespace LaunchPad
         }
 
 
+        private const string _LaunchIbercfg_Key = "LaunchIbercfg";
         private bool _LaunchIbercfg_Changed = false;
         private bool? _LaunchIbercfg;
         public bool LaunchIbercfg
@@ -263,19 +270,15 @@ namespace LaunchPad
 
         private SettingsReader()
         {
-            var cat = new Catalog();
-            var csb = new OleDbConnectionStringBuilder()
-            {
-                DataSource = Filename,
-                Provider = @"Microsoft.Jet.OLEDB.4.0"
-            };
+            var cs = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=.\;";
+            cs = cs + @"Extended Properties=""text;HDR=Yes;FMT=Delimited"";";
 
-            if ( !File.Exists( Filename ) )
+            /*if ( !File.Exists( Filename ) )
             {
-                cat.Create( csb.ConnectionString );
-            }
+                File.Create( @"C:\LaunchPad\Settings.csv" );
+            }*/
 
-            Db = new OleDbConnection( csb.ConnectionString );
+            Db = new OleDbConnection( cs );
 
             try
             {
@@ -283,7 +286,7 @@ namespace LaunchPad
 
                 try
                 {
-                    var selectquery = @"SELECT [key], [value] FROM tblSettings;";
+                    var selectquery = @"SELECT [key], [value] FROM Settings.csv;";
                     using ( var cmd = new OleDbCommand( selectquery, Db ) )
                     {
                         cmd.ExecuteReader();
@@ -291,9 +294,9 @@ namespace LaunchPad
                 }
                 catch ( OleDbException )
                 {
-                    // tblSettings does not exist
+                    // Settings.csv does not exist
 
-                    var createquery = @"CREATE TABLE tblSettings ([key] VARCHAR NOT NULL, [value] VARCHAR NOT NULL);";
+                    var createquery = @"CREATE TABLE Settings.csv ( [key] VARCHAR, [value] VARCHAR );";
                     using ( var cmd = new OleDbCommand( createquery, Db ) )
                     {
                         cmd.ExecuteNonQuery();
@@ -356,7 +359,7 @@ namespace LaunchPad
             {
                 Db.Open();
 
-                var query = @"SELECT [key], [value] FROM tblSettings;";
+                var query = @"SELECT [key], [value] FROM Settings.csv;";
                 using ( var cmd = new OleDbCommand( query, Db ) )
                 {
                     using ( var reader = cmd.ExecuteReader() )
@@ -366,41 +369,41 @@ namespace LaunchPad
                             var key = reader["key"].ToString().ToUpper();
                             switch ( key )
                             {
-                                case "COMPUTER_NAME":
+                                case _ComputerName_Key:
                                     _ComputerName = reader["value"].ToString();
                                     _ComputerName_Changed = false;
                                     break;
-                                case "IPADDRESS":
+                                case _IPAddress_Key:
                                     _IPAddress = IPAddress.Parse( reader["value"].ToString() );
                                     _IPAddress_Changed = false;
                                     break;
 
-                                case "POSDRIVER_IPADDRESS":
+                                case _PosdriverIPAddress_Key:
                                     _PosdriverIPAddress = IPAddress.Parse( reader["value"].ToString() );
                                     _PosdriverIPAddress_Changed = false;
                                     break;
-                                case "BACKOFFICE_IPADDRESS":
+                                case _BackofficeIPAddress_Key:
                                     _BackofficeIPAddress = IPAddress.Parse( reader["value"].ToString() );
                                     _BackofficeIPAddress_Changed = false;
                                     break;
-                                case "REDUNDANT_IPADDRESS":
+                                case _RedundantIPAddress_Key:
                                     _RedundantIPAddress = IPAddress.Parse( reader["value"].ToString() );
                                     _RedundantIPAddress_Changed = false;
                                     break;
 
-                                case "LAUNCH_POSIW":
+                                case _LaunchPosiw_Key:
                                     _LaunchPosiw = reader["value"].ToString().ToUpper().Equals( "YES" );
                                     _LaunchPosiw_Changed = false;
                                     break;
-                                case "LAUNCH_POSITERM":
+                                case _LaunchPositerm_Key:
                                     _LaunchPositerm = reader["value"].ToString().ToUpper().Equals( "YES" );
                                     _LaunchPositerm_Changed = false;
                                     break;
-                                case "LAUNCH_VNC":
+                                case _LaunchVNC_Key:
                                     _LaunchVNC = reader["value"].ToString().ToUpper().Equals( "YES" );
                                     _LaunchVNC_Changed = false;
                                     break;
-                                case "LAUNCH_IBERCFG":
+                                case _LaunchIbercfg_Key:
                                     _LaunchIbercfg = reader["value"].ToString().ToUpper().Equals( "YES" );
                                     _LaunchIbercfg_Changed = false;
                                     break;
@@ -424,25 +427,25 @@ namespace LaunchPad
             var settingsToChange = new Dictionary<string, string>();
 
             if ( _ComputerName_Changed )
-                settingsToChange.Add( "COMPUTER_NAME", ComputerName );
+                settingsToChange.Add( _ComputerName_Key, ComputerName );
             if ( _IPAddress_Changed )
-                settingsToChange.Add( "IPADDRESS", IPAddress.ToString() );
+                settingsToChange.Add( _IPAddress_Key, IPAddress.ToString() );
 
             if ( _PosdriverIPAddress_Changed )
-                settingsToChange.Add( "POSDRIVER_IPADDRESS", PosdriverIPAddress.ToString() );
+                settingsToChange.Add( _PosdriverIPAddress_Key, PosdriverIPAddress.ToString() );
             if ( _BackofficeIPAddress_Changed )
-                settingsToChange.Add( "BACKOFFICE_IPADDRESS", BackofficeIPAddress.ToString() );
+                settingsToChange.Add( _BackofficeIPAddress_Key, BackofficeIPAddress.ToString() );
             if ( _RedundantIPAddress_Changed )
-                settingsToChange.Add( "REDUNDANT_IPADDRESS", RedundantIPAddress.ToString() );
+                settingsToChange.Add( _RedundantIPAddress_Key, RedundantIPAddress.ToString() );
 
             if ( _LaunchPosiw_Changed )
-                settingsToChange.Add( "LAUNCH_POSIW", LaunchPosiw ? "YES" : "NO" );
+                settingsToChange.Add( _LaunchPosiw_Key, LaunchPosiw ? "YES" : "NO" );
             if ( _LaunchPositerm_Changed )
-                settingsToChange.Add( "LAUNCH_POSITERM", LaunchPositerm ? "YES" : "NO" );
+                settingsToChange.Add( _LaunchPositerm_Key, LaunchPositerm ? "YES" : "NO" );
             if ( _LaunchVNC_Changed )
-                settingsToChange.Add( "LAUNCH_VNC", LaunchVNC ? "YES" : "NO" );
+                settingsToChange.Add( _LaunchVNC_Key, LaunchVNC ? "YES" : "NO" );
             if ( _LaunchIbercfg_Changed )
-                settingsToChange.Add( "LAUNCH_IBERCFG", LaunchIbercfg ? "YES" : "NO" );
+                settingsToChange.Add( _LaunchIbercfg_Key, LaunchIbercfg ? "YES" : "NO" );
 
             try
             {
@@ -450,7 +453,8 @@ namespace LaunchPad
 
                 var txn = Db.BeginTransaction();
 
-                var delQuery = @"DELETE FROM tblSettings WHERE [key] = ?";
+                // FIXME
+                var delQuery = @"DELETE FROM Settings.csv WHERE [key] = ?";
                 using ( var cmd = new OleDbCommand( delQuery, Db, txn ) )
                 {
                     foreach ( var kvp in settingsToChange )
@@ -461,7 +465,7 @@ namespace LaunchPad
                     }
                 }
 
-                var insQuery = @"INSERT INTO tblSettings ( [key], [value] ) VALUES ( ?, ? );";
+                var insQuery = @"INSERT INTO Settings.csv ( [key], [value] ) VALUES ( ?, ? );";
                 using ( var cmd = new OleDbCommand( insQuery, Db, txn ) )
                 {
                     foreach ( var kvp in settingsToChange )
