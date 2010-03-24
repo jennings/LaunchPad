@@ -107,11 +107,11 @@ namespace LaunchPad.Forms
             // Disable reboot button
             kbd_SaveAndReboot.Enabled = false;
 
-            var model = new AlohaTerminalModel()
+            var model = new AlohaTerminal()
             {
                 IPAddress = IPAddress.Parse( IPAddress_AddressTextBox.Text ),
                 FileserverName = FileserverName_FileserverName.Text,
-                TerminalNumber = Convert.ToInt32( TerminalNumber_TerminalNumber.Text ),
+                Term = Convert.ToInt32( TerminalNumber_TerminalNumber.Text ),
                 NumberOfTerminals = Convert.ToInt32( NumberOfTerminals_NumberOfTerminals.Text ),
                 MasterCapable = true,
                 ServerCapable = true
@@ -121,9 +121,5 @@ namespace LaunchPad.Forms
 
             config.Configure();
         }
-
-
-
-
     }
 }

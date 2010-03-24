@@ -6,6 +6,8 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using LaunchPad.Models;
+using System.Net;
+using LaunchPad.Configuration;
 
 namespace LaunchPad.Forms
 {
@@ -48,6 +50,7 @@ namespace LaunchPad.Forms
                 }
             }
 
+            TermTextBox.Text = terminal.Term.ToString();
             TermNameTextBox.Text = terminal.TermName;
             WorkgroupTextBox.Text = terminal.Workgroup;
             IPAddressTextBox.Text = terminal.IPAddress.ToString();
@@ -79,6 +82,13 @@ namespace LaunchPad.Forms
             { }
 
             SettingsGroup.Visible = true;
+        }
+
+        private void ApplyAndRebootButton_Click( object sender, EventArgs e )
+        {
+            var terminal = (AlohaTerminal)TermNumListBox.SelectedItem;
+            var configurator = new AlohaConfiguratorController( terminal );
+            configurator.Configure();
         }
     }
 }

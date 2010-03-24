@@ -16,20 +16,20 @@ namespace LaunchPad.Configuration
 
         private ConfiguratorDispatcher LocalDispatcher;
         private ConfiguratorDispatcher RemoteDispatcher;
-        private AlohaTerminalModel Model;
+        private AlohaTerminal Model;
 
         private AlohaConfiguratorController() { }
-        public AlohaConfiguratorController( AlohaTerminalModel model )
+        public AlohaConfiguratorController( AlohaTerminal model )
         {
             Model = model;
 
             LocalDispatcher = new ConfiguratorDispatcher();
             RemoteDispatcher = ConfiguratorDispatcher.CreateRemoteDispatcher();
 
-            RemoteDispatcher.AddTask( new ComputerNameTask( Model.ComputerName ) );
+            RemoteDispatcher.AddTask( new ComputerNameTask( Model.TermName ) );
             RemoteDispatcher.AddTask( new IPAddressTask( Model.IPAddress ) );
             RemoteDispatcher.AddTask( new IbercfgTask(
-                Model.TerminalNumber,
+                Model.Term,
                 Model.NumberOfTerminals,
                 Model.FileserverName,
                 Model.MasterCapable,
