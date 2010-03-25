@@ -7,8 +7,9 @@ namespace LaunchPad.Models
 {
     class PositouchTerminal
     {
+        public string UnitName { get; set; }
+
         public string Name { get; set; }
-        
         public int DeviceNumber { get; set; }
 
         public string WindowsLogonUsername { get { return "pos"; } }

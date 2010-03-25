@@ -82,28 +82,27 @@ namespace LaunchPad.Settings
             {
                 while ( reader.Read() )
                 {
-                    var term = new AlohaTerminal();
+                    Terminals.Add( new AlohaTerminal()
+                        {
+                            UnitName = Convert.ToString( reader["UnitName"] ),
 
-                    term.UnitName = Convert.ToString( reader["UnitName"] );
+                            Term = Convert.ToInt32( reader["Term"] ),
+                            Workgroup = Convert.ToString( reader["Workgroup"] ),
 
-                    term.Term = Convert.ToInt32( reader["Term"] );
-                    term.Workgroup = Convert.ToString( reader["Workgroup"] );
+                            IPAddress = IPAddress.Parse( Convert.ToString( reader["IPAddress"] ) ),
+                            SubnetMask = IPAddress.Parse( Convert.ToString( reader["SubnetMask"] ) ),
+                            DefaultGateway = IPAddress.Parse( Convert.ToString( reader["DefaultGateway"] ) ),
+                            DNS1 = IPAddress.Parse( Convert.ToString( reader["DNS1"] ) ),
+                            DNS2 = IPAddress.Parse( Convert.ToString( reader["DNS2"] ) ),
 
-                    term.IPAddress = IPAddress.Parse( Convert.ToString( reader["IPAddress"] ) );
-                    term.SubnetMask = IPAddress.Parse( Convert.ToString( reader["SubnetMask"] ) );
-                    term.DefaultGateway = IPAddress.Parse( Convert.ToString( reader["DefaultGateway"] ) );
-                    term.DNS1 = IPAddress.Parse( Convert.ToString( reader["DNS1"] ) );
-                    term.DNS2 = IPAddress.Parse( Convert.ToString( reader["DNS2"] ) );
+                            NumberOfTerminals = Convert.ToInt32( reader["NumberOfTerminals"] ),
+                            FileserverName = Convert.ToString( reader["FileserverName"] ),
 
-                    term.NumberOfTerminals = Convert.ToInt32( reader["NumberOfTerminals"] );
-                    term.FileserverName = Convert.ToString( reader["FileserverName"] );
+                            MasterCapable = Convert.ToBoolean( reader["MasterCapable"] ),
+                            ServerCapable = Convert.ToBoolean( reader["ServerCapable"] )
 
-                    term.MasterCapable = Convert.ToBoolean( reader["MasterCapable"] );
-                    term.ServerCapable = Convert.ToBoolean( reader["ServerCapable"] );
-
-                    // term.TimeZone = ;
-
-                    Terminals.Add( term );
+                            // term.TimeZone = ;
+                        } );
                 }
             }
 

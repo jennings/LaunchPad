@@ -66,7 +66,7 @@ namespace LaunchPad.Settings
             using ( var cmd = new OleDbCommand() )
             {
                 cmd.Connection = Db;
-                cmd.CommandText = @"SELECT [DeviceNumber], [Name], [IPAddress] FROM [" + Filename + "]";
+                cmd.CommandText = @"SELECT * FROM [" + Filename + "]";
 
                 using ( var reader = cmd.ExecuteReader() )
                 {
@@ -74,9 +74,17 @@ namespace LaunchPad.Settings
                     {
                         Terminals.Add( new PositouchTerminal()
                         {
+                            UnitName = reader["UnitName"].ToString(),
+
                             DeviceNumber = Convert.ToInt32( reader["DeviceNumber"] ),
                             Name = reader["Name"].ToString(),
-                            IPAddress = IPAddress.Parse( reader["IPAddress"].ToString() )
+
+                            IPAddress = IPAddress.Parse( reader["IPAddress"].ToString() ),
+                            SubnetMask = IPAddress.Parse( reader["SubnetMask"].ToString() ),
+                            DefaultGateway = IPAddress.Parse( reader["DefaultGateway"].ToString() ),
+
+                            PosdriverIPAddress = IPAddress.Parse( reader["PosdriverIPAddress"].ToString() ),
+                            BackofficeIPAddress = IPAddress.Parse( reader["BackofficeIPAddress"].ToString() )
                         } );
                     }
                 }
