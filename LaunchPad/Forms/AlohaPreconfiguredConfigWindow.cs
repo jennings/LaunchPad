@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using LaunchPad.Models;
 using System.Net;
 using LaunchPad.Configuration;
+using LaunchPad.Settings;
 
 namespace LaunchPad.Forms
 {

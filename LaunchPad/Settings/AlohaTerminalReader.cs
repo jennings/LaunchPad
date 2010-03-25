@@ -4,16 +4,17 @@ using System.Text;
 using System.Data.OleDb;
 using System.Net;
 using System.IO;
+using LaunchPad.Models;
 
-namespace LaunchPad.Models
+namespace LaunchPad.Settings
 {
-    class AlohaTerminalReader
+    class AlohaTerminalReader : CSVReader
     {
         public static bool PreconfigurationAvailable
         {
             get
             {
-                return File.Exists( @"C:\LaunchPad\AlohaTerminals.csv" );
+                return File.Exists( @"AlohaTerminals.csv" );
             }
         }
 
@@ -22,11 +23,18 @@ namespace LaunchPad.Models
         {
             get
             {
-                if ( _Instance == null )
+                if ( PreconfigurationAvailable )
                 {
-                    _Instance = new AlohaTerminalReader();
+                    if ( _Instance == null )
+                    {
+                        _Instance = new AlohaTerminalReader();
+                    }
+                    return _Instance;
                 }
-                return _Instance;
+                else
+                {
+                    throw new Exception( @"Preconfiguration is not available" );
+                }
             }
         }
 
@@ -34,6 +42,7 @@ namespace LaunchPad.Models
         public List<string> Units { get; private set; }
 
         private AlohaTerminalReader()
+            : base( "AlohaTerminals.csv" )
         {
             Terminals = new List<AlohaTerminal>();
             Units = new List<string>();
@@ -41,20 +50,23 @@ namespace LaunchPad.Models
             ReadTerminals();
         }
 
+        protected override void CreateTableIfNotExists()
+        {
+            if ( !File.Exists( Filename ) )
+            {
+                throw new Exception( "Cannot create table 'AlohaTerminals.csv'." );
+            }
+        }
+
         public void ReadTerminals()
         {
             Terminals.Clear();
 
-            var cs = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=.\;";
-            cs = cs + @"Extended Properties=""text;HDR=Yes;FMT=Delimited"";";
+            Db.Open();
 
-            var db = new OleDbConnection( cs );
+            var unitQuery = @"SELECT DISTINCT UnitName FROM [" + Filename + @"] ORDER BY UnitName;";
 
-            db.Open();
-
-            var unitQuery = @"SELECT DISTINCT UnitName FROM AlohaTerminals.csv ORDER BY UnitName;";
-
-            using ( var cmd = new OleDbCommand( unitQuery, db ) )
+            using ( var cmd = new OleDbCommand( unitQuery, Db ) )
             using ( var reader = cmd.ExecuteReader() )
             {
                 while ( reader.Read() )
@@ -63,9 +75,9 @@ namespace LaunchPad.Models
                 }
             }
 
-            var query = @"SELECT * FROM AlohaTerminals.csv ORDER BY UnitName, Term;";
+            var query = @"SELECT * FROM [" + Filename + @"] ORDER BY UnitName, Term;";
 
-            using ( var cmd = new OleDbCommand( query, db ) )
+            using ( var cmd = new OleDbCommand( query, Db ) )
             using ( var reader = cmd.ExecuteReader() )
             {
                 while ( reader.Read() )
@@ -95,7 +107,7 @@ namespace LaunchPad.Models
                 }
             }
 
-            db.Close();
+            Db.Close();
         }
 
         public void WriteTerminals( List<AlohaTerminal> terminals )
@@ -107,34 +119,29 @@ namespace LaunchPad.Models
         {
             var terminals = new List<AlohaTerminal>();
 
-            var cs = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=.\;";
-            cs = cs + @"Extended Properties=""text;HDR=Yes;FMT=Delimited"";";
-
-            var db = new OleDbConnection( cs );
-
-            db.Open();
+            Db.Open();
 
             using ( var cmd = new OleDbCommand() )
             {
-                cmd.Connection = db;
+                cmd.Connection = Db;
 
                 if ( unitName != null )
                 {
                     if ( termNum != null )
                     {
-                        cmd.CommandText = @"SELECT * FROM AlohaTerminals.csv WHERE UnitName=@unitname AND Term=@termnum ORDER BY UnitName, Term";
+                        cmd.CommandText = @"SELECT * FROM [" + Filename + @"] WHERE UnitName=@unitname AND Term=@termnum ORDER BY UnitName, Term";
                         cmd.Parameters.Add( new OleDbParameter( "@unitname", unitName ) );
                         cmd.Parameters.Add( new OleDbParameter( "@termnum", termNum ) );
                     }
                     else
                     {
-                        cmd.CommandText = @"SELECT * FROM AlohaTerminals.csv WHERE UnitName=@unitnum ORDER BY UnitName, Term";
+                        cmd.CommandText = @"SELECT * FROM [" + Filename + @"] WHERE UnitName=@unitnum ORDER BY UnitName, Term";
                         cmd.Parameters.Add( new OleDbParameter( "@unitname", unitName ) );
                     }
                 }
                 else
                 {
-                    cmd.CommandText = @"SELECT * FROM AlohaTerminals.csv ORDER BY UnitName, Term";
+                    cmd.CommandText = @"SELECT * FROM [" + Filename + @"] ORDER BY UnitName, Term";
                 }
 
                 using ( var reader = cmd.ExecuteReader() )
@@ -166,7 +173,7 @@ namespace LaunchPad.Models
                     }
                 }
             }
-            db.Close();
+            Db.Close();
 
             return terminals;
         }

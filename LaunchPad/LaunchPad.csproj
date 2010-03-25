@@ -102,7 +102,7 @@
     <Compile Include="Models\PositouchTerminalStationEnum.cs" />
     <Compile Include="Models\PositouchTerminalSelectionModel.cs" />
     <Compile Include="Models\PositouchInitialConfigurationModel.cs" />
-    <Compile Include="Models\AlohaTerminalReader.cs" />
+    <Compile Include="Settings\AlohaTerminalReader.cs" />
     <Compile Include="Models\AlohaTerminal.cs" />
     <Compile Include="Models\PositouchTerminal.cs" />
     <Compile Include="Settings\CSVReader.cs" />
