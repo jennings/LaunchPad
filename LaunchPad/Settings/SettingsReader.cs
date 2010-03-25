@@ -278,7 +278,11 @@ namespace LaunchPad.Settings
             {
                 cmd.Connection = Db;
                 cmd.CommandText = @"CREATE TABLE [" + Filename + @"] ( [Key] VARCHAR, [Value] VARCHAR );";
-                cmd.ExecuteNonQuery();
+                try
+                {
+                    cmd.ExecuteNonQuery();
+                }
+                catch ( OleDbException ) { }
             }
 
             Db.Close();
@@ -329,14 +333,14 @@ namespace LaunchPad.Settings
             {
                 Db.Open();
 
-                var query = @"SELECT [key], [value] FROM Settings.csv;";
+                var query = @"SELECT [key], [value] FROM [" + Filename + "]";
                 using ( var cmd = new OleDbCommand( query, Db ) )
                 {
                     using ( var reader = cmd.ExecuteReader() )
                     {
                         while ( reader.Read() )
                         {
-                            var key = reader["key"].ToString().ToUpper();
+                            var key = reader["key"].ToString();
                             switch ( key )
                             {
                                 case _ComputerName_Key:
@@ -425,7 +429,7 @@ namespace LaunchPad.Settings
 
                 var txn = Db.BeginTransaction();
 
-                var insQuery = @"INSERT INTO Settings.csv ( [key], [value] ) VALUES ( @K, @V );";
+                var insQuery = @"INSERT INTO [" + Filename + @"] ( [Key], [Value] ) VALUES ( @K, @V );";
                 using ( var cmd = new OleDbCommand( insQuery, Db, txn ) )
                 {
                     foreach ( var kvp in settingsToChange )
