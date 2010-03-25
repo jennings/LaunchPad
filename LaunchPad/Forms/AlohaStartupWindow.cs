@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using LaunchPad.Launchers;
 using System.Diagnostics;
 using LaunchPad.Models;
+using LaunchPad.Settings;
 
 namespace LaunchPad.Forms
 {

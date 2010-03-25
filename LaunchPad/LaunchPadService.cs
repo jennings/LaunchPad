@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using System.ServiceProcess;
 using LaunchPad.Configuration;
+using LaunchPad.Settings;
 
 namespace LaunchPad
 {

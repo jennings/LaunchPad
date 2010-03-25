@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.IO;
 using LaunchPad.Configuration.Tasks;
+using LaunchPad.Settings;
 
 namespace LaunchPad.Configuration.Configurators
 {

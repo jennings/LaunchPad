@@ -105,6 +105,7 @@
     <Compile Include="Models\AlohaTerminalReader.cs" />
     <Compile Include="Models\AlohaTerminal.cs" />
     <Compile Include="Models\PositouchTerminal.cs" />
+    <Compile Include="Settings\CSVReader.cs" />
     <Compile Include="Utilities\MiscUtilities.cs" />
     <Compile Include="Forms\AlohaInitialConfigWindow.cs">
       <SubType>Form</SubType>
@@ -207,7 +208,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="SettingsReader.cs" />
+    <Compile Include="Settings\SettingsReader.cs" />
     <Compile Include="Forms\StartupWindow.cs">
       <SubType>Form</SubType>
     </Compile>

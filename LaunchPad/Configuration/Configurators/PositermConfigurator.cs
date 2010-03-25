@@ -4,6 +4,7 @@ using System.IO;
 using LaunchPad.Configuration.Tasks;
 using System.Text.RegularExpressions;
 using LaunchPad.Utilities;
+using LaunchPad.Settings;
 
 namespace LaunchPad.Configuration.Configurators
 {

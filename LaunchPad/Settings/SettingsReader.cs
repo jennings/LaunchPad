@@ -5,17 +5,15 @@ using System.IO;
 using System.Net;
 using System.Reflection;
 
-namespace LaunchPad
+namespace LaunchPad.Settings
 {
-    class SettingsReader
+    class SettingsReader : CSVReader
     {
         public static readonly string LaunchPadDirectory;
-        private static readonly string Filename;
 
         static SettingsReader()
         {
             LaunchPadDirectory = @"C:\LaunchPad";
-            Filename = Path.Combine( LaunchPadDirectory, @"Settings.csv" );
         }
 
         // Singleton
@@ -31,8 +29,6 @@ namespace LaunchPad
                 return _Instance;
             }
         }
-
-        private OleDbConnection Db;
 
         #region Settings
 
@@ -269,52 +265,26 @@ namespace LaunchPad
 
 
         private SettingsReader()
+            : base( "Settings.csv" )
         {
-            var cs = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=.\;";
-            cs = cs + @"Extended Properties=""text;HDR=Yes;FMT=Delimited"";";
-
-            /*if ( !File.Exists( Filename ) )
-            {
-                File.Create( @"C:\LaunchPad\Settings.csv" );
-            }*/
-
-            Db = new OleDbConnection( cs );
-
-            try
-            {
-                Db.Open();
-
-                try
-                {
-                    var selectquery = @"SELECT [key], [value] FROM Settings.csv;";
-                    using ( var cmd = new OleDbCommand( selectquery, Db ) )
-                    {
-                        cmd.ExecuteReader();
-                    }
-                }
-                catch ( OleDbException )
-                {
-                    // Settings.csv does not exist
-
-                    var createquery = @"CREATE TABLE Settings.csv ( [key] VARCHAR, [value] VARCHAR );";
-                    using ( var cmd = new OleDbCommand( createquery, Db ) )
-                    {
-                        cmd.ExecuteNonQuery();
-                    }
-                }
-
-                Db.Close();
-            }
-            catch ( Exception )
-            {
-                Db.Close();
-                throw;
-            }
-
-            ReadSettings();
+            ReadAllSettings();
         }
 
-        private void ClearSettings()
+        protected override void CreateTableIfNotExists()
+        {
+            Db.Open();
+
+            using ( var cmd = new OleDbCommand() )
+            {
+                cmd.Connection = Db;
+                cmd.CommandText = @"CREATE TABLE [" + Filename + @"] ( [Key] VARCHAR, [Value] VARCHAR );";
+                cmd.ExecuteNonQuery();
+            }
+
+            Db.Close();
+        }
+
+        private void ClearCachedSettings()
         {
             _ComputerName = null;
             _ComputerName_Changed = false;
@@ -338,9 +308,9 @@ namespace LaunchPad
             _LaunchIbercfg_Changed = false;
         }
 
-        public void ReadSettings()
+        public void ReadAllSettings()
         {
-            ClearSettings();
+            ClearCachedSettings();
 
             if ( File.Exists( @"POSITOUCH" ) )
             {
@@ -449,30 +419,20 @@ namespace LaunchPad
 
             try
             {
+                DeleteAllRows();
+
                 Db.Open();
 
                 var txn = Db.BeginTransaction();
 
-                // FIXME
-                var delQuery = @"DELETE FROM Settings.csv WHERE [key] = ?";
-                using ( var cmd = new OleDbCommand( delQuery, Db, txn ) )
-                {
-                    foreach ( var kvp in settingsToChange )
-                    {
-                        cmd.Parameters.Clear();
-                        cmd.Parameters.Add( new OleDbParameter( "@Key", kvp.Key ) );
-                        cmd.ExecuteNonQuery();
-                    }
-                }
-
-                var insQuery = @"INSERT INTO Settings.csv ( [key], [value] ) VALUES ( ?, ? );";
+                var insQuery = @"INSERT INTO Settings.csv ( [key], [value] ) VALUES ( @K, @V );";
                 using ( var cmd = new OleDbCommand( insQuery, Db, txn ) )
                 {
                     foreach ( var kvp in settingsToChange )
                     {
                         cmd.Parameters.Clear();
-                        cmd.Parameters.Add( new OleDbParameter( "@Key", kvp.Key ) );
-                        cmd.Parameters.Add( new OleDbParameter( "@Value", kvp.Value ) );
+                        cmd.Parameters.Add( new OleDbParameter( "@K", kvp.Key ) );
+                        cmd.Parameters.Add( new OleDbParameter( "@V", kvp.Value ) );
                         cmd.ExecuteNonQuery();
                     }
                 }
@@ -487,7 +447,7 @@ namespace LaunchPad
                 throw;
             }
 
-            ReadSettings();
+            ReadAllSettings();
         }
     }
 

@@ -3,6 +3,7 @@ using System.ServiceProcess;
 using System.Windows.Forms;
 using LaunchPad.Forms;
 using LaunchPad.Models;
+using LaunchPad.Settings;
 
 namespace LaunchPad
 {

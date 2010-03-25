@@ -4,6 +4,7 @@ using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using LaunchPad.Launchers;
 using System.Diagnostics;
+using LaunchPad.Settings;
 
 namespace LaunchPad.Forms
 {

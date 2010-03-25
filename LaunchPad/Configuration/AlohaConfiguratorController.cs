@@ -4,6 +4,7 @@ using LaunchPad.Configuration.Configurators;
 using LaunchPad.Models;
 using LaunchPad.Configuration.Tasks;
 using LaunchPad.Authentication;
+using LaunchPad.Settings;
 
 namespace LaunchPad.Configuration
 {
