@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Data.OleDb;
-using ADOX;
+using System.Diagnostics;
 using System.IO;
 using System.Net;
-using System.Diagnostics;
 using System.Text.RegularExpressions;
-using System.Data.Odbc;
 using LaunchPad.Utilities;
 
 namespace LaunchPad.Settings
