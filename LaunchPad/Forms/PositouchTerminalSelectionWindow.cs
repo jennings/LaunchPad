@@ -173,7 +173,7 @@ namespace LaunchPad.Forms
         {
             TerminalsListView.Items.Clear();
 
-            var terminals = TerminalsReader.Instance;
+            var terminals = new PositouchLiveTerminalReader();
             terminals.RefreshTerminalList();
 
             foreach ( var terminal in terminals.Terminals )

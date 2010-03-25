@@ -106,6 +106,7 @@
     <Compile Include="Models\AlohaTerminal.cs" />
     <Compile Include="Models\PositouchTerminal.cs" />
     <Compile Include="Settings\CSVReader.cs" />
+    <Compile Include="Settings\PositouchLiveTerminalReader.cs" />
     <Compile Include="Utilities\MiscUtilities.cs" />
     <Compile Include="Forms\AlohaInitialConfigWindow.cs">
       <SubType>Form</SubType>
@@ -212,7 +213,7 @@
     <Compile Include="Forms\StartupWindow.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Models\TerminalsReader.cs" />
+    <Compile Include="Settings\PositouchPreconfiguredTerminalReader.cs" />
     <Compile Include="Utilities\TimeZoneInformation.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -54,7 +54,7 @@ namespace LaunchPad.Settings
         {
             if ( !File.Exists( Filename ) )
             {
-                throw new Exception( "Cannot create table 'AlohaTerminals.csv'." );
+                throw new Exception( "Not allowed to create table 'AlohaTerminals.csv'." );
             }
         }
 

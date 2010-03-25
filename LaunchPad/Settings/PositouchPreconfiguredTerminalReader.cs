@@ -10,157 +10,95 @@ using System.Text.RegularExpressions;
 using System.Data.Odbc;
 using LaunchPad.Utilities;
 
-namespace LaunchPad.Models
+namespace LaunchPad.Settings
 {
-    class TerminalsReader
+    class PositouchPreconfiguredTerminalReader : CSVReader
     {
-        // Singleton
-        private static TerminalsReader _Instance = null;
-        public static TerminalsReader Instance
+        public static bool PreconfigurationAvailable
         {
             get
             {
-                if ( _Instance == null )
+                return File.Exists( @"PositouchTerminals.csv" );
+            }
+        }
+
+        private static PositouchPreconfiguredTerminalReader _Instance = null;
+        public static PositouchPreconfiguredTerminalReader Instance
+        {
+            get
+            {
+                if ( PreconfigurationAvailable )
                 {
-                    _Instance = new TerminalsReader();
+                    if ( _Instance == null )
+                    {
+                        _Instance = new PositouchPreconfiguredTerminalReader();
+                    }
+                    return _Instance;
                 }
-                return _Instance;
+                else
+                {
+                    throw new Exception( @"Preconfiguration is not available." );
+                }
             }
         }
 
         public bool Integrous { get; private set; }
         public List<TerminalStation> Terminals { get; set; }
 
-        private const string Filename = @"Terminals.mdb";
-        private OleDbConnection Db;
-
-
-        private TerminalsReader()
+        private PositouchPreconfiguredTerminalReader()
+            : base( "PositouchTerminals.csv" )
         {
-            Terminals = new List<TerminalStation>();
-
-            var cat = new Catalog();
-            var csb = new OleDbConnectionStringBuilder()
-            {
-                DataSource = Filename,
-                Provider = @"Microsoft.Jet.OLEDB.4.0",
-
-            };
-
-            if ( !File.Exists( Filename ) )
-            {
-                cat.Create( csb.ConnectionString );
-            }
-
-            Db = new OleDbConnection( csb.ConnectionString );
-
-            try
-            {
-                Db.Open();
-
-                try
-                {
-                    var selectquery = @"SELECT [devicenum], [name], [ipaddress] FROM tblTerminals;";
-                    using ( var cmd = new OleDbCommand( selectquery, Db ) )
-                    {
-                        cmd.ExecuteReader();
-                    }
-                }
-                catch ( OleDbException )
-                {
-                    // tblSettings does not exist
-
-                    var createquery = @"CREATE TABLE tblTerminals ( [devicenum] VARCHAR NOT NULL, [name] VARCHAR NOT NULL, [ipaddress] VARCHAR NOT NULL );";
-                    using ( var cmd = new OleDbCommand( createquery, Db ) )
-                    {
-                        cmd.ExecuteNonQuery();
-                    }
-                }
-
-                Db.Close();
-
-            }
-            catch ( Exception )
-            {
-                Db.Close();
-                throw;
-            }
-
             ReadSettings();
         }
 
-        private void ClearTerminalCache()
+        protected override void CreateTableIfNotExists()
         {
-            Db.Open();
-            var query = @"DELETE FROM tblTerminals;";
-            using ( var cmd = new OleDbCommand( query, Db ) )
+            if ( !File.Exists( Filename ) )
             {
-                cmd.ExecuteNonQuery();
+                throw new Exception( "Not allowed to create table 'PositouchTerminals.csv'." );
             }
-            Db.Close();
-        }
-
-        private void ClearSettings()
-        {
-            Integrous = false;
-            Terminals = new List<TerminalStation>();
-        }
-
-        private void CheckIntegrity()
-        {
-            Integrous = false;
-
-            Integrous = true;
         }
 
         public void ReadSettings()
         {
-            ClearSettings();
+            Terminals.Clear();
 
-            try
+            Db.Open();
+
+            using ( var cmd = new OleDbCommand() )
             {
-                Db.Open();
+                cmd.Connection = Db;
+                cmd.CommandText = @"SELECT [devicenum], [name], [ipaddress] FROM tblTerminals;";
 
-                var query = @"SELECT [devicenum], [name], [ipaddress] FROM tblTerminals;";
-                using ( var cmd = new OleDbCommand( query, Db ) )
+                using ( var reader = cmd.ExecuteReader() )
                 {
-                    using ( var reader = cmd.ExecuteReader() )
+                    while ( reader.Read() )
                     {
-                        while ( reader.Read() )
+                        var devicenum = Convert.ToInt32( reader["devicenum"] );
+                        var name = reader["name"].ToString();
+
+                        try
                         {
-                            var devicenum = Convert.ToInt32( reader["devicenum"] );
-                            var name = reader["name"].ToString();
-
-                            try
-                            {
-                                var test = reader["ipaddress"].ToString();
-                                var ipaddress = IPAddress.Parse( test );
-                                Terminals.Add( new TerminalStation( devicenum, name, ipaddress ) );
-                            }
-                            catch ( FormatException )
-                            {
-                                Terminals.Add( new TerminalStation( devicenum, name, null ) );
-                            }
-
-
+                            var test = reader["ipaddress"].ToString();
+                            var ipaddress = IPAddress.Parse( test );
+                            Terminals.Add( new TerminalStation( devicenum, name, ipaddress ) );
                         }
+                        catch ( FormatException )
+                        {
+                            Terminals.Add( new TerminalStation( devicenum, name, null ) );
+                        }
+
+
                     }
                 }
             }
-            catch ( Exception )
-            {
-                Db.Close();
-                throw;
-            }
 
             Db.Close();
-
-            CheckIntegrity();
         }
 
         public void RefreshTerminalList()
         {
-            ClearTerminalCache();
+            Terminals.Clear();
 
             CopySpcwinAndNametermToTemp();
 
