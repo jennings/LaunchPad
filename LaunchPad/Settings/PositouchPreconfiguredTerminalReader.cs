@@ -6,6 +6,7 @@ using System.IO;
 using System.Net;
 using System.Text.RegularExpressions;
 using LaunchPad.Utilities;
+using LaunchPad.Models;
 
 namespace LaunchPad.Settings
 {
@@ -40,7 +41,7 @@ namespace LaunchPad.Settings
         }
 
         public bool Integrous { get; private set; }
-        public List<TerminalStation> Terminals { get; set; }
+        public List<PositouchTerminal> Terminals { get; set; }
 
         private PositouchPreconfiguredTerminalReader()
             : base( "PositouchTerminals.csv" )
@@ -65,137 +66,23 @@ namespace LaunchPad.Settings
             using ( var cmd = new OleDbCommand() )
             {
                 cmd.Connection = Db;
-                cmd.CommandText = @"SELECT [devicenum], [name], [ipaddress] FROM tblTerminals;";
+                cmd.CommandText = @"SELECT [DeviceNumber], [Name], [IPAddress] FROM [" + Filename + "]";
 
                 using ( var reader = cmd.ExecuteReader() )
                 {
                     while ( reader.Read() )
                     {
-                        var devicenum = Convert.ToInt32( reader["devicenum"] );
-                        var name = reader["name"].ToString();
-
-                        try
+                        Terminals.Add( new PositouchTerminal()
                         {
-                            var test = reader["ipaddress"].ToString();
-                            var ipaddress = IPAddress.Parse( test );
-                            Terminals.Add( new TerminalStation( devicenum, name, ipaddress ) );
-                        }
-                        catch ( FormatException )
-                        {
-                            Terminals.Add( new TerminalStation( devicenum, name, null ) );
-                        }
-
-
+                            DeviceNumber = Convert.ToInt32( reader["DeviceNumber"] ),
+                            Name = reader["Name"].ToString(),
+                            IPAddress = IPAddress.Parse( reader["IPAddress"].ToString() )
+                        } );
                     }
                 }
             }
 
             Db.Close();
-        }
-
-        public void RefreshTerminalList()
-        {
-            Terminals.Clear();
-
-            CopySpcwinAndNametermToTemp();
-
-            // Add Nameterm terminals to tblTerminals
-            var tempTerminals = new List<TerminalStation>();
-
-            var dbfdb = new OleDbConnection( @"Provider=Microsoft.Jet.OLEDB.4.0; Data Source=C:\Temp; Extended Properties=""dBASE IV""" );
-
-            try
-            {
-                Db.Open();
-                dbfdb.Open();
-
-                using ( var dbfcmd = new OleDbCommand() )
-                {
-                    dbfcmd.Connection = dbfdb;
-                    dbfcmd.CommandText = @"SELECT [Code], [Name] FROM nameterm;";
-                    var dbfreader = dbfcmd.ExecuteReader();
-
-                    using ( var cmd = new OleDbCommand( @"INSERT INTO tblTerminals ([devicenum],[name],[ipaddress]) VALUES (?,?,?);", Db ) )
-                    {
-                        while ( dbfreader.Read() )
-                        {
-                            var devnum = Convert.ToInt32( dbfreader["Code"] );
-                            var termname = dbfreader["Name"].ToString();
-                            IPAddress @ipaddress = null;
-
-                            var rx = new Regex( @"Device" + devnum.ToString( "D" ) + @"=(\S+)" );
-                            var spcwinIni = File.ReadAllText( @"C:\Temp\spcwin.ini" );
-                            var ipmatch = rx.Matches( spcwinIni );
-                            var first = true;
-                            foreach ( Match match in ipmatch )
-                            {
-                                if ( first == false )
-                                    throw new Exception( @"Spcwin.ini has more than one Device" + devnum.ToString( "D" ) + " line." );
-                                first = false;
-                                var ip = match.Groups[1].Value;
-                                ipaddress = IPAddress.Parse( ip );
-                            }
-
-                            cmd.Parameters.Clear();
-                            cmd.Parameters.Add( new OleDbParameter( @"DevNum", devnum.ToString() ) );
-                            cmd.Parameters.Add( new OleDbParameter( @"Name", termname ) );
-                            try
-                            {
-                                cmd.Parameters.Add( new OleDbParameter( @"IPAddress", ipaddress.ToString() ) );
-                            }
-                            catch ( NullReferenceException )
-                            {
-                                cmd.Parameters.Add( new OleDbParameter( @"IPAddress", "" ) );
-                            }
-                            cmd.ExecuteNonQuery();
-                        }
-                    }
-                }
-
-                dbfdb.Close();
-                Db.Close();
-            }
-            catch ( Exception )
-            {
-                Db.Close();
-                throw;
-            }
-
-            ReadSettings();
-        }
-
-        private void CopySpcwinAndNametermToTemp()
-        {
-            MiscUtilities.MapToPosdriver( 'L' );
-
-            var posidbfwinfo = new ProcessStartInfo();
-            posidbfwinfo.FileName = @"L:\SC\Posidbfw.exe";
-            posidbfwinfo.WorkingDirectory = @"L:\SC";
-            posidbfwinfo.Arguments = @"/dbf " + DateTime.Now.AddDays( -1 ).ToString( "MM/dd/yy" );
-            var posidbfw = Process.Start( posidbfwinfo );
-            posidbfw.WaitForExit();
-
-            if ( !Directory.Exists( @"C:\Temp" ) )
-            {
-                Directory.CreateDirectory( @"C:\Temp" );
-            }
-            File.Copy( @"L:\DBF\NAMETERM.DBF", @"C:\Temp\NAMETERM.DBF", true );
-            File.Copy( @"L:\SC\SPCWIN.INI", @"C:\Temp\SPCWIN.INI", true );
-
-        }
-    }
-
-    class TerminalStation
-    {
-        public int DeviceNumber { get; set; }
-        public string Name { get; set; }
-        public IPAddress @IPAddress { get; set; }
-
-        public TerminalStation( int deviceNumber, string name, IPAddress ipaddress )
-        {
-            DeviceNumber = deviceNumber;
-            Name = name;
-            IPAddress = ipaddress;
         }
     }
 }
