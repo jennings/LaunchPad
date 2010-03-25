@@ -4,17 +4,17 @@ using System.Data.OleDb;
 using System.IO;
 using System.Net;
 using System.Text.RegularExpressions;
-using LaunchPad.Settings;
+using LaunchPad.Models;
 
-namespace LaunchPad.Models
+namespace LaunchPad.Settings
 {
     class PositouchLiveTerminalReader
     {
-        public List<TerminalStation> Terminals { get; set; }
+        public List<PositouchTerminal> Terminals { get; set; }
 
         public PositouchLiveTerminalReader()
         {
-            Terminals = new List<TerminalStation>();
+            Terminals = new List<PositouchTerminal>();
             RefreshTerminalList();
         }
 
@@ -53,7 +53,12 @@ namespace LaunchPad.Models
                         ipaddress = IPAddress.Parse( ip );
                     }
 
-                    Terminals.Add( new TerminalStation( devnum, termname, ipaddress ) );
+                    Terminals.Add( new PositouchTerminal()
+                    {
+                        DeviceNumber = devnum,
+                        Name = termname,
+                        IPAddress = ipaddress
+                    } );
                 }
             }
 
@@ -70,20 +75,6 @@ namespace LaunchPad.Models
             File.Copy( @"\\" + ip + @"\DBF\NAMETERM.DBF", @"C:\Temp\NAMETERM.DBF", true );
             File.Copy( @"\\" + ip + @"\SC\SPCWIN.INI", @"C:\Temp\SPCWIN.INI", true );
 
-        }
-    }
-
-    class TerminalStation
-    {
-        public int DeviceNumber { get; set; }
-        public string Name { get; set; }
-        public IPAddress @IPAddress { get; set; }
-
-        public TerminalStation( int deviceNumber, string name, IPAddress ipaddress )
-        {
-            DeviceNumber = deviceNumber;
-            Name = name;
-            IPAddress = ipaddress;
         }
     }
 }
