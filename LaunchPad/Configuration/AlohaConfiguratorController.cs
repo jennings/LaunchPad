@@ -35,6 +35,8 @@ namespace LaunchPad.Configuration
                 Model.FileserverName,
                 Model.MasterCapable,
                 Model.ServerCapable ) );
+
+            RemoteDispatcher.AddTask( new SettingsTask( SettingsReader.Instance ) );
         }
 
         public void Configure()
@@ -51,7 +53,7 @@ namespace LaunchPad.Configuration
             var settings = SettingsReader.Instance;
             settings.LaunchIbercfg = true; // FIXME
             settings.LaunchVNC = true; // FIXME
-            settings.Commit();
+            settings.WriteSettings();
 
             Rebooter.Reboot();
         }

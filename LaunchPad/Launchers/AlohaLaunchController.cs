@@ -30,8 +30,8 @@ namespace LaunchPad.Launchers
 
             var settings = SettingsReader.Instance;
 
-            LaunchesIbercfg = settings.LaunchIbercfg;
-            LaunchesVNC = settings.LaunchVNC;
+            LaunchesIbercfg = settings.LaunchIbercfg == true;
+            LaunchesVNC = settings.LaunchVNC == true;
 
             if ( LaunchesVNC )
             {

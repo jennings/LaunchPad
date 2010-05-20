@@ -48,6 +48,7 @@ namespace LaunchPad.Configuration
             }
 
             RemoteDispatcher.AddTask( new VNCTask() );
+            RemoteDispatcher.AddTask( new SettingsTask( SettingsReader.Instance ) );
         }
 
         public void Configure()
@@ -70,7 +71,7 @@ namespace LaunchPad.Configuration
             var settings = SettingsReader.Instance;
             settings.PosdriverIPAddress = Model.PosdriverIPAddress;
             settings.BackofficeIPAddress = Model.BackofficeIPAddress;
-            settings.Commit();
+            settings.WriteSettings();
 
             Rebooter.Reboot();
         }

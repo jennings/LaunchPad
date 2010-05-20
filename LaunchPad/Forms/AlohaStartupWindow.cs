@@ -18,8 +18,8 @@ namespace LaunchPad.Forms
             LaunchController = new AlohaLaunchController();
             var settings = SettingsReader.Instance;
 
-            AlohaLabel.Text = settings.LaunchIbercfg ? "Yes" : "No";
-            VNCServerLabel.Text = settings.LaunchVNC ? "Yes" : "No";
+            AlohaLabel.Text = settings.LaunchIbercfg == true ? "Yes" : "No";
+            VNCServerLabel.Text = settings.LaunchVNC == true ? "Yes" : "No";
 
             IPAddressLabel.Text = GetIPAddress();
 

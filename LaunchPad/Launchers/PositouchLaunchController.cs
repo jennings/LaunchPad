@@ -32,9 +32,9 @@ namespace LaunchPad.Launchers
 
             var settings = SettingsReader.Instance;
 
-            LaunchesPosiw = settings.LaunchPosiw;
-            LaunchesPositerm = settings.LaunchPositerm;
-            LaunchesVNC = settings.LaunchVNC;
+            LaunchesPosiw = settings.LaunchPosiw == true;
+            LaunchesPositerm = settings.LaunchPositerm == true;
+            LaunchesVNC = settings.LaunchVNC == true;
 
             if ( LaunchesVNC )
             {

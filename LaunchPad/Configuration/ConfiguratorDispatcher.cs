@@ -88,6 +88,10 @@ namespace LaunchPad.Configuration
             {
                 TaskList.Add( new PosiwConfigurator( (PosiwTask)task ) );
             }
+            else if ( type == typeof( SettingsTask ) )
+            {
+                TaskList.Add( new SettingsConfigurator( (SettingsTask)task ) );
+            }
             else if ( type == typeof( VNCTask ) )
             {
                 TaskList.Add( new VNCConfigurator( (VNCTask)task ) );

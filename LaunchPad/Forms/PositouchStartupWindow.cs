@@ -17,9 +17,9 @@ namespace LaunchPad.Forms
             LaunchController = new PositouchLaunchController();
             var settings = SettingsReader.Instance;
 
-            PositermLabel.Text = settings.LaunchPositerm ? "Yes" : "No";
-            PosiwLabel.Text = settings.LaunchPosiw ? "Yes" : "No";
-            VNCServerLabel.Text = settings.LaunchVNC ? "Yes" : "No";
+            PositermLabel.Text = settings.LaunchPositerm == true ? "Yes" : "No";
+            PosiwLabel.Text = settings.LaunchPosiw == true ? "Yes" : "No";
+            VNCServerLabel.Text = settings.LaunchVNC == true ? "Yes" : "No";
 
             IPAddressLabel.Text = GetIPAddress();
 

@@ -29,6 +29,7 @@ namespace LaunchPad.Configuration
             RemoteDispatcher.AddTask( new ComputerNameTask( model.ComputerName ) );
             RemoteDispatcher.AddTask( new IPAddressTask( model.IPAddress ) );
             RemoteDispatcher.AddTask( new VNCTask() );
+            RemoteDispatcher.AddTask( new SettingsTask( SettingsReader.Instance ) );
 
             LocalDispatcher.AddTask( new PositermTask( model.ComputerName ) );
             LocalDispatcher.AddTask( new PosiwTask(
@@ -54,7 +55,7 @@ namespace LaunchPad.Configuration
             settings.LaunchPosiw = true; // FIXME
             settings.LaunchPositerm = true; // FIXME
             settings.LaunchVNC = true; // FIXME
-            settings.Commit();
+            settings.WriteSettings();
 
             Rebooter.Reboot();
         }
