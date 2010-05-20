@@ -109,6 +109,7 @@
     <Compile Include="Models\PositouchTerminal.cs" />
     <Compile Include="Settings\CSVReader.cs" />
     <Compile Include="Settings\PositouchLiveTerminalReader.cs" />
+    <Compile Include="Settings\TextSettingsReader.cs" />
     <Compile Include="Utilities\MiscUtilities.cs" />
     <Compile Include="Forms\AlohaInitialConfigWindow.cs">
       <SubType>Form</SubType>

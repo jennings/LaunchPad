@@ -6,7 +6,7 @@ using System.Net;
 namespace LaunchPad.Settings
 {
     [Serializable]
-    public class SettingsReader
+    public class SettingsReader : TextSettingsReader
     {
         public static string LaunchPadDirectory
         { get { return @"C:\LaunchPad"; } }
@@ -231,35 +231,12 @@ namespace LaunchPad.Settings
 
         public void ReadSettings()
         {
-            Settings.Clear();
-
-            try
-            {
-                var settingsFile = File.ReadAllLines( SettingsFilename );
-                foreach ( var line in settingsFile )
-                {
-                    var splitLine = line.Split( new char[] { '=' }, 2 );
-                    if ( splitLine.Length < 2 )
-                    {
-                        continue;
-                    }
-                    Settings[splitLine[0]] = splitLine[1];
-                }
-            }
-            catch ( FileNotFoundException )
-            {
-                File.Create( SettingsFilename );
-            }
+            Settings = ParseFile( SettingsFilename );
         }
 
         public void WriteSettings()
         {
-            var lines = new List<string>();
-            foreach ( var line in Settings )
-            {
-                lines.Add( line.Key.Trim() + "=" + line.Value.Trim() );
-            }
-            File.WriteAllLines( SettingsFilename, lines.ToArray() );
+            WriteFile( SettingsFilename, Settings );
         }
     }
 
