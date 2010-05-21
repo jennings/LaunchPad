@@ -14,7 +14,6 @@ namespace LaunchPad.Configuration
             get { return RemoteDispatcher.RequiresAuthentication; }
         }
 
-        private ConfiguratorDispatcher LocalDispatcher;
         private ConfiguratorDispatcher RemoteDispatcher;
         private PositouchTerminalSelectionModel Model;
 
@@ -23,7 +22,6 @@ namespace LaunchPad.Configuration
         {
             Model = model;
 
-            LocalDispatcher = new ConfiguratorDispatcher();
             RemoteDispatcher = ConfiguratorDispatcher.CreateRemoteDispatcher();
 
             RemoteDispatcher.AddTask( new ComputerNameTask( model.ComputerName ) );
@@ -31,8 +29,8 @@ namespace LaunchPad.Configuration
             RemoteDispatcher.AddTask( new VNCTask() );
             RemoteDispatcher.AddTask( new SettingsTask( SettingsReader.Instance ) );
 
-            LocalDispatcher.AddTask( new PositermTask( model.ComputerName ) );
-            LocalDispatcher.AddTask( new PosiwTask(
+            RemoteDispatcher.AddTask( new PositermTask( model.ComputerName ) );
+            RemoteDispatcher.AddTask( new PosiwTask(
                 model.DeviceNumber, // FIXME
                 model.Type, // FIXME
                 model.BackofficeIPAddress,
@@ -49,8 +47,7 @@ namespace LaunchPad.Configuration
             }
 
             RemoteDispatcher.Dispatch();
-            LocalDispatcher.Dispatch();
-
+            
             var settings = SettingsReader.Instance;
             settings.LaunchPosiw = true; // FIXME
             settings.LaunchPositerm = true; // FIXME

@@ -15,7 +15,6 @@ namespace LaunchPad.Configuration
         }
 
         private List<IConfigurator> Configurators = new List<IConfigurator>();
-        private ConfiguratorDispatcher LocalDispatcher;
         private ConfiguratorDispatcher RemoteDispatcher;
         private PositouchInitialConfigurationModel Model;
 
@@ -23,7 +22,6 @@ namespace LaunchPad.Configuration
         public PositouchInitialConfiguratorController( PositouchInitialConfigurationModel model )
         {
             Model = model;
-            LocalDispatcher = new ConfiguratorDispatcher();
             RemoteDispatcher = ConfiguratorDispatcher.CreateRemoteDispatcher();
 
             if ( Model.BasePassword != null )

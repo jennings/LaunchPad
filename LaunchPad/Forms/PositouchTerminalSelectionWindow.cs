@@ -368,7 +368,7 @@ namespace LaunchPad.Forms
             }
             catch ( Exception e )
             {
-                MessageBox.Show( String.Format( "Error: {0}. Switching to manual mode.", e.Message ) );
+                MessageBox.Show( String.Format( "Switching to manual mode:\n {0} \n{1}", e.Message, e.StackTrace ), "Error 0001" );
                 SwitchToManual();
             }
         }

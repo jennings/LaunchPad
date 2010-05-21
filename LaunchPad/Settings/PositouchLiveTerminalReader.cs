@@ -5,6 +5,7 @@ using System.IO;
 using System.Net;
 using System.Text.RegularExpressions;
 using LaunchPad.Models;
+using LaunchPad.Utilities;
 
 namespace LaunchPad.Settings
 {
@@ -71,10 +72,10 @@ namespace LaunchPad.Settings
             {
                 Directory.CreateDirectory( @"C:\Temp" );
             }
-            var ip = SettingsReader.Instance.PosdriverIPAddress.ToString();
-            File.Copy( @"\\" + ip + @"\DBF\NAMETERM.DBF", @"C:\Temp\NAMETERM.DBF", true );
-            File.Copy( @"\\" + ip + @"\SC\SPCWIN.INI", @"C:\Temp\SPCWIN.INI", true );
 
+            var posdriverPath = MiscUtilities.PosdriverDirectory;
+            File.Copy( Path.Combine( posdriverPath.ToString(), @"DBF\NAMETERM.DBF" ), @"C:\Temp\NAMETERM.DBF", true );
+            File.Copy( Path.Combine( posdriverPath.ToString(), @"SC\SPCWIN.INI" ), @"C:\Temp\SPCWIN.INI", true );
         }
     }
 }
