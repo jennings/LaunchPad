@@ -44,12 +44,14 @@
             // 
             // RCButton
             // 
+            this.RCButton.BackColor = System.Drawing.Color.IndianRed;
+            this.RCButton.Font = new System.Drawing.Font( "Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ( (byte)( 0 ) ) );
             this.RCButton.Location = new System.Drawing.Point( 321, 12 );
             this.RCButton.Name = "RCButton";
             this.RCButton.Size = new System.Drawing.Size( 62, 62 );
             this.RCButton.TabIndex = 0;
             this.RCButton.Text = "RC";
-            this.RCButton.UseVisualStyleBackColor = true;
+            this.RCButton.UseVisualStyleBackColor = false;
             this.RCButton.Click += new System.EventHandler( this.RCButton_Click );
             // 
             // groupBox1
@@ -130,10 +132,10 @@
             // CountdownTimerLabel
             // 
             this.CountdownTimerLabel.AutoSize = true;
-            this.CountdownTimerLabel.Font = new System.Drawing.Font( "Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ( (byte)( 0 ) ) );
-            this.CountdownTimerLabel.Location = new System.Drawing.Point( 259, 32 );
+            this.CountdownTimerLabel.Font = new System.Drawing.Font( "Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ( (byte)( 0 ) ) );
+            this.CountdownTimerLabel.Location = new System.Drawing.Point( 260, 29 );
             this.CountdownTimerLabel.Name = "CountdownTimerLabel";
-            this.CountdownTimerLabel.Size = new System.Drawing.Size( 34, 20 );
+            this.CountdownTimerLabel.Size = new System.Drawing.Size( 46, 26 );
             this.CountdownTimerLabel.TabIndex = 2;
             this.CountdownTimerLabel.Text = "4...";
             this.CountdownTimerLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -171,6 +173,7 @@
             this.Controls.Add( this.CountdownTimerLabel );
             this.Controls.Add( this.groupBox1 );
             this.Controls.Add( this.RCButton );
+            this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "AlohaStartupWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
