@@ -114,7 +114,7 @@ namespace LaunchPad.Forms
         {
             if ( ( TerminalType_Backoffice.Checked || TerminalType_Posdriver.Checked ) && PosdriverBackofficePassword_Password.Text != "627" )
             {
-                MessageBox.Show( @"Incorrect password! Call CBS at (800) 551-7674 for assistance." );
+                MessageBox.Show( @"Incorrect password! Call CBS at (800) 551-7674 for assistance.", "Error Code 0006" );
                 return;
             }
 

@@ -74,7 +74,7 @@ namespace LaunchPad.Forms
             }
             else
             {
-                MessageBox.Show( "Could not find calibration utility." );
+                MessageBox.Show( "Could not find calibration utility.", "Error Code 0005" );
             }
 
             this.Show();

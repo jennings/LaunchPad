@@ -74,14 +74,14 @@ namespace LaunchPad
 
                         case PointOfSaleType.None:
                         default:
-                            MessageBox.Show( @"Add POSITOUCH or ALOHA flag file to use." );
+                            MessageBox.Show( "Settings must have one of the following: \n\nPOS=Positouch\n\nPOS=Aloha", "Error Code 0002" );
                             break;
 
                     }
                     break;
 
                 default:
-                    MessageBox.Show( "Usage:\n\n   'LaunchPad.exe' to run front-end.\n\n   'LaunchPad.exe -s' to run the background service." );
+                    MessageBox.Show( "Usage:\n\n   'LaunchPad.exe' to run front-end.\n\n   'LaunchPad.exe -s' to run the background service.", "Error Code 0003" );
                     break;
             }
         }

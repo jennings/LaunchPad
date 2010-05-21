@@ -5,6 +5,7 @@ using System.IO;
 
 namespace LaunchPad.Settings
 {
+    [Serializable]
     public abstract class TextSettingsReader
     {
         protected Dictionary<string, string> ParseFile( string filename )
