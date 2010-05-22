@@ -86,6 +86,8 @@ namespace LaunchPad.Forms
                 MessageBox.Show( "Could not find calibration utility.", "Error Code 000" );
             }
 
+            SecondsBeforeClose = 4;
+            DelayTimer.Start();
             this.Show();
         }
 
