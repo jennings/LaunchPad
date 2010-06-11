@@ -8,9 +8,9 @@ using System.Windows.Forms;
 
 namespace LaunchConsole.Forms
 {
-    public partial class Form1 : Form
+    public partial class TerminalSearchForm : Form
     {
-        public Form1()
+        public TerminalSearchForm()
         {
             InitializeComponent();
         }
