@@ -44,13 +44,13 @@ namespace LaunchPad.Configuration.Configurators
             {
                 CopyINIFiles();
             }
-            catch { } // FIXME
+            catch { } // FIXME: Better error if can't copy INIs
 
             try
             {
                 UpdateWintermIni();
             }
-            catch { } // FIXME
+            catch { } // FIXME: Better error if can't edit Winterm.ini
         }
 
 

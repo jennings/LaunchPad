@@ -27,15 +27,20 @@ namespace LaunchPad.Configuration
             RemoteDispatcher.AddTask( new ComputerNameTask( model.ComputerName ) );
             RemoteDispatcher.AddTask( new IPAddressTask( model.IPAddress ) );
             RemoteDispatcher.AddTask( new VNCTask() );
-            RemoteDispatcher.AddTask( new SettingsTask( SettingsReader.Instance ) );
-
+            
             RemoteDispatcher.AddTask( new PositermTask( model.ComputerName ) );
             RemoteDispatcher.AddTask( new PosiwTask(
-                model.DeviceNumber, // FIXME
-                model.Type, // FIXME
+                model.DeviceNumber,
+                model.Type, // FIXME: Configurator should be able to determine this
                 model.BackofficeIPAddress,
                 model.PosdriverIPAddress,
                 null ) );
+
+            var settings = SettingsReader.Instance;
+            settings.LaunchPosiw = true;
+            settings.LaunchPositerm = true;
+            settings.LaunchVNC = true;
+            RemoteDispatcher.AddTask( new SettingsTask( settings ) );
         }
 
         public void Configure()
@@ -47,12 +52,6 @@ namespace LaunchPad.Configuration
             }
 
             RemoteDispatcher.Dispatch();
-            
-            var settings = SettingsReader.Instance;
-            settings.LaunchPosiw = true; // FIXME
-            settings.LaunchPositerm = true; // FIXME
-            settings.LaunchVNC = true; // FIXME
-            settings.WriteSettings();
 
             Rebooter.Reboot();
         }

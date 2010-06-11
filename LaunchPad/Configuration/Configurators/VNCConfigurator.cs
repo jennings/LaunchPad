@@ -77,7 +77,7 @@ namespace LaunchPad.Configuration.Configurators
 
         private void ChangeVNCPassword()
         {
-            // FIXME
+            // FIXME: Changing VNC password is non-trivial
         }
 
 

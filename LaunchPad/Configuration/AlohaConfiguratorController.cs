@@ -15,7 +15,6 @@ namespace LaunchPad.Configuration
             get { return RemoteDispatcher.RequiresAuthentication; }
         }
 
-        private ConfiguratorDispatcher LocalDispatcher;
         private ConfiguratorDispatcher RemoteDispatcher;
         private AlohaTerminal Model;
 
@@ -24,7 +23,6 @@ namespace LaunchPad.Configuration
         {
             Model = model;
 
-            LocalDispatcher = new ConfiguratorDispatcher();
             RemoteDispatcher = ConfiguratorDispatcher.CreateRemoteDispatcher();
 
             RemoteDispatcher.AddTask( new ComputerNameTask( Model.TermName ) );
@@ -36,7 +34,10 @@ namespace LaunchPad.Configuration
                 Model.MasterCapable,
                 Model.ServerCapable ) );
 
-            RemoteDispatcher.AddTask( new SettingsTask( SettingsReader.Instance ) );
+            var settings = SettingsReader.Instance;
+            settings.LaunchIbercfg = true;
+            settings.LaunchVNC = true;
+            RemoteDispatcher.AddTask( new SettingsTask( settings ) );
         }
 
         public void Configure()
@@ -48,13 +49,7 @@ namespace LaunchPad.Configuration
             }
 
             RemoteDispatcher.Dispatch();
-            LocalDispatcher.Dispatch();
-
-            var settings = SettingsReader.Instance;
-            settings.LaunchIbercfg = true; // FIXME
-            settings.LaunchVNC = true; // FIXME
-            settings.WriteSettings();
-
+            
             Rebooter.Reboot();
         }
     }

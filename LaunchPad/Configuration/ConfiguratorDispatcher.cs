@@ -116,7 +116,7 @@ namespace LaunchPad.Configuration
 
         private void GenerateChallenge()
         {
-            // TODO
+            // TODO: Generate challenge
             Challenge = new Challenge();
         }
     }
