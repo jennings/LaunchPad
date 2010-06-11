@@ -1,7 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual C# Express 2008
+# Visual Studio 2008
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LaunchPad", "LaunchPad\LaunchPad.csproj", "{0E9F3059-6BB6-4008-99B7-DCF9E4733155}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{3FDBA6B1-5442-433B-ABE9-E1492BB9FBBA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LaunchConsole", "LaunchConsole\LaunchConsole.csproj", "{43B59630-D6BF-474A-AAF9-2391CF821D89}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,6 +17,14 @@ Global
 		{0E9F3059-6BB6-4008-99B7-DCF9E4733155}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0E9F3059-6BB6-4008-99B7-DCF9E4733155}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0E9F3059-6BB6-4008-99B7-DCF9E4733155}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3FDBA6B1-5442-433B-ABE9-E1492BB9FBBA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3FDBA6B1-5442-433B-ABE9-E1492BB9FBBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3FDBA6B1-5442-433B-ABE9-E1492BB9FBBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3FDBA6B1-5442-433B-ABE9-E1492BB9FBBA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43B59630-D6BF-474A-AAF9-2391CF821D89}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43B59630-D6BF-474A-AAF9-2391CF821D89}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43B59630-D6BF-474A-AAF9-2391CF821D89}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43B59630-D6BF-474A-AAF9-2391CF821D89}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
